@@ -9,6 +9,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<link href="https://cdn.jsdelivr.net/npm/mapbox-gl@3.6.0/dist/mapbox-gl.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/mapbox-gl@3.6.0/dist/mapbox-gl.js"></script>
 <style>
 :root {
   --sand: #f5f0e8;
@@ -444,76 +446,6 @@ nav {
 .gem-box i { font-size: 18px; color: var(--teal); flex-shrink: 0; margin-top: 2px; }
 .gem-box p { font-size: 13px; color: #0f4f47; line-height: 1.6; }
 
-/* MAP SECTION */
-.map-section {
-  background: var(--white);
-  border: 1px solid var(--card-border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  margin-bottom: 16px;
-}
-.map-header {
-  padding: 14px 20px;
-  border-bottom: 1px solid var(--card-border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.map-header h3 {
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-}
-#map-gen-btn {
-  padding: 7px 16px;
-  font-size: 12px;
-  font-family: 'Inter', sans-serif;
-  background: var(--ink);
-  color: var(--white);
-  border: none;
-  border-radius: 999px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  transition: background 0.15s;
-}
-#map-gen-btn:hover { background: var(--accent); }
-#map-output { padding: 0; }
-
-/* SVG MAP */
-.map-svg-wrap {
-  padding: 16px;
-}
-.map-legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding: 12px 16px;
-  border-top: 1px solid var(--sand);
-}
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  color: var(--ink-muted);
-}
-.legend-dot {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 9px;
-  font-weight: 600;
-  flex-shrink: 0;
-}
-
 /* ACTIONS */
 .action-row {
   display: flex;
@@ -543,6 +475,236 @@ nav {
   border-color: var(--ink);
 }
 .act-btn.primary:hover { background: var(--accent); border-color: var(--accent); }
+
+/* SPLIT SCREEN TRIP VIEW */
+.split-view {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+  min-height: 520px;
+}
+@media (max-width: 800px) {
+  .split-view { grid-template-columns: 1fr; }
+}
+#stop-list-panel {
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+#stop-list-scroll {
+  overflow-y: auto;
+  max-height: 640px;
+}
+.stop-card {
+  border-bottom: 1px solid var(--sand);
+}
+.stop-card:last-child { border-bottom: none; }
+.stop-card-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+.stop-card-head:hover { background: var(--sand); }
+.stop-card-head.active { background: var(--accent-light); }
+.stop-num {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--white);
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.stop-card-head.excluded .stop-num { background: var(--ink-faint); }
+.stop-info { flex: 1; min-width: 0; }
+.stop-name { font-size: 14px; font-weight: 500; }
+.stop-nights { font-size: 12px; color: var(--ink-muted); }
+.stop-chevron {
+  font-size: 14px;
+  color: var(--ink-faint);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+.stop-chevron.open { transform: rotate(180deg); }
+.stop-detail {
+  display: none;
+  padding: 0 16px 16px 52px;
+}
+.stop-detail.open { display: block; }
+.stop-photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.stop-photo {
+  height: 90px;
+  border-radius: var(--radius-sm);
+  background: var(--sand);
+  border: 1px solid var(--card-border);
+  overflow: hidden;
+  position: relative;
+}
+.stop-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.stop-photo-credit {
+  position: absolute;
+  bottom: 2px;
+  right: 4px;
+  font-size: 9px;
+  color: rgba(255,255,255,0.85);
+  background: rgba(0,0,0,0.35);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+.stop-section-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 12px 0 6px;
+}
+.stop-activity {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+.stop-activity i { color: var(--ink-faint); font-size: 14px; margin-top: 2px; flex-shrink: 0; }
+.stop-activity-text { color: var(--ink-muted); line-height: 1.5; }
+.stop-activity-text strong { color: var(--ink); font-weight: 500; }
+.wandrly-note-box {
+  background: var(--teal-light);
+  border: 1px solid rgba(29,122,110,0.2);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: #0f4f47;
+  line-height: 1.6;
+  display: flex;
+  gap: 8px;
+}
+.wandrly-note-box i { flex-shrink: 0; margin-top: 2px; color: var(--teal); }
+.stop-toggle-row {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+.stop-toggle-btn {
+  flex: 1;
+  padding: 7px 10px;
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  color: var(--ink);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition: all 0.12s;
+}
+.stop-toggle-btn:hover { background: var(--sand); }
+.stop-toggle-btn.remove { color: #a32d2d; }
+.stop-toggle-btn.remove:hover { background: #fcebeb; }
+
+/* MAP PANEL */
+#map-panel {
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+  min-height: 400px;
+}
+#mapbox-container { width: 100%; height: 100%; min-height: 400px; }
+.map-popup-content { font-family: 'Inter', sans-serif; font-size: 12px; padding: 2px; }
+.map-popup-content strong { font-size: 13px; }
+.mapboxgl-popup-content { border-radius: var(--radius-sm) !important; padding: 10px 12px !important; }
+
+/* SAMPLE TRIP CARDS */
+#sample-trips-section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px 40px;
+}
+#sample-trip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+.sample-card {
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.sample-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(196,92,42,0.1);
+}
+.sample-card-img {
+  height: 140px;
+  background: var(--sand-dark);
+  position: relative;
+  overflow: hidden;
+}
+.sample-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.sample-card-tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 10px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(26,24,20,0.7);
+  color: var(--white);
+  font-weight: 500;
+}
+.sample-card-body { padding: 14px 16px; }
+.sample-card-title { font-size: 15px; font-weight: 500; margin-bottom: 3px; }
+.sample-card-sub { font-size: 12px; color: var(--ink-muted); }
+
+/* WANDRLY VOICE BADGE */
+.wandrly-voice {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--teal-light);
+  color: var(--teal);
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+/* ATTRIBUTION */
+.unsplash-credit {
+  font-size: 10px;
+  color: var(--ink-faint);
+  text-align: right;
+  margin-top: 4px;
+}
+.unsplash-credit a { color: var(--ink-faint); text-decoration: none; }
+.unsplash-credit a:hover { text-decoration: underline; }
 
 /* FOOTER */
 footer {
@@ -584,17 +746,17 @@ footer strong { color: var(--ink-muted); }
 
 <div id="construction-banner">
   <i class="ti ti-tools" style="font-size:15px;opacity:0.7"></i>
-  <span><strong>We're building something good.</strong> &nbsp;Wandrly is in early development, expect some rough edges and exciting things ahead.</span>
+  <span><strong>We're building something good.</strong> &nbsp;Wandrly is in early development — expect rough edges and exciting things ahead.</span>
   <button id="banner-close" onclick="this.parentElement.style.display='none'" aria-label="Dismiss">&times;</button>
 </div>
 
 <section id="hero">
-  <p class="hero-eyebrow"> Travel planning, your way</p>
+  <p class="hero-eyebrow">AI-powered travel planning</p>
   <h1 class="hero-title">
     Travel <em>smarter,</em><br>discover deeper
   </h1>
   <p class="hero-sub">
-    Real itineraries, hidden gems, iconic spots & all planned in seconds. Your trip, your way.
+    Real itineraries, hidden gems, iconic spots — all planned by AI in seconds. Your trip, your way.
   </p>
 
   <div id="globe-wrap">
@@ -603,7 +765,7 @@ footer strong { color: var(--ink-muted); }
 
   <div id="search-section">
     <div class="search-box">
-      <input id="search-input" type="text" placeholder="Where to? Or describe a vibe - 'romantic ski trip under $2k'..." />
+      <input id="search-input" type="text" placeholder="Where to? Or describe a vibe — 'romantic ski trip under $2k'..." />
       <button id="search-btn" onclick="doSearch()">
         <i class="ti ti-sparkles"></i> Plan my trip
       </button>
@@ -638,6 +800,11 @@ footer strong { color: var(--ink-muted); }
   <div id="country-grid"></div>
 </section>
 
+<section id="sample-trips-section">
+  <h2 class="section-heading">Real routes, planned by travellers</h2>
+  <div id="sample-trip-grid"></div>
+</section>
+
 <section style="max-width:1000px;margin:0 auto;padding:0 24px 60px;">
   <div id="loading"><span class="spinner"></span>Finding your perfect trip...</div>
   <div id="error-msg"></div>
@@ -649,34 +816,22 @@ footer strong { color: var(--ink-muted); }
       <div class="meta-chips" id="tc-meta"></div>
     </div>
 
-    <div class="trip-grid">
-      <div class="trip-card">
-        <h3>Highlights</h3>
-        <div id="tc-highlights"></div>
+    <div class="wandrly-voice" id="tc-voice" style="display:none">
+      <i class="ti ti-feather" style="font-size:13px"></i> Includes notes from Wandrly's own trips
+    </div>
+
+    <div class="split-view">
+      <div id="stop-list-panel">
+        <div id="stop-list-scroll"></div>
       </div>
-      <div class="trip-card">
-        <h3>Itinerary overview</h3>
-        <div id="tc-itinerary"></div>
+      <div id="map-panel">
+        <div id="mapbox-container"></div>
       </div>
     </div>
 
     <div class="gem-box">
       <i class="ti ti-diamond"></i>
       <p id="tc-gems"></p>
-    </div>
-
-    <div class="map-section">
-      <div class="map-header">
-        <h3><i class="ti ti-map" style="font-size:14px;vertical-align:-2px;margin-right:6px"></i>Trip map</h3>
-        <button id="map-gen-btn" onclick="renderMap()">
-          <i class="ti ti-route"></i> Generate route map
-        </button>
-      </div>
-      <div id="map-output">
-        <div style="padding:40px;text-align:center;color:#a89e90;font-size:14px;">
-          Click "Generate route map" to plot your stops
-        </div>
-      </div>
     </div>
 
     <div class="action-row">
@@ -690,7 +845,8 @@ footer strong { color: var(--ink-muted); }
 </section>
 
 <footer>
-  <strong>wandrly</strong> — AI travel planning &nbsp;·&nbsp; Built with curiosity &nbsp;·&nbsp;
+  <strong>wandrly</strong> — Travel planning &nbsp;·&nbsp; Trip plans are AI-generated — always verify details before booking &nbsp;·&nbsp;
+  Photos via <a href="https://unsplash.com" style="color:var(--accent);text-decoration:none;">Unsplash</a> &nbsp;·&nbsp;
   <a href="mailto:hello@wandrly-travel.com" style="color:var(--accent);text-decoration:none;">hello@wandrly-travel.com</a>
 </footer>
 
@@ -880,6 +1036,261 @@ function scrollToSearch() {
 
 renderCountryGrid('all');
 
+// ---- SAMPLE TRIPS ----
+// Pre-built trips shown on the homepage — no AI cost, demonstrates the product.
+// Clicking one renders it through the same split-screen view as a search result.
+const SAMPLE_TRIPS = [
+  {
+    tag: 'Sri Lanka · 12 days',
+    title: 'Hill country & southern coast',
+    sub: 'Trains, tea, temples and surf',
+    image: 'sri lanka ella train',
+    trip: {
+      title: 'Hill country & southern coast',
+      subtitle: 'A loop through Sri Lanka\'s cultural heart, tea country and beaches',
+      duration: '12 days',
+      budget: 'AUD $1,400–$2,000 per person',
+      best_time: 'December–March',
+      vibe: 'Adventure & relaxed culture',
+      hidden_gems: 'Pidurangala Rock near Sigiriya gives the same view as the famous fortress for a fraction of the price and crowd. In Ella, walk to Rawana Cave behind the falls — almost nobody goes there. In Mirissa, head 20 minutes east of the main beach to "Secret Beach" for a local-only stretch of sand.',
+      stops: [
+        { name: 'Colombo', lat: 6.927, lon: 79.861, nights: 1, summary: 'Chaotic gateway city with great street food', activities: [
+          {name:'Galle Face Green', desc:'Sunset walk along the seafront esplanade, street food stalls come alive in the evening'},
+          {name:'Pettah Market', desc:'Sensory overload market district — explore the spice and textile lanes'},
+          {name:'Dutch Hospital precinct', desc:'Restored colonial quarter with good cafes if you need a calm reset'}
+        ], transport: 'Fly into Bandaranaike Airport (CMB), about 40 minutes by tuk-tuk to the city centre.' },
+        { name: 'Sigiriya', lat: 7.957, lon: 80.760, nights: 2, summary: 'Ancient rock fortress and cave temples', activities: [
+          {name:'Sigiriya Rock Fortress', desc:'Climb at sunrise before the tour groups arrive — frescoes and mirror wall are highlights'},
+          {name:'Pidurangala Rock', desc:'Hike up for the best view of Sigiriya itself, with a fraction of the crowd'},
+          {name:'Dambulla Cave Temple', desc:'150 Buddha statues across 5 caves — the largest cave temple complex on the island'}
+        ], transport: 'Train from Colombo to Habarana then a short tuk-tuk, or a direct bus (about 4 hours).' },
+        { name: 'Kandy', lat: 7.291, lon: 80.636, nights: 2, summary: 'Sacred hill city with cooler air', activities: [
+          {name:'Temple of the Tooth', desc:'Visit during the early morning puja ceremony for the most authentic experience'},
+          {name:'Kandy Lake loop', desc:'Easy 45-minute walk around the lake and through the old town'},
+          {name:'Peradeniya Botanical Gardens', desc:'60 acres of colonial-era gardens including a striking bamboo cathedral'}
+        ], transport: 'Scenic train from Habarana/Sigiriya area — book first class in advance if possible.' },
+        { name: 'Ella', lat: 6.866, lon: 81.046, nights: 3, summary: 'Tea hills, hikes and the famous train line', activities: [
+          {name:'Nine Arches Bridge', desc:'Arrive around 8:15am to catch the train crossing for the classic photo'},
+          {name:'Little Adam\'s Peak', desc:'Easy one-hour hike with sweeping views over the tea plantations'},
+          {name:'Ella Rock', desc:'A tougher three-hour hike with far fewer tourists than Adam\'s Peak'}
+        ], transport: 'The Kandy to Ella train is one of the great rail journeys — book well ahead, views are stunning from Nanu-Oya onward.' },
+        { name: 'Mirissa', lat: 5.948, lon: 80.456, nights: 2, summary: 'South coast beach town, whales and sunsets', activities: [
+          {name:'Whale watching', desc:'Boats leave early morning, blue and sperm whales possible December to April'},
+          {name:'Secret Beach', desc:'A 20 minute walk east along the coast from the main beach — mostly locals here'},
+          {name:'Beachside seafood', desc:'Grilled catch of the day at the beachfront restaurants, best at sunset'}
+        ], transport: 'Bus from Ella, or tuk-tuk from Matara train station, roughly 3 hours.' },
+        { name: 'Galle', lat: 6.053, lon: 80.220, nights: 2, summary: 'UNESCO Dutch fort town, the most atmospheric stop', activities: [
+          {name:'Galle Fort ramparts', desc:'Walk the sea walls at sunset for the best light and ocean views'},
+          {name:'Fort cafes and galleries', desc:'Small lanes inside the fort have excellent independent cafes and shops'},
+          {name:'Jungle Beach', desc:'A short tuk-tuk ride north to a hidden cove, good for snorkelling'}
+        ], transport: 'Coastal train from Mirissa/Matara — the clifftop section is one of the best short rides on the island.' }
+      ]
+    }
+  },
+  {
+    tag: 'Georgia · 8 days',
+    title: 'Tbilisi, wine and the Caucasus',
+    sub: 'Underrated, cheap and stunning',
+    image: 'georgia tbilisi caucasus mountains',
+    trip: {
+      title: 'Tbilisi, wine and the Caucasus',
+      subtitle: 'A short, affordable loop through one of Europe\'s most underrated countries',
+      duration: '8 days',
+      budget: 'AUD $700–$1,100 per person',
+      best_time: 'May–June or September–October',
+      vibe: 'Hidden gem & adventure',
+      hidden_gems: 'In Tbilisi, skip the touristy sulfur baths near the entrance and ask a local for a neighbourhood bathhouse instead — far cheaper and more authentic. In Kazbegi, the walk to Gergeti Trinity Church is doable without a guide and the views are free.',
+      stops: [
+        { name: 'Tbilisi', lat: 41.715, lon: 44.827, nights: 3, summary: 'Quirky capital with old town charm and great food', activities: [
+          {name:'Old Town wander', desc:'Narrow streets, balconies and sulfur bathhouses in the historic district'},
+          {name:'Narikala Fortress', desc:'Take the cable car up for sunset views over the whole city'},
+          {name:'Dezerter Bazaar', desc:'Huge local market — great for trying Georgian cheeses, bread and spices'}
+        ], transport: 'Most international flights land here — Tbilisi International Airport is about 20 minutes from the centre.' },
+        { name: 'Kazbegi (Stepantsminda)', lat: 42.657, lon: 44.643, nights: 2, summary: 'Dramatic mountain village beneath Mount Kazbek', activities: [
+          {name:'Gergeti Trinity Church', desc:'A scenic 2-3 hour hike up to a church with Mount Kazbek as the backdrop'},
+          {name:'Truso Valley walk', desc:'A quieter alternative hike through an abandoned valley near the Russian border'},
+          {name:'Local guesthouse dinner', desc:'Home-cooked Georgian feasts are common and excellent value here'}
+        ], transport: 'Shared marshrutka (minibus) from Tbilisi takes about 3 hours along the dramatic Georgian Military Highway.' },
+        { name: 'Sighnaghi', lat: 41.621, lon: 45.917, nights: 2, summary: 'Wine country town with sweeping valley views', activities: [
+          {name:'Wine cellar tours', desc:'Kakheti is Georgia\'s wine heartland — small family cellars offer tastings of qvevri wine'},
+          {name:'City walls walk', desc:'Sighnaghi\'s walls offer views over the Alazani Valley toward the Caucasus'},
+          {name:'Bodbe Monastery', desc:'A short walk from town, peaceful grounds and valley views'}
+        ], transport: 'Marshrutka or shared taxi from Tbilisi, around 2.5 hours through the wine region.' },
+        { name: 'Tbilisi', lat: 41.715, lon: 44.827, nights: 1, summary: 'Back to the capital for departure', activities: [
+          {name:'Fabrika courtyard', desc:'A converted factory turned hip cafe and bar district, good for a final evening'},
+          {name:'Bridge of Peace', desc:'Modern glass footbridge lit up at night, nice short walk along the river'}
+        ], transport: 'Marshrutka back from Sighnaghi, about 2.5 hours.' }
+      ]
+    }
+  },
+  {
+    tag: 'New Zealand · 14 days',
+    title: 'South Island road trip',
+    sub: 'Mountains, lakes and adrenaline',
+    image: 'new zealand south island mountains lake',
+    trip: {
+      title: 'South Island road trip',
+      subtitle: 'A classic loop through New Zealand\'s most dramatic scenery',
+      duration: '14 days',
+      budget: 'AUD $2,200–$3,200 per person',
+      best_time: 'November–March',
+      vibe: 'Adventure & nature',
+      hidden_gems: 'Skip the busy Roys Peak track near Wanaka and try the Isthmus Peak track nearby instead — similar views, far fewer people. In Queenstown, the Tiki Trail up Ben Lomond is free and gives better views than the gondola at the top.',
+      stops: [
+        { name: 'Christchurch', lat: -43.532, lon: 172.637, nights: 1, summary: 'Arrival city, rebuilt and arty', activities: [
+          {name:'Botanic Gardens', desc:'A relaxed first stop to stretch your legs after the flight'},
+          {name:'Street art tour', desc:'Central Christchurch has excellent post-earthquake street art scattered through the CBD'}
+        ], transport: 'Main South Island international airport — pick up a rental car here.' },
+        { name: 'Lake Tekapo', lat: -44.004, lon: 170.478, nights: 1, summary: 'Turquoise lake beneath the Southern Alps', activities: [
+          {name:'Church of the Good Shepherd', desc:'Iconic small stone church right on the lakeshore, best at sunrise'},
+          {name:'Stargazing', desc:'Part of a Dark Sky Reserve — book a stargazing tour if the weather is clear'}
+        ], transport: 'About 3 hours drive from Christchurch through the Canterbury Plains.' },
+        { name: 'Wanaka', lat: -44.700, lon: 169.149, nights: 3, summary: 'Lakeside town, less crowded than Queenstown', activities: [
+          {name:'Isthmus Peak hike', desc:'A quieter alternative to Roys Peak with equally stunning lake views'},
+          {name:'Rob Roy Glacier track', desc:'A relatively easy walk to a hanging glacier and waterfalls'},
+          {name:'That Wanaka Tree', desc:'The famous lone tree in the lake — best at sunrise to avoid crowds'}
+        ], transport: 'About 3 hours from Lake Tekapo via Lindis Pass — one of the most scenic drives in the country.' },
+        { name: 'Queenstown', lat: -45.031, lon: 168.660, nights: 3, summary: 'Adventure capital, stunning but busy', activities: [
+          {name:'Ben Lomond via Tiki Trail', desc:'Free hiking route up the mountain with better views than the paid gondola'},
+          {name:'Milford Sound day trip', desc:'A long day but the fiord scenery is genuinely unmatched — go early to beat tour buses'},
+          {name:'Queenstown Gardens', desc:'A free, relaxed walk right by the lake if you need a lower-key day'}
+        ], transport: 'About 1 hour from Wanaka via the Crown Range, the highest sealed road in NZ.' },
+        { name: 'Te Anau', lat: -45.413, lon: 167.715, nights: 2, summary: 'Gateway to Fiordland, quieter than Queenstown', activities: [
+          {name:'Te Anau Glowworm Caves', desc:'Boat tour into limestone caves with bioluminescent glowworms'},
+          {name:'Kepler Track day walk', desc:'Do a section of this famous multi-day track as a shorter day hike'}
+        ], transport: 'About 2 hours from Queenstown, makes a good base for Fiordland.' },
+        { name: 'Dunedin', lat: -45.878, lon: 170.502, nights: 2, summary: 'Scottish-flavoured city with wildlife nearby', activities: [
+          {name:'Otago Peninsula', desc:'Drive out to see albatross colonies and yellow-eyed penguins'},
+          {name:'Baldwin Street', desc:'A quick stop at the world\'s steepest residential street'}
+        ], transport: 'About 3 hours drive from Te Anau back toward Christchurch via the Catlins coast road.' },
+        { name: 'Christchurch', lat: -43.532, lon: 172.637, nights: 2, summary: 'Return to depart', activities: [
+          {name:'Akaroa day trip', desc:'A scenic harbour town on Banks Peninsula, good for dolphin spotting'},
+          {name:'Re-pack and relax', desc:'A buffer day before the flight home is genuinely worth building in'}
+        ], transport: 'About 5 hours from Dunedin, or break the drive with an overnight in Timaru.' }
+      ]
+    }
+  }
+];
+
+function renderSampleTrips() {
+  document.getElementById('sample-trip-grid').innerHTML = SAMPLE_TRIPS.map((s, i) => `
+    <div class="sample-card" onclick="openSampleTrip(${i})">
+      <div class="sample-card-img" id="sample-img-${i}">
+        <span class="sample-card-tag">${s.tag}</span>
+      </div>
+      <div class="sample-card-body">
+        <div class="sample-card-title">${s.title}</div>
+        <div class="sample-card-sub">${s.sub}</div>
+      </div>
+    </div>
+  `).join('');
+
+  SAMPLE_TRIPS.forEach((s, i) => loadSampleImage(s, i));
+}
+
+async function loadSampleImage(sample, i) {
+  const photo = await fetchPhoto(sample.image);
+  if (!photo) return;
+  const el = document.getElementById(`sample-img-${i}`);
+  if (!el) return;
+  el.innerHTML = `<img src="${photo.url}" alt="${sample.title}"><span class="sample-card-tag">${sample.tag}</span>`;
+}
+
+function openSampleTrip(i) {
+  currentTripData = JSON.parse(JSON.stringify(SAMPLE_TRIPS[i].trip));
+  document.getElementById('browse-section').style.display = 'none';
+  document.getElementById('sample-trips-section').style.display = 'none';
+  renderTrip(currentTripData);
+}
+
+renderSampleTrips();
+
+// ---- WANDRLY'S TRAVEL NOTES ----
+// Personal tips from 50+ countries. Keyed by lowercase city/place name.
+// Add more entries here over time — the AI will surface these automatically
+// when a stop matches, giving Wandrly its own voice instead of generic AI text.
+const WANDRLY_NOTES = {
+  'london': [
+    'The tube is confusing — use Google Maps before you go down to know exactly which line and platform.',
+    'Gatwick bus is way cheaper than the express train, just slower and less comfy.',
+    'Uni bars (try ones near Holborn/Court) are cheaper and more social than West End spots.',
+    'Leicester Square nightlife is fun but pricey and hot inside — pre-drinks recommended.',
+    'Double-check your Heathrow terminal — getting this wrong wastes a lot of time.'
+  ],
+  'athens': [
+    'Stay near the centre — buses are dodgy but trams and the metro are solid.',
+    'Bring water and a hat for the Acropolis walk — very little shade.',
+    'Bakeries and groceries are cheap but freshness can be hit or miss.',
+    'Pubs are excellent and locals are super friendly — a hostel in Pangrati is a great call.'
+  ],
+};
+
+function getNotesForStop(stopName) {
+  const key = stopName.toLowerCase().trim();
+  for (const city in WANDRLY_NOTES) {
+    if (key.includes(city) || city.includes(key)) {
+      return WANDRLY_NOTES[city];
+    }
+  }
+  return null;
+}
+
+// ---- TRIP CACHE ----
+// Avoids calling the AI for repeat searches. Cached in localStorage so it
+// persists across visits. Cache entries expire after 30 days.
+const CACHE_PREFIX = 'wandrly_trip_';
+const CACHE_DAYS = 30;
+
+function getCacheKey(query) {
+  return CACHE_PREFIX + query.toLowerCase().trim().replace(/\s+/g, '_').slice(0, 80);
+}
+
+function getCachedTrip(query) {
+  try {
+    const raw = localStorage.getItem(getCacheKey(query));
+    if (!raw) return null;
+    const entry = JSON.parse(raw);
+    const ageMs = Date.now() - entry.savedAt;
+    if (ageMs > CACHE_DAYS * 24 * 60 * 60 * 1000) {
+      localStorage.removeItem(getCacheKey(query));
+      return null;
+    }
+    return entry.trip;
+  } catch(e) { return null; }
+}
+
+function setCachedTrip(query, trip) {
+  try {
+    localStorage.setItem(getCacheKey(query), JSON.stringify({ trip, savedAt: Date.now() }));
+  } catch(e) { /* storage full or unavailable — fail silently */ }
+}
+
+// ---- UNSPLASH PHOTOS ----
+// Add your Unsplash Access Key here (get one free at unsplash.com/developers)
+const UNSPLASH_ACCESS_KEY = 'YOUR_UNSPLASH_ACCESS_KEY';
+const photoCache = {};
+
+async function fetchPhoto(query) {
+  if (photoCache[query]) return photoCache[query];
+  if (!UNSPLASH_ACCESS_KEY || UNSPLASH_ACCESS_KEY === 'YOUR_UNSPLASH_ACCESS_KEY') return null;
+  try {
+    const res = await fetch(`https://api.unsplash.com/search/photos?query=${encodeURIComponent(query + ' travel')}&per_page=1&orientation=landscape`, {
+      headers: { 'Authorization': `Client-ID ${UNSPLASH_ACCESS_KEY}` }
+    });
+    const data = await res.json();
+    if (data.results && data.results.length > 0) {
+      const photo = {
+        url: data.results[0].urls.small,
+        credit: data.results[0].user.name,
+        link: data.results[0].user.links.html
+      };
+      photoCache[query] = photo;
+      return photo;
+    }
+  } catch(e) { /* photo not critical, fail silently */ }
+  return null;
+}
+
 // ---- AI SEARCH ----
 async function doSearch() {
   const query = document.getElementById('search-input').value.trim();
@@ -888,9 +1299,23 @@ async function doSearch() {
   document.getElementById('loading').style.display = 'block';
   document.getElementById('trip-result').style.display = 'none';
   document.getElementById('browse-section').style.display = 'none';
+  document.getElementById('sample-trips-section').style.display = 'none';
   window.scrollTo({top: document.getElementById('loading').offsetTop - 100, behavior:'smooth'});
 
-  const prompt = `You are Wandrly, an expert travel planner who specialises in both iconic destinations and hidden gems. A user wants: "${query}".
+  // Check cache first — saves AI tokens for repeat searches
+  const cached = getCachedTrip(query);
+  if (cached) {
+    currentTripData = cached;
+    renderTrip(cached);
+    return;
+  }
+
+  const noteCities = Object.keys(WANDRLY_NOTES);
+  const noteHint = noteCities.length
+    ? `\n\nWandrly has personal travel notes for these places: ${noteCities.join(', ')}. If the trip includes any of these, you don't need to invent local tips for them — just focus on great activities.`
+    : '';
+
+  const prompt = `You are Wandrly, an expert travel planner who specialises in both iconic destinations and hidden gems. A user wants: "${query}".${noteHint}
 Return ONLY valid JSON (no markdown fences, no explanation) with this exact structure:
 {
   "title": "Short evocative trip title",
@@ -899,27 +1324,24 @@ Return ONLY valid JSON (no markdown fences, no explanation) with this exact stru
   "budget": "e.g. €1,200–€1,800 per person",
   "best_time": "e.g. April–October",
   "vibe": "e.g. Adventurous & romantic",
-  "highlights": [
-    {"name":"Place","desc":"12 words max","type":"hidden","emoji":"🌿"},
-    {"name":"Place","desc":"12 words max","type":"famous","emoji":"🏛️"},
-    {"name":"Place","desc":"12 words max","type":"hidden","emoji":"💎"},
-    {"name":"Place","desc":"12 words max","type":"famous","emoji":"🗻"}
-  ],
-  "itinerary": [
-    {"day":"Days 1–2","location":"City or Region","desc":"What to do, 20 words"},
-    {"day":"Days 3–4","location":"City or Region","desc":"What to do, 20 words"},
-    {"day":"Days 5–6","location":"City or Region","desc":"What to do, 20 words"},
-    {"day":"Days 7+","location":"City or Region","desc":"What to do, 20 words"}
-  ],
   "hidden_gems": "2-3 specific, genuine insider tips that most travel sites don't mention. Be specific — name the place, the time to go, the local tip. 50 words.",
-  "map_locations": [
-    {"name":"Location 1","lat":0.0,"lon":0.0},
-    {"name":"Location 2","lat":0.0,"lon":0.0},
-    {"name":"Location 3","lat":0.0,"lon":0.0},
-    {"name":"Location 4","lat":0.0,"lon":0.0},
-    {"name":"Location 5","lat":0.0,"lon":0.0}
+  "stops": [
+    {
+      "name": "City or place name",
+      "lat": 0.0,
+      "lon": 0.0,
+      "nights": 2,
+      "summary": "One short sentence, max 14 words, about this stop",
+      "activities": [
+        {"name":"Activity name","desc":"12-18 words on what to do and why"},
+        {"name":"Activity name","desc":"12-18 words on what to do and why"},
+        {"name":"Activity name","desc":"12-18 words on what to do and why"}
+      ],
+      "transport": "How to get here from the previous stop, and one tip. 15-20 words."
+    }
   ]
-}`;
+}
+Include 4-6 stops in a sensible geographic order (so a route line between them makes sense). Always include real, accurate latitude and longitude for each place.`;
 
   try {
     const res = await fetch('/api/chat', {
@@ -943,10 +1365,12 @@ Return ONLY valid JSON (no markdown fences, no explanation) with this exact stru
     const clean = text.replace(/```json|```/g, '').trim();
     const trip = JSON.parse(clean);
     currentTripData = trip;
+    setCachedTrip(query, trip);
     renderTrip(trip);
   } catch(e) {
     document.getElementById('loading').style.display = 'none';
     document.getElementById('browse-section').style.display = 'block';
+    document.getElementById('sample-trips-section').style.display = 'block';
     const msg = e.message || 'Could not load trip. Please try again.';
     const errBox = document.getElementById('error-msg');
     errBox.textContent = msg;
@@ -954,6 +1378,12 @@ Return ONLY valid JSON (no markdown fences, no explanation) with this exact stru
     setTimeout(() => { errBox.style.display = 'none'; }, 6000);
   }
 }
+
+let mapInstance = null;
+let mapMarkers = [];
+let activeStopIndex = null;
+
+mapboxgl.accessToken = 'pk.eyJ1IjoidGxsMjIyIiwiYSI6ImNtcWMwMnF6MTBtOHkycW9jMHc1OTUza28ifQ.cnv3Br5vLdNEbrPJiqmLIw';
 
 function renderTrip(trip) {
   document.getElementById('loading').style.display = 'none';
@@ -971,102 +1401,231 @@ function renderTrip(trip) {
     {icon:'ti-heart', val: trip.vibe},
   ].map(m => `<span class="meta-chip"><i class="ti ${m.icon}"></i>${m.val}</span>`).join('');
 
-  document.getElementById('tc-highlights').innerHTML = trip.highlights.map(h => `
-    <div class="highlight-item">
-      <span class="hi-emoji">${h.emoji}</span>
-      <div>
-        <div class="hi-name">${h.name} <span class="badge ${h.type==='hidden'?'hidden':'iconic'}">${h.type==='hidden'?'off-track':'iconic'}</span></div>
-        <div class="hi-desc">${h.desc}</div>
-      </div>
-    </div>
-  `).join('');
-
-  document.getElementById('tc-itinerary').innerHTML = trip.itinerary.map((d,i) => `
-    <div class="day-item">
-      <div class="day-num">${i+1}</div>
-      <div>
-        <div class="day-loc">${d.location}</div>
-        <div class="day-desc">${d.desc}</div>
-      </div>
-    </div>
-  `).join('');
-
   document.getElementById('tc-gems').textContent = trip.hidden_gems;
 
-  document.getElementById('map-output').innerHTML = `
-    <div style="padding:40px;text-align:center;color:#a89e90;font-size:14px;">
-      Click "Generate route map" to plot your ${trip.map_locations.length} stops
-    </div>`;
+  // Mark which stops have Wandrly's own notes, and show the voice badge if any do
+  trip.stops.forEach(s => { s.included = s.included !== false; s.wandrlyNotes = getNotesForStop(s.name); });
+  const hasNotes = trip.stops.some(s => s.wandrlyNotes);
+  document.getElementById('tc-voice').style.display = hasNotes ? 'inline-flex' : 'none';
+
+  activeStopIndex = null;
+  renderStopList(trip);
+  initMap(trip);
 
   result.scrollIntoView({behavior:'smooth', block:'start'});
 }
 
-function renderMap() {
-  if (!currentTripData || !currentTripData.map_locations) return;
-  const locs = currentTripData.map_locations;
-  const lats = locs.map(l=>l.lat), lons = locs.map(l=>l.lon);
-  const minLat = Math.min(...lats), maxLat = Math.max(...lats);
-  const minLon = Math.min(...lons), maxLon = Math.max(...lons);
-  const pLat = Math.max(1.5, (maxLat-minLat)*0.25);
-  const pLon = Math.max(1.5, (maxLon-minLon)*0.25);
-  const bMinLat=minLat-pLat, bMaxLat=maxLat+pLat;
-  const bMinLon=minLon-pLon, bMaxLon=maxLon+pLon;
-  const VW=580, VH=260;
-  const toX = lon => Math.round(((lon-bMinLon)/(bMaxLon-bMinLon))*(VW-80)+40);
-  const toY = lat => Math.round(VH - (((lat-bMinLat)/(bMaxLat-bMinLat))*(VH-80)+40));
+function renderStopList(trip) {
+  const scroll = document.getElementById('stop-list-scroll');
+  const colors = ['#c45c2a','#1d7a6e','#3b6ea5','#7a4ba0','#8a6a10','#a02a2a'];
+
+  scroll.innerHTML = trip.stops.map((stop, i) => {
+    const isOpen = activeStopIndex === i;
+    return `
+    <div class="stop-card">
+      <div class="stop-card-head${isOpen?' active':''}${stop.included?'':' excluded'}" onclick="toggleStop(${i})">
+        <div class="stop-num" style="background:${stop.included ? colors[i%colors.length] : ''}">${i+1}</div>
+        <div class="stop-info">
+          <div class="stop-name">${stop.name}${stop.included?'':' <span style="color:var(--ink-faint);font-weight:400;font-size:11px">(removed)</span>'}</div>
+          <div class="stop-nights">${stop.nights} night${stop.nights!==1?'s':''} · ${stop.summary}</div>
+        </div>
+        <i class="ti ti-chevron-down stop-chevron${isOpen?' open':''}"></i>
+      </div>
+      <div class="stop-detail${isOpen?' open':''}" id="stop-detail-${i}">
+        ${isOpen ? renderStopDetail(stop, i) : ''}
+      </div>
+    </div>`;
+  }).join('');
+
+  if (activeStopIndex !== null) {
+    loadStopPhotos(trip.stops[activeStopIndex], activeStopIndex);
+  }
+}
+
+function renderStopDetail(stop, i) {
+  const notesHtml = stop.wandrlyNotes
+    ? stop.wandrlyNotes.map(n => `<div class="wandrly-note-box"><i class="ti ti-feather" style="font-size:13px"></i>${n}</div>`).join('')
+    : '';
+
+  return `
+    <div class="stop-photos" id="stop-photos-${i}">
+      <div class="stop-photo"><i class="ti ti-photo" style="font-size:20px;color:var(--ink-faint);margin:auto"></i></div>
+      <div class="stop-photo"><i class="ti ti-photo" style="font-size:20px;color:var(--ink-faint);margin:auto"></i></div>
+    </div>
+    ${notesHtml}
+    <div class="stop-section-label">Things to do</div>
+    ${stop.activities.map(a => `
+      <div class="stop-activity">
+        <i class="ti ti-map-pin-filled"></i>
+        <div class="stop-activity-text"><strong>${a.name}</strong> — ${a.desc}</div>
+      </div>`).join('')}
+    <div class="stop-section-label">Getting here</div>
+    <div class="stop-activity">
+      <i class="ti ti-route"></i>
+      <div class="stop-activity-text">${stop.transport}</div>
+    </div>
+    <div class="stop-toggle-row">
+      <button class="stop-toggle-btn ${stop.included?'remove':''}" onclick="event.stopPropagation(); toggleInclude(${i})">
+        <i class="ti ti-${stop.included?'eye-off':'eye'}" style="font-size:13px"></i> ${stop.included?'Remove from route':'Add back to route'}
+      </button>
+      <button class="stop-toggle-btn" onclick="event.stopPropagation(); rerollStop(${i})">
+        <i class="ti ti-refresh" style="font-size:13px"></i> Swap this stop ↗
+      </button>
+    </div>
+  `;
+}
+
+function toggleStop(i) {
+  activeStopIndex = (activeStopIndex === i) ? null : i;
+  renderStopList(currentTripData);
+}
+
+function toggleInclude(i) {
+  currentTripData.stops[i].included = !currentTripData.stops[i].included;
+  renderStopList(currentTripData);
+  initMap(currentTripData);
+}
+
+function rerollStop(i) {
+  const stop = currentTripData.stops[i];
+  const q = document.getElementById('search-input').value;
+  const prompt = `For this trip plan ("${q}"), suggest an alternative stop to replace "${stop.name}" — something with a similar vibe but different. Give me the name and why it'd be a good swap, in 2-3 sentences.`;
+  sendPrompt(prompt);
+}
+
+async function loadStopPhotos(stop, i) {
+  const container = document.getElementById(`stop-photos-${i}`);
+  if (!container) return;
+  const photo = await fetchPhoto(stop.name);
+  if (!photo || activeStopIndex !== i) return;
+  const slots = container.querySelectorAll('.stop-photo');
+  if (slots[0]) {
+    slots[0].innerHTML = `<img src="${photo.url}" alt="${stop.name}"><span class="stop-photo-credit">Photo: ${photo.credit}</span>`;
+  }
+}
+
+function initMap(trip) {
+  const included = trip.stops.filter(s => s.included);
+  if (included.length === 0) return;
 
   const colors = ['#c45c2a','#1d7a6e','#3b6ea5','#7a4ba0','#8a6a10','#a02a2a'];
-  let lines='', dots='', labels='';
 
-  locs.forEach((loc,i) => {
-    const x=toX(loc.lon), y=toY(loc.lat);
-    if (i>0) {
-      const px=toX(locs[i-1].lon), py=toY(locs[i-1].lat);
-      const mx=(px+x)/2, my=Math.min(py,y)-20;
-      lines += `<path d="M${px},${py} Q${mx},${my} ${x},${y}" fill="none" stroke="${colors[i%colors.length]}" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.6"/>`;
+  if (!mapInstance) {
+    mapInstance = new mapboxgl.Map({
+      container: 'mapbox-container',
+      style: 'mapbox://styles/mapbox/light-v11',
+      center: [included[0].lon, included[0].lat],
+      zoom: 5
+    });
+    mapInstance.addControl(new mapboxgl.NavigationControl(), 'top-right');
+  }
+
+  const setupMap = () => {
+    mapMarkers.forEach(m => m.remove());
+    mapMarkers = [];
+
+    // Remove old route layer/source if present
+    if (mapInstance.getLayer('route-line')) mapInstance.removeLayer('route-line');
+    if (mapInstance.getSource('route')) mapInstance.removeSource('route');
+
+    // Add markers
+    trip.stops.forEach((stop, i) => {
+      if (!stop.included) return;
+      const el = document.createElement('div');
+      el.style.width = '28px';
+      el.style.height = '28px';
+      el.style.borderRadius = '50%';
+      el.style.background = colors[i % colors.length];
+      el.style.border = '2px solid white';
+      el.style.display = 'flex';
+      el.style.alignItems = 'center';
+      el.style.justifyContent = 'center';
+      el.style.color = 'white';
+      el.style.fontSize = '12px';
+      el.style.fontWeight = '600';
+      el.style.fontFamily = 'Inter, sans-serif';
+      el.style.cursor = 'pointer';
+      el.style.boxShadow = '0 1px 4px rgba(0,0,0,0.25)';
+      el.textContent = (i+1);
+
+      el.addEventListener('click', () => {
+        activeStopIndex = i;
+        renderStopList(trip);
+        document.getElementById(`stop-detail-${i}`)?.scrollIntoView({behavior:'smooth', block:'nearest'});
+      });
+
+      const popup = new mapboxgl.Popup({offset: 18, closeButton: false})
+        .setHTML(`<div class="map-popup-content"><strong>${stop.name}</strong><br>${stop.nights} night${stop.nights!==1?'s':''}</div>`);
+
+      const marker = new mapboxgl.Marker({element: el})
+        .setLngLat([stop.lon, stop.lat])
+        .setPopup(popup)
+        .addTo(mapInstance);
+
+      el.addEventListener('mouseenter', () => marker.togglePopup());
+      el.addEventListener('mouseleave', () => marker.togglePopup());
+
+      mapMarkers.push(marker);
+    });
+
+    // Add route line
+    const coords = included.map(s => [s.lon, s.lat]);
+    if (coords.length > 1) {
+      mapInstance.addSource('route', {
+        type: 'geojson',
+        data: { type: 'Feature', geometry: { type: 'LineString', coordinates: coords } }
+      });
+      mapInstance.addLayer({
+        id: 'route-line',
+        type: 'line',
+        source: 'route',
+        paint: {
+          'line-color': '#c45c2a',
+          'line-width': 2,
+          'line-dasharray': [2, 2],
+          'line-opacity': 0.7
+        }
+      });
     }
-    const lx = x > VW/2 ? x-13 : x+13;
-    const anchor = x > VW/2 ? 'end' : 'start';
-    dots += `<circle cx="${x}" cy="${y}" r="8" fill="${colors[i%colors.length]}" stroke="white" stroke-width="2"/>
-      <text x="${x}" y="${y+1}" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="600" fill="white" font-family="Inter,sans-serif">${i+1}</text>`;
-    labels += `<text x="${lx}" y="${y-10}" text-anchor="${anchor}" font-size="10" fill="#3d3d3a" font-family="Inter,sans-serif" font-weight="500">${loc.name}</text>`;
-  });
 
-  const legendItems = locs.map((l,i) => `
-    <div class="legend-item">
-      <div class="legend-dot" style="background:${colors[i%colors.length]}">${i+1}</div>
-      ${l.name}
-    </div>`).join('');
+    // Fit bounds to all included stops
+    const bounds = new mapboxgl.LngLatBounds();
+    included.forEach(s => bounds.extend([s.lon, s.lat]));
+    mapInstance.fitBounds(bounds, { padding: 60, maxZoom: 9 });
+  };
 
-  document.getElementById('map-output').innerHTML = `
-    <div class="map-svg-wrap">
-      <svg width="100%" viewBox="0 0 ${VW} ${VH}" style="display:block;background:#e8f0f8;border-radius:8px">
-        <rect width="${VW}" height="${VH}" fill="#e8f0f8"/>
-        ${lines}${dots}${labels}
-      </svg>
-    </div>
-    <div class="map-legend">${legendItems}</div>`;
-  document.getElementById('map-gen-btn').style.display = 'none';
+  if (mapInstance.isStyleLoaded()) {
+    setupMap();
+  } else {
+    mapInstance.on('load', setupMap);
+  }
 }
 
 function goBack() {
   document.getElementById('trip-result').style.display = 'none';
   document.getElementById('browse-section').style.display = 'block';
+  document.getElementById('sample-trips-section').style.display = 'block';
   document.getElementById('back-btn').style.display = 'none';
+  if (mapInstance) { mapInstance.remove(); mapInstance = null; }
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
 function copyTrip() {
   if (!currentTripData) return;
   const t = currentTripData;
-  const txt = [
+  const lines = [
     t.title, t.subtitle, '',
-    `Duration: ${t.duration}  |  Budget: ${t.budget}  |  Best time: ${t.best_time}`, '',
-    'Highlights:', ...t.highlights.map(h=>`  • ${h.name} (${h.type}): ${h.desc}`), '',
-    'Itinerary:', ...t.itinerary.map(d=>`  ${d.day} — ${d.location}: ${d.desc}`), '',
-    'Hidden gems & local tips:', t.hidden_gems
-  ].join('\n');
-  navigator.clipboard.writeText(txt).then(() => alert('Itinerary copied!'));
+    `Duration: ${t.duration}  |  Budget: ${t.budget}  |  Best time: ${t.best_time}`, ''
+  ];
+  t.stops.forEach((s,i) => {
+    if (!s.included) return;
+    lines.push(`${i+1}. ${s.name} (${s.nights} night${s.nights!==1?'s':''}) — ${s.summary}`);
+    s.activities.forEach(a => lines.push(`   - ${a.name}: ${a.desc}`));
+    lines.push(`   Getting here: ${s.transport}`);
+    lines.push('');
+  });
+  lines.push('Hidden gems & local tips:', t.hidden_gems);
+  navigator.clipboard.writeText(lines.join('\n')).then(() => alert('Itinerary copied!'));
 }
 
 function askMore(topic) {
