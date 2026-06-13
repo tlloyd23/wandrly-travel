@@ -74,6 +74,35 @@ nav {
 }
 .nav-cta:hover { background: var(--accent) !important; color: var(--white) !important; }
 
+/* BANNER */
+#construction-banner {
+  background: var(--ink);
+  color: var(--white);
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+}
+#construction-banner span { color: var(--sand-dark); }
+#construction-banner strong { color: var(--white); font-weight: 500; }
+#banner-close {
+  position: absolute;
+  right: 16px;
+  background: none;
+  border: none;
+  color: var(--ink-faint);
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  padding: 2px 6px;
+  transition: color 0.15s;
+}
+#banner-close:hover { color: var(--white); }
+
 /* HERO */
 #hero {
   display: flex;
@@ -273,6 +302,18 @@ nav {
   padding: 48px 24px;
   color: var(--ink-muted);
   font-size: 15px;
+}
+#error-msg {
+  display: none;
+  max-width: 520px;
+  margin: 0 auto 24px;
+  padding: 14px 18px;
+  background: #fff5f5;
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-sm);
+  color: #991b1b;
+  font-size: 13px;
+  text-align: center;
 }
 .spinner {
   display: inline-block;
@@ -541,13 +582,19 @@ footer strong { color: var(--ink-muted); }
   </div>
 </nav>
 
+<div id="construction-banner">
+  <i class="ti ti-tools" style="font-size:15px;opacity:0.7"></i>
+  <span><strong>We're building something good.</strong> &nbsp;Wandrly is in early development, expect some rough edges and exciting things ahead.</span>
+  <button id="banner-close" onclick="this.parentElement.style.display='none'" aria-label="Dismiss">&times;</button>
+</div>
+
 <section id="hero">
   <p class="hero-eyebrow">AI-powered travel planning</p>
   <h1 class="hero-title">
     Travel <em>smarter,</em><br>discover deeper
   </h1>
   <p class="hero-sub">
-    Real itineraries, hidden gems, iconic spots — all planned in seconds. Your trip, your way.
+    Real itineraries, hidden gems, iconic spots — all planned by AI in seconds. Your trip, your way.
   </p>
 
   <div id="globe-wrap">
@@ -593,6 +640,7 @@ footer strong { color: var(--ink-muted); }
 
 <section style="max-width:1000px;margin:0 auto;padding:0 24px 60px;">
   <div id="loading"><span class="spinner"></span>Finding your perfect trip...</div>
+  <div id="error-msg"></div>
   <div id="trip-result">
     <button id="back-btn" onclick="goBack()"><i class="ti ti-arrow-left"></i> Back to explore</button>
     <div class="trip-header">
@@ -651,6 +699,8 @@ footer strong { color: var(--ink-muted); }
 const canvas = document.getElementById('globe-canvas');
 const ctx = canvas.getContext('2d');
 const W = 280, H = 280, R = 128;
+canvas.width = W;
+canvas.height = H;
 let angle = 0.5, isDragging = false, lastX = 0, velX = 0;
 
 const lands = [
@@ -831,8 +881,6 @@ function scrollToSearch() {
 renderCountryGrid('all');
 
 // ---- AI SEARCH ----
-const ANTHROPIC_API_KEY = window.ANTHROPIC_API_KEY || 'YOUR_API_KEY_HERE';
-
 async function doSearch() {
   const query = document.getElementById('search-input').value.trim();
   if (!query) { document.getElementById('search-input').focus(); return; }
@@ -874,13 +922,10 @@ Return ONLY valid JSON (no markdown fences, no explanation) with this exact stru
 }`;
 
   try {
-    const res = await fetch(/api/chat, {
+    const res = await fetch('/api/chat', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': ANTHROPIC_API_KEY,
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true'
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         model: 'claude-sonnet-4-6',
@@ -889,6 +934,11 @@ Return ONLY valid JSON (no markdown fences, no explanation) with this exact stru
       })
     });
     const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.error || 'Something went wrong');
+    }
+
     const text = data.content.map(i => i.text || '').join('');
     const clean = text.replace(/```json|```/g, '').trim();
     const trip = JSON.parse(clean);
@@ -897,7 +947,11 @@ Return ONLY valid JSON (no markdown fences, no explanation) with this exact stru
   } catch(e) {
     document.getElementById('loading').style.display = 'none';
     document.getElementById('browse-section').style.display = 'block';
-    alert('Could not load trip — please check your API key is configured, then try again.');
+    const msg = e.message || 'Could not load trip. Please try again.';
+    const errBox = document.getElementById('error-msg');
+    errBox.textContent = msg;
+    errBox.style.display = 'block';
+    setTimeout(() => { errBox.style.display = 'none'; }, 6000);
   }
 }
 
