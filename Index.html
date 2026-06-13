@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wandrly — AI travel planning</title>
+<meta name="description" content="Plan your perfect trip with AI. Hidden gems, iconic classics, route maps and real itineraries.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<style>
+:root {
+  --sand: #f5f0e8;
+  --sand-dark: #e8e0d0;
+  --ink: #1a1814;
+  --ink-muted: #6b6456;
+  --ink-faint: #a89e90;
+  --accent: #c45c2a;
+  --accent-light: #f0e4da;
+  --teal: #1d7a6e;
+  --teal-light: #e0f0ee;
+  --white: #ffffff;
+  --card-border: rgba(26,24,20,0.1);
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--sand);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* NAV */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 32px;
+  background: var(--sand);
+  border-bottom: 1px solid var(--card-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-logo {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--ink);
+  letter-spacing: -0.3px;
+}
+.nav-logo span { color: var(--accent); font-style: italic; }
+.nav-links { display: flex; gap: 24px; align-items: center; }
+.nav-links a {
+  font-size: 13px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-cta {
+  background: var(--ink);
+  color: var(--white) !important;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.nav-cta:hover { background: var(--accent) !important; color: var(--white) !important; }
+
+/* HERO */
+#hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 24px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.hero-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(36px, 6vw, 58px);
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  color: var(--ink);
+  max-width: 720px;
+  margin-bottom: 16px;
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+.hero-sub {
+  font-size: 16px;
+  color: var(--ink-muted);
+  max-width: 480px;
+  margin-bottom: 32px;
+  line-height: 1.7;
+}
+
+/* GLOBE */
+#globe-wrap {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  margin: 0 auto 32px;
+  cursor: grab;
+}
+#globe-wrap:active { cursor: grabbing; }
+#globe-canvas { width: 280px; height: 280px; }
+
+/* SEARCH */
+#search-section {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 20px;
+}
+.search-box {
+  display: flex;
+  gap: 0;
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: 999px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(26,24,20,0.08);
+}
+#search-input {
+  flex: 1;
+  padding: 14px 20px;
+  font-size: 15px;
+  font-family: 'Inter', sans-serif;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--ink);
+}
+#search-input::placeholder { color: var(--ink-faint); }
+#search-btn {
+  padding: 10px 22px;
+  margin: 6px;
+  background: var(--accent);
+  color: var(--white);
+  border: none;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: background 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+#search-btn:hover { background: #a84d22; }
+
+/* VIBES */
+.vibes-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  max-width: 600px;
+  margin: 0 auto 12px;
+}
+.vibe-pill {
+  padding: 7px 15px;
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  border: 1px solid var(--card-border);
+  border-radius: 999px;
+  cursor: pointer;
+  background: var(--white);
+  color: var(--ink-muted);
+  transition: all 0.15s;
+}
+.vibe-pill:hover, .vibe-pill.active {
+  background: var(--ink);
+  color: var(--white);
+  border-color: var(--ink);
+}
+
+/* REGION TABS */
+.region-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+.rtab {
+  padding: 6px 16px;
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  background: transparent;
+  color: var(--ink-muted);
+  transition: all 0.15s;
+}
+.rtab.active, .rtab:hover {
+  background: var(--white);
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+/* COUNTRY GRID */
+#browse-section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+}
+.section-heading {
+  font-family: 'Fraunces', serif;
+  font-size: 24px;
+  font-weight: 300;
+  color: var(--ink);
+  margin-bottom: 20px;
+  letter-spacing: -0.3px;
+}
+#country-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+.country-card {
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.country-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(196,92,42,0.1);
+}
+.cc-flag { font-size: 26px; margin-bottom: 8px; }
+.cc-name { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+.cc-sub { font-size: 12px; color: var(--ink-muted); margin-bottom: 8px; }
+.cc-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.cc-tag {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--sand);
+  color: var(--ink-muted);
+  border: 1px solid var(--card-border);
+}
+
+/* LOADING */
+#loading {
+  display: none;
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--ink-muted);
+  font-size: 15px;
+}
+.spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--sand-dark);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  vertical-align: -4px;
+  margin-right: 10px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* TRIP RESULT */
+#trip-result {
+  display: none;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+.trip-header {
+  margin-bottom: 24px;
+}
+.trip-title {
+  font-family: 'Fraunces', serif;
+  font-size: 32px;
+  font-weight: 300;
+  letter-spacing: -0.5px;
+  margin-bottom: 4px;
+}
+.trip-sub { font-size: 15px; color: var(--ink-muted); margin-bottom: 16px; }
+.meta-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+.meta-chip {
+  padding: 6px 14px;
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: 999px;
+  font-size: 12px;
+  color: var(--ink-muted);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.meta-chip i { font-size: 13px; }
+
+/* TRIP GRID */
+.trip-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+@media (max-width: 640px) { .trip-grid { grid-template-columns: 1fr; } }
+.trip-card {
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+.trip-card h3 {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 14px;
+}
+
+/* HIGHLIGHTS */
+.highlight-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--sand);
+}
+.highlight-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.hi-emoji { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+.hi-name { font-size: 13px; font-weight: 500; margin-bottom: 1px; display: flex; align-items: center; gap: 6px; }
+.hi-desc { font-size: 12px; color: var(--ink-muted); line-height: 1.4; }
+.badge {
+  font-size: 9px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-weight: 500;
+}
+.badge.hidden { background: var(--teal-light); color: var(--teal); }
+.badge.iconic { background: var(--accent-light); color: var(--accent); }
+
+/* ITINERARY */
+.day-item {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 14px;
+  align-items: flex-start;
+}
+.day-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--sand);
+  border: 1px solid var(--card-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink-muted);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.day-loc { font-size: 13px; font-weight: 500; margin-bottom: 2px; }
+.day-desc { font-size: 12px; color: var(--ink-muted); line-height: 1.5; }
+
+/* HIDDEN GEM */
+.gem-box {
+  background: var(--teal-light);
+  border: 1px solid rgba(29,122,110,0.2);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.gem-box i { font-size: 18px; color: var(--teal); flex-shrink: 0; margin-top: 2px; }
+.gem-box p { font-size: 13px; color: #0f4f47; line-height: 1.6; }
+
+/* MAP SECTION */
+.map-section {
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.map-header {
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--card-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.map-header h3 {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+#map-gen-btn {
+  padding: 7px 16px;
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  background: var(--ink);
+  color: var(--white);
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: background 0.15s;
+}
+#map-gen-btn:hover { background: var(--accent); }
+#map-output { padding: 0; }
+
+/* SVG MAP */
+.map-svg-wrap {
+  padding: 16px;
+}
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 16px;
+  border-top: 1px solid var(--sand);
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--ink-muted);
+}
+.legend-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 9px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+/* ACTIONS */
+.action-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.act-btn {
+  padding: 9px 16px;
+  font-size: 13px;
+  font-family: 'Inter', sans-serif;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  color: var(--ink);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s;
+}
+.act-btn:hover { border-color: var(--ink); background: var(--sand); }
+.act-btn i { font-size: 14px; }
+.act-btn.primary {
+  background: var(--ink);
+  color: var(--white);
+  border-color: var(--ink);
+}
+.act-btn.primary:hover { background: var(--accent); border-color: var(--accent); }
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--card-border);
+  padding: 32px;
+  text-align: center;
+  color: var(--ink-faint);
+  font-size: 13px;
+}
+footer strong { color: var(--ink-muted); }
+
+/* BACK BUTTON */
+#back-btn {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--ink-muted);
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: 'Inter', sans-serif;
+  padding: 0 0 20px;
+  transition: color 0.15s;
+}
+#back-btn:hover { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">wand<span>r</span>ly</div>
+  <div class="nav-links">
+    <a href="#browse-section">Explore</a>
+    <a href="#" onclick="scrollToSearch()">Plan a trip</a>
+    <a href="#" class="nav-cta">Get started</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <p class="hero-eyebrow">AI-powered travel planning</p>
+  <h1 class="hero-title">
+    Travel <em>smarter,</em><br>discover deeper
+  </h1>
+  <p class="hero-sub">
+    Real itineraries, hidden gems, iconic spots — all planned by AI in seconds. Your trip, your way.
+  </p>
+
+  <div id="globe-wrap">
+    <canvas id="globe-canvas" width="280" height="280"></canvas>
+  </div>
+
+  <div id="search-section">
+    <div class="search-box">
+      <input id="search-input" type="text" placeholder="Where to? Or describe a vibe — 'romantic ski trip under $2k'..." />
+      <button id="search-btn" onclick="doSearch()">
+        <i class="ti ti-sparkles"></i> Plan my trip
+      </button>
+    </div>
+  </div>
+
+  <div class="vibes-row">
+    <span class="vibe-pill" onclick="setVibe(this,'romantic getaway')">Romantic</span>
+    <span class="vibe-pill" onclick="setVibe(this,'budget ski trip')">Ski on a budget</span>
+    <span class="vibe-pill" onclick="setVibe(this,'off the beaten track adventure')">Off the beaten track</span>
+    <span class="vibe-pill" onclick="setVibe(this,'beach and culture mix')">Beach &amp; culture</span>
+    <span class="vibe-pill" onclick="setVibe(this,'solo backpacker trip')">Solo backpacker</span>
+    <span class="vibe-pill" onclick="setVibe(this,'foodie trip')">Foodie</span>
+    <span class="vibe-pill" onclick="setVibe(this,'family trip with kids')">Family</span>
+    <span class="vibe-pill" onclick="setVibe(this,'hidden gems only no tourist traps')">Hidden gems only</span>
+  </div>
+</section>
+
+<section id="browse-section">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:12px;">
+    <h2 class="section-heading">Browse by region</h2>
+    <div class="region-row" style="margin-bottom:0">
+      <button class="rtab active" onclick="setRegion(this,'all')">All</button>
+      <button class="rtab" onclick="setRegion(this,'europe')">Europe</button>
+      <button class="rtab" onclick="setRegion(this,'asia')">Asia</button>
+      <button class="rtab" onclick="setRegion(this,'americas')">Americas</button>
+      <button class="rtab" onclick="setRegion(this,'africa')">Africa</button>
+      <button class="rtab" onclick="setRegion(this,'oceania')">Oceania</button>
+      <button class="rtab" onclick="setRegion(this,'middle east')">Middle East</button>
+    </div>
+  </div>
+  <div id="country-grid"></div>
+</section>
+
+<section style="max-width:1000px;margin:0 auto;padding:0 24px 60px;">
+  <div id="loading"><span class="spinner"></span>Finding your perfect trip...</div>
+  <div id="trip-result">
+    <button id="back-btn" onclick="goBack()"><i class="ti ti-arrow-left"></i> Back to explore</button>
+    <div class="trip-header">
+      <h1 class="trip-title" id="tc-title"></h1>
+      <p class="trip-sub" id="tc-sub"></p>
+      <div class="meta-chips" id="tc-meta"></div>
+    </div>
+
+    <div class="trip-grid">
+      <div class="trip-card">
+        <h3>Highlights</h3>
+        <div id="tc-highlights"></div>
+      </div>
+      <div class="trip-card">
+        <h3>Itinerary overview</h3>
+        <div id="tc-itinerary"></div>
+      </div>
+    </div>
+
+    <div class="gem-box">
+      <i class="ti ti-diamond"></i>
+      <p id="tc-gems"></p>
+    </div>
+
+    <div class="map-section">
+      <div class="map-header">
+        <h3><i class="ti ti-map" style="font-size:14px;vertical-align:-2px;margin-right:6px"></i>Trip map</h3>
+        <button id="map-gen-btn" onclick="renderMap()">
+          <i class="ti ti-route"></i> Generate route map
+        </button>
+      </div>
+      <div id="map-output">
+        <div style="padding:40px;text-align:center;color:#a89e90;font-size:14px;">
+          Click "Generate route map" to plot your stops
+        </div>
+      </div>
+    </div>
+
+    <div class="action-row">
+      <button class="act-btn primary" onclick="doSearch()"><i class="ti ti-refresh"></i> Refine trip</button>
+      <button class="act-btn" onclick="copyTrip()"><i class="ti ti-copy"></i> Copy itinerary</button>
+      <button class="act-btn" onclick="askMore('hidden gems')"><i class="ti ti-diamond"></i> More hidden gems</button>
+      <button class="act-btn" onclick="askMore('transport and routes')"><i class="ti ti-train"></i> Transport options</button>
+      <button class="act-btn" onclick="askMore('best accommodation options at different budgets')"><i class="ti ti-bed"></i> Where to stay</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <strong>wandrly</strong> — AI travel planning &nbsp;·&nbsp; Built with curiosity &nbsp;·&nbsp;
+  <a href="mailto:hello@wandrly-travel.com" style="color:var(--accent);text-decoration:none;">hello@wandrly-travel.com</a>
+</footer>
+
+<script>
+// ---- GLOBE ----
+const canvas = document.getElementById('globe-canvas');
+const ctx = canvas.getContext('2d');
+const W = 280, H = 280, R = 128;
+let angle = 0.5, isDragging = false, lastX = 0, velX = 0;
+
+const lands = [
+  [55,10,22],[48,-3,14],[52,20,16],[46,15,10],[60,25,12],[65,15,16],[60,-2,8],
+  [35,35,18],[30,45,14],[25,55,10],[20,80,24],[30,115,26],[35,105,20],[10,107,14],
+  [1,110,10],[35,136,16],[-25,130,28],[-35,150,16],[-42,147,10],
+  [0,25,24],[5,38,16],[-25,28,20],[-30,25,18],[15,38,12],[10,8,18],[20,-5,16],
+  [40,-95,32],[55,-100,28],[25,-100,24],[20,-75,10],[18,-70,8],[15,-90,10],
+  [-15,-60,28],[-30,-55,22],[-40,-65,16],[-25,-45,14],
+  [65,-45,12],[70,-25,8],[65,-145,12],[60,-140,10],
+  [30,52,12],[35,48,10],[38,58,14],[-20,47,8],
+];
+
+function project(lat, lon, rot) {
+  const adj = lon + rot;
+  return {
+    x: R * Math.cos(lat) * Math.sin(adj),
+    y: R * Math.sin(lat),
+    z: R * Math.cos(lat) * Math.cos(adj)
+  };
+}
+
+function drawGlobe() {
+  ctx.clearRect(0, 0, W, H);
+  const cx = W/2, cy = H/2;
+
+  ctx.beginPath();
+  ctx.arc(cx, cy, R, 0, Math.PI*2);
+  ctx.fillStyle = '#d4e8f0';
+  ctx.fill();
+
+  lands.forEach(([lat, lon, sz]) => {
+    const p = project(lat * Math.PI/180, lon * Math.PI/180, angle);
+    if (p.z < 0) return;
+    const alpha = Math.min(1, p.z / R);
+    const rr = Math.max(2, (sz / 180) * R * 2.2 * alpha);
+    ctx.beginPath();
+    ctx.arc(cx + p.x, cy - p.y, rr, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(90,140,85,${0.45 + alpha * 0.45})`;
+    ctx.fill();
+  });
+
+  ctx.strokeStyle = 'rgba(0,40,80,0.06)';
+  ctx.lineWidth = 0.5;
+  for (let lat = -60; lat <= 60; lat += 30) {
+    ctx.beginPath(); let first = true;
+    for (let lon = -180; lon <= 180; lon += 4) {
+      const p = project(lat * Math.PI/180, lon * Math.PI/180, angle);
+      if (p.z < 0) { first = true; continue; }
+      first ? ctx.moveTo(cx + p.x, cy - p.y) : ctx.lineTo(cx + p.x, cy - p.y);
+      first = false;
+    }
+    ctx.stroke();
+  }
+  for (let lon = -180; lon < 180; lon += 30) {
+    ctx.beginPath(); let first = true;
+    for (let lat = -80; lat <= 80; lat += 4) {
+      const p = project(lat * Math.PI/180, lon * Math.PI/180, angle);
+      if (p.z < 0) { first = true; continue; }
+      first ? ctx.moveTo(cx + p.x, cy - p.y) : ctx.lineTo(cx + p.x, cy - p.y);
+      first = false;
+    }
+    ctx.stroke();
+  }
+
+  ctx.beginPath();
+  ctx.arc(cx, cy, R, 0, Math.PI*2);
+  ctx.strokeStyle = 'rgba(0,40,80,0.1)';
+  ctx.lineWidth = 1;
+  ctx.stroke();
+}
+
+function globeLoop() {
+  if (!isDragging) { angle += 0.004 + velX * 0.001; velX *= 0.94; }
+  drawGlobe();
+  requestAnimationFrame(globeLoop);
+}
+canvas.addEventListener('mousedown', e => { isDragging = true; lastX = e.clientX; velX = 0; });
+window.addEventListener('mouseup', () => { isDragging = false; });
+window.addEventListener('mousemove', e => { if (!isDragging) return; velX = e.clientX - lastX; angle += velX * 0.007; lastX = e.clientX; });
+canvas.addEventListener('touchstart', e => { isDragging = true; lastX = e.touches[0].clientX; }, {passive:true});
+canvas.addEventListener('touchend', () => { isDragging = false; });
+canvas.addEventListener('touchmove', e => { if (!isDragging) return; angle += (e.touches[0].clientX - lastX) * 0.007; lastX = e.touches[0].clientX; e.preventDefault(); }, {passive:false});
+globeLoop();
+
+// ---- DATA ----
+const REGIONS = {
+  europe: [
+    {flag:'🇵🇹',name:'Portugal',sub:'Lisbon, Porto, Algarve',tags:['budget-friendly','underrated','foodie']},
+    {flag:'🇬🇪',name:'Georgia',sub:'Tbilisi, Kazbegi, wine country',tags:['hidden gem','adventure','foodie']},
+    {flag:'🇸🇮',name:'Slovenia',sub:'Ljubljana, Lake Bled, Triglav',tags:['nature','romantic','off-track']},
+    {flag:'🇦🇱',name:'Albania',sub:'Berat, Gjirokastër, Riviera',tags:['hidden gem','budget','beach']},
+    {flag:'🇳🇴',name:'Norway',sub:'Fjords, Bergen, Tromsø',tags:['nature','adventure','dramatic']},
+    {flag:'🇷🇴',name:'Romania',sub:'Transylvania, Bucharest, Brasov',tags:['hidden gem','history','budget']},
+  ],
+  asia: [
+    {flag:'🇻🇳',name:'Vietnam',sub:'Hanoi, Ha Long Bay, Hội An',tags:['backpacker','foodie','budget']},
+    {flag:'🇯🇵',name:'Japan',sub:'Tokyo, Kyoto, Osaka, Hokkaido',tags:['culture','ski','foodie']},
+    {flag:'🇰🇬',name:'Kyrgyzstan',sub:'Bishkek, Song-Kul, Ala Archa',tags:['off-track','adventure','nomadic']},
+    {flag:'🇱🇦',name:'Laos',sub:'Luang Prabang, Vang Vieng',tags:['hidden gem','backpacker','spiritual']},
+    {flag:'🇲🇳',name:'Mongolia',sub:'Ulaanbaatar, Gobi, Khövsgöl',tags:['adventure','off-track','nomadic']},
+    {flag:'🇱🇰',name:'Sri Lanka',sub:'Colombo, Ella, Galle, Kandy',tags:['culture','beach','trains']},
+  ],
+  americas: [
+    {flag:'🇨🇴',name:'Colombia',sub:'Cartagena, Medellín, Coffee Region',tags:['culture','foodie','underrated']},
+    {flag:'🇧🇴',name:'Bolivia',sub:'Salar de Uyuni, La Paz, Sucre',tags:['hidden gem','adventure','budget']},
+    {flag:'🇪🇨',name:'Ecuador',sub:'Galápagos, Quito, Amazon',tags:['nature','adventure','wildlife']},
+    {flag:'🇨🇺',name:'Cuba',sub:'Havana, Trinidad, Viñales',tags:['culture','music','off-track']},
+    {flag:'🇬🇹',name:'Guatemala',sub:'Antigua, Tikal, Lake Atitlán',tags:['hidden gem','culture','adventure']},
+    {flag:'🇵🇪',name:'Peru',sub:'Machu Picchu, Cusco, Amazon',tags:['iconic','adventure','foodie']},
+  ],
+  africa: [
+    {flag:'🇲🇦',name:'Morocco',sub:'Marrakech, Sahara, Chefchaouen',tags:['culture','romantic','foodie']},
+    {flag:'🇪🇹',name:'Ethiopia',sub:'Lalibela, Danakil, Omo Valley',tags:['off-track','culture','adventure']},
+    {flag:'🇷🇼',name:'Rwanda',sub:'Gorilla trekking, Kigali, Nyungwe',tags:['wildlife','eco','off-track']},
+    {flag:'🇲🇿',name:'Mozambique',sub:'Bazaruto, Tofo, Maputo',tags:['hidden gem','beach','diving']},
+    {flag:'🇸🇳',name:'Senegal',sub:'Dakar, Saint-Louis, Casamance',tags:['culture','music','off-track']},
+    {flag:'🇿🇲',name:'Zambia',sub:'Victoria Falls, South Luangwa',tags:['wildlife','adventure','safari']},
+  ],
+  oceania: [
+    {flag:'🇳🇿',name:'New Zealand',sub:'South Island, Queenstown, Bay of Islands',tags:['adventure','nature','romantic']},
+    {flag:'🇫🇯',name:'Fiji',sub:'Yasawa Islands, Mamanuca, Taveuni',tags:['beach','romantic','diving']},
+    {flag:'🇵🇫',name:'French Polynesia',sub:'Bora Bora, Rangiroa, Moorea',tags:['luxury','romantic','diving']},
+    {flag:'🇻🇺',name:'Vanuatu',sub:'Port Vila, Tanna, Espiritu Santo',tags:['adventure','off-track','diving']},
+    {flag:'🇵🇬',name:'Papua New Guinea',sub:'Highlands, Tufi, Sepik River',tags:['off-track','culture','adventure']},
+    {flag:'🇸🇧',name:'Solomon Islands',sub:'Honiara, Malaita, Rennell',tags:['off-track','diving','culture']},
+  ],
+  'middle east': [
+    {flag:'🇴🇲',name:'Oman',sub:'Muscat, Wahiba Sands, Dhofar',tags:['hidden gem','adventure','culture']},
+    {flag:'🇯🇴',name:'Jordan',sub:'Petra, Wadi Rum, Aqaba',tags:['iconic','adventure','history']},
+    {flag:'🇦🇲',name:'Armenia',sub:'Yerevan, Tatev, Dilijan',tags:['hidden gem','culture','nature']},
+    {flag:'🇦🇿',name:'Azerbaijan',sub:'Baku, Sheki, Quba',tags:['off-track','culture','food']},
+    {flag:'🇱🇧',name:'Lebanon',sub:'Beirut, Byblos, Bcharre',tags:['foodie','culture','underrated']},
+    {flag:'🇮🇱',name:'Israel',sub:'Tel Aviv, Jerusalem, Negev',tags:['history','culture','foodie']},
+  ],
+};
+REGIONS.all = Object.values(REGIONS).flat().slice(0,12);
+
+let currentRegion = 'all';
+let currentTripData = null;
+
+function renderCountryGrid(region) {
+  const list = REGIONS[region] || REGIONS.all;
+  document.getElementById('country-grid').innerHTML = list.map(c => `
+    <div class="country-card" onclick="quickSearch('trip to ${c.name}')">
+      <div class="cc-flag">${c.flag}</div>
+      <div class="cc-name">${c.name}</div>
+      <div class="cc-sub">${c.sub}</div>
+      <div class="cc-tags">${c.tags.map(t=>`<span class="cc-tag">${t}</span>`).join('')}</div>
+    </div>
+  `).join('');
+}
+
+function setRegion(el, region) {
+  document.querySelectorAll('.rtab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  currentRegion = region;
+  renderCountryGrid(region);
+}
+
+function setVibe(el, vibe) {
+  document.querySelectorAll('.vibe-pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('search-input').value = vibe;
+}
+
+function quickSearch(query) {
+  document.getElementById('search-input').value = query;
+  doSearch();
+  window.scrollTo({top: document.getElementById('browse-section').offsetTop - 80, behavior:'smooth'});
+}
+
+function scrollToSearch() {
+  document.getElementById('search-input').focus();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+renderCountryGrid('all');
+
+// ---- AI SEARCH ----
+const ANTHROPIC_API_KEY = window.ANTHROPIC_API_KEY || 'YOUR_API_KEY_HERE';
+
+async function doSearch() {
+  const query = document.getElementById('search-input').value.trim();
+  if (!query) { document.getElementById('search-input').focus(); return; }
+
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('trip-result').style.display = 'none';
+  document.getElementById('browse-section').style.display = 'none';
+  window.scrollTo({top: document.getElementById('loading').offsetTop - 100, behavior:'smooth'});
+
+  const prompt = `You are Wandrly, an expert travel planner who specialises in both iconic destinations and hidden gems. A user wants: "${query}".
+Return ONLY valid JSON (no markdown fences, no explanation) with this exact structure:
+{
+  "title": "Short evocative trip title",
+  "subtitle": "One compelling sentence about this trip",
+  "duration": "e.g. 10 days",
+  "budget": "e.g. €1,200–€1,800 per person",
+  "best_time": "e.g. April–October",
+  "vibe": "e.g. Adventurous & romantic",
+  "highlights": [
+    {"name":"Place","desc":"12 words max","type":"hidden","emoji":"🌿"},
+    {"name":"Place","desc":"12 words max","type":"famous","emoji":"🏛️"},
+    {"name":"Place","desc":"12 words max","type":"hidden","emoji":"💎"},
+    {"name":"Place","desc":"12 words max","type":"famous","emoji":"🗻"}
+  ],
+  "itinerary": [
+    {"day":"Days 1–2","location":"City or Region","desc":"What to do, 20 words"},
+    {"day":"Days 3–4","location":"City or Region","desc":"What to do, 20 words"},
+    {"day":"Days 5–6","location":"City or Region","desc":"What to do, 20 words"},
+    {"day":"Days 7+","location":"City or Region","desc":"What to do, 20 words"}
+  ],
+  "hidden_gems": "2-3 specific, genuine insider tips that most travel sites don't mention. Be specific — name the place, the time to go, the local tip. 50 words.",
+  "map_locations": [
+    {"name":"Location 1","lat":0.0,"lon":0.0},
+    {"name":"Location 2","lat":0.0,"lon":0.0},
+    {"name":"Location 3","lat":0.0,"lon":0.0},
+    {"name":"Location 4","lat":0.0,"lon":0.0},
+    {"name":"Location 5","lat":0.0,"lon":0.0}
+  ]
+}`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': ANTHROPIC_API_KEY,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    const data = await res.json();
+    const text = data.content.map(i => i.text || '').join('');
+    const clean = text.replace(/```json|```/g, '').trim();
+    const trip = JSON.parse(clean);
+    currentTripData = trip;
+    renderTrip(trip);
+  } catch(e) {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('browse-section').style.display = 'block';
+    alert('Could not load trip — please check your API key is configured, then try again.');
+  }
+}
+
+function renderTrip(trip) {
+  document.getElementById('loading').style.display = 'none';
+  const result = document.getElementById('trip-result');
+  result.style.display = 'block';
+  document.getElementById('back-btn').style.display = 'flex';
+
+  document.getElementById('tc-title').textContent = trip.title;
+  document.getElementById('tc-sub').textContent = trip.subtitle;
+
+  document.getElementById('tc-meta').innerHTML = [
+    {icon:'ti-calendar', val: trip.duration},
+    {icon:'ti-coins', val: trip.budget},
+    {icon:'ti-sun', val: trip.best_time},
+    {icon:'ti-heart', val: trip.vibe},
+  ].map(m => `<span class="meta-chip"><i class="ti ${m.icon}"></i>${m.val}</span>`).join('');
+
+  document.getElementById('tc-highlights').innerHTML = trip.highlights.map(h => `
+    <div class="highlight-item">
+      <span class="hi-emoji">${h.emoji}</span>
+      <div>
+        <div class="hi-name">${h.name} <span class="badge ${h.type==='hidden'?'hidden':'iconic'}">${h.type==='hidden'?'off-track':'iconic'}</span></div>
+        <div class="hi-desc">${h.desc}</div>
+      </div>
+    </div>
+  `).join('');
+
+  document.getElementById('tc-itinerary').innerHTML = trip.itinerary.map((d,i) => `
+    <div class="day-item">
+      <div class="day-num">${i+1}</div>
+      <div>
+        <div class="day-loc">${d.location}</div>
+        <div class="day-desc">${d.desc}</div>
+      </div>
+    </div>
+  `).join('');
+
+  document.getElementById('tc-gems').textContent = trip.hidden_gems;
+
+  document.getElementById('map-output').innerHTML = `
+    <div style="padding:40px;text-align:center;color:#a89e90;font-size:14px;">
+      Click "Generate route map" to plot your ${trip.map_locations.length} stops
+    </div>`;
+
+  result.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function renderMap() {
+  if (!currentTripData || !currentTripData.map_locations) return;
+  const locs = currentTripData.map_locations;
+  const lats = locs.map(l=>l.lat), lons = locs.map(l=>l.lon);
+  const minLat = Math.min(...lats), maxLat = Math.max(...lats);
+  const minLon = Math.min(...lons), maxLon = Math.max(...lons);
+  const pLat = Math.max(1.5, (maxLat-minLat)*0.25);
+  const pLon = Math.max(1.5, (maxLon-minLon)*0.25);
+  const bMinLat=minLat-pLat, bMaxLat=maxLat+pLat;
+  const bMinLon=minLon-pLon, bMaxLon=maxLon+pLon;
+  const VW=580, VH=260;
+  const toX = lon => Math.round(((lon-bMinLon)/(bMaxLon-bMinLon))*(VW-80)+40);
+  const toY = lat => Math.round(VH - (((lat-bMinLat)/(bMaxLat-bMinLat))*(VH-80)+40));
+
+  const colors = ['#c45c2a','#1d7a6e','#3b6ea5','#7a4ba0','#8a6a10','#a02a2a'];
+  let lines='', dots='', labels='';
+
+  locs.forEach((loc,i) => {
+    const x=toX(loc.lon), y=toY(loc.lat);
+    if (i>0) {
+      const px=toX(locs[i-1].lon), py=toY(locs[i-1].lat);
+      const mx=(px+x)/2, my=Math.min(py,y)-20;
+      lines += `<path d="M${px},${py} Q${mx},${my} ${x},${y}" fill="none" stroke="${colors[i%colors.length]}" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.6"/>`;
+    }
+    const lx = x > VW/2 ? x-13 : x+13;
+    const anchor = x > VW/2 ? 'end' : 'start';
+    dots += `<circle cx="${x}" cy="${y}" r="8" fill="${colors[i%colors.length]}" stroke="white" stroke-width="2"/>
+      <text x="${x}" y="${y+1}" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="600" fill="white" font-family="Inter,sans-serif">${i+1}</text>`;
+    labels += `<text x="${lx}" y="${y-10}" text-anchor="${anchor}" font-size="10" fill="#3d3d3a" font-family="Inter,sans-serif" font-weight="500">${loc.name}</text>`;
+  });
+
+  const legendItems = locs.map((l,i) => `
+    <div class="legend-item">
+      <div class="legend-dot" style="background:${colors[i%colors.length]}">${i+1}</div>
+      ${l.name}
+    </div>`).join('');
+
+  document.getElementById('map-output').innerHTML = `
+    <div class="map-svg-wrap">
+      <svg width="100%" viewBox="0 0 ${VW} ${VH}" style="display:block;background:#e8f0f8;border-radius:8px">
+        <rect width="${VW}" height="${VH}" fill="#e8f0f8"/>
+        ${lines}${dots}${labels}
+      </svg>
+    </div>
+    <div class="map-legend">${legendItems}</div>`;
+  document.getElementById('map-gen-btn').style.display = 'none';
+}
+
+function goBack() {
+  document.getElementById('trip-result').style.display = 'none';
+  document.getElementById('browse-section').style.display = 'block';
+  document.getElementById('back-btn').style.display = 'none';
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function copyTrip() {
+  if (!currentTripData) return;
+  const t = currentTripData;
+  const txt = [
+    t.title, t.subtitle, '',
+    `Duration: ${t.duration}  |  Budget: ${t.budget}  |  Best time: ${t.best_time}`, '',
+    'Highlights:', ...t.highlights.map(h=>`  • ${h.name} (${h.type}): ${h.desc}`), '',
+    'Itinerary:', ...t.itinerary.map(d=>`  ${d.day} — ${d.location}: ${d.desc}`), '',
+    'Hidden gems & local tips:', t.hidden_gems
+  ].join('\n');
+  navigator.clipboard.writeText(txt).then(() => alert('Itinerary copied!'));
+}
+
+function askMore(topic) {
+  const q = document.getElementById('search-input').value;
+  const prompt = `For this trip: "${q}" — give me more detail specifically about ${topic}. Be specific, practical and include hidden gems where relevant.`;
+  document.getElementById('search-input').value = prompt;
+  doSearch();
+}
+</script>
+</body>
+</html>
