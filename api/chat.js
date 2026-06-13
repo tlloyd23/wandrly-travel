@@ -65,7 +65,13 @@ export default async function handler(req, res) {
     });
 
     const data = await response.json();
-    return res.status(response.status).json(data);
+
+    if (!response.ok) {
+      const message = (data.error && data.error.message) || 'The AI service returned an error.';
+      return res.status(response.status).json({ error: message });
+    }
+
+    return res.status(200).json(data);
 
   } catch (err) {
     return res.status(500).json({ error: 'Something went wrong. Please try again.' });
