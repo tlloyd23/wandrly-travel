@@ -115,6 +115,19 @@ nav {
   position: relative;
   overflow: hidden;
 }
+#hero::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(ellipse at center, rgba(196,92,42,0.12) 0%, rgba(29,122,110,0.08) 45%, transparent 75%);
+  pointer-events: none;
+  z-index: 0;
+}
+#hero > * { position: relative; z-index: 1; }
 .hero-eyebrow {
   font-size: 11px;
   font-weight: 500;
@@ -661,12 +674,24 @@ nav {
   box-shadow: 0 4px 16px rgba(196,92,42,0.1);
 }
 .sample-card-img {
-  height: 140px;
+  height: 150px;
   background: var(--sand-dark);
   position: relative;
   overflow: hidden;
 }
 .sample-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.sample-card-img.theme-srilanka { background: linear-gradient(135deg, #e8b896 0%, #d4824a 50%, #1d7a6e 100%); }
+.sample-card-img.theme-georgia { background: linear-gradient(135deg, #c4a5d4 0%, #8a6aa0 50%, #c45c2a 100%); }
+.sample-card-img.theme-nz { background: linear-gradient(135deg, #a8d4d8 0%, #4a8a9a 50%, #2d5a4a 100%); }
+.sample-card-img-icon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: rgba(255,255,255,0.35);
+}
 .sample-card-tag {
   position: absolute;
   top: 10px;
@@ -674,9 +699,10 @@ nav {
   font-size: 10px;
   padding: 3px 10px;
   border-radius: 999px;
-  background: rgba(26,24,20,0.7);
+  background: rgba(26,24,20,0.55);
   color: var(--white);
   font-weight: 500;
+  z-index: 2;
 }
 .sample-card-body { padding: 14px 16px; }
 .sample-card-title { font-size: 15px; font-weight: 500; margin-bottom: 3px; }
@@ -885,7 +911,7 @@ function drawGlobe() {
 
   ctx.beginPath();
   ctx.arc(cx, cy, R, 0, Math.PI*2);
-  ctx.fillStyle = '#d4e8f0';
+  ctx.fillStyle = '#cfe6ec';
   ctx.fill();
 
   lands.forEach(([lat, lon, sz]) => {
@@ -895,7 +921,7 @@ function drawGlobe() {
     const rr = Math.max(2, (sz / 180) * R * 2.2 * alpha);
     ctx.beginPath();
     ctx.arc(cx + p.x, cy - p.y, rr, 0, Math.PI*2);
-    ctx.fillStyle = `rgba(90,140,85,${0.45 + alpha * 0.45})`;
+    ctx.fillStyle = `rgba(99,153,34,${0.4 + alpha * 0.45})`;
     ctx.fill();
   });
 
@@ -1045,6 +1071,8 @@ const SAMPLE_TRIPS = [
     title: 'Hill country & southern coast',
     sub: 'Trains, tea, temples and surf',
     image: 'sri lanka ella train',
+    theme: 'srilanka',
+    icon: 'ti-train',
     trip: {
       title: 'Hill country & southern coast',
       subtitle: 'A loop through Sri Lanka\'s cultural heart, tea country and beaches',
@@ -1092,6 +1120,8 @@ const SAMPLE_TRIPS = [
     title: 'Tbilisi, wine and the Caucasus',
     sub: 'Underrated, cheap and stunning',
     image: 'georgia tbilisi caucasus mountains',
+    theme: 'georgia',
+    icon: 'ti-glass-full',
     trip: {
       title: 'Tbilisi, wine and the Caucasus',
       subtitle: 'A short, affordable loop through one of Europe\'s most underrated countries',
@@ -1128,6 +1158,8 @@ const SAMPLE_TRIPS = [
     title: 'South Island road trip',
     sub: 'Mountains, lakes and adrenaline',
     image: 'new zealand south island mountains lake',
+    theme: 'nz',
+    icon: 'ti-mountain',
     trip: {
       title: 'South Island road trip',
       subtitle: 'A classic loop through New Zealand\'s most dramatic scenery',
@@ -1175,8 +1207,9 @@ const SAMPLE_TRIPS = [
 function renderSampleTrips() {
   document.getElementById('sample-trip-grid').innerHTML = SAMPLE_TRIPS.map((s, i) => `
     <div class="sample-card" onclick="openSampleTrip(${i})">
-      <div class="sample-card-img" id="sample-img-${i}">
+      <div class="sample-card-img theme-${s.theme}" id="sample-img-${i}">
         <span class="sample-card-tag">${s.tag}</span>
+        <div class="sample-card-img-icon"><i class="ti ${s.icon}"></i></div>
       </div>
       <div class="sample-card-body">
         <div class="sample-card-title">${s.title}</div>
@@ -1350,12 +1383,23 @@ Include 4-6 stops in a sensible geographic order (so a route line between them m
     const data = await res.json();
 
     if (!res.ok) {
-      throw new Error(data.error || 'Something went wrong');
+      const errMsg = typeof data.error === 'string'
+        ? data.error
+        : (data.error && data.error.message) || 'Something went wrong — please try again.';
+      throw new Error(errMsg);
     }
 
     const text = data.content.map(i => i.text || '').join('');
     const clean = text.replace(/```json|```/g, '').trim();
-    const trip = JSON.parse(clean);
+    let trip;
+    try {
+      trip = JSON.parse(clean);
+    } catch(parseErr) {
+      throw new Error('Got an unexpected response — please try again.');
+    }
+    if (!trip.stops || !Array.isArray(trip.stops) || trip.stops.length === 0) {
+      throw new Error('Could not build an itinerary for that — try rephrasing your search.');
+    }
     currentTripData = trip;
     setCachedTrip(query, trip);
     renderTrip(trip);
