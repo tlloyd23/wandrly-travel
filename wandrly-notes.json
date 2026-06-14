@@ -1,150 +1,220 @@
 {
   "_schema_version": 1,
   "_notes": "Quick first-person tips for cities not yet fully built out in destinations.json. Keyed by lowercase city name. These surface in the 'Wandrly's notes' box when a trip includes a matching city, even if that city isn't a full destination entry yet. Add to this anytime - it's just a flat list of short tips per city.",
-
   "notes": {
     "london": [
-      "The tube is confusing — use Google Maps before you go down to know exactly which line and platform.",
+      "The tube is confusing, use Google Maps before you go down to know exactly which line and platform.",
       "Gatwick bus is way cheaper than the express train, just slower and less comfy.",
       "Uni bars (try ones near Holborn/Court) are cheaper and more social than West End spots.",
-      "Leicester Square nightlife is fun but pricey and hot inside — pre-drinks recommended.",
-      "Double-check your Heathrow terminal — getting this wrong wastes a lot of time.",
+      "Leicester Square nightlife is fun but pricey and hot inside, pre-drinks recommended.",
+      "Double-check your Heathrow terminal, getting this wrong wastes a lot of time.",
       "Be careful with bus timetables, especially early mornings and night buses.",
       "Hammersmith St Christopher's hostel is a solid pick for airport access any time of day, if not the most comfortable."
     ],
     "athens": [
-      "Stay near the centre — buses are dodgy but trams and the metro are solid.",
-      "Bring water and a hat for the Acropolis walk — very little shade.",
+      "Stay near the centre, buses are dodgy but trams and the metro are solid.",
+      "Bring water and a hat for the Acropolis walk, very little shade.",
       "Bakeries and groceries are cheap but freshness can be hit or miss.",
-      "Pubs are excellent and locals are super friendly — a hostel in Pangrati is a great call.",
-      "Beaches near the city are flat and underwhelming compared to Sydney — don't expect much."
+      "Pubs are excellent and locals are super friendly, a hostel in Pangrati is a great call.",
+      "Beaches near the city are flat and underwhelming compared to Sydney, don't expect much."
     ],
     "rome": [
-      "The 'full experience' combo ticket for the Colosseum and Forum is worth it — buy in person on the day, doesn't take long, gets you in for about €22.",
+      "The 'full experience' combo ticket for the Colosseum and Forum is worth it, buy in person on the day, doesn't take long, gets you in for about €22.",
       "Everything stays open and busy until at least 11pm in summer.",
-      "Don't pay more than €10 for pizza anywhere — good pizza near the Pantheon for €8-10.",
-      "Buses are regular but rarely the exact right one — often faster to hop on one heading the right direction and walk the last bit.",
+      "Don't pay more than €10 for pizza anywhere, good pizza near the Pantheon for €8-10.",
+      "Buses are regular but rarely the exact right one, often faster to hop on one heading the right direction and walk the last bit.",
       "The fountains and major sights are stunning at night, often better than during the day."
     ],
     "paris": [
-      "Beautiful but expensive — the Eiffel Tower, food and drinks all live up to the hype.",
+      "Beautiful but expensive, the Eiffel Tower, food and drinks all live up to the hype.",
       "Watch for scammers and pushy vendors around major sights.",
-      "Trains are easy but vulnerable to strikes — build in buffer time.",
+      "Trains are easy but vulnerable to strikes, build in buffer time.",
       "A bottle of wine watching the sunset near the Eiffel Tower is one of the best simple things to do.",
       "Luxembourg is brutally expensive in the centre, but the sausages were genuinely great."
     ],
     "bruges": [
-      "Two nights is enough — small, beautiful, and very walkable.",
-      "Food isn't cheap (expect ~€8-10 a meal) but it's good — waffles, pizza, burgers.",
-      "The beer is excellent across the board — check TripAdvisor for bar recommendations.",
-      "St Christopher's hostel is a good base — a hotel here feels like overkill."
+      "Two nights is enough, small, beautiful, and very walkable.",
+      "Food isn't cheap (expect ~€8-10 a meal) but it's good, waffles, pizza, burgers.",
+      "The beer is excellent across the board, check TripAdvisor for bar recommendations.",
+      "St Christopher's hostel is a good base, a hotel here feels like overkill."
     ],
     "amsterdam": [
       "Best public transport of any city on a Europe trip and not too expensive.",
-      "If trying edibles, check whether they're actually THC — some sold are THC-free.",
-      "The Red Light District museum is genuinely worth visiting — answers a lot of questions.",
-      "Hostels here are excellent but pricey — worth it for the social scene."
+      "If trying edibles, check whether they're actually THC, some sold are THC-free.",
+      "The Red Light District museum is genuinely worth visiting, answers a lot of questions.",
+      "Hostels here are excellent but pricey, worth it for the social scene."
     ],
     "berlin": [
       "Cheaper than expected, but grungier and more brutalist than most European capitals.",
-      "Berlin Cathedral is worth seeing both in daylight and at night — very different vibes.",
-      "Try currywurst at least once even if it's not amazing — it's part of the experience.",
+      "Berlin Cathedral is worth seeing both in daylight and at night, very different vibes.",
+      "Try currywurst at least once even if it's not amazing, it's part of the experience.",
       "A Vietnamese restaurant near Museum Island (Co Wei) was a standout meal."
     ],
     "zagreb": [
-      "Huge fan of this city — cheap, fun, and the hostels are excellent.",
-      "The area south of the station is more Eastern Bloc in style; north is classic European with eastern flair — worth noticing the contrast.",
-      "Honestly 2 nights is plenty — fun nightlife but not a huge amount to do beyond that.",
-      "Don't fully trust posted bus/train timetables — services can leave early."
+      "Huge fan of this city, cheap, fun, and the hostels are excellent.",
+      "The area south of the station is more Eastern Bloc in style; north is classic European with eastern flair, worth noticing the contrast.",
+      "Honestly 2 nights is plenty, fun nightlife but not a huge amount to do beyond that.",
+      "Don't fully trust posted bus/train timetables, services can leave early."
     ],
     "budapest": [
-      "Loved this city — cheap, stunning, and great nightlife. Could easily spend a week.",
+      "Loved this city, cheap, stunning, and great nightlife. Could easily spend a week.",
       "Stay centrally near the ruin bars to make life easy.",
-      "Ticket checkers are everywhere on public transport — always pay.",
+      "Ticket checkers are everywhere on public transport, always pay.",
       "A river cruise is cheap and a great way to see the main sights.",
       "The pools on the island are a fun, cheap alternative to the famous baths (about 1/5 the price)."
     ],
     "vienna": [
       "Public transport is a little pricey with few ticket checkers.",
-      "Stay near a metro line — most sights are walkable with occasional metro hops.",
+      "Stay near a metro line, most sights are walkable with occasional metro hops.",
       "Palace and architecture sightseeing here is some of the best in Europe.",
       "Cheap Asian food options are everywhere if you want a budget meal."
     ],
     "prague": [
-      "Extremely cheap — beers around €1.50-2.",
+      "Extremely cheap, beers around €1.50-2.",
       "Petřín Hill (with the mini Eiffel Tower) and the castle/cathedral area are must-dos.",
       "Trams cover everything except the central station, which you can walk to.",
       "Nightlife wraps up earlier than Budapest but is still excellent value."
     ],
     "wroclaw": [
       "The old town is stunning; the outskirts feel much more distinctly Polish.",
-      "Climb the tower on Cathedral Island — costs about $3 AUD and is well worth it.",
-      "Traditional Polish restaurants around the square are tasty and good value — if a meal is over ~35 zloty you're likely being overcharged.",
+      "Climb the tower on Cathedral Island, costs about $3 AUD and is well worth it.",
+      "Traditional Polish restaurants around the square are tasty and good value, if a meal is over ~35 zloty you're likely being overcharged.",
       "Clubs stay open late even on Sundays, clustered near the main square."
     ],
     "warsaw": [
-      "The Warsaw Museum in the old town is essential for understanding the city's history — allow real time here.",
+      "The Warsaw Museum in the old town is essential for understanding the city's history, allow real time here.",
       "Grocery stores are extremely cheap but quality can be inconsistent.",
       "The Palace of Culture and Science area has arguably the best skyline view in the region."
     ],
     "kaunas": [
-      "A real highlight — small, quiet, and very pretty.",
-      "Apple Maps doesn't work well here for public transport — use Google Maps.",
+      "A real highlight, small, quiet, and very pretty.",
+      "Apple Maps doesn't work well here for public transport, use Google Maps.",
       "Buy bus tickets with coins directly on the bus.",
-      "St Michael's Cathedral and the old town are both worth a wander — just don't walk into a wedding by accident."
+      "St Michael's Cathedral and the old town are both worth a wander, just don't walk into a wedding by accident."
     ],
     "stockholm": [
       "The Vasa Museum area (island of museums) is worth a long stroll.",
-      "Alcohol can only be bought from special shops during the day — supermarkets don't sell it, and you need to be 20 (though pubs serve from 18).",
-      "Even in summer it can be cold — bring a light jumper regardless of season.",
+      "Alcohol can only be bought from special shops during the day, supermarkets don't sell it, and you need to be 20 (though pubs serve from 18).",
+      "Even in summer it can be cold, bring a light jumper regardless of season.",
       "Staying centrally makes the old town very walkable."
     ],
     "oslo": [
-      "Stunning and developed, but strict — public drinking of any kind is illegal, including on your own balcony.",
-      "Under 20s can't enter venues serving alcohol above 22% — rarely enforced but technically the law.",
-      "Take the regional (not express) train to/from the airport — a few minutes slower but noticeably cheaper.",
+      "Stunning and developed, but strict, public drinking of any kind is illegal, including on your own balcony.",
+      "Under 20s can't enter venues serving alcohol above 22%, rarely enforced but technically the law.",
+      "Take the regional (not express) train to/from the airport, a few minutes slower but noticeably cheaper.",
       "Vigeland (statue park) is genuinely worth visiting, especially around sunset.",
-      "Expect to pay 75-110 kr per drink — alcohol sales stop at 8pm so plan ahead."
+      "Expect to pay 75-110 kr per drink, alcohol sales stop at 8pm so plan ahead."
     ],
     "barcelona": [
-      "Gothic Quarter is great for wandering — stay near a metro for easy access everywhere.",
-      "Skip paying for castle entry on the hill — the cable car down is a better use of money.",
-      "At least one Gaudí site (Sagrada Família) is essential.",
-      "No public toilets anywhere in Spain — use fast food places when you can."
+      "Public transport is excellent, so staying near a metro line (Sagrada Familia area is great) works well.",
+      "Skip paying for castle entry on the hill, the cable car down is a better use of money and the views are still great.",
+      "The Gothic Quarter is great for an aimless wander.",
+      "Be careful around the beach and wharf area at night, the rest of the city feels very safe.",
+      "Spain has almost no public toilets, fast food places are a lifesaver for this."
     ],
     "madrid": [
-      "Effortlessly liveable — more so than Barcelona.",
-      "Get a monthly student transport card if eligible — around €8 for unlimited travel.",
-      "Day trip to Toledo should take priority over Segovia if you can only do one.",
-      "Tapas in La Latina and a boat on the park lake are both highlights."
+      "Felt more liveable and effortlessly pretty than Barcelona.",
+      "The Cercanias (C-x) train lines use a separate Renfe card to the metro, allow extra time to sort this out at the station.",
+      "Tapas in La Latina, a boat on the park lake, and a wander through the palace and plaza are all highlights.",
+      "Get a monthly student transport pass if eligible, around 8 euros for unlimited travel.",
+      "Day trip to Toledo should take priority over Segovia if choosing only one."
     ],
     "toledo": [
-      "Worth the ~€20 train from Madrid — beautiful old architecture and views.",
-      "5-6 hours is the right amount of time; much more becomes a long day.",
-      "Free public toilets exist in the library near the army museum and in the Jewish quarter."
+      "About 20 euros for the train from Madrid and well worth it for the old architecture and views.",
+      "5 to 6 hours is the right amount of time to spend here.",
+      "Free public toilets exist in the library near the army museum and in the Jewish quarter.",
+      "The Santa Cruz museum is free and a genuine highlight."
     ],
     "lisbon": [
-      "Credit card works on public transport — refreshing after much of Europe.",
-      "Skip the famous lift — walk up the hill instead for better views, with Zambeze restaurant partway up as a good stop.",
-      "Sintra is well worth the trip — go to the castle over the palace if budget-conscious.",
-      "Jardim do Rio for sunset with drinks is a highlight."
+      "Credit card works on public transport, a nice change after much of Europe.",
+      "Skip the famous funicular/lift, Zambeze restaurant up the hill has a better view, and keep climbing for even better.",
+      "Sintra is well worth visiting, go to the castle over the palace if on a budget, both are worth it if not.",
+      "Jardim do Rio at sunset with some drinks and friends is one of the best simple things to do here.",
+      "The airport is efficient, you don't need to arrive 3 hours early, but customs is after the food court so allow time."
     ],
     "tokyo": [
-      "4-5 nights is a good amount of time given the size of the city.",
-      "Staying near Shibuya (within 15 mins by train of the centre) works really well.",
-      "Get Suica loaded on your phone for transport and convenience stores — but note balance is void once you leave Japan.",
-      "Metro lines close around midnight and taxis are expensive — plan your last train."
+      "4 to 5 nights is a good amount of time given the size of the city.",
+      "Staying near Shibuya, within about 15 minutes by train of the centre, works really well.",
+      "Get Suica loaded on your phone for transport and convenience stores, but note any balance is void once you leave Japan.",
+      "Metro lines close around midnight and taxis are expensive, plan your last train carefully.",
+      "Convenience stores are genuinely amazing for food, open 24/7."
     ],
     "kyoto": [
       "Much quieter than Osaka or Tokyo, and can get very cold in winter.",
-      "Fushimi Inari is genuinely worth the visit.",
-      "Most paid temples can be seen via a side path without paying — not always worth the entry fee.",
+      "Fushimi Inari is genuinely worth it.",
+      "Most paid temples can be seen via a side path without paying, not always worth the entry fee.",
       "Can be done as a day trip from Osaka if short on time, but still worth an overnight."
     ],
     "osaka": [
-      "Much livelier than Kyoto — Dotonbori at night with a drink in hand is great.",
+      "Much livelier than Kyoto, Dotonbori at night with a drink in hand is great.",
       "The aquarium is a genuine highlight, including their coral regeneration programs.",
       "Stay near Tennoji or Namba for easy transport connections."
+    ],
+    "tangier": [
+      "A really cool mix of modern Europe and a Vietnam-style market maze in the Medina.",
+      "Bring cash, euros or USD are accepted, and small notes/coins help since everything is extremely cheap.",
+      "Get your passport stamped on the ferry itself from Tarifa to avoid arrival hassle.",
+      "The lighthouse day trip is great, Hercules Cave is skippable, a cab from the ferry terminal should cost around 20 euros."
+    ],
+    "seville": [
+      "Cards now work on the metro, a big upgrade from a few years ago.",
+      "The Alcazar is a must, basically a full day and genuinely gorgeous.",
+      "2 nights covers the key sites (Alcazar, cathedral, Plaza de España), 3 nights makes for a more relaxed stay.",
+      "Nightlife here is excellent."
+    ],
+    "nagano": [
+      "Proper winter town, the skiing at Ryuoo ski park is very beginner-friendly with cheap gear hire.",
+      "Finish a ski day at Mamejima Yutaruan for an outdoor onsen, genuinely amazing.",
+      "Public transport gets expensive here, a car makes life much easier if staying a few days.",
+      "The monkey park is a bit of a tourist trap and somewhat unethical, take it or leave it."
+    ],
+    "matsumoto": [
+      "Matsumoto Castle is gorgeous, especially with the winter light show.",
+      "Coffee Abe is a great, cheap breakfast spot near the station.",
+      "Worth a stopover even for just one night."
+    ],
+    "taipei": [
+      "Buy an EasyCard from a stand at the airport with cash, don't bother with the app.",
+      "Jing Mei White Terror Museum is a phenomenal, sobering look at Taiwan's pre-democracy history.",
+      "Jiufen is a must-do day trip, climb Teapot Mountain and Keelung Mountain if you have walking gear, both are steep.",
+      "Yangmingshan and Beitou are great for beautiful, rugged walks away from the crowds."
+    ],
+    "cdmx": [
+      "Speaking some Spanish and carrying cash are the two most useful things here.",
+      "The metro integrates bus and train routes and works really well, though some routes close Sundays for bike riding.",
+      "Coming on a Sunday means free museums.",
+      "The Anthropology Museum is ridiculously worth it.",
+      "Teotihuacan is worth it but is a long day with walking and sun, can be done in a couple of hours if needed."
+    ],
+    "tulum": [
+      "Buses from Cancun are cheaper than shuttles but a bit dodgy, arrive at the airport bus stop at least 20 minutes early.",
+      "The Chichen Itza day tour is worth doing despite the cost, look for a shorter tour that still includes a cenote and lunch.",
+      "The town itself is more relaxed than the beach area, which is noticeably more expensive.",
+      "La Eufemia taco shop gives free beach access if you walk through it."
+    ],
+    "bacalar": [
+      "The ADO bus station isn't where Apple Maps marks it, it's about 500m back toward Tulum.",
+      "Cocina Orizaba is a great, authentically priced breakfast and lunch spot.",
+      "Renting a kayak is the cheapest way to see the lagoon, and free public swimming access is available past Calle 14.",
+      "2 to 3 nights is plenty, prices are similar to or higher than Tulum."
+    ],
+    "antigua": [
+      "A beautiful colonial town about an hour from Guatemala City, a shuttle from the airport is the easiest way in.",
+      "The central market is amazing to get lost in, with a cheap food court at the back left if you can find it.",
+      "Acatenango is the real reason to be here, a tough two-day hike, bring warm gear as it gets to minus 10 with wind chill at the summit.",
+      "The Fuego side hike is extremely tough but worth every step for the lava views."
+    ],
+    "la-fortuna": [
+      "The quintessential Costa Rica stop, with all the animals, activities and a great town centre.",
+      "Eating at local sodas (try Visquez or Hormiga) saves a lot of money.",
+      "Cerro Chato is the best hike here, no real track so it's a proper scramble, bring clothes you don't mind getting muddy.",
+      "3 to 5 nights depending on how much downtime versus activity time you want."
+    ],
+    "bocas-del-toro": [
+      "One of the trip highlights, a bigger and livelier Caribbean island than most.",
+      "Scuba diving here is fantastic for marine life and soft corals, the night dive with bioluminescent plankton is excellent.",
+      "Beaches are accessible by a cheap local bus or water taxi.",
+      "Quieter outside of the Thursday to Saturday party crowd, better with a group if travelling solo."
     ]
   }
 }
