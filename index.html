@@ -214,6 +214,14 @@ nav {
 }
 #search-btn:hover { background: #a84d22; }
 
+#usage-badge {
+  text-align: center;
+  font-size: 12px;
+  color: var(--ink-faint);
+  margin-top: 10px;
+}
+#usage-badge.limit-reached { color: var(--accent); font-weight: 500; }
+
 /* VIBES */
 .vibes-row {
   display: flex;
@@ -574,10 +582,11 @@ nav {
   position: absolute;
   bottom: 2px;
   right: 4px;
-  font-size: 9px;
+  font-size: 8px;
+  line-height: 1.4;
   color: rgba(255,255,255,0.85);
   background: rgba(0,0,0,0.35);
-  padding: 1px 5px;
+  padding: 1px 4px;
   border-radius: 4px;
 }
 .stop-section-label {
@@ -757,6 +766,40 @@ footer strong { color: var(--ink-muted); }
   transition: color 0.15s;
 }
 #back-btn:hover { color: var(--ink); }
+
+/* MODAL */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(26,24,20,0.4);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+.modal-overlay.open { display: flex; }
+.modal-box {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 28px;
+  max-width: 380px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 8px 32px rgba(26,24,20,0.15);
+}
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: var(--ink-faint);
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px;
+}
+.modal-close:hover { color: var(--ink); }
 </style>
 </head>
 <body>
@@ -764,11 +807,25 @@ footer strong { color: var(--ink-muted); }
 <nav>
   <div class="nav-logo">wand<span>r</span>ly</div>
   <div class="nav-links">
-    <a href="#browse-section">Explore</a>
-    <a href="#" onclick="scrollToSearch()">Plan a trip</a>
-    <a href="#" class="nav-cta">Get started</a>
+    <a href="#" onclick="scrollToBrowse(); return false;">Explore</a>
+    <a href="#" onclick="scrollToSearch(); return false;">Plan a trip</a>
+    <a href="#" class="nav-cta" onclick="openAccountModal(); return false;">Get started</a>
   </div>
 </nav>
+
+<div id="account-modal-overlay" class="modal-overlay" onclick="closeAccountModal(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeAccountModal()" aria-label="Close">&times;</button>
+    <i class="ti ti-user-circle" style="font-size:32px;color:var(--accent);margin-bottom:12px;display:block"></i>
+    <h2 style="font-family:'Fraunces',serif;font-weight:300;font-size:22px;margin-bottom:8px;">Accounts are coming soon</h2>
+    <p style="font-size:14px;color:var(--ink-muted);line-height:1.6;margin-bottom:16px;">
+      Soon you'll be able to sign in, save your favourite trips, customise your route and pick up planning right where you left off.
+    </p>
+    <p style="font-size:13px;color:var(--ink-faint);line-height:1.6;">
+      For now, every trip you build can be copied as an itinerary so you don't lose your plans.
+    </p>
+  </div>
+</div>
 
 <div id="construction-banner">
   <i class="ti ti-tools" style="font-size:15px;opacity:0.7"></i>
@@ -777,12 +834,12 @@ footer strong { color: var(--ink-muted); }
 </div>
 
 <section id="hero">
-  <p class="hero-eyebrow"> Travel planning made simple </p>
+  <p class="hero-eyebrow">AI-powered travel planning</p>
   <h1 class="hero-title">
     Travel <em>smarter,</em><br>discover deeper
   </h1>
   <p class="hero-sub">
-    Real itineraries, hidden gems, iconic spots all made in seconds. Your trip, your way.
+    Real itineraries, hidden gems, iconic spots — all planned by AI in seconds. Your trip, your way.
   </p>
 
   <div id="globe-wrap">
@@ -796,6 +853,7 @@ footer strong { color: var(--ink-muted); }
         <i class="ti ti-sparkles"></i> Plan my trip
       </button>
     </div>
+    <div id="usage-badge"></div>
   </div>
 
   <div class="vibes-row">
@@ -1060,6 +1118,23 @@ function scrollToSearch() {
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
+function scrollToBrowse() {
+  const el = document.getElementById('browse-section');
+  if (el.style.display === 'none') {
+    document.getElementById('back-btn')?.click ? goBack() : null;
+  }
+  document.getElementById('browse-section').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function openAccountModal() {
+  document.getElementById('account-modal-overlay').classList.add('open');
+}
+
+function closeAccountModal(event) {
+  if (event && event.target.id !== 'account-modal-overlay' && !event.target.classList.contains('modal-close')) return;
+  document.getElementById('account-modal-overlay').classList.remove('open');
+}
+
 renderCountryGrid('all');
 
 // ---- SAMPLE TRIPS ----
@@ -1237,26 +1312,39 @@ function openSampleTrip(i) {
 }
 
 renderSampleTrips();
+loadBank();
+updateUsageBadge();
 
-// ---- WANDRLY'S TRAVEL NOTES ----
-// Personal tips from 50+ countries. Keyed by lowercase city/place name.
-// Add more entries here over time — the AI will surface these automatically
-// when a stop matches, giving Wandrly its own voice instead of generic AI text.
-const WANDRLY_NOTES = {
-  'london': [
-    'The tube is confusing — use Google Maps before you go down to know exactly which line and platform.',
-    'Gatwick bus is way cheaper than the express train, just slower and less comfy.',
-    'Uni bars (try ones near Holborn/Court) are cheaper and more social than West End spots.',
-    'Leicester Square nightlife is fun but pricey and hot inside — pre-drinks recommended.',
-    'Double-check your Heathrow terminal — getting this wrong wastes a lot of time.'
-  ],
-  'athens': [
-    'Stay near the centre — buses are dodgy but trams and the metro are solid.',
-    'Bring water and a hat for the Acropolis walk — very little shade.',
-    'Bakeries and groceries are cheap but freshness can be hit or miss.',
-    'Pubs are excellent and locals are super friendly — a hostel in Pangrati is a great call.'
-  ],
-};
+// ---- TRIP BANK ----
+// destinations.json holds individual place entries (the "bank") with the
+// rich schema: vibe_scores, sub_itinerary, wandrly_notes, tom_verdict etc.
+// wandrly-notes.json holds quick tips for cities not yet fully built out.
+// Both are fetched once on load and cached in memory.
+let DESTINATIONS = [];
+let WANDRLY_NOTES = {};
+let bankLoaded = false;
+
+async function loadBank() {
+  try {
+    const [destRes, notesRes] = await Promise.all([
+      fetch('/destinations.json'),
+      fetch('/wandrly-notes.json')
+    ]);
+    if (destRes.ok) {
+      const destData = await destRes.json();
+      DESTINATIONS = destData.destinations || [];
+    }
+    if (notesRes.ok) {
+      const notesData = await notesRes.json();
+      WANDRLY_NOTES = notesData.notes || {};
+    }
+  } catch(e) {
+    // Bank not available — site still works, just falls back to pure AI generation
+    DESTINATIONS = [];
+    WANDRLY_NOTES = {};
+  }
+  bankLoaded = true;
+}
 
 function getNotesForStop(stopName) {
   const key = stopName.toLowerCase().trim();
@@ -1266,6 +1354,62 @@ function getNotesForStop(stopName) {
     }
   }
   return null;
+}
+
+// Find bank destinations matching a query/vibe. Very lightweight scoring:
+// +country/place name match, +vibe keyword overlap, +vibe_score for any
+// vibe words mentioned in the query (e.g. "ski", "romantic", "hiking").
+const VIBE_KEYWORDS = ['adventure','relaxation','nightlife','culture','budget_friendly','romantic','family','hiking','diving','ski'];
+
+function scoreDestination(dest, queryLower) {
+  let score = 0;
+  if (queryLower.includes(dest.name.toLowerCase())) score += 10;
+  if (queryLower.includes(dest.country.toLowerCase())) score += 5;
+  (dest.vibes || []).forEach(v => {
+    if (queryLower.includes(v.replace('-', ' '))) score += 3;
+  });
+  VIBE_KEYWORDS.forEach(k => {
+    const word = k.replace('_friendly','').replace('_',' ');
+    if (queryLower.includes(word) && dest.vibe_scores && dest.vibe_scores[k] >= 7) {
+      score += 2;
+    }
+    if (queryLower.includes('budget') || queryLower.includes('cheap')) {
+      if (dest.vibe_scores && dest.vibe_scores.budget_friendly >= 7) score += 2;
+    }
+  });
+  return score;
+}
+
+function findBankMatches(query, minScore = 3, maxResults = 6) {
+  const q = query.toLowerCase();
+  return DESTINATIONS
+    .map(d => ({ dest: d, score: scoreDestination(d, q) }))
+    .filter(r => r.score >= minScore)
+    .sort((a,b) => b.score - a.score)
+    .slice(0, maxResults)
+    .map(r => r.dest);
+}
+
+// Convert a bank destination entry into the "stop" shape used by the
+// split-screen view (same shape the AI returns for gap-fill stops).
+function bankDestToStop(dest) {
+  return {
+    name: dest.name,
+    lat: dest.lat,
+    lon: dest.lon,
+    nights: dest.recommended_nights,
+    summary: dest.summary,
+    activities: dest.activities,
+    transport: (dest.transport_tips && dest.transport_tips[0]) || '',
+    included: true,
+    fromBank: true,
+    wandrlyNotes: (dest.wandrly_notes && dest.wandrly_notes.length) ? dest.wandrly_notes : getNotesForStop(dest.name),
+    tomVerdict: dest.tom_verdict || null,
+    subItinerary: dest.sub_itinerary || null,
+    foodRecommendations: dest.food_recommendations || [],
+    nightlife: dest.nightlife || [],
+    warnings: dest.warnings || []
+  };
 }
 
 // ---- TRIP CACHE ----
@@ -1296,6 +1440,49 @@ function setCachedTrip(query, trip) {
   try {
     localStorage.setItem(getCacheKey(query), JSON.stringify({ trip, savedAt: Date.now() }));
   } catch(e) { /* storage full or unavailable — fail silently */ }
+}
+
+// ---- USAGE TRACKER ----
+// Mirrors the server-side rate limit (5/day) so the UI can show remaining
+// searches and gracefully steer to the bank/sample trips when exhausted.
+const USAGE_KEY = 'wandrly_usage';
+const DAILY_LIMIT = 5;
+
+function getUsage() {
+  try {
+    const raw = localStorage.getItem(USAGE_KEY);
+    if (!raw) return { count: 0, windowStart: Date.now() };
+    const usage = JSON.parse(raw);
+    if (Date.now() - usage.windowStart > 24*60*60*1000) {
+      return { count: 0, windowStart: Date.now() };
+    }
+    return usage;
+  } catch(e) { return { count: 0, windowStart: Date.now() }; }
+}
+
+function recordUsage() {
+  const usage = getUsage();
+  usage.count++;
+  try { localStorage.setItem(USAGE_KEY, JSON.stringify(usage)); } catch(e) {}
+  updateUsageBadge();
+}
+
+function getRemainingSearches() {
+  const usage = getUsage();
+  return Math.max(0, DAILY_LIMIT - usage.count);
+}
+
+function updateUsageBadge() {
+  const badge = document.getElementById('usage-badge');
+  if (!badge) return;
+  const remaining = getRemainingSearches();
+  if (remaining <= 0) {
+    badge.textContent = 'Daily search limit reached — browse saved trips below';
+    badge.classList.add('limit-reached');
+  } else {
+    badge.textContent = `${remaining} AI search${remaining!==1?'es':''} left today`;
+    badge.classList.remove('limit-reached');
+  }
 }
 
 // ---- UNSPLASH PHOTOS ----
@@ -1335,12 +1522,44 @@ async function doSearch() {
     return;
   }
 
+  if (!bankLoaded) await loadBank();
+
+  // Find matching destinations already in the bank — these cost zero tokens
+  const bankMatches = findBankMatches(query);
+  const bankStops = bankMatches.map(bankDestToStop);
+
+  // If we have a strong bank match (3+ destinations), build the trip almost
+  // entirely from the bank with no AI call at all.
+  if (bankStops.length >= 3) {
+    const trip = assembleTripFromBank(query, bankStops);
+    currentTripData = trip;
+    setCachedTrip(query, trip);
+    renderTrip(trip);
+    return;
+  }
+
+  // Otherwise, check the daily AI usage limit before calling out
+  if (getRemainingSearches() <= 0) {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('browse-section').style.display = 'block';
+    document.getElementById('sample-trips-section').style.display = 'block';
+    const errBox = document.getElementById('error-msg');
+    errBox.innerHTML = `You've used today's AI searches. Browse the saved trips below, or <button onclick="document.getElementById('error-msg').style.display='none';document.getElementById('sample-trips-section').scrollIntoView({behavior:'smooth'})" style="background:none;border:none;text-decoration:underline;cursor:pointer;color:inherit;font-size:inherit;padding:0;">jump to sample routes</button> — more searches unlock tomorrow.`;
+    errBox.style.display = 'block';
+    return;
+  }
+
+  const bankNames = bankMatches.map(d => d.name).join(', ');
+  const bankHint = bankMatches.length
+    ? `\n\nWandrly already has detailed info for these places, which partially match this search: ${bankNames}. Feel free to include any of these as stops if they fit (just give name, lat, lon, nights and a one-line summary for them — we'll fill in the rest), and add 2-5 NEW stops to complete a good trip.`
+    : '';
+
   const noteCities = Object.keys(WANDRLY_NOTES);
   const noteHint = noteCities.length
     ? `\n\nWandrly has personal travel notes for these places: ${noteCities.join(', ')}. If the trip includes any of these, you don't need to invent local tips for them — just focus on great activities.`
     : '';
 
-  const prompt = `You are Wandrly, an expert travel planner who specialises in both iconic destinations and hidden gems. A user wants: "${query}".${noteHint}
+  const prompt = `You are Wandrly, an expert travel planner who specialises in both iconic destinations and hidden gems. A user wants: "${query}".${bankHint}${noteHint}
 Return ONLY valid JSON (no markdown fences, no explanation) with this exact structure:
 {
   "title": "Short evocative trip title",
@@ -1362,10 +1581,12 @@ Return ONLY valid JSON (no markdown fences, no explanation) with this exact stru
         {"name":"Activity name","desc":"12-18 words on what to do and why"},
         {"name":"Activity name","desc":"12-18 words on what to do and why"}
       ],
-      "transport": "How to get here from the previous stop, and one tip. 15-20 words."
+      "transport": "How to get here from the previous stop, and one tip. 15-20 words.",
+      "sub_itinerary": null
     }
   ]
 }
+If a stop is really a base for a multi-day excursion away from the town itself (e.g. a trek, a safari, a liveaboard), set "sub_itinerary" to {"name": "...", "nights": N, "is_separate_location": true, "summary": "...", "days": [{"day":1,"title":"...","desc":"..."}]} instead of null — this lets us show the excursion distinctly from town time. Otherwise leave it null.
 Include 4-6 stops in a sensible geographic order (so a route line between them makes sense). Always include real, accurate latitude and longitude for each place.`;
 
   try {
@@ -1376,7 +1597,7 @@ Include 4-6 stops in a sensible geographic order (so a route line between them m
       },
       body: JSON.stringify({
         model: 'claude-sonnet-4-6',
-        max_tokens: 1000,
+        max_tokens: 1500,
         messages: [{ role: 'user', content: prompt }]
       })
     });
@@ -1400,6 +1621,18 @@ Include 4-6 stops in a sensible geographic order (so a route line between them m
     if (!trip.stops || !Array.isArray(trip.stops) || trip.stops.length === 0) {
       throw new Error('Could not build an itinerary for that — try rephrasing your search.');
     }
+
+    recordUsage();
+
+    // Merge in full bank detail for any stops that match bank entries by name
+    trip.stops = trip.stops.map(stop => {
+      const bankMatch = DESTINATIONS.find(d => d.name.toLowerCase() === stop.name.toLowerCase());
+      if (bankMatch) {
+        return Object.assign({}, bankDestToStop(bankMatch), { nights: stop.nights || bankMatch.recommended_nights });
+      }
+      return Object.assign({ included: true, fromBank: false, wandrlyNotes: getNotesForStop(stop.name) }, stop);
+    });
+
     currentTripData = trip;
     setCachedTrip(query, trip);
     renderTrip(trip);
@@ -1415,6 +1648,37 @@ Include 4-6 stops in a sensible geographic order (so a route line between them m
   }
 }
 
+// Build a trip entirely from bank entries — zero AI cost.
+function assembleTripFromBank(query, stops) {
+  // Sort stops geographically (simple west-to-east / nearest-neighbour from first)
+  const ordered = [stops[0]];
+  const remaining = stops.slice(1);
+  while (remaining.length) {
+    const last = ordered[ordered.length-1];
+    let bestIdx = 0, bestDist = Infinity;
+    remaining.forEach((s, i) => {
+      const d = Math.hypot(s.lat - last.lat, s.lon - last.lon);
+      if (d < bestDist) { bestDist = d; bestIdx = i; }
+    });
+    ordered.push(remaining.splice(bestIdx, 1)[0]);
+  }
+
+  const totalNights = ordered.reduce((sum, s) => sum + (s.nights || 1) + (s.subItinerary ? s.subItinerary.nights : 0), 0);
+  const countries = [...new Set(ordered.map(s => DESTINATIONS.find(d=>d.name===s.name)?.country).filter(Boolean))];
+
+  return {
+    title: `${countries.join(' & ')} — ${ordered.map(s=>s.name).slice(0,3).join(', ')}${ordered.length>3?'...':''}`,
+    subtitle: `A route built from Wandrly's own notes across ${countries.join(' and ')}`,
+    duration: `${totalNights + 1} days`,
+    budget: 'Varies by stop — see each stop for a per-night estimate',
+    best_time: 'See individual stops for seasonal notes',
+    vibe: 'From Wandrly\'s saved trips',
+    hidden_gems: ordered.filter(s=>s.wandrlyNotes && s.wandrlyNotes.length).flatMap(s=>s.wandrlyNotes).slice(0,3).join(' ') || 'Explore each stop below for Wandrly\'s own tips.',
+    stops: ordered,
+    fromBankOnly: true
+  };
+}
+
 let mapInstance = null;
 let mapMarkers = [];
 let activeStopIndex = null;
@@ -1424,7 +1688,7 @@ let activeStopIndex = null;
 // Create a token with ONLY the default public scopes (no "Secret scopes" ticked).
 // Once live, also add your domain under that token's "URL restrictions" so it
 // can't be copied and used elsewhere.
-mapboxgl.accessToken = 'pk.eyJ1IjoidGxsMjIyIiwiYSI6ImNtcWN6MHMwejB4NnIyeXB1eW1pM3k1encifQ.I1hgGf499WMsneylt4nFDg';
+mapboxgl.accessToken = 'YOUR_MAPBOX_PUBLIC_TOKEN';
 
 function renderTrip(trip) {
   document.getElementById('loading').style.display = 'none';
@@ -1444,9 +1708,12 @@ function renderTrip(trip) {
 
   document.getElementById('tc-gems').textContent = trip.hidden_gems;
 
-  // Mark which stops have Wandrly's own notes, and show the voice badge if any do
-  trip.stops.forEach(s => { s.included = s.included !== false; s.wandrlyNotes = getNotesForStop(s.name); });
-  const hasNotes = trip.stops.some(s => s.wandrlyNotes);
+  // Ensure defaults for stops coming from any path (cache, bank, AI merge)
+  trip.stops.forEach(s => {
+    if (s.included === undefined) s.included = true;
+    if (s.wandrlyNotes === undefined) s.wandrlyNotes = getNotesForStop(s.name);
+  });
+  const hasNotes = trip.stops.some(s => s.wandrlyNotes && s.wandrlyNotes.length);
   document.getElementById('tc-voice').style.display = hasNotes ? 'inline-flex' : 'none';
 
   activeStopIndex = null;
@@ -1484,9 +1751,55 @@ function renderStopList(trip) {
 }
 
 function renderStopDetail(stop, i) {
-  const notesHtml = stop.wandrlyNotes
+  const notesHtml = (stop.wandrlyNotes && stop.wandrlyNotes.length)
     ? stop.wandrlyNotes.map(n => `<div class="wandrly-note-box"><i class="ti ti-feather" style="font-size:13px"></i>${n}</div>`).join('')
     : '';
+
+  const verdictHtml = stop.tomVerdict
+    ? `<div class="wandrly-note-box" style="background:var(--accent-light);border-color:rgba(196,92,42,0.25);color:#7a3315"><i class="ti ti-quote" style="font-size:13px;color:var(--accent)"></i>${stop.tomVerdict}</div>`
+    : '';
+
+  let subItineraryHtml = '';
+  if (stop.subItinerary) {
+    const sub = stop.subItinerary;
+    subItineraryHtml = `
+      <div class="stop-section-label">${sub.name} (${sub.nights} night${sub.nights!==1?'s':''}${sub.is_separate_location?' — away from town':''})</div>
+      <div style="background:var(--sand);border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:10px;">
+        ${sub.summary ? `<div style="font-size:12px;color:var(--ink-muted);margin-bottom:8px;line-height:1.5">${sub.summary}</div>` : ''}
+        ${(sub.days||[]).map(d => `
+          <div class="stop-activity" style="margin-bottom:6px">
+            <i class="ti ti-calendar-event"></i>
+            <div class="stop-activity-text"><strong>Day ${d.day}: ${d.title}</strong> — ${d.desc}</div>
+          </div>`).join('')}
+      </div>`;
+  }
+
+  const foodHtml = (stop.foodRecommendations && stop.foodRecommendations.length) ? `
+    <div class="stop-section-label">Food</div>
+    ${stop.foodRecommendations.map(f => `
+      <div class="stop-activity">
+        <i class="ti ti-tools-kitchen-2"></i>
+        <div class="stop-activity-text">${f}</div>
+      </div>`).join('')}
+  ` : '';
+
+  const nightlifeHtml = (stop.nightlife && stop.nightlife.length) ? `
+    <div class="stop-section-label">Nightlife</div>
+    ${stop.nightlife.map(n => `
+      <div class="stop-activity">
+        <i class="ti ti-glass-cocktail"></i>
+        <div class="stop-activity-text">${n}</div>
+      </div>`).join('')}
+  ` : '';
+
+  const warningsHtml = (stop.warnings && stop.warnings.length) ? `
+    <div class="stop-section-label">Good to know</div>
+    ${stop.warnings.map(w => `
+      <div class="stop-activity">
+        <i class="ti ti-alert-triangle" style="color:var(--accent)"></i>
+        <div class="stop-activity-text">${w}</div>
+      </div>`).join('')}
+  ` : '';
 
   return `
     <div class="stop-photos" id="stop-photos-${i}">
@@ -1494,17 +1807,22 @@ function renderStopDetail(stop, i) {
       <div class="stop-photo"><i class="ti ti-photo" style="font-size:20px;color:var(--ink-faint);margin:auto"></i></div>
     </div>
     ${notesHtml}
+    ${verdictHtml}
+    ${subItineraryHtml}
     <div class="stop-section-label">Things to do</div>
     ${stop.activities.map(a => `
       <div class="stop-activity">
         <i class="ti ti-map-pin-filled"></i>
         <div class="stop-activity-text"><strong>${a.name}</strong> — ${a.desc}</div>
       </div>`).join('')}
+    ${foodHtml}
+    ${nightlifeHtml}
     <div class="stop-section-label">Getting here</div>
     <div class="stop-activity">
       <i class="ti ti-route"></i>
       <div class="stop-activity-text">${stop.transport}</div>
     </div>
+    ${warningsHtml}
     <div class="stop-toggle-row">
       <button class="stop-toggle-btn ${stop.included?'remove':''}" onclick="event.stopPropagation(); toggleInclude(${i})">
         <i class="ti ti-${stop.included?'eye-off':'eye'}" style="font-size:13px"></i> ${stop.included?'Remove from route':'Add back to route'}
