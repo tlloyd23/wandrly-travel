@@ -1,7 +1,6 @@
 {
   "_schema_version": 1,
   "_notes": "Each entry is one destination/stop. recommended_nights is a default suggestion, not fixed. sub_itinerary is optional - use it when a stop is really a base for a multi-day excursion (e.g. Cusco -> Salkantay Trek) so the trek can be shown distinctly from town time. vibe_scores are 0-10, used for matching searches like 'ski trip' or 'romantic'. wandrly_notes are short first-person tips - shown in a distinct UI box. tom_verdict is one or two punchy sentences in your voice.",
-
   "destinations": [
     {
       "id": "colombo",
@@ -11,19 +10,54 @@
       "lon": 79.861,
       "recommended_nights": 1,
       "budget_per_night_aud": "40-90",
-      "vibes": ["culture", "foodie", "city"],
-      "vibe_scores": { "adventure": 3, "relaxation": 2, "nightlife": 4, "culture": 6, "budget_friendly": 7, "romantic": 3, "family": 4, "hiking": 1, "diving": 1, "ski": 0 },
+      "vibes": [
+        "culture",
+        "foodie",
+        "city"
+      ],
+      "vibe_scores": {
+        "adventure": 3,
+        "relaxation": 2,
+        "nightlife": 4,
+        "culture": 6,
+        "budget_friendly": 7,
+        "romantic": 3,
+        "family": 4,
+        "hiking": 1,
+        "diving": 1,
+        "ski": 0
+      },
       "summary": "Chaotic gateway city with great street food",
       "activities": [
-        { "name": "Galle Face Green", "desc": "Sunset walk along the seafront esplanade, street food stalls come alive in the evening" },
-        { "name": "Pettah Market", "desc": "Sensory overload market district — explore the spice and textile lanes" },
-        { "name": "Dutch Hospital precinct", "desc": "Restored colonial quarter with good cafes if you need a calm reset" }
+        {
+          "name": "Galle Face Green",
+          "desc": "Sunset walk along the seafront esplanade, street food stalls come alive in the evening"
+        },
+        {
+          "name": "Pettah Market",
+          "desc": "Sensory overload market district, explore the spice and textile lanes"
+        },
+        {
+          "name": "Dutch Hospital precinct",
+          "desc": "Restored colonial quarter with good cafes if you need a calm reset"
+        }
       ],
-      "food_recommendations": ["Street food stalls along Galle Face Green at sunset", "Pettah market for spices and snacks"],
-      "nightlife": ["Quiet compared to the rest of the trip — mostly hotel bars"],
-      "transport_tips": ["Fly into Bandaranaike Airport (CMB), about 40 minutes by tuk-tuk to the centre"],
-      "warnings": ["Traffic can make short trips take longer than expected"],
-      "similar_to": ["Bangkok (smaller, calmer version)"],
+      "food_recommendations": [
+        "Street food stalls along Galle Face Green at sunset",
+        "Pettah market for spices and snacks"
+      ],
+      "nightlife": [
+        "Quiet compared to the rest of the trip, mostly hotel bars"
+      ],
+      "transport_tips": [
+        "Fly into Bandaranaike Airport (CMB), about 40 minutes by tuk-tuk to the centre"
+      ],
+      "warnings": [
+        "Traffic can make short trips take longer than expected"
+      ],
+      "similar_to": [
+        "Bangkok (smaller, calmer version)"
+      ],
       "sub_itinerary": null,
       "wandrly_notes": [],
       "tom_verdict": "Not a highlight, but a fine one-night landing pad before heading inland."
@@ -33,27 +67,61 @@
       "name": "Sigiriya",
       "country": "Sri Lanka",
       "lat": 7.957,
-      "lon": 80.760,
+      "lon": 80.76,
       "recommended_nights": 2,
       "budget_per_night_aud": "30-120",
-      "vibes": ["history", "hiking", "iconic"],
-      "vibe_scores": { "adventure": 6, "relaxation": 3, "nightlife": 1, "culture": 9, "budget_friendly": 6, "romantic": 4, "family": 6, "hiking": 6, "diving": 0, "ski": 0 },
+      "vibes": [
+        "history",
+        "hiking",
+        "iconic"
+      ],
+      "vibe_scores": {
+        "adventure": 6,
+        "relaxation": 3,
+        "nightlife": 1,
+        "culture": 9,
+        "budget_friendly": 6,
+        "romantic": 4,
+        "family": 6,
+        "hiking": 6,
+        "diving": 0,
+        "ski": 0
+      },
       "summary": "Ancient rock fortress and cave temples",
       "activities": [
-        { "name": "Sigiriya Rock Fortress", "desc": "Climb at sunrise before the tour groups arrive — frescoes and mirror wall are highlights" },
-        { "name": "Pidurangala Rock", "desc": "Hike up for the best view of Sigiriya itself, with a fraction of the crowd" },
-        { "name": "Dambulla Cave Temple", "desc": "150 Buddha statues across 5 caves — the largest cave temple complex on the island" }
+        {
+          "name": "Sigiriya Rock Fortress",
+          "desc": "Climb at sunrise before the tour groups arrive, frescoes and mirror wall are highlights"
+        },
+        {
+          "name": "Pidurangala Rock",
+          "desc": "Hike up for the best view of Sigiriya itself, with a fraction of the crowd"
+        },
+        {
+          "name": "Dambulla Cave Temple",
+          "desc": "150 Buddha statues across 5 caves, the largest cave temple complex on the island"
+        }
       ],
-      "food_recommendations": ["Two-storey tourist restaurants in town are reliable and good value"],
-      "nightlife": ["Very quiet — early nights here are normal"],
-      "transport_tips": ["Train from Colombo to Habarana then a short tuk-tuk, or a direct bus (about 4 hours)"],
-      "warnings": ["Elephants do roam near farmland at night — listen for alarms/shooting sounds, this is normal elephant deterrence"],
-      "similar_to": ["Bagan (Myanmar) for the ancient-monument vibe"],
+      "food_recommendations": [
+        "Two-storey tourist restaurants in town are reliable and good value"
+      ],
+      "nightlife": [
+        "Very quiet, early nights here are normal"
+      ],
+      "transport_tips": [
+        "Train from Colombo to Habarana then a short tuk-tuk, or a direct bus (about 4 hours)"
+      ],
+      "warnings": [
+        "Elephants do roam near farmland at night, listen for alarms/shooting sounds, this is normal elephant deterrence"
+      ],
+      "similar_to": [
+        "Bagan (Myanmar) for the ancient-monument vibe"
+      ],
       "sub_itinerary": null,
       "wandrly_notes": [
-        "Sigiriya is basically a must-do — climb in the morning pre-heat and pre-crowds, arrive by 7am at the latest.",
+        "Sigiriya is basically a must-do, climb in the morning pre-heat and pre-crowds, arrive by 7am at the latest.",
         "Pidurangala is a scramble to get up but gorgeous views and gives the best photo of Sigiriya itself.",
-        "Stop in Dambulla on the way for the temples and the central fruit market — both surprisingly cool."
+        "Stop in Dambulla on the way for the temples and the central fruit market, both surprisingly cool."
       ],
       "tom_verdict": "One of the best mornings of the whole trip. Don't skip Pidurangala just because Sigiriya is the famous one."
     },
@@ -65,22 +133,54 @@
       "lon": 80.636,
       "recommended_nights": 2,
       "budget_per_night_aud": "20-130",
-      "vibes": ["culture", "spiritual", "hill-country"],
-      "vibe_scores": { "adventure": 3, "relaxation": 5, "nightlife": 2, "culture": 8, "budget_friendly": 6, "romantic": 5, "family": 6, "hiking": 3, "diving": 0, "ski": 0 },
+      "vibes": [
+        "culture",
+        "spiritual",
+        "hill-country"
+      ],
+      "vibe_scores": {
+        "adventure": 3,
+        "relaxation": 5,
+        "nightlife": 2,
+        "culture": 8,
+        "budget_friendly": 6,
+        "romantic": 5,
+        "family": 6,
+        "hiking": 3,
+        "diving": 0,
+        "ski": 0
+      },
       "summary": "Sacred hill city with cooler air",
       "activities": [
-        { "name": "Temple of the Tooth", "desc": "Visit during the early morning puja ceremony for the most authentic experience" },
-        { "name": "Kandy Lake loop", "desc": "Easy 45-minute walk around the lake and through the old town" },
-        { "name": "Peradeniya Botanical Gardens", "desc": "60 acres of colonial-era gardens including a striking bamboo cathedral" }
+        {
+          "name": "Temple of the Tooth",
+          "desc": "Visit during the early morning puja ceremony for the most authentic experience"
+        },
+        {
+          "name": "Kandy Lake loop",
+          "desc": "Easy 45-minute walk around the lake and through the old town"
+        },
+        {
+          "name": "Peradeniya Botanical Gardens",
+          "desc": "60 acres of colonial-era gardens including a striking bamboo cathedral"
+        }
       ],
-      "food_recommendations": ["Lakeside cafes around Kandy Lake"],
-      "nightlife": ["Limited — this is a calmer, more spiritual stop"],
-      "transport_tips": ["Scenic train from Habarana/Sigiriya area — book first class in advance if possible"],
+      "food_recommendations": [
+        "Lakeside cafes around Kandy Lake"
+      ],
+      "nightlife": [
+        "Limited, this is a calmer, more spiritual stop"
+      ],
+      "transport_tips": [
+        "Scenic train from Habarana/Sigiriya area, book first class in advance if possible"
+      ],
       "warnings": [],
-      "similar_to": ["Luang Prabang for the spiritual hill-town feel"],
+      "similar_to": [
+        "Luang Prabang for the spiritual hill-town feel"
+      ],
       "sub_itinerary": null,
       "wandrly_notes": [],
-      "tom_verdict": "A good change of pace after Sigiriya — cooler, calmer, and a nice cultural anchor."
+      "tom_verdict": "A good change of pace after Sigiriya, cooler, calmer, and a nice cultural anchor."
     },
     {
       "id": "ella",
@@ -90,24 +190,56 @@
       "lon": 81.046,
       "recommended_nights": 3,
       "budget_per_night_aud": "10-180",
-      "vibes": ["hiking", "trains", "backpacker"],
-      "vibe_scores": { "adventure": 6, "relaxation": 6, "nightlife": 4, "culture": 4, "budget_friendly": 8, "romantic": 6, "family": 4, "hiking": 7, "diving": 0, "ski": 0 },
+      "vibes": [
+        "hiking",
+        "trains",
+        "backpacker"
+      ],
+      "vibe_scores": {
+        "adventure": 6,
+        "relaxation": 6,
+        "nightlife": 4,
+        "culture": 4,
+        "budget_friendly": 8,
+        "romantic": 6,
+        "family": 4,
+        "hiking": 7,
+        "diving": 0,
+        "ski": 0
+      },
       "summary": "Tea hills, hikes and the famous train line",
       "activities": [
-        { "name": "Nine Arches Bridge", "desc": "Arrive around 8:15am to catch the train crossing for the classic photo" },
-        { "name": "Little Adam's Peak", "desc": "Easy one-hour hike with sweeping views over the tea plantations" },
-        { "name": "Ella Rock", "desc": "A tougher three-hour hike with far fewer tourists than Adam's Peak" }
+        {
+          "name": "Nine Arches Bridge",
+          "desc": "Arrive around 8:15am to catch the train crossing for the classic photo"
+        },
+        {
+          "name": "Little Adam's Peak",
+          "desc": "Easy one-hour hike with sweeping views over the tea plantations"
+        },
+        {
+          "name": "Ella Rock",
+          "desc": "A tougher three-hour hike with far fewer tourists than Adam's Peak"
+        }
       ],
-      "food_recommendations": ["Cafes along the main strip do good Western/Sri Lankan fusion"],
-      "nightlife": ["Small but social backpacker bar scene"],
-      "transport_tips": ["The Kandy to Ella train is one of the great rail journeys — book well ahead, views are stunning from Nanu-Oya onward"],
+      "food_recommendations": [
+        "Cafes along the main strip do good Western/Sri Lankan fusion"
+      ],
+      "nightlife": [
+        "Small but social backpacker bar scene"
+      ],
+      "transport_tips": [
+        "The Kandy to Ella train is one of the great rail journeys, book well ahead, views are stunning from Nanu-Oya onward"
+      ],
       "warnings": [],
-      "similar_to": ["Pai (Thailand) for the laid-back hill-town backpacker vibe"],
+      "similar_to": [
+        "Pai (Thailand) for the laid-back hill-town backpacker vibe"
+      ],
       "sub_itinerary": null,
       "wandrly_notes": [
-        "Walk to Rawana Cave behind the falls — almost nobody goes there, it's a great quiet add-on."
+        "Walk to Rawana Cave behind the falls, almost nobody goes there, it's a great quiet add-on."
       ],
-      "tom_verdict": "Easily worth 3 nights — the hiking, the train, and the chill cafe scene all genuinely deliver."
+      "tom_verdict": "Easily worth 3 nights, the hiking, the train, and the chill cafe scene all genuinely deliver."
     },
     {
       "id": "mirissa",
@@ -117,50 +249,118 @@
       "lon": 80.456,
       "recommended_nights": 2,
       "budget_per_night_aud": "20-80",
-      "vibes": ["beach", "whale-watching", "surf"],
-      "vibe_scores": { "adventure": 4, "relaxation": 8, "nightlife": 4, "culture": 2, "budget_friendly": 7, "romantic": 7, "family": 5, "hiking": 0, "diving": 3, "ski": 0 },
+      "vibes": [
+        "beach",
+        "whale-watching",
+        "surf"
+      ],
+      "vibe_scores": {
+        "adventure": 4,
+        "relaxation": 8,
+        "nightlife": 4,
+        "culture": 2,
+        "budget_friendly": 7,
+        "romantic": 7,
+        "family": 5,
+        "hiking": 0,
+        "diving": 3,
+        "ski": 0
+      },
       "summary": "South coast beach town, whales and sunsets",
       "activities": [
-        { "name": "Whale watching", "desc": "Boats leave early morning, blue and sperm whales possible December to April" },
-        { "name": "Secret Beach", "desc": "A 20 minute walk east along the coast from the main beach — mostly locals here" },
-        { "name": "Beachside seafood", "desc": "Grilled catch of the day at the beachfront restaurants, best at sunset" }
+        {
+          "name": "Whale watching",
+          "desc": "Boats leave early morning, blue and sperm whales possible December to April"
+        },
+        {
+          "name": "Secret Beach",
+          "desc": "A 20 minute walk east along the coast from the main beach, mostly locals here"
+        },
+        {
+          "name": "Beachside seafood",
+          "desc": "Grilled catch of the day at the beachfront restaurants, best at sunset"
+        }
       ],
-      "food_recommendations": ["Beachfront seafood grills, best at sunset"],
-      "nightlife": ["A few beach bars, low-key"],
-      "transport_tips": ["Bus from Ella, or tuk-tuk from Matara train station, roughly 3 hours"],
-      "warnings": ["Whale watching only worthwhile Dec-April — check season before planning around it"],
-      "similar_to": ["Canggu (Bali) but smaller and quieter"],
+      "food_recommendations": [
+        "Beachfront seafood grills, best at sunset"
+      ],
+      "nightlife": [
+        "A few beach bars, low-key"
+      ],
+      "transport_tips": [
+        "Bus from Ella, or tuk-tuk from Matara train station, roughly 3 hours"
+      ],
+      "warnings": [
+        "Whale watching only worthwhile Dec-April, check season before planning around it"
+      ],
+      "similar_to": [
+        "Canggu (Bali) but smaller and quieter"
+      ],
       "sub_itinerary": null,
       "wandrly_notes": [
-        "Secret Beach is a 20 minute walk east of the main beach — mostly locals, much nicer than the main strip."
+        "Secret Beach is a 20 minute walk east of the main beach, mostly locals, much nicer than the main strip."
       ],
-      "tom_verdict": "Good for slowing down after the hill country — the whale watching is genuinely worth the early start in season."
+      "tom_verdict": "Good for slowing down after the hill country, the whale watching is genuinely worth the early start in season."
     },
     {
       "id": "galle",
       "name": "Galle",
       "country": "Sri Lanka",
       "lat": 6.053,
-      "lon": 80.220,
+      "lon": 80.22,
       "recommended_nights": 2,
       "budget_per_night_aud": "35-210",
-      "vibes": ["colonial", "history", "architecture"],
-      "vibe_scores": { "adventure": 2, "relaxation": 6, "nightlife": 3, "culture": 8, "budget_friendly": 6, "romantic": 8, "family": 5, "hiking": 0, "diving": 4, "ski": 0 },
+      "vibes": [
+        "colonial",
+        "history",
+        "architecture"
+      ],
+      "vibe_scores": {
+        "adventure": 2,
+        "relaxation": 6,
+        "nightlife": 3,
+        "culture": 8,
+        "budget_friendly": 6,
+        "romantic": 8,
+        "family": 5,
+        "hiking": 0,
+        "diving": 4,
+        "ski": 0
+      },
       "summary": "UNESCO Dutch fort town, the most atmospheric stop",
       "activities": [
-        { "name": "Galle Fort ramparts", "desc": "Walk the sea walls at sunset for the best light and ocean views" },
-        { "name": "Fort cafes and galleries", "desc": "Small lanes inside the fort have excellent independent cafes and shops" },
-        { "name": "Jungle Beach", "desc": "A short tuk-tuk ride north to a hidden cove, good for snorkelling" }
+        {
+          "name": "Galle Fort ramparts",
+          "desc": "Walk the sea walls at sunset for the best light and ocean views"
+        },
+        {
+          "name": "Fort cafes and galleries",
+          "desc": "Small lanes inside the fort have excellent independent cafes and shops"
+        },
+        {
+          "name": "Jungle Beach",
+          "desc": "A short tuk-tuk ride north to a hidden cove, good for snorkelling"
+        }
       ],
-      "food_recommendations": ["Coconut sambal and the 'street burger' (a KFC-style local favourite)"],
-      "nightlife": ["Quiet, mostly cafe/bar culture inside the fort"],
-      "transport_tips": ["Coastal train from Mirissa/Matara — the clifftop section is one of the best short rides on the island"],
-      "warnings": ["Fort walk is hot in the middle of the day — go morning or sunset"],
-      "similar_to": ["Cartagena (Colombia) for the colonial fort-town feel"],
+      "food_recommendations": [
+        "Coconut sambal and the 'street burger' (a KFC-style local favourite)"
+      ],
+      "nightlife": [
+        "Quiet, mostly cafe/bar culture inside the fort"
+      ],
+      "transport_tips": [
+        "Coastal train from Mirissa/Matara, the clifftop section is one of the best short rides on the island"
+      ],
+      "warnings": [
+        "Fort walk is hot in the middle of the day, go morning or sunset"
+      ],
+      "similar_to": [
+        "Cartagena (Colombia) for the colonial fort-town feel"
+      ],
       "sub_itinerary": null,
       "wandrly_notes": [
-        "Stayed just outside the fort for cheaper, larger accommodation — only a $5 tuk-tuk into the fort itself.",
-        "Diving at Hikkaduwa (20 mins away) is bare-bones but cheap — around 80 USD for 2 dives plus gear."
+        "Stayed just outside the fort for cheaper, larger accommodation, only a $5 tuk-tuk into the fort itself.",
+        "Diving at Hikkaduwa (20 mins away) is bare-bones but cheap, around 80 USD for 2 dives plus gear."
       ],
       "tom_verdict": "The most atmospheric stop on the island. Worth the full walk around the fort walls even though it's hot."
     },
@@ -172,22 +372,54 @@
       "lon": 44.827,
       "recommended_nights": 3,
       "budget_per_night_aud": "15-90",
-      "vibes": ["hidden-gem", "culture", "city"],
-      "vibe_scores": { "adventure": 4, "relaxation": 4, "nightlife": 7, "culture": 8, "budget_friendly": 9, "romantic": 5, "family": 4, "hiking": 2, "diving": 0, "ski": 1 },
+      "vibes": [
+        "hidden-gem",
+        "culture",
+        "city"
+      ],
+      "vibe_scores": {
+        "adventure": 4,
+        "relaxation": 4,
+        "nightlife": 7,
+        "culture": 8,
+        "budget_friendly": 9,
+        "romantic": 5,
+        "family": 4,
+        "hiking": 2,
+        "diving": 0,
+        "ski": 1
+      },
       "summary": "Quirky capital with old town charm and great food",
       "activities": [
-        { "name": "Old Town wander", "desc": "Narrow streets, balconies and sulfur bathhouses in the historic district" },
-        { "name": "Narikala Fortress", "desc": "Take the cable car up for sunset views over the whole city" },
-        { "name": "Dezerter Bazaar", "desc": "Huge local market — great for trying Georgian cheeses, bread and spices" }
+        {
+          "name": "Old Town wander",
+          "desc": "Narrow streets, balconies and sulfur bathhouses in the historic district"
+        },
+        {
+          "name": "Narikala Fortress",
+          "desc": "Take the cable car up for sunset views over the whole city"
+        },
+        {
+          "name": "Dezerter Bazaar",
+          "desc": "Huge local market, great for trying Georgian cheeses, bread and spices"
+        }
       ],
-      "food_recommendations": ["Khachapuri (cheese bread) everywhere — try a few regional styles"],
-      "nightlife": ["Genuinely excellent and very cheap — a real highlight"],
-      "transport_tips": ["Tbilisi International Airport is about 20 minutes from the centre"],
+      "food_recommendations": [
+        "Khachapuri (cheese bread) everywhere, try a few regional styles"
+      ],
+      "nightlife": [
+        "Genuinely excellent and very cheap, a real highlight"
+      ],
+      "transport_tips": [
+        "Tbilisi International Airport is about 20 minutes from the centre"
+      ],
       "warnings": [],
-      "similar_to": ["Yerevan for the underrated-capital vibe"],
+      "similar_to": [
+        "Yerevan for the underrated-capital vibe"
+      ],
       "sub_itinerary": null,
       "wandrly_notes": [],
-      "tom_verdict": "One of the best value capitals in the world right now — go before everyone else figures it out."
+      "tom_verdict": "One of the best value capitals in the world right now, go before everyone else figures it out."
     },
     {
       "id": "kazbegi",
@@ -197,22 +429,54 @@
       "lon": 44.643,
       "recommended_nights": 2,
       "budget_per_night_aud": "15-60",
-      "vibes": ["mountains", "hiking", "dramatic"],
-      "vibe_scores": { "adventure": 8, "relaxation": 4, "nightlife": 1, "culture": 4, "budget_friendly": 8, "romantic": 6, "family": 3, "hiking": 8, "diving": 0, "ski": 2 },
+      "vibes": [
+        "mountains",
+        "hiking",
+        "dramatic"
+      ],
+      "vibe_scores": {
+        "adventure": 8,
+        "relaxation": 4,
+        "nightlife": 1,
+        "culture": 4,
+        "budget_friendly": 8,
+        "romantic": 6,
+        "family": 3,
+        "hiking": 8,
+        "diving": 0,
+        "ski": 2
+      },
       "summary": "Dramatic mountain village beneath Mount Kazbek",
       "activities": [
-        { "name": "Gergeti Trinity Church", "desc": "A scenic 2-3 hour hike up to a church with Mount Kazbek as the backdrop" },
-        { "name": "Truso Valley walk", "desc": "A quieter alternative hike through an abandoned valley near the Russian border" },
-        { "name": "Local guesthouse dinner", "desc": "Home-cooked Georgian feasts are common and excellent value here" }
+        {
+          "name": "Gergeti Trinity Church",
+          "desc": "A scenic 2-3 hour hike up to a church with Mount Kazbek as the backdrop"
+        },
+        {
+          "name": "Truso Valley walk",
+          "desc": "A quieter alternative hike through an abandoned valley near the Russian border"
+        },
+        {
+          "name": "Local guesthouse dinner",
+          "desc": "Home-cooked Georgian feasts are common and excellent value here"
+        }
       ],
-      "food_recommendations": ["Home-cooked guesthouse dinners — often included in the room price"],
+      "food_recommendations": [
+        "Home-cooked guesthouse dinners, often included in the room price"
+      ],
       "nightlife": [],
-      "transport_tips": ["Shared marshrutka (minibus) from Tbilisi takes about 3 hours along the dramatic Georgian Military Highway"],
-      "warnings": ["Weather can close the pass — build in flexibility"],
-      "similar_to": ["Huaraz (Peru) for the dramatic peak-town setting"],
+      "transport_tips": [
+        "Shared marshrutka (minibus) from Tbilisi takes about 3 hours along the dramatic Georgian Military Highway"
+      ],
+      "warnings": [
+        "Weather can close the pass, build in flexibility"
+      ],
+      "similar_to": [
+        "Huaraz (Peru) for the dramatic peak-town setting"
+      ],
       "sub_itinerary": null,
       "wandrly_notes": [],
-      "tom_verdict": "The single best mountain backdrop of the whole Georgia loop — worth the bumpy drive."
+      "tom_verdict": "The single best mountain backdrop of the whole Georgia loop, worth the bumpy drive."
     },
     {
       "id": "sighnaghi",
@@ -222,22 +486,54 @@
       "lon": 45.917,
       "recommended_nights": 2,
       "budget_per_night_aud": "15-50",
-      "vibes": ["wine", "relaxation", "views"],
-      "vibe_scores": { "adventure": 2, "relaxation": 8, "nightlife": 2, "culture": 6, "budget_friendly": 8, "romantic": 8, "family": 4, "hiking": 2, "diving": 0, "ski": 0 },
+      "vibes": [
+        "wine",
+        "relaxation",
+        "views"
+      ],
+      "vibe_scores": {
+        "adventure": 2,
+        "relaxation": 8,
+        "nightlife": 2,
+        "culture": 6,
+        "budget_friendly": 8,
+        "romantic": 8,
+        "family": 4,
+        "hiking": 2,
+        "diving": 0,
+        "ski": 0
+      },
       "summary": "Wine country town with sweeping valley views",
       "activities": [
-        { "name": "Wine cellar tours", "desc": "Kakheti is Georgia's wine heartland — small family cellars offer tastings of qvevri wine" },
-        { "name": "City walls walk", "desc": "Sighnaghi's walls offer views over the Alazani Valley toward the Caucasus" },
-        { "name": "Bodbe Monastery", "desc": "A short walk from town, peaceful grounds and valley views" }
+        {
+          "name": "Wine cellar tours",
+          "desc": "Kakheti is Georgia's wine heartland, small family cellars offer tastings of qvevri wine"
+        },
+        {
+          "name": "City walls walk",
+          "desc": "Sighnaghi's walls offer views over the Alazani Valley toward the Caucasus"
+        },
+        {
+          "name": "Bodbe Monastery",
+          "desc": "A short walk from town, peaceful grounds and valley views"
+        }
       ],
-      "food_recommendations": ["Family-run wine cellars often pair tastings with home-cooked food"],
-      "nightlife": ["Very quiet — this is a wind-down stop"],
-      "transport_tips": ["Marshrutka or shared taxi from Tbilisi, around 2.5 hours through the wine region"],
+      "food_recommendations": [
+        "Family-run wine cellars often pair tastings with home-cooked food"
+      ],
+      "nightlife": [
+        "Very quiet, this is a wind-down stop"
+      ],
+      "transport_tips": [
+        "Marshrutka or shared taxi from Tbilisi, around 2.5 hours through the wine region"
+      ],
       "warnings": [],
-      "similar_to": ["Stellenbosch (South Africa) for the small wine-town feel"],
+      "similar_to": [
+        "Stellenbosch (South Africa) for the small wine-town feel"
+      ],
       "sub_itinerary": null,
       "wandrly_notes": [],
-      "tom_verdict": "A great slow finish to the loop — the valley views from the walls are some of the best in the country."
+      "tom_verdict": "A great slow finish to the loop, the valley views from the walls are some of the best in the country."
     },
     {
       "id": "christchurch",
@@ -247,16 +543,43 @@
       "lon": 172.637,
       "recommended_nights": 1,
       "budget_per_night_aud": "60-150",
-      "vibes": ["city", "arts", "gateway"],
-      "vibe_scores": { "adventure": 3, "relaxation": 4, "nightlife": 4, "culture": 6, "budget_friendly": 5, "romantic": 4, "family": 6, "hiking": 2, "diving": 0, "ski": 3 },
+      "vibes": [
+        "city",
+        "arts",
+        "gateway"
+      ],
+      "vibe_scores": {
+        "adventure": 3,
+        "relaxation": 4,
+        "nightlife": 4,
+        "culture": 6,
+        "budget_friendly": 5,
+        "romantic": 4,
+        "family": 6,
+        "hiking": 2,
+        "diving": 0,
+        "ski": 3
+      },
       "summary": "Arrival city, rebuilt and arty",
       "activities": [
-        { "name": "Botanic Gardens", "desc": "A relaxed first stop to stretch your legs after the flight" },
-        { "name": "Street art tour", "desc": "Central Christchurch has excellent post-earthquake street art scattered through the CBD" }
+        {
+          "name": "Botanic Gardens",
+          "desc": "A relaxed first stop to stretch your legs after the flight"
+        },
+        {
+          "name": "Street art tour",
+          "desc": "Central Christchurch has excellent post-earthquake street art scattered through the CBD"
+        }
       ],
-      "food_recommendations": ["Riverside Market in the CBD for a good food hall fix"],
-      "nightlife": ["Decent for a smaller city — concentrated in the CBD"],
-      "transport_tips": ["Main South Island international airport — pick up a rental car here"],
+      "food_recommendations": [
+        "Riverside Market in the CBD for a good food hall fix"
+      ],
+      "nightlife": [
+        "Decent for a smaller city, concentrated in the CBD"
+      ],
+      "transport_tips": [
+        "Main South Island international airport, pick up a rental car here"
+      ],
       "warnings": [],
       "similar_to": [],
       "sub_itinerary": null,
@@ -271,73 +594,168 @@
       "lon": 170.478,
       "recommended_nights": 1,
       "budget_per_night_aud": "50-180",
-      "vibes": ["scenery", "stargazing", "roadtrip"],
-      "vibe_scores": { "adventure": 3, "relaxation": 6, "nightlife": 0, "culture": 2, "budget_friendly": 5, "romantic": 9, "family": 6, "hiking": 3, "diving": 0, "ski": 4 },
+      "vibes": [
+        "scenery",
+        "stargazing",
+        "roadtrip"
+      ],
+      "vibe_scores": {
+        "adventure": 3,
+        "relaxation": 6,
+        "nightlife": 0,
+        "culture": 2,
+        "budget_friendly": 5,
+        "romantic": 9,
+        "family": 6,
+        "hiking": 3,
+        "diving": 0,
+        "ski": 4
+      },
       "summary": "Turquoise lake beneath the Southern Alps",
       "activities": [
-        { "name": "Church of the Good Shepherd", "desc": "Iconic small stone church right on the lakeshore, best at sunrise" },
-        { "name": "Stargazing", "desc": "Part of a Dark Sky Reserve — book a stargazing tour if the weather is clear" }
+        {
+          "name": "Church of the Good Shepherd",
+          "desc": "Iconic small stone church right on the lakeshore, best at sunrise"
+        },
+        {
+          "name": "Stargazing",
+          "desc": "Part of a Dark Sky Reserve, book a stargazing tour if the weather is clear"
+        }
       ],
-      "food_recommendations": ["Limited options — the lakeside cafe near the church is the main one"],
+      "food_recommendations": [
+        "Limited options, the lakeside cafe near the church is the main one"
+      ],
       "nightlife": [],
-      "transport_tips": ["About 3 hours drive from Christchurch through the Canterbury Plains"],
-      "warnings": ["A short stop is enough — most people use this as a one-night scenic break"],
-      "similar_to": ["Lake Louise (Canada)"],
+      "transport_tips": [
+        "About 3 hours drive from Christchurch through the Canterbury Plains"
+      ],
+      "warnings": [
+        "A short stop is enough, most people use this as a one-night scenic break"
+      ],
+      "similar_to": [
+        "Lake Louise (Canada)"
+      ],
       "sub_itinerary": null,
       "wandrly_notes": [],
-      "tom_verdict": "One night is right — see the church, do the stargazing if clear, then move on."
+      "tom_verdict": "One night is right, see the church, do the stargazing if clear, then move on."
     },
     {
       "id": "wanaka",
       "name": "Wanaka",
       "country": "New Zealand",
-      "lat": -44.700,
+      "lat": -44.7,
       "lon": 169.149,
       "recommended_nights": 3,
       "budget_per_night_aud": "60-180",
-      "vibes": ["lakeside", "hiking", "ski"],
-      "vibe_scores": { "adventure": 7, "relaxation": 6, "nightlife": 4, "culture": 3, "budget_friendly": 5, "romantic": 7, "family": 6, "hiking": 8, "diving": 0, "ski": 8 },
+      "vibes": [
+        "lakeside",
+        "hiking",
+        "ski"
+      ],
+      "vibe_scores": {
+        "adventure": 7,
+        "relaxation": 6,
+        "nightlife": 4,
+        "culture": 3,
+        "budget_friendly": 5,
+        "romantic": 7,
+        "family": 6,
+        "hiking": 8,
+        "diving": 0,
+        "ski": 8
+      },
       "summary": "Lakeside town, less crowded than Queenstown",
       "activities": [
-        { "name": "Isthmus Peak hike", "desc": "A quieter alternative to Roys Peak with equally stunning lake views" },
-        { "name": "Rob Roy Glacier track", "desc": "A relatively easy walk to a hanging glacier and waterfalls" },
-        { "name": "That Wanaka Tree", "desc": "The famous lone tree in the lake — best at sunrise to avoid crowds" }
+        {
+          "name": "Isthmus Peak hike",
+          "desc": "A quieter alternative to Roys Peak with equally stunning lake views"
+        },
+        {
+          "name": "Rob Roy Glacier track",
+          "desc": "A relatively easy walk to a hanging glacier and waterfalls"
+        },
+        {
+          "name": "That Wanaka Tree",
+          "desc": "The famous lone tree in the lake, best at sunrise to avoid crowds"
+        }
       ],
-      "food_recommendations": ["Lakefront cafes around the Wanaka Tree area"],
-      "nightlife": ["A handful of good bars, calmer than Queenstown"],
-      "transport_tips": ["About 3 hours from Lake Tekapo via Lindis Pass — one of the most scenic drives in the country"],
+      "food_recommendations": [
+        "Lakefront cafes around the Wanaka Tree area"
+      ],
+      "nightlife": [
+        "A handful of good bars, calmer than Queenstown"
+      ],
+      "transport_tips": [
+        "About 3 hours from Lake Tekapo via Lindis Pass, one of the most scenic drives in the country"
+      ],
       "warnings": [],
-      "similar_to": ["Queenstown but quieter — a good alternative base"],
+      "similar_to": [
+        "Queenstown but quieter, a good alternative base"
+      ],
       "sub_itinerary": null,
       "wandrly_notes": [
-        "Skip the busy Roys Peak track and try Isthmus Peak instead — similar views, far fewer people."
+        "Skip the busy Roys Peak track and try Isthmus Peak instead, similar views, far fewer people."
       ],
-      "tom_verdict": "My pick over Queenstown for a base — same scenery, fraction of the crowds."
+      "tom_verdict": "My pick over Queenstown for a base, same scenery, fraction of the crowds."
     },
     {
       "id": "queenstown",
       "name": "Queenstown",
       "country": "New Zealand",
       "lat": -45.031,
-      "lon": 168.660,
+      "lon": 168.66,
       "recommended_nights": 3,
       "budget_per_night_aud": "70-200",
-      "vibes": ["adventure", "nightlife", "iconic"],
-      "vibe_scores": { "adventure": 9, "relaxation": 3, "nightlife": 7, "culture": 3, "budget_friendly": 3, "romantic": 6, "family": 6, "hiking": 7, "diving": 0, "ski": 9 },
+      "vibes": [
+        "adventure",
+        "nightlife",
+        "iconic"
+      ],
+      "vibe_scores": {
+        "adventure": 9,
+        "relaxation": 3,
+        "nightlife": 7,
+        "culture": 3,
+        "budget_friendly": 3,
+        "romantic": 6,
+        "family": 6,
+        "hiking": 7,
+        "diving": 0,
+        "ski": 9
+      },
       "summary": "Adventure capital, stunning but busy",
       "activities": [
-        { "name": "Ben Lomond via Tiki Trail", "desc": "Free hiking route up the mountain with better views than the paid gondola" },
-        { "name": "Milford Sound day trip", "desc": "A long day but the fiord scenery is genuinely unmatched — go early to beat tour buses" },
-        { "name": "Queenstown Gardens", "desc": "A free, relaxed walk right by the lake if you need a lower-key day" }
+        {
+          "name": "Ben Lomond via Tiki Trail",
+          "desc": "Free hiking route up the mountain with better views than the paid gondola"
+        },
+        {
+          "name": "Milford Sound day trip",
+          "desc": "A long day but the fiord scenery is genuinely unmatched, go early to beat tour buses"
+        },
+        {
+          "name": "Queenstown Gardens",
+          "desc": "A free, relaxed walk right by the lake if you need a lower-key day"
+        }
       ],
-      "food_recommendations": ["Fergburger is touristy but genuinely good — go early or late to skip the queue"],
-      "nightlife": ["The best in the South Island — busy every night of the week in season"],
-      "transport_tips": ["About 1 hour from Wanaka via the Crown Range, the highest sealed road in NZ"],
-      "warnings": ["Prices spike heavily in peak season — book accommodation well ahead"],
-      "similar_to": ["Interlaken (Switzerland) for the adventure-capital-on-a-lake vibe"],
+      "food_recommendations": [
+        "Fergburger is touristy but genuinely good, go early or late to skip the queue"
+      ],
+      "nightlife": [
+        "The best in the South Island, busy every night of the week in season"
+      ],
+      "transport_tips": [
+        "About 1 hour from Wanaka via the Crown Range, the highest sealed road in NZ"
+      ],
+      "warnings": [
+        "Prices spike heavily in peak season, book accommodation well ahead"
+      ],
+      "similar_to": [
+        "Interlaken (Switzerland) for the adventure-capital-on-a-lake vibe"
+      ],
       "sub_itinerary": null,
       "wandrly_notes": [
-        "Skip the paid gondola — the free Tiki Trail up Ben Lomond has better views for $0."
+        "Skip the paid gondola, the free Tiki Trail up Ben Lomond has better views for $0."
       ],
       "tom_verdict": "Worth the hype for the activities, but base in Wanaka if budget or crowds are a concern."
     },
@@ -349,34 +767,89 @@
       "lon": -71.967,
       "recommended_nights": 6,
       "budget_per_night_aud": "25-100",
-      "vibes": ["adventure", "hiking", "history", "iconic"],
-      "vibe_scores": { "adventure": 9, "relaxation": 2, "nightlife": 5, "culture": 9, "budget_friendly": 6, "romantic": 4, "family": 3, "hiking": 9, "diving": 0, "ski": 0 },
-      "summary": "Gateway to the Sacred Valley — most visitors use this as a base for the Salkantay Trek to Machu Picchu",
-      "activities": [
-        { "name": "San Pedro Market", "desc": "Huge local market — great for breakfast and people-watching before acclimatising" },
-        { "name": "Plaza de Armas & Cathedral", "desc": "The historic centre, best visited in your first day or two while adjusting to altitude" },
-        { "name": "Sacsayhuamán", "desc": "Massive Inca stonework ruins a short walk above the city, good easy-altitude activity" }
+      "vibes": [
+        "adventure",
+        "hiking",
+        "history",
+        "iconic"
       ],
-      "food_recommendations": ["San Pedro Market for cheap, authentic breakfast"],
-      "nightlife": ["A lively backpacker bar scene around the Plaza de Armas"],
-      "transport_tips": ["Most international connections route through Lima first — domestic flight or bus to Cusco"],
-      "warnings": ["Altitude sickness is common — spend 1-2 days acclimatising in Cusco before starting any trek"],
-      "similar_to": ["Kathmandu as a trek gateway city"],
+      "vibe_scores": {
+        "adventure": 9,
+        "relaxation": 2,
+        "nightlife": 5,
+        "culture": 9,
+        "budget_friendly": 6,
+        "romantic": 4,
+        "family": 3,
+        "hiking": 9,
+        "diving": 0,
+        "ski": 0
+      },
+      "summary": "Gateway to the Sacred Valley, most visitors use this as a base for the Salkantay Trek to Machu Picchu",
+      "activities": [
+        {
+          "name": "San Pedro Market",
+          "desc": "Huge local market, great for breakfast and people-watching before acclimatising"
+        },
+        {
+          "name": "Plaza de Armas & Cathedral",
+          "desc": "The historic centre, best visited in your first day or two while adjusting to altitude"
+        },
+        {
+          "name": "Sacsayhuamán",
+          "desc": "Massive Inca stonework ruins a short walk above the city, good easy-altitude activity"
+        }
+      ],
+      "food_recommendations": [
+        "San Pedro Market for cheap, authentic breakfast"
+      ],
+      "nightlife": [
+        "A lively backpacker bar scene around the Plaza de Armas"
+      ],
+      "transport_tips": [
+        "Most international connections route through Lima first, domestic flight or bus to Cusco"
+      ],
+      "warnings": [
+        "Altitude sickness is common, spend 1-2 days acclimatising in Cusco before starting any trek"
+      ],
+      "similar_to": [
+        "Kathmandu as a trek gateway city"
+      ],
       "sub_itinerary": {
         "name": "Salkantay Trek to Machu Picchu",
         "nights": 5,
         "is_separate_location": true,
-        "summary": "A 5-day trek from Cusco's Sacred Valley over the Salkantay Pass (4,650m) to Machu Picchu — the most popular alternative to the Inca Trail",
+        "summary": "A 5-day trek from Cusco's Sacred Valley over the Salkantay Pass (4,650m) to Machu Picchu, the most popular alternative to the Inca Trail",
         "days": [
-          { "day": 1, "title": "Cusco to Soraypampa", "desc": "Drive from Cusco, then trek to the base camp beneath Salkantay mountain" },
-          { "day": 2, "title": "Salkantay Pass to Chaullay", "desc": "The toughest day — cross the 4,650m pass, then descend into cloud forest" },
-          { "day": 3, "title": "Chaullay to La Playa / Santa Teresa", "desc": "Continue descending through coffee and fruit plantations" },
-          { "day": 4, "title": "Hidroeléctrica to Aguas Calientes", "desc": "Walk the train tracks to the town beneath Machu Picchu" },
-          { "day": 5, "title": "Machu Picchu", "desc": "Early entry to Machu Picchu itself, then train/bus back to Cusco" }
+          {
+            "day": 1,
+            "title": "Cusco to Soraypampa",
+            "desc": "Drive from Cusco, then trek to the base camp beneath Salkantay mountain"
+          },
+          {
+            "day": 2,
+            "title": "Salkantay Pass to Chaullay",
+            "desc": "The toughest day, cross the 4,650m pass, then descend into cloud forest"
+          },
+          {
+            "day": 3,
+            "title": "Chaullay to La Playa / Santa Teresa",
+            "desc": "Continue descending through coffee and fruit plantations"
+          },
+          {
+            "day": 4,
+            "title": "Hidroeléctrica to Aguas Calientes",
+            "desc": "Walk the train tracks to the town beneath Machu Picchu"
+          },
+          {
+            "day": 5,
+            "title": "Machu Picchu",
+            "desc": "Early entry to Machu Picchu itself, then train/bus back to Cusco"
+          }
         ]
       },
       "wandrly_notes": [],
-      "tom_verdict": "If you're booking 'Cusco', know that most of those nights will actually be spent on the trek — plan the city time around acclimatisation, not sightseeing."
+      "tom_verdict": "If you're booking 'Cusco', know that most of those nights will actually be spent on the trek, plan the city time around acclimatisation, not sightseeing."
     }
   ]
 }
