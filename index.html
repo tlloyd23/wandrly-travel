@@ -222,6 +222,64 @@ nav {
 }
 #usage-badge.limit-reached { color: var(--accent); font-weight: 500; }
 
+/* PLANNER OPTIONS */
+#planner-options { margin-top: 12px; }
+.planner-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 0 auto;
+  font-size: 12px;
+  color: var(--ink-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  padding: 4px 10px;
+  border-radius: 999px;
+  transition: background 0.12s;
+}
+.planner-toggle:hover { background: var(--white); color: var(--ink); }
+.planner-toggle i:last-child { transition: transform 0.2s; font-size: 12px; }
+.planner-toggle i:last-child.open { transform: rotate(180deg); }
+#planner-fields {
+  display: none;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 560px;
+  margin: 12px auto 0;
+  padding: 14px 16px;
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+}
+#planner-fields.open { display: flex; }
+.planner-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+.planner-field label {
+  font-size: 11px;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.planner-field input, .planner-field select {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  padding: 6px 10px;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  background: var(--sand);
+  color: var(--ink);
+  min-width: 140px;
+}
+.planner-field input:focus, .planner-field select:focus { outline: 1px solid var(--accent); }
+
 /* VIBES */
 .vibes-row {
   display: flex;
@@ -527,7 +585,7 @@ nav {
 .stop-card-head {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   padding: 14px 16px;
   cursor: pointer;
   transition: background 0.12s;
@@ -546,11 +604,64 @@ nav {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  cursor: pointer;
 }
 .stop-card-head.excluded .stop-num { background: var(--ink-faint); }
-.stop-info { flex: 1; min-width: 0; }
+.stop-info { flex: 1; min-width: 0; cursor: pointer; }
 .stop-name { font-size: 14px; font-weight: 500; }
 .stop-nights { font-size: 12px; color: var(--ink-muted); }
+.nights-control {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.nights-value {
+  font-size: 12px;
+  color: var(--ink-muted);
+  min-width: 22px;
+  text-align: center;
+}
+.nights-btn {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--card-border);
+  background: var(--white);
+  color: var(--ink-muted);
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.12s;
+}
+.nights-btn:hover:not(:disabled) { background: var(--sand); color: var(--ink); }
+.nights-btn:disabled { opacity: 0.35; cursor: default; }
+.reorder-control {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  flex-shrink: 0;
+}
+.reorder-btn {
+  width: 20px;
+  height: 16px;
+  border: 1px solid var(--card-border);
+  background: var(--white);
+  color: var(--ink-muted);
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  border-radius: 4px;
+  transition: all 0.12s;
+}
+.reorder-btn:hover:not(:disabled) { background: var(--sand); color: var(--ink); }
+.reorder-btn:disabled { opacity: 0.25; cursor: default; }
 .stop-chevron {
   font-size: 14px;
   color: var(--ink-faint);
@@ -558,6 +669,13 @@ nav {
   flex-shrink: 0;
 }
 .stop-chevron.open { transform: rotate(180deg); }
+#trip-nights-summary {
+  font-size: 12px;
+  color: var(--ink-muted);
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--card-border);
+  background: var(--sand);
+}
 .stop-detail {
   display: none;
   padding: 0 16px 16px 52px;
@@ -853,6 +971,36 @@ footer strong { color: var(--ink-muted); }
         <i class="ti ti-sparkles"></i> Plan my trip
       </button>
     </div>
+    <div id="planner-options">
+      <button class="planner-toggle" onclick="togglePlannerOptions()">
+        <i class="ti ti-adjustments-horizontal"></i> Customise your trip <i class="ti ti-chevron-down" id="planner-chevron"></i>
+      </button>
+      <div id="planner-fields">
+        <div class="planner-field">
+          <label for="planner-nights">Total nights</label>
+          <input type="number" id="planner-nights" min="1" max="60" placeholder="e.g. 10" />
+        </div>
+        <div class="planner-field">
+          <label for="planner-season">Travel season</label>
+          <select id="planner-season">
+            <option value="">Any time</option>
+            <option value="spring">Spring</option>
+            <option value="summer">Summer</option>
+            <option value="autumn">Autumn</option>
+            <option value="winter">Winter</option>
+          </select>
+        </div>
+        <div class="planner-field">
+          <label for="planner-pace">Travel style</label>
+          <select id="planner-pace">
+            <option value="">No preference</option>
+            <option value="slow">Slow, fewer stops, longer in each</option>
+            <option value="balanced">Balanced</option>
+            <option value="fast">Fast-paced, see as much as possible</option>
+          </select>
+        </div>
+      </div>
+    </div>
     <div id="usage-badge"></div>
   </div>
 
@@ -906,6 +1054,7 @@ footer strong { color: var(--ink-muted); }
 
     <div class="split-view">
       <div id="stop-list-panel">
+        <div id="trip-nights-summary"></div>
         <div id="stop-list-scroll"></div>
       </div>
       <div id="map-panel">
@@ -1111,12 +1260,37 @@ function setVibe(el, vibe) {
 function quickSearch(query) {
   document.getElementById('search-input').value = query;
   doSearch();
-  window.scrollTo({top: document.getElementById('browse-section').offsetTop - 80, behavior:'smooth'});
 }
 
 function scrollToSearch() {
   document.getElementById('search-input').focus();
   window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function togglePlannerOptions() {
+  const fields = document.getElementById('planner-fields');
+  const chevron = document.getElementById('planner-chevron');
+  const isOpen = fields.classList.contains('open');
+  fields.classList.toggle('open', !isOpen);
+  chevron.classList.toggle('open', !isOpen);
+}
+
+// Build a natural-language hint from the optional planner fields, appended
+// to the search query so the AI takes them into account. Returns '' if the
+// user hasn't set anything.
+function getPlannerHint() {
+  const nights = document.getElementById('planner-nights').value;
+  const season = document.getElementById('planner-season').value;
+  const pace = document.getElementById('planner-pace').value;
+
+  const parts = [];
+  if (nights) parts.push(`The trip should total roughly ${nights} nights across all stops, adjust the number and length of stops to fit this.`);
+  if (season) parts.push(`The trip will happen in ${season}, take seasonal considerations into account (weather, opening times, events).`);
+  if (pace === 'slow') parts.push('Prefer a slower pace: fewer stops, more nights in each, minimal moving around.');
+  if (pace === 'fast') parts.push('Prefer a faster pace: more stops, shorter stays, packing in as much as reasonably possible.');
+  if (pace === 'balanced') parts.push('Aim for a balanced pace, a mix of active days and downtime.');
+
+  return parts.length ? ' ' + parts.join(' ') : '';
 }
 
 function scrollToBrowse() {
@@ -1306,6 +1480,9 @@ async function loadSampleImage(sample, i) {
 }
 
 function openSampleTrip(i) {
+  if (mapInstance) { mapInstance.remove(); mapInstance = null; }
+  mapMarkers = [];
+  activeStopIndex = null;
   currentTripData = JSON.parse(JSON.stringify(SAMPLE_TRIPS[i].trip));
   document.getElementById('browse-section').style.display = 'none';
   document.getElementById('sample-trips-section').style.display = 'none';
@@ -1505,6 +1682,11 @@ async function doSearch() {
   const query = document.getElementById('search-input').value.trim();
   if (!query) { document.getElementById('search-input').focus(); return; }
 
+  const plannerHint = getPlannerHint();
+  // The cache/query key includes the planner hint so different preferences
+  // (nights, season, pace) for the same destination don't collide.
+  const fullQuery = query + plannerHint;
+
   document.getElementById('loading').style.display = 'block';
   document.getElementById('trip-result').style.display = 'none';
   document.getElementById('browse-section').style.display = 'none';
@@ -1513,9 +1695,16 @@ async function doSearch() {
   loadingText.textContent = 'Finding your perfect trip...';
   window.scrollTo({top: document.getElementById('loading').offsetTop - 100, behavior:'smooth'});
 
+  // Starting a fresh search, tear down any existing map and stop state so the
+  // new trip doesn't get layered on top of the previous one.
+  if (mapInstance) { mapInstance.remove(); mapInstance = null; }
+  mapMarkers = [];
+  activeStopIndex = null;
+  currentTripData = null;
+
   try {
     // Check cache first — saves AI tokens for repeat searches
-    const cached = getCachedTrip(query);
+    const cached = getCachedTrip(fullQuery);
     if (cached) {
       currentTripData = cached;
       renderTrip(cached);
@@ -1529,12 +1718,13 @@ async function doSearch() {
     const bankMatches = findBankMatches(query);
     const bankStops = bankMatches.map(bankDestToStop);
 
-    // If we have a strong bank match (3+ destinations), build the trip almost
-    // entirely from the bank with no AI call at all.
-    if (bankStops.length >= 3) {
+    // If we have a strong bank match (3+ destinations) AND no planner
+    // preferences were set (those need AI judgement to apply well), build
+    // the trip almost entirely from the bank with no AI call at all.
+    if (bankStops.length >= 3 && !plannerHint) {
       const trip = assembleTripFromBank(query, bankStops);
       currentTripData = trip;
-      setCachedTrip(query, trip);
+      setCachedTrip(fullQuery, trip);
       renderTrip(trip);
       return;
     }
@@ -1551,7 +1741,7 @@ async function doSearch() {
     }
 
     loadingText.textContent = 'Planning with AI, this can take up to 30 seconds...';
-    await runAISearch(query, bankMatches);
+    await runAISearch(query, fullQuery, plannerHint, bankMatches);
 
   } catch(e) {
     document.getElementById('loading').style.display = 'none';
@@ -1565,7 +1755,7 @@ async function doSearch() {
   }
 }
 
-async function runAISearch(query, bankMatches) {
+async function runAISearch(query, fullQuery, plannerHint, bankMatches) {
   const bankNames = bankMatches.map(d => d.name).join(', ');
   const bankHint = bankMatches.length
     ? `\n\nWandrly already has detailed info for these places, which partially match this search: ${bankNames}. Feel free to include any of these as stops if they fit (just give name, lat, lon, nights and a one-line summary for them, we'll fill in the rest), and add 2-5 NEW stops to complete a good trip.`
@@ -1576,7 +1766,7 @@ async function runAISearch(query, bankMatches) {
     ? `\n\nWandrly has personal travel notes for these places: ${noteCities.join(', ')}. If the trip includes any of these, you don't need to invent local tips for them, just focus on great activities.`
     : '';
 
-  const prompt = `You are Wandrly, an expert travel planner who specialises in both iconic destinations and hidden gems. A user wants: "${query}".${bankHint}${noteHint}
+  const prompt = `You are Wandrly, an expert travel planner who specialises in both iconic destinations and hidden gems. A user wants: "${query}".${plannerHint}${bankHint}${noteHint}
 Return ONLY valid JSON (no markdown fences, no explanation) with this exact structure:
 {
   "title": "Short evocative trip title",
@@ -1665,7 +1855,7 @@ Include 4-6 stops in a sensible geographic order (so a route line between them m
   });
 
   currentTripData = trip;
-  setCachedTrip(query, trip);
+  setCachedTrip(fullQuery, trip);
   renderTrip(trip);
 }
 
@@ -1709,7 +1899,7 @@ let activeStopIndex = null;
 // Create a token with ONLY the default public scopes (no "Secret scopes" ticked).
 // Once live, also add your domain under that token's "URL restrictions" so it
 // can't be copied and used elsewhere.
-mapboxgl.accessToken = 'pk.eyJ1IjoidGxsMjIyIiwiYSI6ImNtcWN6MHMwejB4NnIyeXB1eW1pM3k1encifQ.I1hgGf499WMsneylt4nFDg';
+mapboxgl.accessToken = 'YOUR_MAPBOX_PUBLIC_TOKEN';
 
 function renderTrip(trip) {
   document.getElementById('loading').style.display = 'none';
@@ -1752,13 +1942,22 @@ function renderStopList(trip) {
     const isOpen = activeStopIndex === i;
     return `
     <div class="stop-card">
-      <div class="stop-card-head${isOpen?' active':''}${stop.included?'':' excluded'}" onclick="toggleStop(${i})">
-        <div class="stop-num" style="background:${stop.included ? colors[i%colors.length] : ''}">${i+1}</div>
-        <div class="stop-info">
+      <div class="stop-card-head${isOpen?' active':''}${stop.included?'':' excluded'}">
+        <div class="stop-num" style="background:${stop.included ? colors[i%colors.length] : ''}" onclick="toggleStop(${i})">${i+1}</div>
+        <div class="stop-info" onclick="toggleStop(${i})">
           <div class="stop-name">${stop.name}${stop.included?'':' <span style="color:var(--ink-faint);font-weight:400;font-size:11px">(removed)</span>'}</div>
-          <div class="stop-nights">${stop.nights} night${stop.nights!==1?'s':''} · ${stop.summary}</div>
+          <div class="stop-nights">${stop.summary}</div>
         </div>
-        <i class="ti ti-chevron-down stop-chevron${isOpen?' open':''}"></i>
+        <div class="nights-control" onclick="event.stopPropagation()">
+          <button class="nights-btn" onclick="adjustNights(${i}, -1)" aria-label="Remove a night" ${stop.nights<=1?'disabled':''}><i class="ti ti-minus"></i></button>
+          <span class="nights-value">${stop.nights}n</span>
+          <button class="nights-btn" onclick="adjustNights(${i}, 1)" aria-label="Add a night"><i class="ti ti-plus"></i></button>
+        </div>
+        <div class="reorder-control" onclick="event.stopPropagation()">
+          <button class="reorder-btn" onclick="moveStop(${i}, -1)" aria-label="Move earlier in route" ${i===0?'disabled':''}><i class="ti ti-chevron-up"></i></button>
+          <button class="reorder-btn" onclick="moveStop(${i}, 1)" aria-label="Move later in route" ${i===trip.stops.length-1?'disabled':''}><i class="ti ti-chevron-down"></i></button>
+        </div>
+        <i class="ti ti-chevron-down stop-chevron${isOpen?' open':''}" onclick="toggleStop(${i})" style="cursor:pointer"></i>
       </div>
       <div class="stop-detail${isOpen?' open':''}" id="stop-detail-${i}">
         ${isOpen ? renderStopDetail(stop, i) : ''}
@@ -1769,6 +1968,36 @@ function renderStopList(trip) {
   if (activeStopIndex !== null) {
     loadStopPhotos(trip.stops[activeStopIndex], activeStopIndex);
   }
+
+  updateTripSummary(trip);
+}
+
+function adjustNights(i, delta) {
+  const stop = currentTripData.stops[i];
+  const newNights = stop.nights + delta;
+  if (newNights < 1) return;
+  stop.nights = newNights;
+  renderStopList(currentTripData);
+}
+
+function moveStop(i, delta) {
+  const stops = currentTripData.stops;
+  const newIndex = i + delta;
+  if (newIndex < 0 || newIndex >= stops.length) return;
+  [stops[i], stops[newIndex]] = [stops[newIndex], stops[i]];
+  // Keep the detail panel following the moved stop if it was open
+  if (activeStopIndex === i) activeStopIndex = newIndex;
+  else if (activeStopIndex === newIndex) activeStopIndex = i;
+  renderStopList(currentTripData);
+  initMap(currentTripData);
+}
+
+function updateTripSummary(trip) {
+  const summaryEl = document.getElementById('trip-nights-summary');
+  if (!summaryEl) return;
+  const includedStops = trip.stops.filter(s => s.included);
+  const totalNights = includedStops.reduce((sum, s) => sum + (s.nights || 1) + (s.subItinerary ? s.subItinerary.nights : 0), 0);
+  summaryEl.innerHTML = `<i class="ti ti-bed" style="font-size:13px;vertical-align:-2px;margin-right:4px"></i>${totalNights} night${totalNights!==1?'s':''} total across ${includedStops.length} stop${includedStops.length!==1?'s':''}`;
 }
 
 function renderStopDetail(stop, i) {
