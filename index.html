@@ -740,13 +740,16 @@ nav {
 .wandrly-note-box i { flex-shrink: 0; margin-top: 2px; color: var(--teal); }
 .stop-toggle-row {
   display: flex;
-  gap: 6px;
-  margin-top: 10px;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
 }
 .stop-toggle-btn {
-  flex: 1;
-  padding: 7px 10px;
-  font-size: 12px;
+  width: 100%;
+  min-height: 40px;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 500;
   font-family: 'Inter', sans-serif;
   border: 1px solid var(--card-border);
   border-radius: var(--radius-sm);
@@ -756,12 +759,13 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 6px;
   transition: all 0.12s;
 }
 .stop-toggle-btn:hover { background: var(--sand); }
 .stop-toggle-btn.remove { color: #a32d2d; }
 .stop-toggle-btn.remove:hover { background: #fcebeb; }
+.stop-toggle-btn:disabled { opacity: 0.5; cursor: default; }
 
 /* MAP PANEL */
 #map-panel {
@@ -1664,17 +1668,23 @@ function updateUsageBadge() {
 const photoCache = {};
 
 async function fetchPhoto(query) {
+  if (photoCache[query]) return photoCache[query].photo;
+  const result = await fetchPhotos(query);
+  return result.photo;
+}
+
+// Returns { photo, photos } - photos is an array of up to 2 distinct images
+async function fetchPhotos(query) {
   if (photoCache[query]) return photoCache[query];
   try {
     const res = await fetch(`/api/photo?query=${encodeURIComponent(query + ' travel')}`);
-    if (!res.ok) return null;
+    if (!res.ok) return { photo: null, photos: [] };
     const data = await res.json();
-    if (data.photo) {
-      photoCache[query] = data.photo;
-      return data.photo;
-    }
+    const result = { photo: data.photo || null, photos: data.photos || [] };
+    photoCache[query] = result;
+    return result;
   } catch(e) { /* photo not critical, fail silently */ }
-  return null;
+  return { photo: null, photos: [] };
 }
 
 // ---- AI SEARCH ----
@@ -1740,9 +1750,161 @@ async function doSearch() {
       return;
     }
 
-    loadingText.textContent = 'Planning with AI, this can take up to 30 seconds...';
-    await runAISearch(query, fullQuery, plannerHint, bankMatches);
+    loadingText.textContent = 'Sketching a few trip ideas...';
+    await runOutlineSearch(query, fullQuery, plannerHint, bankMatches);
 
+  } catch(e) {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('browse-section').style.display = 'block';
+    document.getElementById('sample-trips-section').style.display = 'block';
+    const msg = e.message || 'Could not load trip. Please try again.';
+    const errBox = document.getElementById('error-msg');
+    errBox.textContent = msg;
+    errBox.style.display = 'block';
+    setTimeout(() => { errBox.style.display = 'none'; }, 8000);
+  }
+}
+
+// ---- STAGE 1: Fast outline generation ----
+// Generates 2-3 lightweight trip outlines (title, subtitle, rough stop names
+// only) - much smaller response than a full itinerary, so it returns quickly.
+// The user picks one, then we generate the full detail for just that one.
+async function runOutlineSearch(query, fullQuery, plannerHint, bankMatches) {
+  const bankNames = bankMatches.map(d => d.name).join(', ');
+  const bankHint = bankMatches.length
+    ? `\n\nWandrly already has some detail on these places, which partially match this search: ${bankNames}. Feel free to use these as stops where they fit.`
+    : '';
+
+  const prompt = `You are Wandrly, an expert travel planner who specialises in both iconic destinations and hidden gems. A user wants: "${query}".${plannerHint}${bankHint}
+Suggest 3 different trip outlines that could fit this request, ideally with some variety between them (e.g. different regions, different mixes of iconic vs off the beaten track, different paces).
+Return ONLY valid JSON (no markdown fences, no explanation) as an array with this exact structure:
+[
+  {
+    "title": "Short evocative trip title",
+    "subtitle": "One compelling sentence about this trip",
+    "duration": "e.g. 10 days",
+    "budget": "e.g. AUD 1,200-1,800 per person",
+    "best_time": "e.g. April-October",
+    "vibe": "e.g. Adventurous and romantic",
+    "stop_names": ["Place 1", "Place 2", "Place 3", "Place 4"]
+  }
+]
+Each outline should have 4-6 stop_names in a sensible geographic order. Do not use em-dashes anywhere in your response, use commas or full stops instead.`;
+
+  const data = await callAI(prompt, 700, 'Sketching a few trip ideas...');
+  const text = data.content.map(item => item.text || '').join('');
+  const clean = text.replace(/```json|```/g, '').trim();
+  let outlines;
+  try {
+    outlines = JSON.parse(clean);
+  } catch(parseErr) {
+    throw new Error('Got an unexpected response, please try again.');
+  }
+  if (!Array.isArray(outlines) || outlines.length === 0) {
+    throw new Error('Could not come up with trip ideas for that, try rephrasing your search.');
+  }
+
+  recordUsage();
+  renderOutlines(outlines, query, fullQuery, plannerHint, bankMatches);
+}
+
+// Shared AI call helper with timeout and clean error extraction.
+async function callAI(prompt, maxTokens, loadingMessage) {
+  if (loadingMessage) {
+    document.getElementById('loading-text').textContent = loadingMessage;
+  }
+
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 28000);
+
+  let res;
+  try {
+    res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: maxTokens,
+        messages: [{ role: 'user', content: prompt }]
+      }),
+      signal: controller.signal
+    });
+  } catch(fetchErr) {
+    if (fetchErr.name === 'AbortError') {
+      throw new Error('That took too long to respond. Please try again, sometimes a simpler search helps.');
+    }
+    throw new Error('Could not reach the planning service. Check your connection and try again.');
+  } finally {
+    clearTimeout(timeoutId);
+  }
+
+  const data = await res.json();
+  if (!res.ok) {
+    const errMsg = typeof data.error === 'string'
+      ? data.error
+      : (data.error && data.error.message) || 'Something went wrong, please try again.';
+    throw new Error(errMsg);
+  }
+  return data;
+}
+
+// Render the outline picker: a short text summary of each option, letting
+// the user choose before we generate the full detailed map view.
+function renderOutlines(outlines, query, fullQuery, plannerHint, bankMatches) {
+  document.getElementById('loading').style.display = 'none';
+  const result = document.getElementById('outline-result');
+  result.style.display = 'block';
+  document.getElementById('back-btn').style.display = 'flex';
+
+  document.getElementById('outline-grid').innerHTML = outlines.map((o, i) => `
+    <div class="outline-card" onclick="selectOutline(${i})">
+      <div class="outline-title">${o.title}</div>
+      <div class="outline-sub">${o.subtitle}</div>
+      <div class="outline-meta">
+        <span class="meta-chip"><i class="ti ti-calendar"></i>${o.duration}</span>
+        <span class="meta-chip"><i class="ti ti-coins"></i>${o.budget}</span>
+        <span class="meta-chip"><i class="ti ti-heart"></i>${o.vibe}</span>
+      </div>
+      <div class="outline-route">
+        <i class="ti ti-route" style="font-size:13px;color:var(--ink-faint)"></i>
+        ${o.stop_names.join(' &rarr; ')}
+      </div>
+      <button class="act-btn primary outline-select-btn">
+        <i class="ti ti-map"></i> Build this trip
+      </button>
+    </div>
+  `).join('');
+
+  // Stash everything selectOutline needs
+  pendingOutlineContext = { outlines, query, fullQuery, plannerHint, bankMatches };
+
+  result.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+let pendingOutlineContext = null;
+
+async function selectOutline(i) {
+  if (!pendingOutlineContext) return;
+  const { outlines, query, fullQuery, plannerHint, bankMatches } = pendingOutlineContext;
+  const chosen = outlines[i];
+
+  document.getElementById('outline-result').style.display = 'none';
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('loading-text').textContent = `Building "${chosen.title}"...`;
+  window.scrollTo({top: document.getElementById('loading').offsetTop - 100, behavior:'smooth'});
+
+  if (getRemainingSearches() <= 0) {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('browse-section').style.display = 'block';
+    document.getElementById('sample-trips-section').style.display = 'block';
+    const errBox = document.getElementById('error-msg');
+    errBox.innerHTML = `You've used today's AI searches. Browse the saved trips below, or <button onclick="document.getElementById('error-msg').style.display='none';document.getElementById('sample-trips-section').scrollIntoView({behavior:'smooth'})" style="background:none;border:none;text-decoration:underline;cursor:pointer;color:inherit;font-size:inherit;padding:0;">jump to sample routes</button>. More searches unlock tomorrow.`;
+    errBox.style.display = 'block';
+    return;
+  }
+
+  try {
+    await runAISearch(query, fullQuery, plannerHint, bankMatches, chosen);
   } catch(e) {
     document.getElementById('loading').style.display = 'none';
     document.getElementById('browse-section').style.display = 'block';
@@ -1775,7 +1937,7 @@ Return ONLY valid JSON (no markdown fences, no explanation) with this exact stru
   "budget": "e.g. €1,200-€1,800 per person",
   "best_time": "e.g. April-October",
   "vibe": "e.g. Adventurous & romantic",
-  "hidden_gems": "2-3 specific, genuine insider tips that most travel sites don't mention. Be specific — name the place, the time to go, the local tip. 50 words.",
+  "hidden_gems": "2-3 specific, genuine insider tips that most travel sites don't mention. Be specific, name the place, the time to go, the local tip. 50 words.",
   "stops": [
     {
       "name": "City or place name",
@@ -1899,7 +2061,7 @@ let activeStopIndex = null;
 // Create a token with ONLY the default public scopes (no "Secret scopes" ticked).
 // Once live, also add your domain under that token's "URL restrictions" so it
 // can't be copied and used elsewhere.
-mapboxgl.accessToken = 'pk.eyJ1IjoidGxsMjIyIiwiYSI6ImNtcWN6MHMwejB4NnIyeXB1eW1pM3k1encifQ.I1hgGf499WMsneylt4nFDg';
+mapboxgl.accessToken = 'YOUR_MAPBOX_PUBLIC_TOKEN';
 
 function renderTrip(trip) {
   document.getElementById('loading').style.display = 'none';
@@ -2077,8 +2239,8 @@ function renderStopDetail(stop, i) {
       <button class="stop-toggle-btn ${stop.included?'remove':''}" onclick="event.stopPropagation(); toggleInclude(${i})">
         <i class="ti ti-${stop.included?'eye-off':'eye'}" style="font-size:13px"></i> ${stop.included?'Remove from route':'Add back to route'}
       </button>
-      <button class="stop-toggle-btn" onclick="event.stopPropagation(); rerollStop(${i})">
-        <i class="ti ti-refresh" style="font-size:13px"></i> Swap this stop ↗
+      <button class="stop-toggle-btn" id="swap-btn-${i}" onclick="event.stopPropagation(); rerollStop(${i})">
+        <i class="ti ti-refresh" style="font-size:13px"></i> Swap this stop
       </button>
     </div>
   `;
@@ -2095,21 +2257,116 @@ function toggleInclude(i) {
   initMap(currentTripData);
 }
 
-function rerollStop(i) {
+async function rerollStop(i) {
   const stop = currentTripData.stops[i];
   const q = document.getElementById('search-input').value;
-  const prompt = `For this trip plan ("${q}"), suggest an alternative stop to replace "${stop.name}" — something with a similar vibe but different. Give me the name and why it'd be a good swap, in 2-3 sentences.`;
-  sendPrompt(prompt);
+
+  if (getRemainingSearches() <= 0) {
+    alert("You've used today's AI searches, swapping a stop needs one. More unlock tomorrow.");
+    return;
+  }
+
+  const otherStops = currentTripData.stops.filter((s,idx) => idx !== i).map(s => s.name).join(', ');
+  const prompt = `For this trip ("${q}"), the user wants to replace the stop "${stop.name}" with something different but with a similar vibe. The other stops in the trip are: ${otherStops}. Suggest ONE alternative stop that fits well geographically and thematically.
+Return ONLY valid JSON (no markdown fences, no explanation) with this exact structure, matching the existing stop format:
+{
+  "name": "New place name",
+  "lat": 0.0,
+  "lon": 0.0,
+  "nights": ${stop.nights},
+  "summary": "One short sentence, max 14 words",
+  "activities": [
+    {"name":"Activity name","desc":"12-18 words on what to do and why"},
+    {"name":"Activity name","desc":"12-18 words on what to do and why"},
+    {"name":"Activity name","desc":"12-18 words on what to do and why"}
+  ],
+  "transport": "How to get here from a nearby stop, and one tip. 15-20 words.",
+  "sub_itinerary": null
+}
+Do not use em-dashes anywhere in your response.`;
+
+  // Show a small inline loading state on the swap button itself
+  const swapBtn = document.getElementById(`swap-btn-${i}`);
+  const originalHTML = swapBtn ? swapBtn.innerHTML : '';
+  if (swapBtn) {
+    swapBtn.disabled = true;
+    swapBtn.innerHTML = `<span class="spinner" style="width:13px;height:13px;border-width:2px;margin-right:4px"></span> Finding a swap...`;
+  }
+
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 28000);
+    let res;
+    try {
+      res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 600, messages: [{ role: 'user', content: prompt }] }),
+        signal: controller.signal
+      });
+    } finally {
+      clearTimeout(timeoutId);
+    }
+
+    const data = await res.json();
+    if (!res.ok) {
+      const errMsg = typeof data.error === 'string' ? data.error : (data.error && data.error.message) || 'Could not find a swap right now.';
+      throw new Error(errMsg);
+    }
+
+    const text = data.content.map(item => item.text || '').join('');
+    const clean = text.replace(/```json|```/g, '').trim();
+    const newStop = JSON.parse(clean);
+
+    recordUsage();
+
+    // Merge bank detail if the suggested stop happens to be in the bank
+    const bankMatch = DESTINATIONS.find(d => d.name.toLowerCase() === newStop.name.toLowerCase());
+    const finalStop = bankMatch
+      ? Object.assign({}, bankDestToStop(bankMatch), { nights: newStop.nights || bankMatch.recommended_nights })
+      : Object.assign({ included: true, fromBank: false, wandrlyNotes: getNotesForStop(newStop.name) }, newStop);
+
+    currentTripData.stops[i] = finalStop;
+    activeStopIndex = i;
+    renderStopList(currentTripData);
+    initMap(currentTripData);
+  } catch(e) {
+    alert(e.message || "Couldn't find a swap for this stop, please try again.");
+    if (swapBtn) {
+      swapBtn.disabled = false;
+      swapBtn.innerHTML = originalHTML;
+    }
+  }
 }
 
 async function loadStopPhotos(stop, i) {
   const container = document.getElementById(`stop-photos-${i}`);
   if (!container) return;
-  const photo = await fetchPhoto(stop.name);
-  if (!photo || activeStopIndex !== i) return;
   const slots = container.querySelectorAll('.stop-photo');
-  if (slots[0]) {
-    slots[0].innerHTML = `<img src="${photo.url}" alt="${stop.name}"><span class="stop-photo-credit">Photo: ${photo.credit}</span>`;
+
+  // Slot 1: the place itself. Slot 2: its top activity, for visual variety.
+  const placeQuery = stop.name;
+  const activityQuery = (stop.activities && stop.activities[0]) ? `${stop.activities[0].name} ${stop.name}` : stop.name;
+
+  const [placeResult, activityResult] = await Promise.all([
+    fetchPhotos(placeQuery),
+    activityQuery !== placeQuery ? fetchPhotos(activityQuery) : Promise.resolve(null)
+  ]);
+
+  if (activeStopIndex !== i) return;
+
+  if (placeResult.photo && slots[0]) {
+    slots[0].innerHTML = `<img src="${placeResult.photo.url}" alt="${stop.name}"><span class="stop-photo-credit">Photo: ${placeResult.photo.credit}</span>`;
+  }
+
+  // For the second slot, prefer the activity photo; fall back to the place's
+  // second result if the activity search came back empty.
+  let secondPhoto = activityResult && activityResult.photo;
+  if (!secondPhoto && placeResult.photos && placeResult.photos.length > 1) {
+    secondPhoto = placeResult.photos[1];
+  }
+  if (secondPhoto && slots[1]) {
+    slots[1].innerHTML = `<img src="${secondPhoto.url}" alt="${stop.activities && stop.activities[0] ? stop.activities[0].name : stop.name}"><span class="stop-photo-credit">Photo: ${secondPhoto.credit}</span>`;
   }
 }
 
