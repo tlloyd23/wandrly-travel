@@ -850,6 +850,381 @@
       },
       "wandrly_notes": [],
       "tom_verdict": "If you're booking 'Cusco', know that most of those nights will actually be spent on the trek, plan the city time around acclimatisation, not sightseeing."
+    },
+    {
+      "id": "lisbon",
+      "name": "Lisbon",
+      "country": "Portugal",
+      "lat": 38.722,
+      "lon": -9.139,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "25-100",
+      "vibes": [
+        "culture",
+        "foodie",
+        "city",
+        "underrated"
+      ],
+      "vibe_scores": {
+        "adventure": 4,
+        "relaxation": 5,
+        "nightlife": 6,
+        "culture": 8,
+        "budget_friendly": 8,
+        "romantic": 7,
+        "family": 5,
+        "hiking": 2,
+        "diving": 0,
+        "ski": 0
+      },
+      "summary": "Hilly, sunny capital with great food, trams and an easy pace",
+      "activities": [
+        {
+          "name": "Alfama wander",
+          "desc": "Get lost in the oldest district, narrow lanes, miradouros (viewpoints) and fado bars"
+        },
+        {
+          "name": "Belem",
+          "desc": "Custard tarts at the original Pasteis de Belem, plus the Jeronimos Monastery and tower"
+        },
+        {
+          "name": "Jardim do Rio at sunset",
+          "desc": "Riverside park with food trucks and drinks, a great way to end the day"
+        }
+      ],
+      "food_recommendations": [
+        "Pasteis de Belem for the original custard tart",
+        "Bakeries inside supermarkets sell tarts for 0.40-0.70 euro and sandwiches for around 2.50 euro"
+      ],
+      "nightlife": [
+        "Lisboa Rio is touristy but fun and not too expensive by European standards",
+        "Bairro Alto for bars that spill onto the street"
+      ],
+      "transport_tips": [
+        "Credit card works directly on public transport",
+        "Oriente station is a bit far from the tourist core but very close to the airport"
+      ],
+      "warnings": [
+        "The lift up to the castle viewpoint is touristy and slow, walk up instead for better views from Zambeze restaurant and beyond"
+      ],
+      "similar_to": [
+        "Porto for a smaller, similarly hilly alternative"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Credit card works on public transport here, a nice change after much of Europe.",
+        "Skip the famous funicular, Zambeze restaurant up the hill has a better view, and keep climbing for even better.",
+        "Jardim do Rio at sunset with some drinks and friends is one of the best simple things to do here.",
+        "The airport is efficient, you don't need to arrive 3 hours early, but customs is after the food court so allow time."
+      ],
+      "tom_verdict": "Easy, beautiful, and cheap by European standards. A great first or last stop on a Europe trip."
+    },
+    {
+      "id": "sintra",
+      "name": "Sintra",
+      "country": "Portugal",
+      "lat": 38.797,
+      "lon": -9.39,
+      "recommended_nights": 0,
+      "budget_per_night_aud": "day trip",
+      "vibes": [
+        "history",
+        "nature",
+        "iconic"
+      ],
+      "vibe_scores": {
+        "adventure": 3,
+        "relaxation": 4,
+        "nightlife": 0,
+        "culture": 8,
+        "budget_friendly": 6,
+        "romantic": 7,
+        "family": 6,
+        "hiking": 4,
+        "diving": 0,
+        "ski": 0
+      },
+      "summary": "Fairytale palaces and castles in the hills above Lisbon, best as a day trip",
+      "activities": [
+        {
+          "name": "Pena Palace",
+          "desc": "The iconic colourful palace on the hilltop, very popular so go early"
+        },
+        {
+          "name": "Moorish Castle",
+          "desc": "Cheaper alternative to the palace with great views and ancient walls to walk"
+        },
+        {
+          "name": "Quinta da Regaleira",
+          "desc": "Mysterious gardens with a famous spiral well, a bit more off the main trail"
+        }
+      ],
+      "food_recommendations": [],
+      "nightlife": [],
+      "transport_tips": [
+        "Easy day trip by train from Lisbon's Rossio station, about 40 minutes"
+      ],
+      "warnings": [
+        "Lots of walking and uphill sections, wear good shoes"
+      ],
+      "similar_to": [],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Sintra is well worth visiting, go to the castle over the palace if on a budget, both are worth it if not.",
+        "Lots of walking, plan for a full day."
+      ],
+      "tom_verdict": "A perfect day trip from Lisbon, just don't try to do every site, pick two and enjoy the pace."
+    },
+    {
+      "id": "tokyo",
+      "name": "Tokyo",
+      "country": "Japan",
+      "lat": 35.676,
+      "lon": 139.65,
+      "recommended_nights": 4,
+      "budget_per_night_aud": "60-200",
+      "vibes": [
+        "city",
+        "foodie",
+        "iconic",
+        "culture"
+      ],
+      "vibe_scores": {
+        "adventure": 4,
+        "relaxation": 3,
+        "nightlife": 7,
+        "culture": 8,
+        "budget_friendly": 5,
+        "romantic": 5,
+        "family": 6,
+        "hiking": 1,
+        "diving": 0,
+        "ski": 1
+      },
+      "summary": "Massive, endlessly interesting city, impossible to see it all so don't try",
+      "activities": [
+        {
+          "name": "Shibuya and Shimokitazawa",
+          "desc": "Stay near here for easy access to the centre, great for wandering alleys and shops"
+        },
+        {
+          "name": "Imperial Palace grounds",
+          "desc": "A calmer, more historic counterpoint to the neon districts"
+        },
+        {
+          "name": "Tokyo Metropolitan Government Building",
+          "desc": "Free observation deck with great skyline views"
+        }
+      ],
+      "food_recommendations": [
+        "Convenience stores (konbini) are genuinely excellent and open 24/7"
+      ],
+      "nightlife": [
+        "Shibuya and Shinjuku for variety, smaller izakaya bars for something quieter"
+      ],
+      "transport_tips": [
+        "Load Suica onto your phone for transport and shops, but note any balance is void once you leave Japan",
+        "Metro lines close around midnight and taxis are expensive, plan your last train"
+      ],
+      "warnings": [
+        "Some famous spots like Meiji Shrine and Jimbocho are often a bit underwhelming despite reputation"
+      ],
+      "similar_to": [
+        "Seoul for a similarly huge, neon-lit Asian capital"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "4 to 5 nights is a good amount of time given the size of the city.",
+        "Staying near Shibuya, within about 15 minutes by train of the centre, works really well.",
+        "Get Suica loaded on your phone for transport and convenience stores, but note any balance is void once you leave Japan.",
+        "Metro lines close around midnight and taxis are expensive, plan your last train carefully."
+      ],
+      "tom_verdict": "You cannot 'do' Tokyo, just pick a neighbourhood to base in and let yourself wander."
+    },
+    {
+      "id": "nagano",
+      "name": "Nagano",
+      "country": "Japan",
+      "lat": 36.651,
+      "lon": 138.181,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "40-150",
+      "vibes": [
+        "ski",
+        "winter",
+        "nature"
+      ],
+      "vibe_scores": {
+        "adventure": 6,
+        "relaxation": 5,
+        "nightlife": 2,
+        "culture": 4,
+        "budget_friendly": 5,
+        "romantic": 6,
+        "family": 6,
+        "hiking": 3,
+        "diving": 0,
+        "ski": 8
+      },
+      "summary": "Proper winter town with beginner-friendly skiing and great onsens",
+      "activities": [
+        {
+          "name": "Ryuoo Ski Park",
+          "desc": "Very beginner-friendly skiing with cheap gear hire, take the long train then free shuttle"
+        },
+        {
+          "name": "Mamejima Yutaruan onsen",
+          "desc": "Authentic outdoor onsen, a perfect way to finish a ski day"
+        },
+        {
+          "name": "Zenko-ji Temple",
+          "desc": "Huge, actively-used temple that gets a lot of snow in winter"
+        }
+      ],
+      "food_recommendations": [],
+      "nightlife": [],
+      "transport_tips": [
+        "Public transport gets expensive here, a car makes life much easier if staying a few days"
+      ],
+      "warnings": [
+        "The Jigokudani snow monkey park is a bit of a tourist trap and somewhat unethical, take it or leave it"
+      ],
+      "similar_to": [
+        "Niseko but smaller and cheaper"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Proper winter town, the skiing at Ryuoo ski park is very beginner-friendly with cheap gear hire.",
+        "Finish a ski day at Mamejima Yutaruan for an outdoor onsen, genuinely amazing.",
+        "Public transport gets expensive here, a car makes life much easier if staying a few days."
+      ],
+      "tom_verdict": "Great value introduction to skiing in Japan, the onsen after is half the appeal."
+    },
+    {
+      "id": "kyoto",
+      "name": "Kyoto",
+      "country": "Japan",
+      "lat": 35.011,
+      "lon": 135.768,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "50-180",
+      "vibes": [
+        "culture",
+        "history",
+        "calm"
+      ],
+      "vibe_scores": {
+        "adventure": 2,
+        "relaxation": 6,
+        "nightlife": 3,
+        "culture": 9,
+        "budget_friendly": 5,
+        "romantic": 8,
+        "family": 5,
+        "hiking": 2,
+        "diving": 0,
+        "ski": 0
+      },
+      "summary": "Quiet, atmospheric former capital, can get very cold in winter",
+      "activities": [
+        {
+          "name": "Fushimi Inari",
+          "desc": "Thousands of orange torii gates climbing the hillside, go early to avoid crowds"
+        },
+        {
+          "name": "TeamLab digital art",
+          "desc": "Surprisingly good immersive digital art installation"
+        },
+        {
+          "name": "Themed bars wander",
+          "desc": "Small, often quirky themed bars scattered through the city, including a rock bar"
+        }
+      ],
+      "food_recommendations": [
+        "A great Mexican restaurant near Rancho shrine, a fun surprise in Kyoto"
+      ],
+      "nightlife": [
+        "Small and quiet compared to Osaka, but some great themed bars"
+      ],
+      "transport_tips": [
+        "Can be done as a day trip from Osaka if short on time, but an overnight is worth it"
+      ],
+      "warnings": [
+        "Most paid temples can be seen via a side path without paying, not always worth the entry fee",
+        "Gets very cold in winter"
+      ],
+      "similar_to": [
+        "Nara for a smaller, quieter version"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Much quieter than Osaka or Tokyo, and can get very cold in winter.",
+        "Fushimi Inari is genuinely worth it.",
+        "Most paid temples can be seen via a side path without paying, not always worth the entry fee.",
+        "Can be done as a day trip from Osaka if short on time, but still worth an overnight."
+      ],
+      "tom_verdict": "The calm counterpoint to Osaka and Tokyo, go in spring or autumn if you can."
+    },
+    {
+      "id": "osaka",
+      "name": "Osaka",
+      "country": "Japan",
+      "lat": 34.694,
+      "lon": 135.502,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "45-160",
+      "vibes": [
+        "foodie",
+        "nightlife",
+        "city"
+      ],
+      "vibe_scores": {
+        "adventure": 3,
+        "relaxation": 3,
+        "nightlife": 8,
+        "culture": 5,
+        "budget_friendly": 6,
+        "romantic": 5,
+        "family": 6,
+        "hiking": 0,
+        "diving": 0,
+        "ski": 0
+      },
+      "summary": "Much livelier than Kyoto, great food and nightlife",
+      "activities": [
+        {
+          "name": "Dotonbori at night",
+          "desc": "Iconic neon canal-side strip, walk it with a drink in hand"
+        },
+        {
+          "name": "Osaka Aquarium",
+          "desc": "A genuine highlight, including their coral regeneration programs"
+        },
+        {
+          "name": "Shinsekai",
+          "desc": "Slightly daggy retro shopping and food district, fun to explore"
+        }
+      ],
+      "food_recommendations": [
+        "Street food throughout Dotonbori, takoyaki and okonomiyaki are local specialties"
+      ],
+      "nightlife": [
+        "Dotonbori and Namba have the best concentration of bars and izakaya"
+      ],
+      "transport_tips": [
+        "Stay near Tennoji or Namba for easy transport connections"
+      ],
+      "warnings": [],
+      "similar_to": [
+        "Tokyo but smaller, friendlier, and more food-focused"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Much livelier than Kyoto, Dotonbori at night with a drink in hand is great.",
+        "The aquarium is a genuine highlight, including their coral regeneration programs.",
+        "Stay near Tennoji or Namba for easy transport connections."
+      ],
+      "tom_verdict": "The food alone justifies a stop here, pair it with Kyoto for a great contrast."
     }
   ]
 }
