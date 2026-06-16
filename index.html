@@ -525,6 +525,65 @@ nav {
 .gem-box i { font-size: 18px; color: var(--teal); flex-shrink: 0; margin-top: 2px; }
 .gem-box p { font-size: 13px; color: #0f4f47; line-height: 1.6; }
 
+/* OUTLINE CARDS */
+#outline-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.outline-card {
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.outline-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 16px rgba(196,92,42,0.1);
+  transform: translateY(-2px);
+}
+.outline-title {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: -0.3px;
+  color: var(--ink);
+}
+.outline-sub {
+  font-size: 13px;
+  color: var(--ink-muted);
+  line-height: 1.5;
+}
+.outline-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.outline-route {
+  font-size: 12px;
+  color: var(--ink-muted);
+  line-height: 1.6;
+  padding: 10px 12px;
+  background: var(--sand);
+  border-radius: var(--radius-sm);
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+}
+.outline-select-btn {
+  margin-top: auto;
+  width: 100%;
+  justify-content: center;
+  font-size: 14px;
+  padding: 11px;
+}
+
 /* ACTIONS */
 .action-row {
   display: flex;
@@ -1037,13 +1096,28 @@ footer strong { color: var(--ink-muted); }
 </section>
 
 <section id="sample-trips-section">
-  <h2 class="section-heading">Real routes, planned by travellers</h2>
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+    <h2 class="section-heading" style="margin-bottom:0">Real routes, planned by travellers</h2>
+    <button onclick="renderSampleTrips()" style="display:flex;align-items:center;gap:5px;font-size:12px;color:var(--ink-muted);background:none;border:1px solid var(--card-border);border-radius:999px;padding:5px 12px;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.12s" onmouseover="this.style.color=getComputedStyle(document.documentElement).getPropertyValue('--ink');this.style.background='var(--white)'" onmouseout="this.style.color='';this.style.background='none'">
+      <i class="ti ti-arrows-shuffle" style="font-size:13px"></i> Shuffle
+    </button>
+  </div>
   <div id="sample-trip-grid"></div>
 </section>
 
 <section style="max-width:1000px;margin:0 auto;padding:0 24px 60px;">
   <div id="loading"><span class="spinner"></span><span id="loading-text">Finding your perfect trip...</span></div>
   <div id="error-msg"></div>
+
+  <div id="outline-result" style="display:none">
+    <button id="back-btn-outline" onclick="goBack()" style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ink-muted);cursor:pointer;border:none;background:none;font-family:'Inter',sans-serif;padding:0 0 16px;transition:color 0.15s">
+      <i class="ti ti-arrow-left"></i> Back to explore
+    </button>
+    <h2 style="font-family:'Fraunces',serif;font-weight:300;font-size:22px;letter-spacing:-0.3px;margin-bottom:6px">Here are a few options</h2>
+    <p style="font-size:14px;color:var(--ink-muted);margin-bottom:20px">Pick the trip that sounds right and we'll build the full route map for you.</p>
+    <div id="outline-grid"></div>
+  </div>
+
   <div id="trip-result">
     <button id="back-btn" onclick="goBack()"><i class="ti ti-arrow-left"></i> Back to explore</button>
     <div class="trip-header">
@@ -1074,9 +1148,17 @@ footer strong { color: var(--ink-muted); }
     <div class="action-row">
       <button class="act-btn primary" onclick="doSearch()"><i class="ti ti-refresh"></i> Refine trip</button>
       <button class="act-btn" onclick="copyTrip()"><i class="ti ti-copy"></i> Copy itinerary</button>
-      <button class="act-btn" onclick="askMore('hidden gems')"><i class="ti ti-diamond"></i> More hidden gems</button>
-      <button class="act-btn" onclick="askMore('transport and routes')"><i class="ti ti-train"></i> Transport options</button>
+      <button class="act-btn" onclick="askMore('hidden gems')"><i class="ti ti-diamond"></i> Hidden gems</button>
+      <button class="act-btn" onclick="askMore('transport and routes')"><i class="ti ti-train"></i> Transport</button>
       <button class="act-btn" onclick="askMore('best accommodation options at different budgets')"><i class="ti ti-bed"></i> Where to stay</button>
+    </div>
+
+    <div id="ask-more-overlay" style="display:none;margin-top:16px;background:var(--white);border:1px solid var(--card-border);border-radius:var(--radius);padding:18px 20px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+        <h3 id="ask-more-title" style="font-size:14px;font-weight:500"></h3>
+        <button onclick="document.getElementById('ask-more-overlay').style.display='none'" style="background:none;border:none;cursor:pointer;color:var(--ink-faint);font-size:18px;padding:0;line-height:1">&times;</button>
+      </div>
+      <div id="ask-more-body"></div>
     </div>
   </div>
 </section>
@@ -1458,9 +1540,21 @@ const SAMPLE_TRIPS = [
   }
 ];
 
-function renderSampleTrips() {
-  document.getElementById('sample-trip-grid').innerHTML = SAMPLE_TRIPS.map((s, i) => `
-    <div class="sample-card" onclick="openSampleTrip(${i})">
+function renderSampleTrips(forceIndices) {
+  const total = SAMPLE_TRIPS.length;
+  let indices;
+  if (forceIndices) {
+    indices = forceIndices;
+  } else {
+    // Pick 3 random unique indices
+    const pool = Array.from({length: total}, (_, i) => i);
+    indices = pool.sort(() => Math.random() - 0.5).slice(0, 3);
+  }
+
+  document.getElementById('sample-trip-grid').innerHTML = indices.map((si, i) => {
+    const s = SAMPLE_TRIPS[si];
+    return `
+    <div class="sample-card" onclick="openSampleTrip(${si})">
       <div class="sample-card-img theme-${s.theme}" id="sample-img-${i}">
         <span class="sample-card-tag">${s.tag}</span>
         <div class="sample-card-img-icon"><i class="ti ${s.icon}"></i></div>
@@ -1470,9 +1564,9 @@ function renderSampleTrips() {
         <div class="sample-card-sub">${s.sub}</div>
       </div>
     </div>
-  `).join('');
+  `}).join('');
 
-  SAMPLE_TRIPS.forEach((s, i) => loadSampleImage(s, i));
+  indices.forEach((si, i) => loadSampleImage(SAMPLE_TRIPS[si], i));
 }
 
 async function loadSampleImage(sample, i) {
@@ -1853,8 +1947,8 @@ async function callAI(prompt, maxTokens, loadingMessage) {
 function renderOutlines(outlines, query, fullQuery, plannerHint, bankMatches) {
   document.getElementById('loading').style.display = 'none';
   const result = document.getElementById('outline-result');
+  if (!result) return;
   result.style.display = 'block';
-  document.getElementById('back-btn').style.display = 'flex';
 
   document.getElementById('outline-grid').innerHTML = outlines.map((o, i) => `
     <div class="outline-card" onclick="selectOutline(${i})">
@@ -1917,10 +2011,10 @@ async function selectOutline(i) {
   }
 }
 
-async function runAISearch(query, fullQuery, plannerHint, bankMatches) {
+async function runAISearch(query, fullQuery, plannerHint, bankMatches, chosenOutline) {
   const bankNames = bankMatches.map(d => d.name).join(', ');
   const bankHint = bankMatches.length
-    ? `\n\nWandrly already has detailed info for these places, which partially match this search: ${bankNames}. Feel free to include any of these as stops if they fit (just give name, lat, lon, nights and a one-line summary for them, we'll fill in the rest), and add 2-5 NEW stops to complete a good trip.`
+    ? `\n\nWandrly already has detailed info for these places, which partially match this search: ${bankNames}. Feel free to include any of these as stops if they fit (just give name, lat, lon, nights and a one-line summary for them, we'll fill in the rest), and add stops as needed to complete a good trip.`
     : '';
 
   const noteCities = Object.keys(WANDRLY_NOTES);
@@ -1928,7 +2022,12 @@ async function runAISearch(query, fullQuery, plannerHint, bankMatches) {
     ? `\n\nWandrly has personal travel notes for these places: ${noteCities.join(', ')}. If the trip includes any of these, you don't need to invent local tips for them, just focus on great activities.`
     : '';
 
-  const prompt = `You are Wandrly, an expert travel planner who specialises in both iconic destinations and hidden gems. A user wants: "${query}".${plannerHint}${bankHint}${noteHint}
+  // If the user picked a specific outline, anchor the detailed generation to it
+  const outlineHint = chosenOutline
+    ? `\n\nThe user has chosen this specific trip outline to build out in full detail:\nTitle: "${chosenOutline.title}"\nStops in order: ${chosenOutline.stop_names.join(', ')}\nPlease build the full itinerary for exactly these stops in this order.`
+    : '';
+
+  const prompt = `You are Wandrly, an expert travel planner who specialises in both iconic destinations and hidden gems. A user wants: "${query}".${plannerHint}${outlineHint}${bankHint}${noteHint}
 Return ONLY valid JSON (no markdown fences, no explanation) with this exact structure:
 {
   "title": "Short evocative trip title",
@@ -1958,40 +2057,7 @@ Return ONLY valid JSON (no markdown fences, no explanation) with this exact stru
 If a stop is really a base for a multi-day excursion away from the town itself (e.g. a trek, a safari, a liveaboard), set "sub_itinerary" to {"name": "...", "nights": N, "is_separate_location": true, "summary": "...", "days": [{"day":1,"title":"...","desc":"..."}]} instead of null — this lets us show the excursion distinctly from town time. Otherwise leave it null.
 Include 4-6 stops in a sensible geographic order (so a route line between them makes sense). Always include real, accurate latitude and longitude for each place. Do not use em-dashes anywhere in your response — use commas or full stops instead.`;
 
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 28000);
-
-  let res;
-  try {
-    res = await fetch('/api/chat', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 1500,
-        messages: [{ role: 'user', content: prompt }]
-      }),
-      signal: controller.signal
-    });
-  } catch(fetchErr) {
-    if (fetchErr.name === 'AbortError') {
-      throw new Error('That took too long to respond. Please try again, sometimes a simpler search helps.');
-    }
-    throw new Error('Could not reach the planning service. Check your connection and try again.');
-  } finally {
-    clearTimeout(timeoutId);
-  }
-
-  const data = await res.json();
-
-  if (!res.ok) {
-    const errMsg = typeof data.error === 'string'
-      ? data.error
-      : (data.error && data.error.message) || 'Something went wrong, please try again.';
-    throw new Error(errMsg);
-  }
+  const data = await callAI(prompt, 1500, chosenOutline ? `Building "${chosenOutline.title}"...` : 'Building your trip...');
 
   const text = data.content.map(i => i.text || '').join('');
   const clean = text.replace(/```json|```/g, '').trim();
@@ -2066,8 +2132,13 @@ mapboxgl.accessToken = 'pk.eyJ1IjoidGxsMjIyIiwiYSI6ImNtcWN6MHMwejB4NnIyeXB1eW1pM
 function renderTrip(trip) {
   document.getElementById('loading').style.display = 'none';
   const result = document.getElementById('trip-result');
+  if (!result) return;
   result.style.display = 'block';
-  document.getElementById('back-btn').style.display = 'flex';
+  const backBtn = document.getElementById('back-btn');
+  if (backBtn) backBtn.style.display = 'flex';
+  // Hide outline view if user came from there
+  const outlineResult = document.getElementById('outline-result');
+  if (outlineResult) outlineResult.style.display = 'none';
 
   document.getElementById('tc-title').textContent = trip.title;
   document.getElementById('tc-sub').textContent = trip.subtitle;
@@ -2469,16 +2540,24 @@ function initMap(trip) {
 
 function goBack() {
   document.getElementById('trip-result').style.display = 'none';
+  document.getElementById('outline-result').style.display = 'none';
   document.getElementById('browse-section').style.display = 'block';
   document.getElementById('sample-trips-section').style.display = 'block';
   document.getElementById('back-btn').style.display = 'none';
   if (mapInstance) { mapInstance.remove(); mapInstance = null; }
+  mapMarkers = [];
+  activeStopIndex = null;
+  pendingOutlineContext = null;
+  // Clear cached trip state so returning to a country from browse always
+  // starts fresh rather than showing the last modified version of a trip
+  currentTripData = null;
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
 function goHome() {
   const tripResult = document.getElementById('trip-result');
-  if (tripResult.style.display === 'block') {
+  const outlineResult = document.getElementById('outline-result');
+  if (tripResult.style.display === 'block' || outlineResult.style.display === 'block') {
     goBack();
   } else {
     window.scrollTo({top:0, behavior:'smooth'});
@@ -2503,11 +2582,45 @@ function copyTrip() {
   navigator.clipboard.writeText(lines.join('\n')).then(() => alert('Itinerary copied!'));
 }
 
-function askMore(topic) {
-  const q = document.getElementById('search-input').value;
-  const prompt = `For this trip: "${q}", give me more detail specifically about ${topic}. Be specific, practical and include hidden gems where relevant.`;
-  document.getElementById('search-input').value = prompt;
-  doSearch();
+async function askMore(topic) {
+  if (!currentTripData) return;
+  const tripTitle = currentTripData.title || 'this trip';
+  const stops = currentTripData.stops.filter(s=>s.included).map(s=>s.name).join(', ');
+
+  let prompt = '';
+  if (topic === 'transport and routes') {
+    prompt = `For a trip called "${tripTitle}" covering these stops in order: ${stops}. Give me practical transport options between each stop, including rough cost, journey time, and one tip per leg. Be specific and accurate. Keep it to 150 words.`;
+  } else if (topic === 'best accommodation options at different budgets') {
+    prompt = `For a trip called "${tripTitle}" covering these stops: ${stops}. For each stop suggest one budget option (hostel/guesthouse), one mid-range, and one splurge option with a rough price in AUD per night. Keep descriptions short. 150 words.`;
+  } else {
+    prompt = `For a trip called "${tripTitle}" covering ${stops}, give me 3-5 specific ${topic} tips. Be practical, name specific places, and include anything off the beaten track. 150 words.`;
+  }
+
+  if (getRemainingSearches() <= 0) {
+    alert("You've used today's AI searches. More unlock tomorrow.");
+    return;
+  }
+
+  // Show result in a small overlay panel rather than replacing the whole trip
+  const overlay = document.getElementById('ask-more-overlay');
+  const overlayBody = document.getElementById('ask-more-body');
+  const overlayTitle = document.getElementById('ask-more-title');
+  if (!overlay) return;
+
+  overlayTitle.textContent = topic.charAt(0).toUpperCase() + topic.slice(1);
+  overlayBody.innerHTML = '<span class="spinner" style="width:16px;height:16px;border-width:2px;display:inline-block"></span> Loading...';
+  overlay.style.display = 'block';
+
+  try {
+    const data = await callAI(prompt, 400, null);
+    const text = data.content.map(i => i.text || '').join('');
+    overlayBody.innerHTML = text.split('\n').filter(l=>l.trim()).map(l =>
+      `<p style="margin-bottom:8px;font-size:13px;color:var(--ink-muted);line-height:1.6">${l}</p>`
+    ).join('');
+    recordUsage();
+  } catch(e) {
+    overlayBody.innerHTML = `<p style="color:var(--accent);font-size:13px">${e.message || 'Could not load, please try again.'}</p>`;
+  }
 }
 
 // ---- INIT ----
