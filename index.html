@@ -380,9 +380,59 @@ nav {
 #loading {
   display: none;
   text-align: center;
-  padding: 48px 24px;
+  padding: 60px 24px;
   color: var(--ink-muted);
+  max-width: 500px;
+  margin: 0 auto;
+}
+.loading-globe {
+  font-size: 40px;
+  display: block;
+  margin: 0 auto 20px;
+  animation: float 2.5s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.loading-stage {
   font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+#loading-text {
+  font-size: 13px;
+  color: var(--ink-muted);
+  display: block;
+  margin-bottom: 20px;
+}
+.loading-bar {
+  width: 200px;
+  height: 3px;
+  background: var(--sand-dark);
+  border-radius: 999px;
+  margin: 0 auto 20px;
+  overflow: hidden;
+}
+.loading-bar-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 999px;
+  animation: loadbar 3s ease-in-out infinite;
+}
+@keyframes loadbar {
+  0% { width: 0%; margin-left: 0; }
+  50% { width: 70%; margin-left: 0; }
+  100% { width: 5%; margin-left: 95%; }
+}
+.loading-tip {
+  font-size: 12px;
+  color: var(--ink-faint);
+  font-style: italic;
+  line-height: 1.6;
+  min-height: 36px;
+  transition: opacity 0.5s;
 }
 #error-msg {
   display: none;
@@ -1198,7 +1248,13 @@ footer strong { color: var(--ink-muted); }
 </section>
 
 <section style="max-width:1000px;margin:0 auto;padding:0 24px 60px;">
-  <div id="loading"><span class="spinner"></span><span id="loading-text">Finding your perfect trip...</span></div>
+  <div id="loading">
+    <span class="loading-globe">🌍</span>
+    <div class="loading-stage" id="loading-stage">Sketching a few trip ideas...</div>
+    <span id="loading-text">This usually takes 5-15 seconds</span>
+    <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+    <div class="loading-tip" id="loading-tip"></div>
+  </div>
   <div id="error-msg"></div>
 
   <div id="outline-result" style="display:none">
@@ -1433,6 +1489,61 @@ function setVibe(el, vibe) {
   document.querySelectorAll('.vibe-pill').forEach(p => p.classList.remove('active'));
   el.classList.add('active');
   document.getElementById('search-input').value = vibe;
+}
+
+function quickSearch(query) {
+  document.getElementById('search-input').value = query;
+  doSearch();
+}
+
+// ---- LOADING STATE HELPERS ----
+const LOADING_TIPS = [
+  "Always pack a universal power adapter, even one country without it ruins a charge.",
+  "Booking the first and last night in each city before you go saves a lot of stress.",
+  "A decoy wallet with a small amount of cash is worth having in busy markets.",
+  "Most airlines let you pick a seat for free 24 hours before departure.",
+  "Train tickets in Europe are almost always cheaper bought 90 days in advance.",
+  "A portable battery pack under 100Wh goes in your carry-on on almost every airline.",
+  "The second day in any city is always better than the first. Stay longer than you think.",
+  "Arriving somewhere new? Get a local SIM at the airport before anything else.",
+  "Google Maps offline saves you every single time. Download the map before you land.",
+  "The best meals on any trip are never in the places mentioned in Lonely Planet.",
+  "Overnight buses or trains save a night's accommodation and get you somewhere new by morning.",
+  "A small padlock for hostel lockers is one of the best $3 investments you'll make.",
+  "Always check if a country requires an onward ticket before you board.",
+  "Hidden gems stay hidden for about 18 months after appearing on social media.",
+];
+
+let loadingTipInterval = null;
+let loadingTipIndex = 0;
+
+function setLoadingMessage(stage, sub) {
+  const s = document.getElementById('loading-stage');
+  const t = document.getElementById('loading-text');
+  if (s) s.textContent = stage;
+  if (t) t.textContent = sub || '';
+}
+
+function startLoadingTips() {
+  const tip = document.getElementById('loading-tip');
+  if (!tip) return;
+  loadingTipIndex = Math.floor(Math.random() * LOADING_TIPS.length);
+  tip.textContent = LOADING_TIPS[loadingTipIndex];
+  tip.style.opacity = '1';
+  loadingTipInterval = setInterval(() => {
+    tip.style.opacity = '0';
+    setTimeout(() => {
+      loadingTipIndex = (loadingTipIndex + 1) % LOADING_TIPS.length;
+      tip.textContent = LOADING_TIPS[loadingTipIndex];
+      tip.style.opacity = '1';
+    }, 500);
+  }, 4000);
+}
+
+function stopLoadingTips() {
+  if (loadingTipInterval) { clearInterval(loadingTipInterval); loadingTipInterval = null; }
+  const tip = document.getElementById('loading-tip');
+  if (tip) tip.textContent = '';
 }
 
 function quickSearch(query) {
@@ -1887,8 +1998,8 @@ async function doSearch() {
   document.getElementById('trip-result').style.display = 'none';
   document.getElementById('browse-section').style.display = 'none';
   document.getElementById('sample-trips-section').style.display = 'none';
-  const loadingText = document.getElementById('loading-text');
-  loadingText.textContent = 'Finding your perfect trip...';
+  setLoadingMessage('Finding your perfect trip...', 'Checking saved trips first...');
+  startLoadingTips();
   window.scrollTo({top: document.getElementById('loading').offsetTop - 100, behavior:'smooth'});
 
   // Starting a fresh search, tear down any existing map and stop state so the
@@ -1903,11 +2014,12 @@ async function doSearch() {
     const cached = getCachedTrip(fullQuery);
     if (cached) {
       currentTripData = cached;
+      stopLoadingTips();
       renderTrip(cached);
       return;
     }
 
-    loadingText.textContent = 'Checking saved trips...';
+    setLoadingMessage('Searching our trip library...', 'Looking for pre-built routes that match...');
     if (!bankLoaded) await loadBank();
 
     // Find matching destinations already in the bank — these cost zero tokens
@@ -1921,12 +2033,14 @@ async function doSearch() {
       const trip = assembleTripFromBank(query, bankStops);
       currentTripData = trip;
       setCachedTrip(fullQuery, trip);
+      stopLoadingTips();
       renderTrip(trip);
       return;
     }
 
     // Otherwise, check the daily AI usage limit before calling out
     if (getRemainingSearches() <= 0) {
+      stopLoadingTips();
       document.getElementById('loading').style.display = 'none';
       document.getElementById('browse-section').style.display = 'block';
       document.getElementById('sample-trips-section').style.display = 'block';
@@ -1936,10 +2050,11 @@ async function doSearch() {
       return;
     }
 
-    loadingText.textContent = 'Sketching a few trip ideas...';
+    setLoadingMessage('Sketching your trip options...', 'This usually takes 5-15 seconds');
     await runOutlineSearch(query, fullQuery, plannerHint, bankMatches);
 
   } catch(e) {
+    stopLoadingTips();
     document.getElementById('loading').style.display = 'none';
     document.getElementById('browse-section').style.display = 'block';
     document.getElementById('sample-trips-section').style.display = 'block';
@@ -1998,7 +2113,7 @@ Each outline should have 4-6 stop_names in a sensible geographic order. Do not u
 // Shared AI call helper with timeout and clean error extraction.
 async function callAI(prompt, maxTokens, loadingMessage) {
   if (loadingMessage) {
-    document.getElementById('loading-text').textContent = loadingMessage;
+    setLoadingMessage(loadingMessage, 'Almost there...');
   }
 
   const controller = new AbortController();
@@ -2082,17 +2197,18 @@ function renderOutlines(outlines, query, fullQuery, plannerHint, bankMatches) {
   // Stash everything selectOutline needs
   pendingOutlineContext = { outlines, query, fullQuery, plannerHint, bankMatches };
 
-  // Load background photos from first stop name of each outline
+  // Load background photos - use a different stop per card index to get variety
+  // even when outlines share the same starting city
   outlines.forEach((o, i) => {
     if (!o.stop_names || !o.stop_names.length) return;
-    fetchPhotos(o.stop_names[0]).then(result => {
+    const stopIdx = Math.min(i, o.stop_names.length - 1);
+    fetchPhotos(o.stop_names[stopIdx]).then(result => {
       if (!result.photo) return;
       const hero = document.getElementById(`outline-hero-${i}`);
       if (!hero) return;
-      const overlay = hero.querySelector('.outline-card-hero-overlay');
       const img = document.createElement('img');
       img.src = result.photo.url;
-      img.alt = o.stop_names[0];
+      img.alt = o.stop_names[stopIdx];
       hero.insertBefore(img, hero.firstChild);
     });
   });
@@ -2109,15 +2225,18 @@ async function selectOutline(i) {
 
   document.getElementById('outline-result').style.display = 'none';
   document.getElementById('loading').style.display = 'block';
-  document.getElementById('loading-text').textContent = `Building "${chosen.title}"...`;
+  setLoadingMessage(`Building "${chosen.title}"...`, 'Generating the full route map');
+  startLoadingTips();
   window.scrollTo({top: document.getElementById('loading').offsetTop - 100, behavior:'smooth'});
 
   try {
     await runAISearch(query, fullQuery, plannerHint, bankMatches, chosen);
+    stopLoadingTips();
   } catch(e) {
+    stopLoadingTips();
     document.getElementById('loading').style.display = 'none';
     document.getElementById('outline-result').style.display = 'block';
-    const msg = e.message || 'Could not load trip. Please try again — or pick a different option above.';
+    const msg = e.message || 'Could not load trip. Please try again, or pick a different option above.';
     const errBox = document.getElementById('error-msg');
     errBox.textContent = msg;
     errBox.style.display = 'block';
@@ -2762,6 +2881,11 @@ if (typeof window !== 'undefined' && window.location && window.location.search &
 renderSampleTrips();
 loadBank();
 updateUsageBadge();
+
+// Enter key triggers search
+document.getElementById('search-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') doSearch();
+});
 </script>
 </body>
 </html>
