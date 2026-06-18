@@ -1546,11 +1546,6 @@ function stopLoadingTips() {
   if (tip) tip.textContent = '';
 }
 
-function quickSearch(query) {
-  document.getElementById('search-input').value = query;
-  doSearch();
-}
-
 function scrollToSearch() {
   document.getElementById('search-input').focus();
   window.scrollTo({top:0, behavior:'smooth'});
@@ -1743,21 +1738,148 @@ const SAMPLE_TRIPS = [
   }
 ];
 
-function renderSampleTrips(forceIndices) {
-  const total = SAMPLE_TRIPS.length;
-  let indices;
-  if (forceIndices) {
-    indices = forceIndices;
-  } else {
-    // Pick 3 random unique indices
-    const pool = Array.from({length: total}, (_, i) => i);
-    indices = pool.sort(() => Math.random() - 0.5).slice(0, 3);
+// ---- PROCEDURAL SAMPLE TRIP GENERATION ----
+// Builds genuinely varied trips from the destinations bank: different
+// combinations, lengths (4-30 nights), and sometimes spanning multiple
+// nearby countries (e.g. Sri Lanka could pair with nothing nearby, but
+// Georgia could extend toward Armenia, Japan stops could combine with a
+// nearby country, etc). Falls back to the hardcoded SAMPLE_TRIPS if the
+// bank isn't loaded yet (e.g. first paint before destinations.json arrives).
+const REGION_GROUPS = {
+  westernEurope: ['Lisbon','Sintra'],
+  caucasus: ['Tbilisi','Kazbegi (Stepantsminda)','Sighnaghi'],
+  southAsia: ['Colombo','Sigiriya','Kandy','Ella','Mirissa','Galle'],
+  eastAsia: ['Tokyo','Nagano','Kyoto','Osaka'],
+  oceania: ['Christchurch','Lake Tekapo','Wanaka','Queenstown'],
+  southAmerica: ['Cusco'],
+};
+
+function pickRandom(arr, n) {
+  const copy = [...arr];
+  const out = [];
+  while (out.length < n && copy.length) {
+    out.push(copy.splice(Math.floor(Math.random() * copy.length), 1)[0]);
+  }
+  return out;
+}
+
+// Order a set of destination objects into a sensible route by nearest-neighbour
+function orderByProximity(dests) {
+  if (dests.length <= 1) return dests;
+  const ordered = [dests[0]];
+  const remaining = dests.slice(1);
+  while (remaining.length) {
+    const last = ordered[ordered.length - 1];
+    let bestIdx = 0, bestDist = Infinity;
+    remaining.forEach((d, i) => {
+      const dist = Math.hypot(d.lat - last.lat, d.lon - last.lon);
+      if (dist < bestDist) { bestDist = dist; bestIdx = i; }
+    });
+    ordered.push(remaining.splice(bestIdx, 1)[0]);
+  }
+  return ordered;
+}
+
+function generateProceduralTrip() {
+  if (!DESTINATIONS || DESTINATIONS.length < 3) return null;
+
+  // Group bank destinations by country
+  const byCountry = {};
+  DESTINATIONS.forEach(d => {
+    if (!byCountry[d.country]) byCountry[d.country] = [];
+    byCountry[d.country].push(d);
+  });
+  const countries = Object.keys(byCountry).filter(c => byCountry[c].length >= 2);
+  if (!countries.length) return null;
+
+  const baseCountry = countries[Math.floor(Math.random() * countries.length)];
+  let pool = [...byCountry[baseCountry]];
+
+  // ~30% chance of a multi-country trip if there's a plausible neighbouring
+  // country in the bank within the same broad region
+  let countryLabel = baseCountry;
+  for (const region of Object.values(REGION_GROUPS)) {
+    const regionCountries = [...new Set(DESTINATIONS.filter(d => region.includes(d.name)).map(d => d.country))];
+    if (regionCountries.includes(baseCountry) && regionCountries.length > 1 && Math.random() < 0.3) {
+      const otherCountry = regionCountries.find(c => c !== baseCountry);
+      if (otherCountry && byCountry[otherCountry]) {
+        const extra = pickRandom(byCountry[otherCountry], Math.min(2, byCountry[otherCountry].length));
+        pool = pool.concat(extra);
+        countryLabel = `${baseCountry} & ${otherCountry}`;
+      }
+      break;
+    }
   }
 
-  document.getElementById('sample-trip-grid').innerHTML = indices.map((si, i) => {
-    const s = SAMPLE_TRIPS[si];
-    return `
-    <div class="sample-card" onclick="openSampleTrip(${si})">
+  // Pick 3-6 stops from the pool (or all of them if pool is small)
+  const stopCount = Math.min(pool.length, 3 + Math.floor(Math.random() * 4));
+  const chosen = pickRandom(pool, stopCount);
+  const ordered = orderByProximity(chosen);
+
+  // Randomise nights per stop (varies the total length 4-30 days as requested)
+  const stops = ordered.map(d => {
+    const baseNights = d.recommended_nights || 2;
+    const variance = Math.random() < 0.5 ? 0 : (Math.random() < 0.5 ? -1 : 1);
+    const nights = Math.max(1, baseNights + variance);
+    return bankDestToStop(Object.assign({}, d, { recommended_nights: nights }));
+  });
+
+  const totalNights = stops.reduce((sum, s) => sum + s.nights + (s.subItinerary ? s.subItinerary.nights : 0), 0);
+  const vibePool = ['Relaxed exploration', 'Adventure-focused', 'Slow travel', 'A bit of everything', 'Off the beaten track'];
+  const vibe = vibePool[Math.floor(Math.random() * vibePool.length)];
+  const themePool = ['srilanka', 'georgia', 'nz'];
+  const theme = themePool[Math.floor(Math.random() * themePool.length)];
+  const iconPool = ['ti-route', 'ti-map-pin', 'ti-compass', 'ti-backpack'];
+  const icon = iconPool[Math.floor(Math.random() * iconPool.length)];
+
+  return {
+    tag: `${countryLabel} · ${totalNights + 1} days`,
+    title: `${stops.map(s=>s.name).slice(0,2).join(' & ')}${stops.length>2?' + more':''}`,
+    sub: `${stops.length} stops across ${countryLabel}`,
+    image: stops[0].name,
+    theme: theme,
+    icon: icon,
+    trip: {
+      title: `${countryLabel}: ${stops.map(s=>s.name).join(', ')}`,
+      subtitle: `A ${vibe.toLowerCase()} route through ${countryLabel}`,
+      duration: `${totalNights + 1} days`,
+      budget: 'Varies by stop, see each stop for an estimate',
+      best_time: 'See individual stops for seasonal notes',
+      vibe: vibe,
+      hidden_gems: stops.filter(s=>s.wandrlyNotes && s.wandrlyNotes.length).flatMap(s=>s.wandrlyNotes).slice(0,3).join(' ') || 'Explore each stop below for tips.',
+      stops: stops,
+      fromBankOnly: true
+    }
+  };
+}
+
+function getDisplayTrips(count) {
+  // Try to generate `count` procedural trips; fall back to static SAMPLE_TRIPS
+  // for any slot that fails (e.g. bank not loaded yet)
+  const generated = [];
+  const seen = new Set();
+  let attempts = 0;
+  while (generated.length < count && attempts < count * 6) {
+    attempts++;
+    const t = generateProceduralTrip();
+    if (t && !seen.has(t.title)) {
+      seen.add(t.title);
+      generated.push(t);
+    }
+  }
+  while (generated.length < count) {
+    generated.push(SAMPLE_TRIPS[generated.length % SAMPLE_TRIPS.length]);
+  }
+  return generated;
+}
+
+let currentDisplayTrips = [];
+
+function renderSampleTrips() {
+  currentDisplayTrips = getDisplayTrips(3);
+
+  document.getElementById('sample-trip-grid').innerHTML = currentDisplayTrips.map((s, i) => `
+    <div class="sample-card" onclick="openSampleTrip(${i})">
       <div class="sample-card-img theme-${s.theme}" id="sample-img-${i}">
         <span class="sample-card-tag">${s.tag}</span>
         <div class="sample-card-img-icon"><i class="ti ${s.icon}"></i></div>
@@ -1767,9 +1889,9 @@ function renderSampleTrips(forceIndices) {
         <div class="sample-card-sub">${s.sub}</div>
       </div>
     </div>
-  `}).join('');
+  `).join('');
 
-  indices.forEach((si, i) => loadSampleImage(SAMPLE_TRIPS[si], i));
+  currentDisplayTrips.forEach((s, i) => loadSampleImage(s, i));
 }
 
 async function loadSampleImage(sample, i) {
@@ -1784,7 +1906,7 @@ function openSampleTrip(i) {
   if (mapInstance) { mapInstance.remove(); mapInstance = null; }
   mapMarkers = [];
   activeStopIndex = null;
-  currentTripData = JSON.parse(JSON.stringify(SAMPLE_TRIPS[i].trip));
+  currentTripData = JSON.parse(JSON.stringify(currentDisplayTrips[i].trip));
   document.getElementById('browse-section').style.display = 'none';
   document.getElementById('sample-trips-section').style.display = 'none';
   renderTrip(currentTripData);
@@ -2077,7 +2199,7 @@ async function runOutlineSearch(query, fullQuery, plannerHint, bankMatches) {
     : '';
 
   const prompt = `You are Wandrly, an expert travel planner who specialises in both iconic destinations and hidden gems. A user wants: "${query}".${plannerHint}${bankHint}
-Suggest 3 different trip outlines that could fit this request, ideally with some variety between them (e.g. different regions, different mixes of iconic vs off the beaten track, different paces).
+Suggest 2 different trip outlines that could fit this request, with some real variety between them (e.g. different regions, different mixes of iconic vs off the beaten track, different paces).
 Return ONLY valid JSON (no markdown fences, no explanation) as an array with this exact structure:
 [
   {
@@ -2090,9 +2212,9 @@ Return ONLY valid JSON (no markdown fences, no explanation) as an array with thi
     "stop_names": ["Place 1", "Place 2", "Place 3", "Place 4"]
   }
 ]
-Each outline should have 4-6 stop_names in a sensible geographic order. Do not use em-dashes anywhere in your response, use commas or full stops instead.`;
+Each outline should have 4-6 stop_names in a sensible geographic order. Keep it concise. Do not use em-dashes anywhere in your response, use commas or full stops instead.`;
 
-  const data = await callAI(prompt, 700, 'Sketching a few trip ideas...');
+  const data = await callAI(prompt, 500, 'Sketching your trip options...');
   const text = data.content.map(item => item.text || '').join('');
   const clean = text.replace(/```json|```/g, '').trim();
   let outlines;
@@ -2110,14 +2232,16 @@ Each outline should have 4-6 stop_names in a sensible geographic order. Do not u
   renderOutlines(outlines, query, fullQuery, plannerHint, bankMatches);
 }
 
-// Shared AI call helper with timeout and clean error extraction.
-async function callAI(prompt, maxTokens, loadingMessage) {
+// Shared AI call helper with timeout, automatic retry, and clean error extraction.
+async function callAI(prompt, maxTokens, loadingMessage, isRetry) {
   if (loadingMessage) {
-    setLoadingMessage(loadingMessage, 'Almost there...');
+    setLoadingMessage(loadingMessage, isRetry ? 'Retrying, this can take a little longer...' : 'Almost there...');
   }
 
   const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 28000);
+  // Client timeout is set just above the server's maxDuration (60s) so we
+  // never give up before the server itself would have responded.
+  const timeoutId = setTimeout(() => controller.abort(), 55000);
 
   let res;
   try {
@@ -2132,8 +2256,14 @@ async function callAI(prompt, maxTokens, loadingMessage) {
       signal: controller.signal
     });
   } catch(fetchErr) {
+    clearTimeout(timeoutId);
+    // First failure (timeout or network blip): retry once automatically
+    // before surfacing an error to the user.
+    if (!isRetry) {
+      return callAI(prompt, maxTokens, loadingMessage, true);
+    }
     if (fetchErr.name === 'AbortError') {
-      throw new Error('That took too long to respond. Please try again, sometimes a simpler search helps.');
+      throw new Error('The planning service is taking unusually long to respond. Please try again in a moment.');
     }
     throw new Error('Could not reach the planning service. Check your connection and try again.');
   } finally {
@@ -2355,7 +2485,7 @@ let mapInstance = null;
 let mapMarkers = [];
 let activeStopIndex = null;
 
-// Mapbox PUBLIC token only — this is meant to be visible in frontend code,
+// Mapbox PUBLIC token only - this is meant to be visible in frontend code,
 // that's how Mapbox is designed to work. Get one at account.mapbox.com/access-tokens
 // Create a token with ONLY the default public scopes (no "Secret scopes" ticked).
 // Once live, also add your domain under that token's "URL restrictions" so it
@@ -2611,26 +2741,7 @@ Do not use em-dashes anywhere in your response.`;
   }
 
   try {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 28000);
-    let res;
-    try {
-      res = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 600, messages: [{ role: 'user', content: prompt }] }),
-        signal: controller.signal
-      });
-    } finally {
-      clearTimeout(timeoutId);
-    }
-
-    const data = await res.json();
-    if (!res.ok) {
-      const errMsg = typeof data.error === 'string' ? data.error : (data.error && data.error.message) || 'Could not find a swap right now.';
-      throw new Error(errMsg);
-    }
-
+    const data = await callAI(prompt, 600, null);
     const text = data.content.map(item => item.text || '').join('');
     const clean = text.replace(/```json|```/g, '').trim();
     const newStop = JSON.parse(clean);
@@ -2878,8 +2989,11 @@ if (typeof window !== 'undefined' && window.location && window.location.search &
     console.log('[wandrly] localStorage cleared');
   } catch(e) {}
 }
+// Load the bank first so procedurally-generated sample trips have real data
+// to work with; render once loaded, with a static fallback shown immediately
+// in case the fetch is slow.
 renderSampleTrips();
-loadBank();
+loadBank().then(() => renderSampleTrips());
 updateUsageBadge();
 
 // Enter key triggers search
