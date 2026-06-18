@@ -4,7 +4,7 @@ export const config = {
 
 const rateLimit = new Map();
 
-const REQUESTS_PER_DAY = 5;
+const REQUESTS_PER_DAY = 10;
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 
 function getRateLimitKey(req) {
