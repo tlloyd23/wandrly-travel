@@ -576,12 +576,104 @@ nav {
   gap: 6px;
   align-items: flex-start;
 }
+.outline-card {
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.outline-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 6px 24px rgba(196,92,42,0.14);
+  transform: translateY(-3px);
+}
+.outline-card-hero {
+  height: 120px;
+  position: relative;
+  overflow: hidden;
+  background: var(--sand-dark);
+}
+.outline-card-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+.outline-card:hover .outline-card-hero img { opacity: 0.85; }
+.outline-card-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(26,24,20,0.15) 0%, rgba(26,24,20,0.5) 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 12px 14px;
+}
+.outline-hero-title {
+  font-family: 'Fraunces', serif;
+  font-size: 17px;
+  font-weight: 300;
+  color: white;
+  letter-spacing: -0.2px;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+.outline-card-body {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+.outline-title {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: -0.3px;
+  color: var(--ink);
+  display: none; /* title now shows in hero overlay */
+}
+.outline-sub {
+  font-size: 13px;
+  color: var(--ink-muted);
+  line-height: 1.5;
+}
+.outline-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.outline-route {
+  font-size: 12px;
+  color: var(--ink-muted);
+  line-height: 1.6;
+  padding: 8px 10px;
+  background: var(--sand);
+  border-radius: var(--radius-sm);
+  display: flex;
+  gap: 5px;
+  align-items: flex-start;
+}
 .outline-select-btn {
   margin-top: auto;
   width: 100%;
   justify-content: center;
   font-size: 14px;
   padding: 11px;
+}
+.outline-card-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  opacity: 0.4;
 }
 
 /* ACTIONS */
@@ -1718,7 +1810,7 @@ function setCachedTrip(query, trip) {
 // Mirrors the server-side rate limit (5/day) so the UI can show remaining
 // searches and gracefully steer to the bank/sample trips when exhausted.
 const USAGE_KEY = 'wandrly_usage';
-const DAILY_LIMIT = 5;
+const DAILY_LIMIT = 10;
 
 function getUsage() {
   try {
@@ -1898,7 +1990,8 @@ Each outline should have 4-6 stop_names in a sensible geographic order. Do not u
     throw new Error('Could not come up with trip ideas for that, try rephrasing your search.');
   }
 
-  recordUsage();
+  // Don't recordUsage here - the outline is "free", we only charge one credit
+  // when the user picks an outline and the full trip is generated in Stage 2.
   renderOutlines(outlines, query, fullQuery, plannerHint, bankMatches);
 }
 
@@ -1950,27 +2043,59 @@ function renderOutlines(outlines, query, fullQuery, plannerHint, bankMatches) {
   if (!result) return;
   result.style.display = 'block';
 
+  // Pick an emoji fallback per outline based on vibe
+  const vibeIcons = {'ski':'🎿','beach':'🏖️','romantic':'💕','adventure':'🧗','culture':'🏛️','food':'🍜','family':'👨‍👩‍👧','hiking':'⛰️','nature':'🌿','budget':'💰'};
+  function getIcon(vibe) {
+    const v = (vibe || '').toLowerCase();
+    for (const [key, icon] of Object.entries(vibeIcons)) {
+      if (v.includes(key)) return icon;
+    }
+    return '✈️';
+  }
+
   document.getElementById('outline-grid').innerHTML = outlines.map((o, i) => `
     <div class="outline-card" onclick="selectOutline(${i})">
-      <div class="outline-title">${o.title}</div>
-      <div class="outline-sub">${o.subtitle}</div>
-      <div class="outline-meta">
-        <span class="meta-chip"><i class="ti ti-calendar"></i>${o.duration}</span>
-        <span class="meta-chip"><i class="ti ti-coins"></i>${o.budget}</span>
-        <span class="meta-chip"><i class="ti ti-heart"></i>${o.vibe}</span>
+      <div class="outline-card-hero" id="outline-hero-${i}">
+        <div class="outline-card-placeholder">${getIcon(o.vibe)}</div>
+        <div class="outline-card-hero-overlay">
+          <div class="outline-hero-title">${o.title}</div>
+        </div>
       </div>
-      <div class="outline-route">
-        <i class="ti ti-route" style="font-size:13px;color:var(--ink-faint)"></i>
-        ${o.stop_names.join(' &rarr; ')}
+      <div class="outline-card-body">
+        <div class="outline-sub">${o.subtitle}</div>
+        <div class="outline-meta">
+          <span class="meta-chip"><i class="ti ti-calendar"></i>${o.duration}</span>
+          <span class="meta-chip"><i class="ti ti-coins"></i>${o.budget}</span>
+          <span class="meta-chip"><i class="ti ti-heart"></i>${o.vibe}</span>
+        </div>
+        <div class="outline-route">
+          <i class="ti ti-route" style="font-size:13px;color:var(--ink-faint);flex-shrink:0;margin-top:1px"></i>
+          <span>${o.stop_names.join(' &rarr; ')}</span>
+        </div>
+        <button class="act-btn primary outline-select-btn">
+          <i class="ti ti-map"></i> Build this trip
+        </button>
       </div>
-      <button class="act-btn primary outline-select-btn">
-        <i class="ti ti-map"></i> Build this trip
-      </button>
     </div>
   `).join('');
 
   // Stash everything selectOutline needs
   pendingOutlineContext = { outlines, query, fullQuery, plannerHint, bankMatches };
+
+  // Load background photos from first stop name of each outline
+  outlines.forEach((o, i) => {
+    if (!o.stop_names || !o.stop_names.length) return;
+    fetchPhotos(o.stop_names[0]).then(result => {
+      if (!result.photo) return;
+      const hero = document.getElementById(`outline-hero-${i}`);
+      if (!hero) return;
+      const overlay = hero.querySelector('.outline-card-hero-overlay');
+      const img = document.createElement('img');
+      img.src = result.photo.url;
+      img.alt = o.stop_names[0];
+      hero.insertBefore(img, hero.firstChild);
+    });
+  });
 
   result.scrollIntoView({behavior:'smooth', block:'start'});
 }
@@ -1987,23 +2112,12 @@ async function selectOutline(i) {
   document.getElementById('loading-text').textContent = `Building "${chosen.title}"...`;
   window.scrollTo({top: document.getElementById('loading').offsetTop - 100, behavior:'smooth'});
 
-  if (getRemainingSearches() <= 0) {
-    document.getElementById('loading').style.display = 'none';
-    document.getElementById('browse-section').style.display = 'block';
-    document.getElementById('sample-trips-section').style.display = 'block';
-    const errBox = document.getElementById('error-msg');
-    errBox.innerHTML = `You've used today's AI searches. Browse the saved trips below, or <button onclick="document.getElementById('error-msg').style.display='none';document.getElementById('sample-trips-section').scrollIntoView({behavior:'smooth'})" style="background:none;border:none;text-decoration:underline;cursor:pointer;color:inherit;font-size:inherit;padding:0;">jump to sample routes</button>. More searches unlock tomorrow.`;
-    errBox.style.display = 'block';
-    return;
-  }
-
   try {
     await runAISearch(query, fullQuery, plannerHint, bankMatches, chosen);
   } catch(e) {
     document.getElementById('loading').style.display = 'none';
-    document.getElementById('browse-section').style.display = 'block';
-    document.getElementById('sample-trips-section').style.display = 'block';
-    const msg = e.message || 'Could not load trip. Please try again.';
+    document.getElementById('outline-result').style.display = 'block';
+    const msg = e.message || 'Could not load trip. Please try again — or pick a different option above.';
     const errBox = document.getElementById('error-msg');
     errBox.textContent = msg;
     errBox.style.display = 'block';
@@ -2284,6 +2398,14 @@ function renderStopDetail(stop, i) {
       </div>`).join('')}
   ` : '';
 
+  // Build Smart Traveller URL: smartraveller.gov.au uses country slugs
+  // We look up the country from the bank if available, otherwise try to derive it
+  const bankDest = DESTINATIONS.find(d => d.name.toLowerCase() === (stop.name || '').toLowerCase());
+  const stopCountry = bankDest ? bankDest.country : (stop.country || '');
+  const safetyUrl = stopCountry
+    ? `https://www.smartraveller.gov.au/destinations/${stopCountry.toLowerCase().replace(/\s+/g,'-')}`
+    : 'https://www.smartraveller.gov.au';
+
   return `
     <div class="stop-photos" id="stop-photos-${i}">
       <div class="stop-photo"><i class="ti ti-photo" style="font-size:20px;color:var(--ink-faint);margin:auto"></i></div>
@@ -2306,6 +2428,11 @@ function renderStopDetail(stop, i) {
       <div class="stop-activity-text">${stop.transport}</div>
     </div>
     ${warningsHtml}
+    <a href="${safetyUrl}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:7px;font-size:12px;color:var(--ink-muted);text-decoration:none;padding:8px 10px;background:var(--sand);border-radius:var(--radius-sm);margin-bottom:2px;transition:background 0.12s" onmouseover="this.style.background='var(--teal-light)'" onmouseout="this.style.background='var(--sand)'">
+      <i class="ti ti-shield-check" style="font-size:15px;color:var(--teal);flex-shrink:0"></i>
+      <span><strong style="font-weight:500">Safety advisory</strong> for ${stopCountry || stop.name} via Smart Traveller (Australian Government)</span>
+      <i class="ti ti-external-link" style="font-size:12px;margin-left:auto;flex-shrink:0;opacity:0.5"></i>
+    </a>
     <div class="stop-toggle-row">
       <button class="stop-toggle-btn ${stop.included?'remove':''}" onclick="event.stopPropagation(); toggleInclude(${i})">
         <i class="ti ti-${stop.included?'eye-off':'eye'}" style="font-size:13px"></i> ${stop.included?'Remove from route':'Add back to route'}
@@ -2625,6 +2752,13 @@ async function askMore(topic) {
 
 // ---- INIT ----
 // All declarations above must exist before these run.
+// Dev helper: add ?reset=1 to the URL to clear stored usage/cache
+if (typeof window !== 'undefined' && window.location && window.location.search && window.location.search.includes('reset=1')) {
+  try {
+    Object.keys(localStorage).filter(k => k.startsWith('wandrly_')).forEach(k => localStorage.removeItem(k));
+    console.log('[wandrly] localStorage cleared');
+  } catch(e) {}
+}
 renderSampleTrips();
 loadBank();
 updateUsageBadge();
