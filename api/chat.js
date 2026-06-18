@@ -1,7 +1,3 @@
-export const config = {
-  maxDuration: 30,
-};
-
 const rateLimit = new Map();
 
 const REQUESTS_PER_DAY = 10;
