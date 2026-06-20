@@ -1225,256 +1225,626 @@
         "Stay near Tennoji or Namba for easy transport connections."
       ],
       "tom_verdict": "The food alone justifies a stop here, pair it with Kyoto for a great contrast."
-    }
+    },
     {
-  "destination": "Seville",
-  "country": "Spain",
-  "recommended_days": 3,
-  "budget": "medium",
-  "vibes": ["culture", "history", "nightlife", "architecture", "city"],
-  "vibe_scores": {
-    "food": 8,
-    "culture": 10,
-    "nature": 3,
-    "nightlife": 8,
-    "value": 8
-  },
-  "must_do": [
-    "Alcazar",
-    "Plaza de España",
-    "Cathedral",
-    "Bull Ring"
-  ],
-  "warnings": [
-    "Reception can be surprisingly poor around the city",
-    "Cathedral can get extremely crowded"
-  ],
-  "similar_to": ["Granada", "Cordoba", "Lisbon"],
-  "tom_verdict": "One of the most beautiful cities in Spain. Three nights is perfect and the Alcazar alone justifies the trip.",
-  "full_notes": "Absolutely gorgeous city. Alcazar is a full day activity and a must visit. Plaza de España is stunning. Great nightlife and very walkable. Would happily return just to spend more time exploring and kayaking the river."
-}
-,
-{
-  "destination": "Lisbon",
-  "country": "Portugal",
-  "recommended_days": 4,
-  "budget": "medium",
-  "vibes": ["food", "culture", "nightlife", "history", "city"],
-  "vibe_scores": {
-    "food": 8,
-    "culture": 8,
-    "nature": 4,
-    "nightlife": 8,
-    "value": 9
-  },
-  "must_do": [
-    "São Jorge Castle",
-    "Sintra",
-    "Jardim do Rio",
-    "Natural History Museum"
-  ],
-  "warnings": [
-    "The famous lift is overrated",
-    "Castle becomes very crowded during peak hours"
-  ],
-  "similar_to": ["Porto", "Seville", "Valencia"],
-  "tom_verdict": "Fun, affordable and easy to explore. Great sunsets, good nightlife and excellent value by Western European standards.",
-  "full_notes": "Sintra is absolutely worth a day trip. Jardim do Rio at sunset is phenomenal. Public transport is easy and cheap. One of Europe's most enjoyable cities for wandering around without a plan."
-}
-,
-{
-  "destination": "Tangier",
-  "country": "Morocco",
-  "recommended_days": 1,
-  "budget": "cheap",
-  "vibes": ["culture", "markets", "history", "city"],
-  "vibe_scores": {
-    "food": 7,
-    "culture": 9,
-    "nature": 4,
-    "nightlife": 3,
-    "value": 10
-  },
-  "must_do": [
-    "Medina",
-    "Cape Spartel Lighthouse",
-    "American Legation Museum"
-  ],
-  "warnings": [
-    "Bring cash",
-    "Expect aggressive taxi negotiations",
-    "Allow extra time for ferry procedures"
-  ],
-  "similar_to": ["Marrakech", "Istanbul", "Cairo"],
-  "tom_verdict": "A fascinating day trip where Europe meets North Africa. Chaotic but very enjoyable.",
-  "full_notes": "Modern Europe meets Vietnam-style chaos. The Medina is a maze of markets and alleyways. Everything is cheap, locals are friendly and the city feels adventurous without feeling unsafe."
-}
-,
-{
-  "destination": "Chiang Mai",
-  "country": "Thailand",
-  "recommended_days": 4,
-  "budget": "cheap",
-  "vibes": ["food", "culture", "nature", "markets", "backpacking"],
-  "vibe_scores": {
-    "food": 9,
-    "culture": 8,
-    "nature": 8,
-    "nightlife": 6,
-    "value": 10
-  },
-  "must_do": [
-    "Doi Suthep",
-    "Elephant Sanctuary",
-    "Sticky Waterfall",
-    "Sunday Night Market",
-    "Warorot Market"
-  ],
-  "warnings": [
-    "Sunday markets get extremely crowded"
-  ],
-  "similar_to": ["Luang Prabang", "Ubud", "Pai"],
-  "tom_verdict": "One of Southeast Asia's best backpacker cities with great food, temples and access to nature.",
-  "full_notes": "The Sunday markets are chaotic but fantastic. Elephant sanctuary is a must. Great balance between city comforts and outdoor activities. Excellent value for money."
-}
-,
-{
-  "destination": "Ko Samui",
-  "country": "Thailand",
-  "recommended_days": 4,
-  "budget": "medium",
-  "vibes": ["beaches", "relaxation", "nightlife", "island", "nature"],
-  "vibe_scores": {
-    "food": 7,
-    "culture": 4,
-    "nature": 8,
-    "nightlife": 7,
-    "value": 7
-  },
-  "must_do": [
-    "Ang Thong Marine Park",
-    "Fisherman's Village",
-    "Big Buddha",
-    "Paddleboarding"
-  ],
-  "warnings": [
-    "Island transport adds up quickly",
-    "Different towns have very different vibes"
-  ],
-  "similar_to": ["Phuket", "Bali", "Langkawi"],
-  "tom_verdict": "A relaxed island with enough activities to keep you busy without feeling hectic.",
-  "full_notes": "Ang Thong Marine Park is the standout attraction and worth a full day. Chaweng is lively and touristy while other parts of the island are much more relaxed."
-}
-,
-{
-  "destination": "Caye Caulker",
-  "country": "Belize",
-  "recommended_days": 3,
-  "budget": "medium",
-  "vibes": ["island", "relaxation", "diving", "backpacking"],
-  "vibe_scores": {
-    "food": 7,
-    "culture": 6,
-    "nature": 8,
-    "nightlife": 5,
-    "value": 7
-  },
-  "must_do": [
-    "The Split",
-    "Snorkelling",
-    "Island Exploration",
-    "Sunset Drinks"
-  ],
-  "warnings": [
-    "Ferry queues can be enormous",
-    "Accommodation is not as cheap as mainland Central America"
-  ],
-  "similar_to": ["Utila", "San Pedro", "Bacalar"],
-  "tom_verdict": "One of the most relaxed places in Central America and a great place to slow down.",
-  "full_notes": "No cars, just golf carts and sandy streets. Friendly locals, Caribbean atmosphere and an easy place to spend a few days doing very little."
-}
-,
-{
-  "destination": "Flores",
-  "country": "Guatemala",
-  "recommended_days": 3,
-  "budget": "cheap",
-  "vibes": ["history", "nature", "culture", "relaxation"],
-  "vibe_scores": {
-    "food": 7,
-    "culture": 8,
-    "nature": 8,
-    "nightlife": 3,
-    "value": 9
-  },
-  "must_do": [
-    "Tikal",
-    "Yaxha",
-    "Lake Petén",
-    "Blue Crater"
-  ],
-  "warnings": [
-    "Festival season can be very noisy",
-    "Bring earplugs if visiting in January"
-  ],
-  "similar_to": ["Antigua", "Palenque", "Copan"],
-  "tom_verdict": "A great base for exploring Mayan ruins and wildlife. Tikal is genuinely world-class.",
-  "full_notes": "Pay extra for the sunset ticket at Tikal. The wildlife, atmosphere and views make it one of the best archaeological sites in the Americas."
-}
-,
-{
-  "destination": "Antigua",
-  "country": "Guatemala",
-  "recommended_days": 3,
-  "budget": "cheap",
-  "vibes": ["culture", "history", "hiking", "backpacking"],
-  "vibe_scores": {
-    "food": 8,
-    "culture": 8,
-    "nature": 9,
-    "nightlife": 5,
-    "value": 9
-  },
-  "must_do": [
-    "Acatenango Trek",
-    "Fuego Volcano",
-    "Central Market",
-    "Cerro de la Cruz"
-  ],
-  "warnings": [
-    "Acatenango gets extremely cold",
-    "Bring proper warm clothing"
-  ],
-  "similar_to": ["Cusco", "Leon", "Arequipa"],
-  "tom_verdict": "Beautiful colonial town, but the real reason to visit is Acatenango.",
-  "full_notes": "Acatenango and Fuego are among the most memorable travel experiences I've ever had. The town itself is lovely, but the volcanoes are the main attraction."
-}
-,
-{
-  "destination": "Leon",
-  "country": "Nicaragua",
-  "recommended_days": 4,
-  "budget": "cheap",
-  "vibes": ["culture", "history", "adventure", "backpacking"],
-  "vibe_scores": {
-    "food": 7,
-    "culture": 8,
-    "nature": 7,
-    "nightlife": 6,
-    "value": 10
-  },
-  "must_do": [
-    "Volcano Boarding",
-    "Revolution Museum",
-    "Cathedral Rooftop",
-    "Walking Tour"
-  ],
-  "warnings": [
-    "Volcano boarding is dusty - wear old clothes"
-  ],
-  "similar_to": ["Antigua", "Granada", "San Cristobal de las Casas"],
-  "tom_verdict": "One of the best backpacker cities in Central America and incredible value.",
-  "full_notes": "Volcano boarding is ridiculous fun and worth every cent. The city's revolutionary history also makes it much more interesting than many people expect."
-}
+      "id": "budapest",
+      "name": "Budapest",
+      "country": "Hungary",
+      "lat": 47.497,
+      "lon": 19.04,
+      "recommended_nights": 4,
+      "budget_per_night_aud": "15-80",
+      "vibes": [
+        "nightlife",
+        "city",
+        "budget-friendly",
+        "culture"
+      ],
+      "vibe_scores": {
+        "adventure": 3,
+        "relaxation": 4,
+        "nightlife": 9,
+        "culture": 7,
+        "budget_friendly": 9,
+        "romantic": 6,
+        "family": 4,
+        "hiking": 1,
+        "diving": 0,
+        "ski": 0
+      },
+      "summary": "Stunning, cheap, incredible nightlife. One of Europe's best cities.",
+      "activities": [
+        {
+          "name": "Ruin bars and Instant Club",
+          "desc": "Ruin bar district is busy 7 nights a week in summer, a must-do nightlife experience"
+        },
+        {
+          "name": "River cruise",
+          "desc": "Cheap river cruise to see the Parliament and bridges lit up at night"
+        },
+        {
+          "name": "Margaret Island pools",
+          "desc": "Public pools on the island are fun and a fifth of the price of the famous thermal baths"
+        }
+      ],
+      "food_recommendations": [
+        "Everything is cheap, just wander and eat"
+      ],
+      "nightlife": [
+        "Ruin bars into Instant Club is the move, close to Wombat hostel which is excellent",
+        "Boat parties on the Danube are apparently great too"
+      ],
+      "transport_tips": [
+        "Ticket checkers are everywhere on public transport, always pay"
+      ],
+      "warnings": [
+        "Stay centrally near the ruin bars to make life easy"
+      ],
+      "similar_to": [
+        "Prague for the cheap nightlife, but Budapest has better scenery"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Loved this city, it's stunning, cheap and so much fun. Could easily spend a week.",
+        "Stay centrally near the ruin bars to make life easy.",
+        "Ticket checkers are everywhere on public transport, you absolutely must pay.",
+        "A river cruise is cheap and the best way to see the main sights.",
+        "The pools on Margaret Island are just as fun as the famous baths at a fifth of the price."
+      ],
+      "tom_verdict": "One of my favourite cities in the world. Go back for a week at some point, this place is just amazing."
+    },
+    {
+      "id": "prague",
+      "name": "Prague",
+      "country": "Czech Republic",
+      "lat": 50.075,
+      "lon": 14.437,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "15-70",
+      "vibes": [
+        "nightlife",
+        "history",
+        "budget-friendly"
+      ],
+      "vibe_scores": {
+        "adventure": 3,
+        "relaxation": 4,
+        "nightlife": 8,
+        "culture": 7,
+        "budget_friendly": 9,
+        "romantic": 6,
+        "family": 5,
+        "hiking": 2,
+        "diving": 0,
+        "ski": 0
+      },
+      "summary": "Beautiful old town, incredibly cheap beers, great hostel scene",
+      "activities": [
+        {
+          "name": "Petrin Hill and tower",
+          "desc": "Climb the mini Eiffel Tower for great city views, pay to go up"
+        },
+        {
+          "name": "Prague Castle and cathedral",
+          "desc": "The castle complex is huge and worth half a day, cathedral is impressive"
+        },
+        {
+          "name": "Old Town wander",
+          "desc": "Just walking the streets is gorgeous, trams make getting everywhere easy"
+        }
+      ],
+      "food_recommendations": [
+        "Beers are around 1.50-2 euros, everything is cheap"
+      ],
+      "nightlife": [
+        "Nightlife ends a bit earlier than Budapest but the value is unbeatable"
+      ],
+      "transport_tips": [
+        "Trams are easy and cover most of the city, you can walk almost everywhere from a central hostel"
+      ],
+      "warnings": [
+        "Waiters may pressure you to tip, it's not required"
+      ],
+      "similar_to": [
+        "Budapest for cheap European nightlife"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Beers are about 1.50-2 euros. Nightlife ends a little earlier than Budapest but it's just as cheap.",
+        "Petrin Hill with the Eiffel Tower and the castle/cathedral are both must-dos.",
+        "Budget hostel was a fantastic experience and in a great spot, could walk everywhere.",
+        "Trams are easy to use and get you to most places."
+      ],
+      "tom_verdict": "Another fantastic city. The value for money is genuinely hard to beat anywhere in Europe."
+    },
+    {
+      "id": "bangkok",
+      "name": "Bangkok",
+      "country": "Thailand",
+      "lat": 13.756,
+      "lon": 100.502,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "10-60",
+      "vibes": [
+        "city",
+        "foodie",
+        "backpacker",
+        "culture"
+      ],
+      "vibe_scores": {
+        "adventure": 4,
+        "relaxation": 2,
+        "nightlife": 8,
+        "culture": 7,
+        "budget_friendly": 8,
+        "romantic": 3,
+        "family": 4,
+        "hiking": 0,
+        "diving": 0,
+        "ski": 0
+      },
+      "summary": "Chaotic, fun capital with incredible food and temples",
+      "activities": [
+        {
+          "name": "Grand Palace and Wat Pho",
+          "desc": "Grand Palace is worth the cost, Wat Pho next door is also great"
+        },
+        {
+          "name": "Khao San Road at night",
+          "desc": "The centre of backpacker nightlife, quiet at 7:30 then picks up all night"
+        },
+        {
+          "name": "River cruise",
+          "desc": "A river cruise is really worth it, negotiate hard on price"
+        }
+      ],
+      "food_recommendations": [
+        "Yodpiman flower markets area is great for food",
+        "Siam Museum has a great show on level 3"
+      ],
+      "nightlife": [
+        "Khao San Road is the hub, hostel would be fun here"
+      ],
+      "transport_tips": [
+        "Grab or taxi from the airport is easiest, splitting a ride is cheap",
+        "Never pay more than 40 baht for a short tuk-tuk ride"
+      ],
+      "warnings": [
+        "Cash is king in Thailand",
+        "Once you've seen about 3 wats they all start looking the same"
+      ],
+      "similar_to": [
+        "Ho Chi Minh City for the chaotic energy"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Stay near Khao San Road, this is the centre of nightlife. Super quiet at 7:30 then picks up all night.",
+        "Never pay more than 40 baht total for a short tuk-tuk ride.",
+        "Grand Palace is worth the cost, and Wat Pho is cool too.",
+        "A river cruise is really worth doing, negotiate hard on price.",
+        "Cash is king everywhere in Thailand."
+      ],
+      "tom_verdict": "A cool big city worth a couple of nights. Don't try to see everything, just soak it in."
+    },
+    {
+      "id": "chiang-mai",
+      "name": "Chiang Mai",
+      "country": "Thailand",
+      "lat": 18.788,
+      "lon": 98.985,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "10-50",
+      "vibes": [
+        "culture",
+        "markets",
+        "nature",
+        "backpacker"
+      ],
+      "vibe_scores": {
+        "adventure": 5,
+        "relaxation": 5,
+        "nightlife": 5,
+        "culture": 8,
+        "budget_friendly": 9,
+        "romantic": 4,
+        "family": 5,
+        "hiking": 5,
+        "diving": 0,
+        "ski": 0
+      },
+      "summary": "Mountain city with temples, markets, elephants and incredible food",
+      "activities": [
+        {
+          "name": "Sunday night markets",
+          "desc": "Absolutely packed and super cheap, the markets within the wats are a highlight"
+        },
+        {
+          "name": "Ethical elephant sanctuary",
+          "desc": "A must-do, make sure it's ethical. GetYourGuide has good options"
+        },
+        {
+          "name": "Doi Suthep temple",
+          "desc": "Mountaintop temple with sweeping views, the best of the temples here"
+        }
+      ],
+      "food_recommendations": [
+        "Warorot markets for super cheap food and $4 fake designer goods",
+        "Western cafes available when you need a break from curry"
+      ],
+      "nightlife": [
+        "Smaller than Bangkok but still fun"
+      ],
+      "transport_tips": [
+        "Easy to get around, stay near old town for walking distance to most things"
+      ],
+      "warnings": [
+        "Sunday market crowds are insane, go early or late to avoid the worst of it"
+      ],
+      "similar_to": [
+        "Luang Prabang for the temple-city-in-the-mountains vibe"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Warorot markets are super cheap, this is where you get your $4 fake designer stuff.",
+        "Sunday night markets are insane, packed and super cheap. The markets within the wats are the highlight.",
+        "Elephant sanctuary is a must-do, make sure it's ethical.",
+        "Doi Suthep, jungle temple and the tunnels one are all cool, in that order."
+      ],
+      "tom_verdict": "A really cool city. The markets alone are worth the visit, and the elephant sanctuary is unforgettable."
+    },
+    {
+      "id": "taipei",
+      "name": "Taipei",
+      "country": "Taiwan",
+      "lat": 25.033,
+      "lon": 121.565,
+      "recommended_nights": 5,
+      "budget_per_night_aud": "20-80",
+      "vibes": [
+        "culture",
+        "hiking",
+        "foodie",
+        "city"
+      ],
+      "vibe_scores": {
+        "adventure": 5,
+        "relaxation": 4,
+        "nightlife": 5,
+        "culture": 8,
+        "budget_friendly": 6,
+        "romantic": 4,
+        "family": 5,
+        "hiking": 6,
+        "diving": 0,
+        "ski": 0
+      },
+      "summary": "Fascinating mix of western and Chinese culture with great day trips",
+      "activities": [
+        {
+          "name": "Jing Mei White Terror Museum",
+          "desc": "Phenomenal museum on Taiwan's dark pre-democracy history, a must-do"
+        },
+        {
+          "name": "Jiufen day trip",
+          "desc": "Must-do day trip, climb Teapot and Keelung mountains, stay for the old street at night"
+        },
+        {
+          "name": "Yangmingshan and Beitou walks",
+          "desc": "Beautiful rugged walks away from the city crowds"
+        }
+      ],
+      "food_recommendations": [
+        "Night markets everywhere, cash is king and saves money"
+      ],
+      "nightlife": [
+        "Maji Square is awesome, can bring your own drinks, mix of locals and tourists"
+      ],
+      "transport_tips": [
+        "Buy an EasyCard from a stand at the airport with cash, don't bother with the app",
+        "Can only top up with cash"
+      ],
+      "warnings": [
+        "The central station is huge and confusing when changing trains"
+      ],
+      "similar_to": [
+        "Seoul for the mix of modern and traditional"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Buy an EasyCard from a stand at the airport with cash, don't bother with the app.",
+        "Jing Mei White Terror Museum is phenomenal, a must-do on Taiwan's dark pre-democracy history.",
+        "Jiufen is a must-do day trip, climb Teapot and Keelung Mountains if you have walking gear, both are steep.",
+        "Yangmingshan and Beitou are great for beautiful, rugged walks.",
+        "Maji Square at night is awesome for drinks, can BYO and it's a great mix of locals and tourists."
+      ],
+      "tom_verdict": "A very interesting city with great day trips. Spent 6 days here and could have done more."
+    },
+    {
+      "id": "antigua-guatemala",
+      "name": "Antigua",
+      "country": "Guatemala",
+      "lat": 14.558,
+      "lon": -90.734,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "10-40",
+      "vibes": [
+        "adventure",
+        "hiking",
+        "backpacker",
+        "culture"
+      ],
+      "vibe_scores": {
+        "adventure": 9,
+        "relaxation": 3,
+        "nightlife": 3,
+        "culture": 6,
+        "budget_friendly": 8,
+        "romantic": 4,
+        "family": 2,
+        "hiking": 9,
+        "diving": 0,
+        "ski": 0
+      },
+      "summary": "Beautiful colonial town, base camp for the Acatenango volcano trek",
+      "activities": [
+        {
+          "name": "Acatenango volcano trek",
+          "desc": "A tough 2-day hike with lava views from Fuego, the reason to come here"
+        },
+        {
+          "name": "Central market",
+          "desc": "Amazing to get lost in, cheap food court at the back left if you can find it"
+        },
+        {
+          "name": "Fuego side hike",
+          "desc": "Extra tough add-on from Acatenango but worth every step for the lava and explosions"
+        }
+      ],
+      "food_recommendations": [
+        "Central market food court has lunch for about $25 quetzales if you speak Spanish"
+      ],
+      "nightlife": [
+        "Small town, limited but friendly"
+      ],
+      "transport_tips": [
+        "Buy a shuttle from Guatemala City airport, about $20 USD",
+        "Tropicana is the best agency for Acatenango"
+      ],
+      "warnings": [
+        "Acatenango summit gets to -10C with wind chill, bring all warm gear including scarf, hat and beanie",
+        "Spend a full day acclimatising in Antigua before the trek to avoid altitude sickness"
+      ],
+      "similar_to": [
+        "Huaraz for the trek-base-town vibe"
+      ],
+      "sub_itinerary": {
+        "name": "Acatenango and Fuego volcano trek",
+        "nights": 1,
+        "is_separate_location": true,
+        "summary": "A 2-day, 30km trek including the optional but incredible Fuego side hike to see lava and explosions up close",
+        "days": [
+          {
+            "day": 1,
+            "title": "Antigua to Acatenango base camp",
+            "desc": "11km hike to camp, arrive for sunset views of Fuego erupting"
+          },
+          {
+            "day": 2,
+            "title": "Summit and Fuego side hike",
+            "desc": "4am summit for sunrise, then optional 4km each way to Fuego for lava views, return to Antigua"
+          }
+        ]
+      },
+      "wandrly_notes": [
+        "Acatenango is the real reason to be here, a tough 2-day hike but just do all of it including Fuego.",
+        "Tropicana is the best agency for the trek.",
+        "Bring all your warm gear, it gets to -10C with wind chill at the summit.",
+        "The central market is amazing, cheap food court at the back left if you can find it.",
+        "Spend a full day in Antigua first to adjust to altitude before the trek."
+      ],
+      "tom_verdict": "The Fuego hike is the reason I would come back. Worth every cent and every bead of sweat."
+    },
+    {
+      "id": "dili",
+      "name": "Dili",
+      "country": "Timor-Leste",
+      "lat": -8.556,
+      "lon": 125.57,
+      "recommended_nights": 4,
+      "budget_per_night_aud": "15-50",
+      "vibes": [
+        "diving",
+        "off-the-beaten-track",
+        "relaxation"
+      ],
+      "vibe_scores": {
+        "adventure": 6,
+        "relaxation": 6,
+        "nightlife": 2,
+        "culture": 4,
+        "budget_friendly": 7,
+        "romantic": 3,
+        "family": 2,
+        "hiking": 2,
+        "diving": 10,
+        "ski": 0
+      },
+      "summary": "Off the beaten track diving paradise, Atauro Island is unmissable",
+      "activities": [
+        {
+          "name": "Atauro Island diving",
+          "desc": "The best diving I have ever done, a must-do at all costs"
+        },
+        {
+          "name": "Christo Rei viewpoint",
+          "desc": "Fantastic view, bring swimmers for the beaches at the base"
+        },
+        {
+          "name": "Dive Timor Lorosae",
+          "desc": "Great dive resort to stay at, you meet people and the vibes are excellent"
+        }
+      ],
+      "food_recommendations": [
+        "Castaways is a western restaurant near the dive resort, more expensive but good for culture shock recovery"
+      ],
+      "nightlife": [
+        "Very limited, this is a dive and chill destination"
+      ],
+      "transport_tips": [
+        "Need $30 USD cash for visa on arrival, prepare customs form QR code in advance",
+        "Microlet 12 is the local minibus, 25 cents a ride, tap the bar to get off"
+      ],
+      "warnings": [
+        "No reliable ATM at the airport, bring USD cash",
+        "About a day's worth of non-diving activities in the city"
+      ],
+      "similar_to": [
+        "Komodo for remote diving"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Come prepared with the customs form QR code and $30 USD cash for the visa.",
+        "If you're here, go diving, it's not a question. Atauro Island is the best diving I have ever done.",
+        "Staying at a dive resort is the move, you meet people and the vibes are great.",
+        "Christo Rei is worth the visit, bring swimmers for the beaches at the base.",
+        "Catch microlet 12 around town, 25 cents a ride."
+      ],
+      "tom_verdict": "Atauro Island diving alone makes this trip worth it. One of the most off-the-beaten-track destinations I've been to."
+    },
+    {
+      "id": "bocas-del-toro",
+      "name": "Bocas del Toro",
+      "country": "Panama",
+      "lat": 9.34,
+      "lon": -82.241,
+      "recommended_nights": 4,
+      "budget_per_night_aud": "15-50",
+      "vibes": [
+        "diving",
+        "beach",
+        "backpacker",
+        "caribbean"
+      ],
+      "vibe_scores": {
+        "adventure": 6,
+        "relaxation": 7,
+        "nightlife": 6,
+        "culture": 3,
+        "budget_friendly": 7,
+        "romantic": 5,
+        "family": 3,
+        "hiking": 1,
+        "diving": 8,
+        "ski": 0
+      },
+      "summary": "Caribbean island with great diving, bioluminescent plankton and beaches",
+      "activities": [
+        {
+          "name": "Scuba diving with Pirates",
+          "desc": "Fantastic marine life and soft corals, bioluminescent plankton on night dives is incredible"
+        },
+        {
+          "name": "Beach hopping",
+          "desc": "Accessible by $2.50 bus or water taxi, several beautiful beaches to explore"
+        },
+        {
+          "name": "Thursday to Saturday pub crawl",
+          "desc": "The island comes alive for the weekend pub crawl"
+        }
+      ],
+      "food_recommendations": [
+        "Eat local for $5-7 per meal, much cheaper than tourist spots"
+      ],
+      "nightlife": [
+        "Packed Thursday through Saturday for the pub crawl, quieter rest of the week"
+      ],
+      "transport_tips": [
+        "Beaches accessible by Estrella bus for $2.50 or water taxi"
+      ],
+      "warnings": [
+        "If travelling solo, find a group for non-diving days, much more fun"
+      ],
+      "similar_to": [
+        "Caye Caulker for Caribbean island vibes but bigger and livelier"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "One of my favourite parts of the trip. Pirates diving is recommended, they give discounts on subsequent dives and free kayak rental.",
+        "The bioluminescent plankton on the night dive is ridiculously good.",
+        "The island is packed Thursday to Saturday for the pub crawl then much quieter.",
+        "If travelling solo, find a group when not diving, it's way more fun.",
+        "Eat local for $5-7 per meal."
+      ],
+      "tom_verdict": "Definitely one of my favourite parts of the whole Central America trip. The night diving here is unreal."
+    },
+    {
+      "id": "la-fortuna",
+      "name": "La Fortuna",
+      "country": "Costa Rica",
+      "lat": 10.468,
+      "lon": -84.643,
+      "recommended_nights": 4,
+      "budget_per_night_aud": "10-60",
+      "vibes": [
+        "nature",
+        "adventure",
+        "wildlife",
+        "hiking"
+      ],
+      "vibe_scores": {
+        "adventure": 8,
+        "relaxation": 4,
+        "nightlife": 2,
+        "culture": 3,
+        "budget_friendly": 6,
+        "romantic": 4,
+        "family": 6,
+        "hiking": 8,
+        "diving": 0,
+        "ski": 0
+      },
+      "summary": "The quintessential Costa Rica stop with wildlife, hikes and a volcano",
+      "activities": [
+        {
+          "name": "Cerro Chato hike",
+          "desc": "The best hike here, no real track, scrambling, ropes, mud, swimming in the crater lake"
+        },
+        {
+          "name": "Dusk river rafting",
+          "desc": "A river raft at dusk to spot all sorts of wildlife along the banks"
+        },
+        {
+          "name": "Arenal volcano 1554 track",
+          "desc": "Fun hike with good views of the volcano"
+        }
+      ],
+      "food_recommendations": [
+        "Eat at local sodas like Visquez or Hormiga to save money",
+        "Hostels with kitchens are a good budget move"
+      ],
+      "nightlife": [
+        "Not really a nightlife scene here"
+      ],
+      "transport_tips": [
+        "Hiring a car is the easiest way around Costa Rica",
+        "Local buses work but involve transfers, about $4 USD per hour"
+      ],
+      "warnings": [
+        "CR buses are punctual, arrive 15 minutes early",
+        "Always carry cash in Costa Rica"
+      ],
+      "similar_to": [
+        "Monteverde for the nature, but La Fortuna has more activities"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "La Fortuna is quintessential Costa Rica. All the animals, activities and a great town.",
+        "Eat at sodas like Visquez or Hormiga to save money.",
+        "Cerro Chato is the best hike, no real track, lots of scrambling and mud. Bring clothes you don't mind getting dirty.",
+        "For wildlife and birds, definitely hire a guide.",
+        "3-4 nights for a budget backpacker, 4-5 for a more relaxed stay."
+      ],
+      "tom_verdict": "If you're going to Costa Rica, La Fortuna is a must-do stop. Absolutely loved it here."
+    }
   ]
 }
