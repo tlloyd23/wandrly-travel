@@ -1226,5 +1226,255 @@
       ],
       "tom_verdict": "The food alone justifies a stop here, pair it with Kyoto for a great contrast."
     }
+    {
+  "destination": "Seville",
+  "country": "Spain",
+  "recommended_days": 3,
+  "budget": "medium",
+  "vibes": ["culture", "history", "nightlife", "architecture", "city"],
+  "vibe_scores": {
+    "food": 8,
+    "culture": 10,
+    "nature": 3,
+    "nightlife": 8,
+    "value": 8
+  },
+  "must_do": [
+    "Alcazar",
+    "Plaza de España",
+    "Cathedral",
+    "Bull Ring"
+  ],
+  "warnings": [
+    "Reception can be surprisingly poor around the city",
+    "Cathedral can get extremely crowded"
+  ],
+  "similar_to": ["Granada", "Cordoba", "Lisbon"],
+  "tom_verdict": "One of the most beautiful cities in Spain. Three nights is perfect and the Alcazar alone justifies the trip.",
+  "full_notes": "Absolutely gorgeous city. Alcazar is a full day activity and a must visit. Plaza de España is stunning. Great nightlife and very walkable. Would happily return just to spend more time exploring and kayaking the river."
+}
+,
+{
+  "destination": "Lisbon",
+  "country": "Portugal",
+  "recommended_days": 4,
+  "budget": "medium",
+  "vibes": ["food", "culture", "nightlife", "history", "city"],
+  "vibe_scores": {
+    "food": 8,
+    "culture": 8,
+    "nature": 4,
+    "nightlife": 8,
+    "value": 9
+  },
+  "must_do": [
+    "São Jorge Castle",
+    "Sintra",
+    "Jardim do Rio",
+    "Natural History Museum"
+  ],
+  "warnings": [
+    "The famous lift is overrated",
+    "Castle becomes very crowded during peak hours"
+  ],
+  "similar_to": ["Porto", "Seville", "Valencia"],
+  "tom_verdict": "Fun, affordable and easy to explore. Great sunsets, good nightlife and excellent value by Western European standards.",
+  "full_notes": "Sintra is absolutely worth a day trip. Jardim do Rio at sunset is phenomenal. Public transport is easy and cheap. One of Europe's most enjoyable cities for wandering around without a plan."
+}
+,
+{
+  "destination": "Tangier",
+  "country": "Morocco",
+  "recommended_days": 1,
+  "budget": "cheap",
+  "vibes": ["culture", "markets", "history", "city"],
+  "vibe_scores": {
+    "food": 7,
+    "culture": 9,
+    "nature": 4,
+    "nightlife": 3,
+    "value": 10
+  },
+  "must_do": [
+    "Medina",
+    "Cape Spartel Lighthouse",
+    "American Legation Museum"
+  ],
+  "warnings": [
+    "Bring cash",
+    "Expect aggressive taxi negotiations",
+    "Allow extra time for ferry procedures"
+  ],
+  "similar_to": ["Marrakech", "Istanbul", "Cairo"],
+  "tom_verdict": "A fascinating day trip where Europe meets North Africa. Chaotic but very enjoyable.",
+  "full_notes": "Modern Europe meets Vietnam-style chaos. The Medina is a maze of markets and alleyways. Everything is cheap, locals are friendly and the city feels adventurous without feeling unsafe."
+}
+,
+{
+  "destination": "Chiang Mai",
+  "country": "Thailand",
+  "recommended_days": 4,
+  "budget": "cheap",
+  "vibes": ["food", "culture", "nature", "markets", "backpacking"],
+  "vibe_scores": {
+    "food": 9,
+    "culture": 8,
+    "nature": 8,
+    "nightlife": 6,
+    "value": 10
+  },
+  "must_do": [
+    "Doi Suthep",
+    "Elephant Sanctuary",
+    "Sticky Waterfall",
+    "Sunday Night Market",
+    "Warorot Market"
+  ],
+  "warnings": [
+    "Sunday markets get extremely crowded"
+  ],
+  "similar_to": ["Luang Prabang", "Ubud", "Pai"],
+  "tom_verdict": "One of Southeast Asia's best backpacker cities with great food, temples and access to nature.",
+  "full_notes": "The Sunday markets are chaotic but fantastic. Elephant sanctuary is a must. Great balance between city comforts and outdoor activities. Excellent value for money."
+}
+,
+{
+  "destination": "Ko Samui",
+  "country": "Thailand",
+  "recommended_days": 4,
+  "budget": "medium",
+  "vibes": ["beaches", "relaxation", "nightlife", "island", "nature"],
+  "vibe_scores": {
+    "food": 7,
+    "culture": 4,
+    "nature": 8,
+    "nightlife": 7,
+    "value": 7
+  },
+  "must_do": [
+    "Ang Thong Marine Park",
+    "Fisherman's Village",
+    "Big Buddha",
+    "Paddleboarding"
+  ],
+  "warnings": [
+    "Island transport adds up quickly",
+    "Different towns have very different vibes"
+  ],
+  "similar_to": ["Phuket", "Bali", "Langkawi"],
+  "tom_verdict": "A relaxed island with enough activities to keep you busy without feeling hectic.",
+  "full_notes": "Ang Thong Marine Park is the standout attraction and worth a full day. Chaweng is lively and touristy while other parts of the island are much more relaxed."
+}
+,
+{
+  "destination": "Caye Caulker",
+  "country": "Belize",
+  "recommended_days": 3,
+  "budget": "medium",
+  "vibes": ["island", "relaxation", "diving", "backpacking"],
+  "vibe_scores": {
+    "food": 7,
+    "culture": 6,
+    "nature": 8,
+    "nightlife": 5,
+    "value": 7
+  },
+  "must_do": [
+    "The Split",
+    "Snorkelling",
+    "Island Exploration",
+    "Sunset Drinks"
+  ],
+  "warnings": [
+    "Ferry queues can be enormous",
+    "Accommodation is not as cheap as mainland Central America"
+  ],
+  "similar_to": ["Utila", "San Pedro", "Bacalar"],
+  "tom_verdict": "One of the most relaxed places in Central America and a great place to slow down.",
+  "full_notes": "No cars, just golf carts and sandy streets. Friendly locals, Caribbean atmosphere and an easy place to spend a few days doing very little."
+}
+,
+{
+  "destination": "Flores",
+  "country": "Guatemala",
+  "recommended_days": 3,
+  "budget": "cheap",
+  "vibes": ["history", "nature", "culture", "relaxation"],
+  "vibe_scores": {
+    "food": 7,
+    "culture": 8,
+    "nature": 8,
+    "nightlife": 3,
+    "value": 9
+  },
+  "must_do": [
+    "Tikal",
+    "Yaxha",
+    "Lake Petén",
+    "Blue Crater"
+  ],
+  "warnings": [
+    "Festival season can be very noisy",
+    "Bring earplugs if visiting in January"
+  ],
+  "similar_to": ["Antigua", "Palenque", "Copan"],
+  "tom_verdict": "A great base for exploring Mayan ruins and wildlife. Tikal is genuinely world-class.",
+  "full_notes": "Pay extra for the sunset ticket at Tikal. The wildlife, atmosphere and views make it one of the best archaeological sites in the Americas."
+}
+,
+{
+  "destination": "Antigua",
+  "country": "Guatemala",
+  "recommended_days": 3,
+  "budget": "cheap",
+  "vibes": ["culture", "history", "hiking", "backpacking"],
+  "vibe_scores": {
+    "food": 8,
+    "culture": 8,
+    "nature": 9,
+    "nightlife": 5,
+    "value": 9
+  },
+  "must_do": [
+    "Acatenango Trek",
+    "Fuego Volcano",
+    "Central Market",
+    "Cerro de la Cruz"
+  ],
+  "warnings": [
+    "Acatenango gets extremely cold",
+    "Bring proper warm clothing"
+  ],
+  "similar_to": ["Cusco", "Leon", "Arequipa"],
+  "tom_verdict": "Beautiful colonial town, but the real reason to visit is Acatenango.",
+  "full_notes": "Acatenango and Fuego are among the most memorable travel experiences I've ever had. The town itself is lovely, but the volcanoes are the main attraction."
+}
+,
+{
+  "destination": "Leon",
+  "country": "Nicaragua",
+  "recommended_days": 4,
+  "budget": "cheap",
+  "vibes": ["culture", "history", "adventure", "backpacking"],
+  "vibe_scores": {
+    "food": 7,
+    "culture": 8,
+    "nature": 7,
+    "nightlife": 6,
+    "value": 10
+  },
+  "must_do": [
+    "Volcano Boarding",
+    "Revolution Museum",
+    "Cathedral Rooftop",
+    "Walking Tour"
+  ],
+  "warnings": [
+    "Volcano boarding is dusty - wear old clothes"
+  ],
+  "similar_to": ["Antigua", "Granada", "San Cristobal de las Casas"],
+  "tom_verdict": "One of the best backpacker cities in Central America and incredible value.",
+  "full_notes": "Volcano boarding is ridiculous fun and worth every cent. The city's revolutionary history also makes it much more interesting than many people expect."
+}
   ]
 }
