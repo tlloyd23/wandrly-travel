@@ -2198,23 +2198,13 @@ async function runOutlineSearch(query, fullQuery, plannerHint, bankMatches) {
     ? `\n\nWandrly already has some detail on these places, which partially match this search: ${bankNames}. Feel free to use these as stops where they fit.`
     : '';
 
-  const prompt = `You are Wandrly, an expert travel planner who specialises in both iconic destinations and hidden gems. A user wants: "${query}".${plannerHint}${bankHint}
-Suggest 2 different trip outlines that could fit this request, with some real variety between them (e.g. different regions, different mixes of iconic vs off the beaten track, different paces).
-Return ONLY valid JSON (no markdown fences, no explanation) as an array with this exact structure:
-[
-  {
-    "title": "Short evocative trip title",
-    "subtitle": "One compelling sentence about this trip",
-    "duration": "e.g. 10 days",
-    "budget": "e.g. AUD 1,200-1,800 per person",
-    "best_time": "e.g. April-October",
-    "vibe": "e.g. Adventurous and romantic",
-    "stop_names": ["Place 1", "Place 2", "Place 3", "Place 4"]
-  }
-]
-Each outline should have 4-6 stop_names in a sensible geographic order. Keep it concise. Do not use em-dashes anywhere in your response, use commas or full stops instead.`;
+  const prompt = `You are Wandrly, a travel planner. A user wants: "${query}".${plannerHint}${bankHint}
+Suggest 2 different trip outlines with some variety (different regions, paces, or mix of iconic vs hidden).
+Return ONLY valid JSON, no markdown, as an array:
+[{"title":"Short title","subtitle":"One sentence","duration":"e.g. 10 days","budget":"e.g. AUD 1,500 pp","best_time":"e.g. Nov-Feb","vibe":"e.g. Adventure","stop_names":["City1","City2","City3","City4"]}]
+4-5 stop_names each, geographic order, no em-dashes.`;
 
-  const data = await callAI(prompt, 500, 'Sketching your trip options...');
+  const data = await callAI(prompt, 350, 'Sketching your trip options...');
   const text = data.content.map(item => item.text || '').join('');
   const clean = text.replace(/```json|```/g, '').trim();
   let outlines;
@@ -2390,37 +2380,35 @@ async function runAISearch(query, fullQuery, plannerHint, bankMatches, chosenOut
     ? `\n\nThe user has chosen this specific trip outline to build out in full detail:\nTitle: "${chosenOutline.title}"\nStops in order: ${chosenOutline.stop_names.join(', ')}\nPlease build the full itinerary for exactly these stops in this order.`
     : '';
 
-  const prompt = `You are Wandrly, an expert travel planner who specialises in both iconic destinations and hidden gems. A user wants: "${query}".${plannerHint}${outlineHint}${bankHint}${noteHint}
-Return ONLY valid JSON (no markdown fences, no explanation) with this exact structure:
+  const prompt = `You are Wandrly, an expert travel planner. A user wants: "${query}".${plannerHint}${outlineHint}${bankHint}
+Return ONLY valid JSON (no markdown, no explanation):
 {
-  "title": "Short evocative trip title",
-  "subtitle": "One compelling sentence about this trip",
+  "title": "Short trip title",
+  "subtitle": "One sentence, max 15 words",
   "duration": "e.g. 10 days",
-  "budget": "e.g. €1,200-€1,800 per person",
+  "budget": "e.g. AUD 1,200-1,800 pp",
   "best_time": "e.g. April-October",
-  "vibe": "e.g. Adventurous & romantic",
-  "hidden_gems": "2-3 specific, genuine insider tips that most travel sites don't mention. Be specific, name the place, the time to go, the local tip. 50 words.",
+  "vibe": "e.g. Adventure and culture",
+  "hidden_gems": "2 specific insider tips, max 40 words total.",
   "stops": [
     {
-      "name": "City or place name",
+      "name": "City name",
       "lat": 0.0,
       "lon": 0.0,
       "nights": 2,
-      "summary": "One short sentence, max 14 words, about this stop",
+      "summary": "Max 10 words",
       "activities": [
-        {"name":"Activity name","desc":"12-18 words on what to do and why"},
-        {"name":"Activity name","desc":"12-18 words on what to do and why"},
-        {"name":"Activity name","desc":"12-18 words on what to do and why"}
+        {"name":"Activity","desc":"10 words max"},
+        {"name":"Activity","desc":"10 words max"}
       ],
-      "transport": "How to get here from the previous stop, and one tip. 15-20 words.",
+      "transport": "How to get here, max 12 words.",
       "sub_itinerary": null
     }
   ]
 }
-If a stop is really a base for a multi-day excursion away from the town itself (e.g. a trek, a safari, a liveaboard), set "sub_itinerary" to {"name": "...", "nights": N, "is_separate_location": true, "summary": "...", "days": [{"day":1,"title":"...","desc":"..."}]} instead of null — this lets us show the excursion distinctly from town time. Otherwise leave it null.
-Include 4-6 stops in a sensible geographic order (so a route line between them makes sense). Always include real, accurate latitude and longitude for each place. Do not use em-dashes anywhere in your response — use commas or full stops instead.`;
+4-5 stops max. Accurate lat/lon required. No em-dashes. Be concise.`;
 
-  const data = await callAI(prompt, 1500, chosenOutline ? `Building "${chosenOutline.title}"...` : 'Building your trip...');
+  const data = await callAI(prompt, 900, chosenOutline ? `Building "${chosenOutline.title}"...` : 'Building your trip...');
 
   const text = data.content.map(i => i.text || '').join('');
   const clean = text.replace(/```json|```/g, '').trim();
