@@ -884,17 +884,20 @@ nav {
 .stop-detail.open { display: block; }
 .stop-photos {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 6px;
   margin-bottom: 12px;
 }
 .stop-photo {
-  height: 90px;
+  height: 80px;
   border-radius: var(--radius-sm);
   background: var(--sand);
   border: 1px solid var(--card-border);
   overflow: hidden;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .stop-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .stop-photo-credit {
@@ -2204,16 +2207,10 @@ Return ONLY valid JSON, no markdown, as an array:
 [{"title":"Short title","subtitle":"One sentence","duration":"e.g. 10 days","budget":"e.g. AUD 1,500 pp","best_time":"e.g. Nov-Feb","vibe":"e.g. Adventure","stop_names":["City1","City2","City3","City4"]}]
 4-5 stop_names each, geographic order, no em-dashes.`;
 
-  const data = await callAI(prompt, 350, 'Sketching your trip options...');
+  const data = await callAI(prompt, 400, 'Sketching your trip options...');
   const text = data.content.map(item => item.text || '').join('');
-  const clean = text.replace(/```json|```/g, '').trim();
-  let outlines;
-  try {
-    outlines = JSON.parse(clean);
-  } catch(parseErr) {
-    throw new Error('Got an unexpected response, please try again.');
-  }
-  if (!Array.isArray(outlines) || outlines.length === 0) {
+  const outlines = extractJSON(text);
+  if (!outlines || !Array.isArray(outlines) || outlines.length === 0) {
     throw new Error('Could not come up with trip ideas for that, try rephrasing your search.');
   }
 
@@ -2223,6 +2220,57 @@ Return ONLY valid JSON, no markdown, as an array:
 }
 
 // Shared AI call helper with timeout, automatic retry, and clean error extraction.
+// Extract JSON from an AI response that might include markdown fences,
+// explanatory text before/after, or be slightly truncated.
+function extractJSON(rawText) {
+  let text = rawText.trim();
+
+  // Strip markdown code fences
+  text = text.replace(/^```json\s*/i, '').replace(/^```\s*/i, '');
+  text = text.replace(/\s*```\s*$/i, '');
+
+  // If there's text before the JSON starts, find the first [ or {
+  const firstBracket = text.search(/[\[\{]/);
+  if (firstBracket > 0) text = text.substring(firstBracket);
+
+  // If there's text after the JSON ends, find the last ] or }
+  const lastBracket = Math.max(text.lastIndexOf(']'), text.lastIndexOf('}'));
+  if (lastBracket > 0 && lastBracket < text.length - 1) {
+    text = text.substring(0, lastBracket + 1);
+  }
+
+  // Try parsing as-is first
+  try { return JSON.parse(text); } catch(e) {}
+
+  // If truncated mid-JSON (max_tokens hit), try to repair by closing
+  // open brackets/braces. This handles the most common truncation case:
+  // the response ends mid-object inside a stops array.
+  let repaired = text;
+  const opens = (repaired.match(/\[/g) || []).length;
+  const closes = (repaired.match(/\]/g) || []).length;
+  const openBraces = (repaired.match(/\{/g) || []).length;
+  const closeBraces = (repaired.match(/\}/g) || []).length;
+
+  // Close any unclosed strings (look for odd number of unescaped quotes)
+  if ((repaired.match(/(?<!\\)"/g) || []).length % 2 !== 0) {
+    repaired += '"';
+  }
+
+  // Add missing closing braces/brackets
+  for (let i = 0; i < openBraces - closeBraces; i++) repaired += '}';
+  for (let i = 0; i < opens - closes; i++) repaired += ']';
+
+  try { return JSON.parse(repaired); } catch(e) {}
+
+  // Last resort: try to find just the first complete JSON object or array
+  try {
+    const match = text.match(/(\[[\s\S]*?\]|\{[\s\S]*?\})/);
+    if (match) return JSON.parse(match[1]);
+  } catch(e) {}
+
+  return null;
+}
+
 async function callAI(prompt, maxTokens, loadingMessage, isRetry) {
   if (loadingMessage) {
     setLoadingMessage(loadingMessage, isRetry ? 'Retrying, this can take a little longer...' : 'Almost there...');
@@ -2408,17 +2456,11 @@ Return ONLY valid JSON (no markdown, no explanation):
 }
 4-5 stops max. Accurate lat/lon required. No em-dashes. Be concise.`;
 
-  const data = await callAI(prompt, 900, chosenOutline ? `Building "${chosenOutline.title}"...` : 'Building your trip...');
+  const data = await callAI(prompt, 1100, chosenOutline ? `Building "${chosenOutline.title}"...` : 'Building your trip...');
 
   const text = data.content.map(i => i.text || '').join('');
-  const clean = text.replace(/```json|```/g, '').trim();
-  let trip;
-  try {
-    trip = JSON.parse(clean);
-  } catch(parseErr) {
-    throw new Error('Got an unexpected response, please try again.');
-  }
-  if (!trip.stops || !Array.isArray(trip.stops) || trip.stops.length === 0) {
+  const trip = extractJSON(text);
+  if (!trip || !trip.stops || !Array.isArray(trip.stops) || trip.stops.length === 0) {
     throw new Error('Could not build an itinerary for that, try rephrasing your search.');
   }
 
@@ -2647,6 +2689,7 @@ function renderStopDetail(stop, i) {
     <div class="stop-photos" id="stop-photos-${i}">
       <div class="stop-photo"><i class="ti ti-photo" style="font-size:20px;color:var(--ink-faint);margin:auto"></i></div>
       <div class="stop-photo"><i class="ti ti-photo" style="font-size:20px;color:var(--ink-faint);margin:auto"></i></div>
+      <div class="stop-photo"><i class="ti ti-photo" style="font-size:20px;color:var(--ink-faint);margin:auto"></i></div>
     </div>
     ${notesHtml}
     ${verdictHtml}
@@ -2731,8 +2774,8 @@ Do not use em-dashes anywhere in your response.`;
   try {
     const data = await callAI(prompt, 600, null);
     const text = data.content.map(item => item.text || '').join('');
-    const clean = text.replace(/```json|```/g, '').trim();
-    const newStop = JSON.parse(clean);
+    const newStop = extractJSON(text);
+    if (!newStop || !newStop.name) throw new Error('Could not generate a replacement stop.');
 
     recordUsage();
 
@@ -2759,31 +2802,27 @@ async function loadStopPhotos(stop, i) {
   const container = document.getElementById(`stop-photos-${i}`);
   if (!container) return;
   const slots = container.querySelectorAll('.stop-photo');
+  if (!slots.length) return;
 
-  // Slot 1: the place itself. Slot 2: its top activity, for visual variety.
-  const placeQuery = stop.name;
-  const activityQuery = (stop.activities && stop.activities[0]) ? `${stop.activities[0].name} ${stop.name}` : stop.name;
+  // Build 3 genuinely different queries for visual variety
+  const queries = [stop.name];
+  if (stop.activities && stop.activities[0]) queries.push(`${stop.activities[0].name} ${stop.name}`);
+  if (stop.activities && stop.activities[1]) queries.push(`${stop.activities[1].name} ${stop.name}`);
+  // Pad with country/generic queries if needed
+  const bankDest = DESTINATIONS.find(d => d.name.toLowerCase() === (stop.name || '').toLowerCase());
+  if (queries.length < 3 && bankDest) queries.push(`${bankDest.country} scenery`);
+  while (queries.length < 3) queries.push(`${stop.name} landscape`);
 
-  const [placeResult, activityResult] = await Promise.all([
-    fetchPhotos(placeQuery),
-    activityQuery !== placeQuery ? fetchPhotos(activityQuery) : Promise.resolve(null)
-  ]);
+  // Fetch all 3 in parallel
+  const results = await Promise.all(queries.slice(0, 3).map(q => fetchPhoto(q)));
 
   if (activeStopIndex !== i) return;
 
-  if (placeResult.photo && slots[0]) {
-    slots[0].innerHTML = `<img src="${placeResult.photo.url}" alt="${stop.name}"><span class="stop-photo-credit">Photo: ${placeResult.photo.credit}</span>`;
-  }
-
-  // For the second slot, prefer the activity photo; fall back to the place's
-  // second result if the activity search came back empty.
-  let secondPhoto = activityResult && activityResult.photo;
-  if (!secondPhoto && placeResult.photos && placeResult.photos.length > 1) {
-    secondPhoto = placeResult.photos[1];
-  }
-  if (secondPhoto && slots[1]) {
-    slots[1].innerHTML = `<img src="${secondPhoto.url}" alt="${stop.activities && stop.activities[0] ? stop.activities[0].name : stop.name}"><span class="stop-photo-credit">Photo: ${secondPhoto.credit}</span>`;
-  }
+  results.forEach((photo, j) => {
+    if (photo && slots[j]) {
+      slots[j].innerHTML = `<img src="${photo.url}" alt="${queries[j]}"><span class="stop-photo-credit">${photo.credit}</span>`;
+    }
+  });
 }
 
 function initMap(trip) {
