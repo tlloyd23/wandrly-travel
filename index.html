@@ -1018,6 +1018,11 @@ nav {
 .sample-card-img.theme-srilanka { background: linear-gradient(135deg, #e8b896 0%, #d4824a 50%, #1d7a6e 100%); }
 .sample-card-img.theme-georgia { background: linear-gradient(135deg, #c4a5d4 0%, #8a6aa0 50%, #c45c2a 100%); }
 .sample-card-img.theme-nz { background: linear-gradient(135deg, #a8d4d8 0%, #4a8a9a 50%, #2d5a4a 100%); }
+.sample-card-img.theme-europe { background: linear-gradient(135deg, #d4a86a 0%, #b87a3a 50%, #3a5a8a 100%); }
+.sample-card-img.theme-sea { background: linear-gradient(135deg, #c8d89a 0%, #6a9a3a 50%, #d4824a 100%); }
+.sample-card-img.theme-ca { background: linear-gradient(135deg, #5ab87a 0%, #2a7a4a 50%, #e8a83a 100%); }
+.sample-card-img.theme-taiwan { background: linear-gradient(135deg, #7ab8d8 0%, #3a7a9a 50%, #d46a5a 100%); }
+.sample-card-img.theme-diving { background: linear-gradient(135deg, #3a6a9a 0%, #1a4a7a 50%, #5ac8d8 100%); }
 .sample-card-img-icon {
   position: absolute;
   inset: 0;
@@ -1514,7 +1519,18 @@ const LOADING_TIPS = [
   "Overnight buses or trains save a night's accommodation and get you somewhere new by morning.",
   "A small padlock for hostel lockers is one of the best $3 investments you'll make.",
   "Always check if a country requires an onward ticket before you board.",
-  "Hidden gems stay hidden for about 18 months after appearing on social media.",
+  "In Europe, always ask for the student ticket even if it's not advertised. It works way too often.",
+  "Cash is still king in most of Southeast Asia and Central America. ATM fees are sad but necessary.",
+  "Hostels are almost always better than hotels for meeting people. The social factor is worth it.",
+  "If you're buying train tickets in Italy or Poland, sorting it out in person at the station is often cheaper.",
+  "The cheap pools on Margaret Island in Budapest are just as fun as the famous baths, at a fifth of the price.",
+  "Catch the regional train instead of the express to the airport. It's 3 minutes slower and saves you money.",
+  "Convenience stores in Japan are genuinely excellent for food and open 24/7.",
+  "In Costa Rica, always have onward travel booked before you arrive at the border.",
+  "Grab and Gojek are lifesavers in Southeast Asia. Way cheaper than taxis.",
+  "Ferry queues in Central America can be enormous. Arrive early and chill rather than panic.",
+  "Volcano boarding in Leon, Nicaragua is exactly as fun as it sounds.",
+  "The Acropolis has almost no shade. Bring water and a hat or you'll regret it.",
 ];
 
 let loadingTipInterval = null;
@@ -1540,7 +1556,7 @@ function startLoadingTips() {
       tip.textContent = LOADING_TIPS[loadingTipIndex];
       tip.style.opacity = '1';
     }, 500);
-  }, 4000);
+  }, 6000);
 }
 
 function stopLoadingTips() {
@@ -1750,11 +1766,15 @@ const SAMPLE_TRIPS = [
 // bank isn't loaded yet (e.g. first paint before destinations.json arrives).
 const REGION_GROUPS = {
   westernEurope: ['Lisbon','Sintra'],
+  centralEurope: ['Budapest','Prague'],
   caucasus: ['Tbilisi','Kazbegi (Stepantsminda)','Sighnaghi'],
   southAsia: ['Colombo','Sigiriya','Kandy','Ella','Mirissa','Galle'],
-  eastAsia: ['Tokyo','Nagano','Kyoto','Osaka'],
+  southeastAsia: ['Bangkok','Chiang Mai'],
+  eastAsia: ['Tokyo','Nagano','Kyoto','Osaka','Taipei'],
   oceania: ['Christchurch','Lake Tekapo','Wanaka','Queenstown'],
+  centralAmerica: ['Antigua','La Fortuna','Bocas del Toro'],
   southAmerica: ['Cusco'],
+  timorSea: ['Dili'],
 };
 
 function pickRandom(arr, n) {
@@ -1830,7 +1850,7 @@ function generateProceduralTrip() {
   const totalNights = stops.reduce((sum, s) => sum + s.nights + (s.subItinerary ? s.subItinerary.nights : 0), 0);
   const vibePool = ['Relaxed exploration', 'Adventure-focused', 'Slow travel', 'A bit of everything', 'Off the beaten track'];
   const vibe = vibePool[Math.floor(Math.random() * vibePool.length)];
-  const themePool = ['srilanka', 'georgia', 'nz'];
+  const themePool = ['srilanka', 'georgia', 'nz', 'europe', 'sea', 'ca', 'taiwan', 'diving'];
   const theme = themePool[Math.floor(Math.random() * themePool.length)];
   const iconPool = ['ti-route', 'ti-map-pin', 'ti-compass', 'ti-backpack'];
   const icon = iconPool[Math.floor(Math.random() * iconPool.length)];
@@ -2202,12 +2222,12 @@ async function runOutlineSearch(query, fullQuery, plannerHint, bankMatches) {
     : '';
 
   const prompt = `You are Wandrly, a travel planner. A user wants: "${query}".${plannerHint}${bankHint}
-Suggest 2 different trip outlines with some variety (different regions, paces, or mix of iconic vs hidden).
+Suggest 3 different trip outlines with some variety (different regions, paces, or mix of iconic vs hidden).
 Return ONLY valid JSON, no markdown, as an array:
 [{"title":"Short title","subtitle":"One sentence","duration":"e.g. 10 days","budget":"e.g. AUD 1,500 pp","best_time":"e.g. Nov-Feb","vibe":"e.g. Adventure","stop_names":["City1","City2","City3","City4"]}]
 4-5 stop_names each, geographic order, no em-dashes.`;
 
-  const data = await callAI(prompt, 400, 'Sketching your trip options...');
+  const data = await callAI(prompt, 500, 'Sketching your trip options...');
   const text = data.content.map(item => item.text || '').join('');
   const outlines = extractJSON(text);
   if (!outlines || !Array.isArray(outlines) || outlines.length === 0) {
