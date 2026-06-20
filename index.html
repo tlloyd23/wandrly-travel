@@ -347,26 +347,77 @@ nav {
 }
 #country-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 14px;
 }
 .country-card {
   background: var(--white);
   border: 1px solid var(--card-border);
   border-radius: var(--radius);
-  padding: 16px;
+  overflow: hidden;
   cursor: pointer;
-  transition: all 0.15s;
+  transition: all 0.18s;
+  display: flex;
+  flex-direction: column;
 }
 .country-card:hover {
   border-color: var(--accent);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(196,92,42,0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(196,92,42,0.13);
 }
-.cc-flag { font-size: 26px; margin-bottom: 8px; }
-.cc-name { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
-.cc-sub { font-size: 12px; color: var(--ink-muted); margin-bottom: 8px; }
-.cc-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.cc-hero {
+  height: 130px;
+  position: relative;
+  overflow: hidden;
+  background: var(--sand-dark);
+}
+.cc-hero img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.cc-hero img.loaded { opacity: 0.65; }
+.country-card:hover .cc-hero img { opacity: 0.85; }
+.cc-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(26,24,20,0.78) 0%, rgba(26,24,20,0.1) 65%);
+  display: flex;
+  align-items: flex-end;
+  padding: 10px 12px;
+}
+.cc-flag-name { display: flex; align-items: center; gap: 8px; }
+.cc-flag { font-size: 20px; line-height: 1; }
+.cc-name {
+  font-family: 'Fraunces', serif;
+  font-size: 16px;
+  font-weight: 300;
+  color: white;
+  letter-spacing: -0.2px;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+}
+.cc-theme-europe  { background: linear-gradient(135deg, #8aa8c4 0%, #3a6a8a 100%); }
+.cc-theme-asia    { background: linear-gradient(135deg, #c4986a 0%, #8a4820 100%); }
+.cc-theme-americas{ background: linear-gradient(135deg, #88c47a 0%, #2a6a28 100%); }
+.cc-theme-africa  { background: linear-gradient(135deg, #d8b84a 0%, #9a5820 100%); }
+.cc-theme-oceania { background: linear-gradient(135deg, #5ab4d8 0%, #1a5070 100%); }
+.cc-theme-mideast { background: linear-gradient(135deg, #c4a870 0%, #8a5820 100%); }
+.cc-body { padding: 12px 14px; flex: 1; display: flex; flex-direction: column; gap: 7px; }
+.cc-sub { font-size: 12px; color: var(--ink-muted); line-height: 1.4; }
+.cc-meta-row { display: flex; align-items: center; gap: 10px; }
+.cc-best-time {
+  font-size: 11px;
+  color: var(--ink-faint);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.cc-best-time i { font-size: 11px; }
+.cc-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: auto; }
 .cc-tag {
   font-size: 10px;
   padding: 2px 8px;
@@ -375,6 +426,19 @@ nav {
   color: var(--ink-muted);
   border: 1px solid var(--card-border);
 }
+
+/* TRUST STRIP */
+.trust-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  justify-content: center;
+  font-size: 12px;
+  color: var(--ink-faint);
+  margin-top: 10px;
+  padding-bottom: 4px;
+}
+.ts-dot { opacity: 0.35; }
 
 /* LOADING */
 #loading {
@@ -1227,6 +1291,13 @@ footer strong { color: var(--ink-muted); }
     <span class="vibe-pill" onclick="setVibe(this,'family trip with kids')">Family</span>
     <span class="vibe-pill" onclick="setVibe(this,'hidden gems only no tourist traps')">Hidden gems only</span>
   </div>
+  <div class="trust-strip">
+    <span>✍️ Notes from 50+ cities</span>
+    <span class="ts-dot">·</span>
+    <span>🌏 6 continents covered</span>
+    <span class="ts-dot">·</span>
+    <span>💡 Real traveller tips, not algorithms</span>
+  </div>
 </section>
 
 <section id="browse-section">
@@ -1269,7 +1340,12 @@ footer strong { color: var(--ink-muted); }
     <button id="back-btn-outline" onclick="goBack()" style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ink-muted);cursor:pointer;border:none;background:none;font-family:'Inter',sans-serif;padding:0 0 16px;transition:color 0.15s">
       <i class="ti ti-arrow-left"></i> Back to explore
     </button>
-    <h2 style="font-family:'Fraunces',serif;font-weight:300;font-size:22px;letter-spacing:-0.3px;margin-bottom:6px">Here are a few options</h2>
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px;flex-wrap:wrap">
+      <h2 style="font-family:'Fraunces',serif;font-weight:300;font-size:22px;letter-spacing:-0.3px">Here are a few options</h2>
+      <button onclick="rollAgain()" class="act-btn" id="roll-again-btn" title="Generate different trip ideas">
+        <i class="ti ti-arrows-shuffle"></i> Roll again
+      </button>
+    </div>
     <p style="font-size:14px;color:var(--ink-muted);margin-bottom:20px">Pick the trip that sounds right and we'll build the full route map for you.</p>
     <div id="outline-grid"></div>
   </div>
@@ -1471,19 +1547,90 @@ const REGIONS = {
 };
 REGIONS.all = Object.values(REGIONS).flat().slice(0,12);
 
+// Metadata per country: gradient theme for card fallback + best travel window shown on card
+const COUNTRY_META = {
+  'Portugal':         { theme:'europe',   best_time:'Mar–Oct' },
+  'Georgia':          { theme:'europe',   best_time:'Apr–Oct' },
+  'Slovenia':         { theme:'europe',   best_time:'Jun–Sep' },
+  'Albania':          { theme:'europe',   best_time:'Jun–Sep' },
+  'Norway':           { theme:'europe',   best_time:'Jun–Aug' },
+  'Romania':          { theme:'europe',   best_time:'Apr–Sep' },
+  'Vietnam':          { theme:'asia',     best_time:'Nov–Apr' },
+  'Japan':            { theme:'asia',     best_time:'Mar–May, Oct–Nov' },
+  'Kyrgyzstan':       { theme:'asia',     best_time:'Jun–Sep' },
+  'Laos':             { theme:'asia',     best_time:'Nov–Feb' },
+  'Mongolia':         { theme:'asia',     best_time:'Jun–Sep' },
+  'Sri Lanka':        { theme:'asia',     best_time:'Dec–Mar' },
+  'Colombia':         { theme:'americas', best_time:'Dec–Mar' },
+  'Bolivia':          { theme:'americas', best_time:'May–Oct' },
+  'Ecuador':          { theme:'americas', best_time:'Jun–Sep' },
+  'Cuba':             { theme:'americas', best_time:'Nov–Apr' },
+  'Guatemala':        { theme:'americas', best_time:'Nov–Apr' },
+  'Peru':             { theme:'americas', best_time:'May–Sep' },
+  'Morocco':          { theme:'africa',   best_time:'Mar–May, Sep–Nov' },
+  'Ethiopia':         { theme:'africa',   best_time:'Oct–Mar' },
+  'Rwanda':           { theme:'africa',   best_time:'Jun–Sep' },
+  'Mozambique':       { theme:'africa',   best_time:'Apr–Oct' },
+  'Senegal':          { theme:'africa',   best_time:'Nov–Apr' },
+  'Zambia':           { theme:'africa',   best_time:'May–Oct' },
+  'New Zealand':      { theme:'oceania',  best_time:'Nov–Mar' },
+  'Fiji':             { theme:'oceania',  best_time:'Jun–Oct' },
+  'French Polynesia': { theme:'oceania',  best_time:'May–Oct' },
+  'Vanuatu':          { theme:'oceania',  best_time:'Apr–Oct' },
+  'Papua New Guinea': { theme:'oceania',  best_time:'May–Oct' },
+  'Solomon Islands':  { theme:'oceania',  best_time:'Apr–Oct' },
+  'Oman':             { theme:'mideast',  best_time:'Oct–Apr' },
+  'Jordan':           { theme:'mideast',  best_time:'Mar–May, Sep–Nov' },
+  'Armenia':          { theme:'mideast',  best_time:'May–Oct' },
+  'Azerbaijan':       { theme:'mideast',  best_time:'Apr–Jun' },
+  'Lebanon':          { theme:'mideast',  best_time:'Jun–Sep' },
+  'Israel':           { theme:'mideast',  best_time:'Mar–May, Oct–Nov' },
+};
+
 let currentRegion = 'all';
 let currentTripData = null;
 
 function renderCountryGrid(region) {
   const list = REGIONS[region] || REGIONS.all;
-  document.getElementById('country-grid').innerHTML = list.map(c => `
-    <div class="country-card" onclick="quickSearch('trip to ${c.name}')">
-      <div class="cc-flag">${c.flag}</div>
-      <div class="cc-name">${c.name}</div>
-      <div class="cc-sub">${c.sub}</div>
-      <div class="cc-tags">${c.tags.map(t=>`<span class="cc-tag">${t}</span>`).join('')}</div>
-    </div>
-  `).join('');
+  document.getElementById('country-grid').innerHTML = list.map(c => {
+    const meta = COUNTRY_META[c.name] || {};
+    const themeClass = meta.theme ? `cc-theme-${meta.theme}` : 'cc-theme-europe';
+    const safeId = `cc-hero-${c.name.replace(/[\s()\/]/g,'-')}`;
+    return `
+      <div class="country-card" onclick="quickSearch('trip to ${c.name}')">
+        <div class="cc-hero ${themeClass}" id="${safeId}">
+          <div class="cc-hero-overlay">
+            <div class="cc-flag-name">
+              <span class="cc-flag">${c.flag}</span>
+              <span class="cc-name">${c.name}</span>
+            </div>
+          </div>
+        </div>
+        <div class="cc-body">
+          <div class="cc-sub">${c.sub}</div>
+          <div class="cc-meta-row">
+            ${meta.best_time ? `<span class="cc-best-time"><i class="ti ti-sun-low"></i> Best: ${meta.best_time}</span>` : ''}
+          </div>
+          <div class="cc-tags">${c.tags.map(t=>`<span class="cc-tag">${t}</span>`).join('')}</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  // Async load hero photos — fetchPhoto caches internally so tab-switching is fast
+  list.forEach(c => {
+    const safeId = `cc-hero-${c.name.replace(/[\s()\/]/g,'-')}`;
+    fetchPhoto(`${c.name} travel landscape`).then(photo => {
+      if (!photo) return;
+      const heroEl = document.getElementById(safeId);
+      if (!heroEl) return; // grid may have re-rendered since
+      const img = document.createElement('img');
+      img.alt = c.name;
+      img.onload = () => img.classList.add('loaded');
+      img.src = photo.url;
+      heroEl.insertBefore(img, heroEl.firstChild);
+    });
+  });
 }
 
 function setRegion(el, region) {
@@ -2215,19 +2362,22 @@ async function doSearch() {
 // Generates 2-3 lightweight trip outlines (title, subtitle, rough stop names
 // only) - much smaller response than a full itinerary, so it returns quickly.
 // The user picks one, then we generate the full detail for just that one.
-async function runOutlineSearch(query, fullQuery, plannerHint, bankMatches) {
+async function runOutlineSearch(query, fullQuery, plannerHint, bankMatches, isReroll) {
   const bankNames = bankMatches.map(d => d.name).join(', ');
   const bankHint = bankMatches.length
     ? `\n\nWandrly already has some detail on these places, which partially match this search: ${bankNames}. Feel free to use these as stops where they fit.`
     : '';
+  const rerollHint = isReroll
+    ? '\n\nThe user is asking for FRESH ideas — generate substantially different routes, styles, or regional combinations than the most obvious suggestions. Offer real variety: different paces, lesser-known alternatives, or creative mixes.'
+    : '';
 
-  const prompt = `You are Wandrly, a travel planner. A user wants: "${query}".${plannerHint}${bankHint}
+  const prompt = `You are Wandrly, a travel planner. A user wants: "${query}".${plannerHint}${bankHint}${rerollHint}
 Suggest 3 different trip outlines with some variety (different regions, paces, or mix of iconic vs hidden).
 Return ONLY valid JSON, no markdown, as an array:
 [{"title":"Short title","subtitle":"One sentence","duration":"e.g. 10 days","budget":"e.g. AUD 1,500 pp","best_time":"e.g. Nov-Feb","vibe":"e.g. Adventure","stop_names":["City1","City2","City3","City4"]}]
 4-5 stop_names each, geographic order, no em-dashes.`;
 
-  const data = await callAI(prompt, 500, 'Sketching your trip options...');
+  const data = await callAI(prompt, 500, isReroll ? 'Finding different options...' : 'Sketching your trip options...');
   const text = data.content.map(item => item.text || '').join('');
   const outlines = extractJSON(text);
   if (!outlines || !Array.isArray(outlines) || outlines.length === 0) {
@@ -2405,6 +2555,34 @@ function renderOutlines(outlines, query, fullQuery, plannerHint, bankMatches) {
 }
 
 let pendingOutlineContext = null;
+
+async function rollAgain() {
+  if (!pendingOutlineContext) return;
+  const { query, fullQuery, plannerHint, bankMatches } = pendingOutlineContext;
+
+  // Disable button immediately to prevent double-taps
+  const btn = document.getElementById('roll-again-btn');
+  if (btn) { btn.disabled = true; btn.innerHTML = '<span class="spinner" style="width:13px;height:13px;border-width:2px;margin-right:6px"></span>Finding options...'; }
+
+  document.getElementById('outline-result').style.display = 'none';
+  document.getElementById('loading').style.display = 'block';
+  setLoadingMessage('Finding different options...', 'Generating fresh trip ideas...');
+  startLoadingTips();
+  window.scrollTo({top: document.getElementById('loading').offsetTop - 100, behavior:'smooth'});
+
+  try {
+    await runOutlineSearch(query, fullQuery, plannerHint, bankMatches, true);
+    stopLoadingTips();
+  } catch(e) {
+    stopLoadingTips();
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('outline-result').style.display = 'block';
+    const errBox = document.getElementById('error-msg');
+    errBox.textContent = e.message || 'Could not generate new options, please try again.';
+    errBox.style.display = 'block';
+    setTimeout(() => { errBox.style.display = 'none'; }, 8000);
+  }
+}
 
 async function selectOutline(i) {
   if (!pendingOutlineContext) return;
