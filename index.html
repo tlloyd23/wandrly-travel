@@ -2140,10 +2140,14 @@ function scoreDestination(dest, queryLower) {
     if (queryLower.includes(word) && dest.vibe_scores && dest.vibe_scores[k] >= 7) {
       score += 2;
     }
-    if (queryLower.includes('budget') || queryLower.includes('cheap')) {
-      if (dest.vibe_scores && dest.vibe_scores.budget_friendly >= 7) score += 2;
-    }
   });
+  // One-time budget/cheap bonus — must stay OUTSIDE the VIBE_KEYWORDS.forEach loop.
+  // Previously inside the loop it ran ×10 (once per keyword), giving budget-friendly
+  // destinations +20 and sending every search with "cheap" straight to the bank.
+  if ((queryLower.includes('budget') || queryLower.includes('cheap')) &&
+      dest.vibe_scores && dest.vibe_scores.budget_friendly >= 7) {
+    score += 2;
+  }
   return score;
 }
 
@@ -2318,10 +2322,15 @@ async function doSearch() {
     const bankMatches = findBankMatches(query);
     const bankStops = bankMatches.map(bankDestToStop);
 
-    // If we have a strong bank match (3+ destinations) AND no planner
-    // preferences were set (those need AI judgement to apply well), build
-    // the trip almost entirely from the bank with no AI call at all.
-    if (bankStops.length >= 3 && !plannerHint) {
+    // If we have a strong bank match (3+ destinations) AND the query directly
+    // names a country or city in the bank, build the trip from the bank (zero AI cost).
+    // Vibe-only queries ("cheap ski trip", "romantic getaway") must always go to
+    // the AI outline flow — the bank can't know what type of trip fits those.
+    const hasLocationMatch = bankMatches.some(d =>
+      query.toLowerCase().includes(d.name.toLowerCase()) ||
+      query.toLowerCase().includes((d.country || '').toLowerCase())
+    );
+    if (bankStops.length >= 3 && !plannerHint && hasLocationMatch) {
       const trip = assembleTripFromBank(query, bankStops);
       currentTripData = trip;
       setCachedTrip(fullQuery, trip);
