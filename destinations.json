@@ -3,423 +3,1029 @@
   "_notes": "Each entry is one destination/stop. recommended_nights is a default suggestion, not fixed. sub_itinerary is optional - use it when a stop is really a base for a multi-day excursion (e.g. Cusco -> Salkantay Trek) so the trek can be shown distinctly from town time. vibe_scores are 0-10, used for matching searches like 'ski trip' or 'romantic'. wandrly_notes are short first-person tips - shown in a distinct UI box. tom_verdict is one or two punchy sentences in your voice.",
   "destinations": [
     {
-      "id": "colombo",
-      "name": "Colombo",
-      "country": "Sri Lanka",
-      "lat": 6.927,
-      "lon": 79.861,
+      "id": "andorra",
+      "name": "Andorra la Vella",
+      "country": "Andorra",
+      "lat": 42.506,
+      "lon": 1.521,
       "recommended_nights": 1,
-      "budget_per_night_aud": "40-90",
+      "budget_per_night_aud": "70-140",
+      "vibes": [
+        "nature",
+        "relaxation",
+        "mountains",
+        "ski"
+      ],
+      "vibe_scores": {
+        "adventure": 4,
+        "relaxation": 5,
+        "nightlife": 3,
+        "culture": 3,
+        "budget_friendly": 6,
+        "romantic": 4,
+        "family": 5,
+        "hiking": 5,
+        "diving": 1,
+        "ski": 6
+      },
+      "summary": "Surprisingly pretty mountain micro-state, cheap booze, not much to do",
+      "activities": [
+        {
+          "name": "Mountain scenery",
+          "desc": "Both the bus ride in and the city itself are really pretty, a pleasant surprise"
+        },
+        {
+          "name": "Stock up on cheap alcohol",
+          "desc": "Alcohol is so damn cheap, the main reason people stop here"
+        },
+        {
+          "name": "Lunch and a wander",
+          "desc": "Come in, take photos, get lunch, then move on"
+        }
+      ],
+      "food_recommendations": [
+        "Grab lunch in town, it's pleasant enough"
+      ],
+      "nightlife": [
+        "Quiet, not really a nightlife stop"
+      ],
+      "transport_tips": [
+        "Not very cheap bus tickets, comes in by road only, no airport or train"
+      ],
+      "warnings": [
+        "The thing is, there's just not much to do here beyond the scenery and shopping"
+      ],
+      "similar_to": [
+        "A pretty Pyrenees pit-stop between Spain and France"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Honestly surprised me, super pretty everywhere, both the bus ride in and the city.",
+        "Alcohol is so damn cheap. The thing is there's just not much to do, come in, stock up, get lunch, leave."
+      ],
+      "tom_verdict": "A pretty Pyrenees surprise but thin on things to do. Stock up on cheap grog, take some pics, move on."
+    },
+    {
+      "id": "cairns",
+      "name": "Cairns & Tropical North",
+      "country": "Australia",
+      "lat": -16.92,
+      "lon": 145.77,
+      "recommended_nights": 4,
+      "budget_per_night_aud": "120-260",
+      "vibes": [
+        "nature",
+        "diving",
+        "adventure",
+        "wildlife"
+      ],
+      "vibe_scores": {
+        "adventure": 7,
+        "relaxation": 5,
+        "nightlife": 4,
+        "culture": 3,
+        "budget_friendly": 4,
+        "romantic": 5,
+        "family": 6,
+        "hiking": 5,
+        "diving": 8,
+        "ski": 0
+      },
+      "summary": "Gateway to the Reef and the Daintree, tropical far north Queensland",
+      "activities": [
+        {
+          "name": "Great Barrier Reef",
+          "desc": "Dive or snorkel the reef, the main event up here"
+        },
+        {
+          "name": "Daintree Rainforest",
+          "desc": "Ancient rainforest meeting the sea, north towards Cape Tribulation"
+        },
+        {
+          "name": "Cooktown & the north",
+          "desc": "The rugged historic far north, a proper adventure drive"
+        }
+      ],
+      "food_recommendations": [
+        "Cairns esplanade has the bulk of the dining, fresh seafood throughout"
+      ],
+      "nightlife": [
+        "Cairns has a lively backpacker scene"
+      ],
+      "transport_tips": [
+        "A car opens up the Daintree, Mossman and Cooktown, the region is spread out"
+      ],
+      "warnings": [
+        "Stingers (marine jellyfish) in summer, swim in netted areas or stinger suits",
+        "It's the wet tropics, expect humidity and rain"
+      ],
+      "similar_to": [
+        "A tropical reef-and-rainforest base in Australia's far north"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Part of the North Queensland run (Mossman, Cairns, Cooktown), the reef and the rainforest are the headline acts."
+      ],
+      "tom_verdict": "Australia's tropical north: the Reef, the Daintree and rugged Cooktown. A car helps, mind the summer stingers."
+    },
+    {
+      "id": "darwin-kakadu",
+      "name": "Darwin & Kakadu",
+      "country": "Australia",
+      "lat": -12.463,
+      "lon": 130.846,
+      "recommended_nights": 4,
+      "budget_per_night_aud": "110-240",
+      "vibes": [
+        "nature",
+        "wildlife",
+        "adventure",
+        "culture"
+      ],
+      "vibe_scores": {
+        "adventure": 7,
+        "relaxation": 4,
+        "nightlife": 3,
+        "culture": 6,
+        "budget_friendly": 4,
+        "romantic": 4,
+        "family": 5,
+        "hiking": 6,
+        "diving": 1,
+        "ski": 0
+      },
+      "summary": "Top End wetlands, ancient rock art and crocs",
+      "activities": [
+        {
+          "name": "Kakadu National Park",
+          "desc": "Vast wetlands, waterfalls and some of the world's oldest rock art"
+        },
+        {
+          "name": "Crocodile cruises",
+          "desc": "Spot saltwater crocs on the Top End's rivers and billabongs"
+        },
+        {
+          "name": "Darwin markets",
+          "desc": "Mindil Beach sunset markets are the social heart of the dry season"
+        }
+      ],
+      "food_recommendations": [
+        "Darwin's Mindil Beach markets for a multicultural feast at sunset"
+      ],
+      "nightlife": [
+        "Darwin has a relaxed tropical-city scene"
+      ],
+      "transport_tips": [
+        "A 4WD opens up more of Kakadu, especially in and after the wet"
+      ],
+      "warnings": [
+        "Crocodiles are a genuine danger, only swim where it's signed safe",
+        "Brutal heat and humidity, the dry season (May-Oct) is the time to go"
+      ],
+      "similar_to": [
+        "A wild, ancient Top End counterpoint to the coastal cities"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "The Kakadu and Darwin trip, the Top End wetlands, rock art and the croc country really stand out."
+      ],
+      "tom_verdict": "The wild Top End: Kakadu's wetlands and rock art, croc cruises, Darwin's markets. Go in the dry, respect the crocs."
+    },
+    {
+      "id": "kangaroo-island",
+      "name": "Kangaroo Island",
+      "country": "Australia",
+      "lat": -35.776,
+      "lon": 137.214,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "120-260",
+      "vibes": [
+        "nature",
+        "wildlife",
+        "relaxation"
+      ],
+      "vibe_scores": {
+        "adventure": 5,
+        "relaxation": 6,
+        "nightlife": 2,
+        "culture": 2,
+        "budget_friendly": 4,
+        "romantic": 6,
+        "family": 6,
+        "hiking": 5,
+        "diving": 3,
+        "ski": 0
+      },
+      "summary": "Wildlife-packed island off South Australia, beaches and bush",
+      "activities": [
+        {
+          "name": "Flinders Chase National Park",
+          "desc": "Remarkable Rocks and Admirals Arch, plus sea lions and wildlife"
+        },
+        {
+          "name": "Seal Bay",
+          "desc": "Walk among a wild Australian sea lion colony on the beach"
+        },
+        {
+          "name": "Wildlife everywhere",
+          "desc": "Kangaroos, koalas, echidnas and birds across the island"
+        }
+      ],
+      "food_recommendations": [
+        "Local honey, seafood and produce, the island is known for its food"
+      ],
+      "nightlife": [
+        "Very quiet, it's a nature escape"
+      ],
+      "transport_tips": [
+        "A car is essential, take the ferry from Cape Jervis or fly from Adelaide"
+      ],
+      "warnings": [
+        "Sights are spread out with long drives between them, watch for wildlife on the roads"
+      ],
+      "similar_to": [
+        "A wildlife-first island escape near Adelaide"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "One of the South Australia trips, wall-to-wall wildlife and dramatic coast, a lovely island escape."
+      ],
+      "tom_verdict": "A wildlife-packed island near Adelaide. Sea lions at Seal Bay, Remarkable Rocks, roos everywhere. You need a car."
+    },
+    {
+      "id": "phillip-island",
+      "name": "Phillip Island & Wilsons Prom",
+      "country": "Australia",
+      "lat": -38.487,
+      "lon": 145.234,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "100-220",
+      "vibes": [
+        "nature",
+        "wildlife",
+        "relaxation",
+        "family"
+      ],
+      "vibe_scores": {
+        "adventure": 5,
+        "relaxation": 6,
+        "nightlife": 2,
+        "culture": 2,
+        "budget_friendly": 5,
+        "romantic": 5,
+        "family": 7,
+        "hiking": 6,
+        "diving": 2,
+        "ski": 0
+      },
+      "summary": "Penguins, surf and the dramatic coast of southern Victoria",
+      "activities": [
+        {
+          "name": "Penguin Parade",
+          "desc": "The famous nightly march of little penguins up the beach"
+        },
+        {
+          "name": "Wilsons Promontory",
+          "desc": "Stunning granite peaks and beaches, some of Victoria's best hiking"
+        },
+        {
+          "name": "Bright & the high country",
+          "desc": "A pretty alpine town worth combining for the broader Victoria loop"
+        }
+      ],
+      "food_recommendations": [
+        "Coastal cafes and pubs, fish and chips on the island"
+      ],
+      "nightlife": [
+        "Quiet, this is nature and family territory"
+      ],
+      "transport_tips": [
+        "A car is needed, it's an easy drive south and east from Melbourne"
+      ],
+      "warnings": [
+        "The Prom's best walks are long, start early",
+        "Southern coast weather is changeable, layer up"
+      ],
+      "similar_to": [
+        "A wildlife-and-coast escape from Melbourne"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "The Victoria loop, Phillip Island penguins, Wilsons Prom hiking and Bright, a lovely mix of coast and high country."
+      ],
+      "tom_verdict": "Penguins, granite peaks and coast south of Melbourne. The Prom's hiking is the highlight, pair it with Bright."
+    },
+    {
+      "id": "vienna",
+      "name": "Vienna",
+      "country": "Austria",
+      "lat": 48.209,
+      "lon": 16.373,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "70-150",
       "vibes": [
         "culture",
-        "foodie",
+        "history",
         "city"
       ],
       "vibe_scores": {
-        "adventure": 3,
-        "relaxation": 2,
-        "nightlife": 4,
-        "culture": 6,
-        "budget_friendly": 7,
-        "romantic": 3,
-        "family": 4,
+        "adventure": 2,
+        "relaxation": 4,
+        "nightlife": 5,
+        "culture": 9,
+        "budget_friendly": 4,
+        "romantic": 7,
+        "family": 6,
         "hiking": 1,
         "diving": 1,
         "ski": 0
       },
-      "summary": "Chaotic gateway city with great street food",
+      "summary": "Palaces and architecture everywhere, some of the best in Europe",
       "activities": [
         {
-          "name": "Galle Face Green",
-          "desc": "Sunset walk along the seafront esplanade, street food stalls come alive in the evening"
+          "name": "Palaces and architecture",
+          "desc": "Probably one of the best in Europe, look up a list and pick a few"
         },
         {
-          "name": "Pettah Market",
-          "desc": "Sensory overload market district, explore the spice and textile lanes"
+          "name": "Walk the sights",
+          "desc": "You can walk between the cool things and catch the occasional metro"
         },
         {
-          "name": "Dutch Hospital precinct",
-          "desc": "Restored colonial quarter with good cafes if you need a calm reset"
+          "name": "McFit gym",
+          "desc": "A great gym with a 7 euro trial pass, good to get a workout in"
         }
       ],
       "food_recommendations": [
-        "Street food stalls along Galle Face Green at sunset",
-        "Pettah market for spices and snacks"
+        "Cheap Asian places to eat all around",
+        "We ate traditional Austrian deep fried chicken liver"
       ],
       "nightlife": [
-        "Quiet compared to the rest of the trip, mostly hotel bars"
+        "Meant to be ok per the hostel folks but no Budapest, don't prioritise it"
       ],
       "transport_tips": [
-        "Fly into Bandaranaike Airport (CMB), about 40 minutes by tuk-tuk to the centre"
+        "Public transport is a little exy, not many ticket checkers so do as you will",
+        "Stay near a metro line to make life easy"
       ],
       "warnings": [
-        "Traffic can make short trips take longer than expected"
+        "After big nights in Zagreb and Budapest this is a slow-it-down city"
       ],
       "similar_to": [
-        "Bangkok (smaller, calmer version)"
-      ],
-      "sub_itinerary": null,
-      "wandrly_notes": [],
-      "tom_verdict": "Not a highlight, but a fine one-night landing pad before heading inland."
-    },
-    {
-      "id": "sigiriya",
-      "name": "Sigiriya",
-      "country": "Sri Lanka",
-      "lat": 7.957,
-      "lon": 80.76,
-      "recommended_nights": 2,
-      "budget_per_night_aud": "30-120",
-      "vibes": [
-        "history",
-        "hiking",
-        "iconic"
-      ],
-      "vibe_scores": {
-        "adventure": 6,
-        "relaxation": 3,
-        "nightlife": 1,
-        "culture": 9,
-        "budget_friendly": 6,
-        "romantic": 4,
-        "family": 6,
-        "hiking": 6,
-        "diving": 0,
-        "ski": 0
-      },
-      "summary": "Ancient rock fortress and cave temples",
-      "activities": [
-        {
-          "name": "Sigiriya Rock Fortress",
-          "desc": "Climb at sunrise before the tour groups arrive, frescoes and mirror wall are highlights"
-        },
-        {
-          "name": "Pidurangala Rock",
-          "desc": "Hike up for the best view of Sigiriya itself, with a fraction of the crowd"
-        },
-        {
-          "name": "Dambulla Cave Temple",
-          "desc": "150 Buddha statues across 5 caves, the largest cave temple complex on the island"
-        }
-      ],
-      "food_recommendations": [
-        "Two-storey tourist restaurants in town are reliable and good value"
-      ],
-      "nightlife": [
-        "Very quiet, early nights here are normal"
-      ],
-      "transport_tips": [
-        "Train from Colombo to Habarana then a short tuk-tuk, or a direct bus (about 4 hours)"
-      ],
-      "warnings": [
-        "Elephants do roam near farmland at night, listen for alarms/shooting sounds, this is normal elephant deterrence"
-      ],
-      "similar_to": [
-        "Bagan (Myanmar) for the ancient-monument vibe"
+        "Budapest (grander but less wild)"
       ],
       "sub_itinerary": null,
       "wandrly_notes": [
-        "Sigiriya is basically a must-do, climb in the morning pre-heat and pre-crowds, arrive by 7am at the latest.",
-        "Pidurangala is a scramble to get up but gorgeous views and gives the best photo of Sigiriya itself.",
-        "Stop in Dambulla on the way for the temples and the central fruit market, both surprisingly cool."
+        "Took it slow here after the nights out in Zagreb and Budapest, no big nights out.",
+        "Palaces and architecture everywhere is probably one of the best in Europe, just pick some to visit.",
+        "McFit was a great gym with a 7 euro trial pass."
       ],
-      "tom_verdict": "One of the best mornings of the whole trip. Don't skip Pidurangala just because Sigiriya is the famous one."
+      "tom_verdict": "A grand, palace-filled slow-down city. Pick a few palaces, stay near a metro, save the big nights for Budapest."
     },
     {
-      "id": "kandy",
-      "name": "Kandy",
-      "country": "Sri Lanka",
-      "lat": 7.291,
-      "lon": 80.636,
+      "id": "bruges",
+      "name": "Bruges",
+      "country": "Belgium",
+      "lat": 51.209,
+      "lon": 3.224,
       "recommended_nights": 2,
-      "budget_per_night_aud": "20-130",
+      "budget_per_night_aud": "70-150",
       "vibes": [
+        "romantic",
         "culture",
-        "spiritual",
-        "hill-country"
+        "foodie",
+        "nightlife"
       ],
       "vibe_scores": {
-        "adventure": 3,
+        "adventure": 2,
         "relaxation": 5,
-        "nightlife": 2,
-        "culture": 8,
-        "budget_friendly": 6,
-        "romantic": 5,
-        "family": 6,
-        "hiking": 3,
-        "diving": 0,
+        "nightlife": 6,
+        "culture": 7,
+        "budget_friendly": 4,
+        "romantic": 9,
+        "family": 5,
+        "hiking": 1,
+        "diving": 1,
         "ski": 0
       },
-      "summary": "Sacred hill city with cooler air",
+      "summary": "Tiny, absolutely beautiful, so much fun",
       "activities": [
         {
-          "name": "Temple of the Tooth",
-          "desc": "Visit during the early morning puja ceremony for the most authentic experience"
+          "name": "Walk the canals",
+          "desc": "Best off walking around and finding stuff yourself, it's beautiful"
         },
         {
-          "name": "Kandy Lake loop",
-          "desc": "Easy 45-minute walk around the lake and through the old town"
+          "name": "Belgian beer",
+          "desc": "Unholy good, all of it super delicious, TripAdvisor has decent recommendations"
         },
         {
-          "name": "Peradeniya Botanical Gardens",
-          "desc": "60 acres of colonial-era gardens including a striking bamboo cathedral"
+          "name": "Waffles and food",
+          "desc": "Waffles, pizza, burgers, a bit of searching needed but delicious"
         }
       ],
       "food_recommendations": [
-        "Lakeside cafes around Kandy Lake"
+        "Not very cheap but delicious, around 8-10 euro a meal, walk and find your own spots"
       ],
       "nightlife": [
-        "Limited, this is a calmer, more spiritual stop"
+        "Super fun nightlife for such a small place, lean into it"
       ],
       "transport_tips": [
-        "Scenic train from Habarana/Sigiriya area, book first class in advance if possible"
+        "Tiny and walkable, no transport really needed"
       ],
-      "warnings": [],
+      "warnings": [
+        "Food isn't cheap, budget 8-10 euro per meal"
+      ],
       "similar_to": [
-        "Luang Prabang for the spiritual hill-town feel"
-      ],
-      "sub_itinerary": null,
-      "wandrly_notes": [],
-      "tom_verdict": "A good change of pace after Sigiriya, cooler, calmer, and a nice cultural anchor."
-    },
-    {
-      "id": "ella",
-      "name": "Ella",
-      "country": "Sri Lanka",
-      "lat": 6.866,
-      "lon": 81.046,
-      "recommended_nights": 3,
-      "budget_per_night_aud": "10-180",
-      "vibes": [
-        "hiking",
-        "trains",
-        "backpacker"
-      ],
-      "vibe_scores": {
-        "adventure": 6,
-        "relaxation": 6,
-        "nightlife": 4,
-        "culture": 4,
-        "budget_friendly": 8,
-        "romantic": 6,
-        "family": 4,
-        "hiking": 7,
-        "diving": 0,
-        "ski": 0
-      },
-      "summary": "Tea hills, hikes and the famous train line",
-      "activities": [
-        {
-          "name": "Nine Arches Bridge",
-          "desc": "Arrive around 8:15am to catch the train crossing for the classic photo"
-        },
-        {
-          "name": "Little Adam's Peak",
-          "desc": "Easy one-hour hike with sweeping views over the tea plantations"
-        },
-        {
-          "name": "Ella Rock",
-          "desc": "A tougher three-hour hike with far fewer tourists than Adam's Peak"
-        }
-      ],
-      "food_recommendations": [
-        "Cafes along the main strip do good Western/Sri Lankan fusion"
-      ],
-      "nightlife": [
-        "Small but social backpacker bar scene"
-      ],
-      "transport_tips": [
-        "The Kandy to Ella train is one of the great rail journeys, book well ahead, views are stunning from Nanu-Oya onward"
-      ],
-      "warnings": [],
-      "similar_to": [
-        "Pai (Thailand) for the laid-back hill-town backpacker vibe"
+        "A smaller, prettier, beer-soaked Amsterdam"
       ],
       "sub_itinerary": null,
       "wandrly_notes": [
-        "Walk to Rawana Cave behind the falls, almost nobody goes there, it's a great quiet add-on."
+        "I adore this city, super small, absolutely beautiful, so so so much fun.",
+        "2 nights is plenty, the nightlife is super fun then have some chilled out days.",
+        "The beer is unholy good, god damn, all of it is super delicious."
       ],
-      "tom_verdict": "Easily worth 3 nights, the hiking, the train, and the chill cafe scene all genuinely deliver."
+      "tom_verdict": "Tiny, beautiful and unexpectedly fun. Two nights, do a hostel not a hotel, drink the beer."
     },
     {
-      "id": "mirissa",
-      "name": "Mirissa",
-      "country": "Sri Lanka",
-      "lat": 5.948,
-      "lon": 80.456,
-      "recommended_nights": 2,
-      "budget_per_night_aud": "20-80",
+      "id": "caye-caulker",
+      "name": "Caye Caulker",
+      "country": "Belize",
+      "lat": 17.745,
+      "lon": -88.025,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "50-130",
       "vibes": [
         "beach",
-        "whale-watching",
-        "surf"
+        "relaxation",
+        "diving"
       ],
       "vibe_scores": {
         "adventure": 4,
         "relaxation": 8,
         "nightlife": 4,
-        "culture": 2,
-        "budget_friendly": 7,
-        "romantic": 7,
-        "family": 5,
-        "hiking": 0,
-        "diving": 3,
+        "culture": 3,
+        "budget_friendly": 5,
+        "romantic": 6,
+        "family": 4,
+        "hiking": 1,
+        "diving": 7,
         "ski": 0
       },
-      "summary": "South coast beach town, whales and sunsets",
+      "summary": "No cars, just golf carts and Caribbean calm",
       "activities": [
         {
-          "name": "Whale watching",
-          "desc": "Boats leave early morning, blue and sperm whales possible December to April"
+          "name": "Snorkel or dive the reef",
+          "desc": "The barrier reef is right there, trips run constantly"
         },
         {
-          "name": "Secret Beach",
-          "desc": "A 20 minute walk east along the coast from the main beach, mostly locals here"
+          "name": "The Split",
+          "desc": "A swim spot and bar where the island splits, sunset beers are the move"
         },
         {
-          "name": "Beachside seafood",
-          "desc": "Grilled catch of the day at the beachfront restaurants, best at sunset"
+          "name": "Just relax",
+          "desc": "Walkable, friendly and unhurried, this is a place to slow right down"
         }
       ],
       "food_recommendations": [
-        "Beachfront seafood grills, best at sunset"
+        "Paradiso cafe on the north side of south is great, balanced on price"
       ],
       "nightlife": [
-        "A few beach bars, low-key"
+        "Relaxed, the Split bar is the social hub"
       ],
       "transport_tips": [
-        "Bus from Ella, or tuk-tuk from Matara train station, roughly 3 hours"
+        "No cars or bikes, just golf carts, the whole island is super walkable",
+        "Currency is fixed to USD at 1:2, just bring USD and use it the whole time"
       ],
       "warnings": [
-        "Whale watching only worthwhile Dec-April, check season before planning around it"
+        "Not a cheap quick getaway, it's marketed for relaxing not budget",
+        "Ferry queues are huge, get there early for tickets and chill for the day"
       ],
       "similar_to": [
-        "Canggu (Bali) but smaller and quieter"
+        "Bocas del Toro (both Caribbean islands, Caye Caulker smaller and calmer)"
       ],
       "sub_itinerary": null,
       "wandrly_notes": [
-        "Secret Beach is a 20 minute walk east of the main beach, mostly locals, much nicer than the main strip."
+        "On arrival seems very relaxed and friendly, already offered weed five-plus times in an hour.",
+        "No cars or bikes, just golf carts, the whole island is super walkable, very Caribbean.",
+        "Currency is fixed to USD at 1:2 so just bring USD and use it the whole time, everyone takes it."
       ],
-      "tom_verdict": "Good for slowing down after the hill country, the whale watching is genuinely worth the early start in season."
+      "tom_verdict": "Golf-cart island time on the reef. Bring USD, snorkel, drink at the Split, and get to the ferry early."
     },
     {
-      "id": "galle",
-      "name": "Galle",
-      "country": "Sri Lanka",
-      "lat": 6.053,
-      "lon": 80.22,
-      "recommended_nights": 2,
-      "budget_per_night_aud": "35-210",
+      "id": "la-fortuna",
+      "name": "La Fortuna",
+      "country": "Costa Rica",
+      "lat": 10.468,
+      "lon": -84.643,
+      "recommended_nights": 4,
+      "budget_per_night_aud": "10-60",
       "vibes": [
-        "colonial",
-        "history",
-        "architecture"
+        "nature",
+        "adventure",
+        "wildlife",
+        "hiking"
       ],
       "vibe_scores": {
-        "adventure": 2,
-        "relaxation": 6,
-        "nightlife": 3,
-        "culture": 8,
+        "adventure": 8,
+        "relaxation": 4,
+        "nightlife": 2,
+        "culture": 3,
         "budget_friendly": 6,
-        "romantic": 8,
-        "family": 5,
-        "hiking": 0,
-        "diving": 4,
+        "romantic": 4,
+        "family": 6,
+        "hiking": 8,
+        "diving": 0,
         "ski": 0
       },
-      "summary": "UNESCO Dutch fort town, the most atmospheric stop",
+      "summary": "The quintessential Costa Rica stop with wildlife, hikes and a volcano",
       "activities": [
         {
-          "name": "Galle Fort ramparts",
-          "desc": "Walk the sea walls at sunset for the best light and ocean views"
+          "name": "Cerro Chato hike",
+          "desc": "The best hike here, no real track, scrambling, ropes, mud, swimming in the crater lake"
         },
         {
-          "name": "Fort cafes and galleries",
-          "desc": "Small lanes inside the fort have excellent independent cafes and shops"
+          "name": "Dusk river rafting",
+          "desc": "A river raft at dusk to spot all sorts of wildlife along the banks"
         },
         {
-          "name": "Jungle Beach",
-          "desc": "A short tuk-tuk ride north to a hidden cove, good for snorkelling"
+          "name": "Arenal volcano 1554 track",
+          "desc": "Fun hike with good views of the volcano"
         }
       ],
       "food_recommendations": [
-        "Coconut sambal and the 'street burger' (a KFC-style local favourite)"
+        "Eat at local sodas like Visquez or Hormiga to save money",
+        "Hostels with kitchens are a good budget move"
       ],
       "nightlife": [
-        "Quiet, mostly cafe/bar culture inside the fort"
+        "Not really a nightlife scene here"
       ],
       "transport_tips": [
-        "Coastal train from Mirissa/Matara, the clifftop section is one of the best short rides on the island"
+        "Hiring a car is the easiest way around Costa Rica",
+        "Local buses work but involve transfers, about $4 USD per hour"
       ],
       "warnings": [
-        "Fort walk is hot in the middle of the day, go morning or sunset"
+        "CR buses are punctual, arrive 15 minutes early",
+        "Always carry cash in Costa Rica"
       ],
       "similar_to": [
-        "Cartagena (Colombia) for the colonial fort-town feel"
+        "Monteverde for the nature, but La Fortuna has more activities"
       ],
       "sub_itinerary": null,
       "wandrly_notes": [
-        "Stayed just outside the fort for cheaper, larger accommodation, only a $5 tuk-tuk into the fort itself.",
-        "Diving at Hikkaduwa (20 mins away) is bare-bones but cheap, around 80 USD for 2 dives plus gear."
+        "La Fortuna is quintessential Costa Rica. All the animals, activities and a great town.",
+        "Eat at sodas like Visquez or Hormiga to save money.",
+        "Cerro Chato is the best hike, no real track, lots of scrambling and mud. Bring clothes you don't mind getting dirty.",
+        "For wildlife and birds, definitely hire a guide.",
+        "3-4 nights for a budget backpacker, 4-5 for a more relaxed stay."
       ],
-      "tom_verdict": "The most atmospheric stop on the island. Worth the full walk around the fort walls even though it's hot."
+      "tom_verdict": "If you're going to Costa Rica, La Fortuna is a must-do stop. Absolutely loved it here."
     },
     {
-      "id": "tbilisi",
-      "name": "Tbilisi",
-      "country": "Georgia",
-      "lat": 41.715,
-      "lon": 44.827,
-      "recommended_nights": 3,
-      "budget_per_night_aud": "15-90",
+      "id": "manuel-antonio",
+      "name": "Manuel Antonio",
+      "country": "Costa Rica",
+      "lat": 9.392,
+      "lon": -84.138,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "40-120",
       "vibes": [
-        "hidden-gem",
+        "nature",
+        "wildlife",
+        "beach"
+      ],
+      "vibe_scores": {
+        "adventure": 5,
+        "relaxation": 6,
+        "nightlife": 2,
+        "culture": 2,
+        "budget_friendly": 4,
+        "romantic": 5,
+        "family": 6,
+        "hiking": 4,
+        "diving": 1,
+        "ski": 0
+      },
+      "summary": "A small but wildlife-packed national park with beaches",
+      "activities": [
+        {
+          "name": "National park trails",
+          "desc": "All the tracks take 3-5 hours total, so much wildlife, none too hard"
+        },
+        {
+          "name": "Beach swim",
+          "desc": "Take a swim when done but watch out, monkeys try to steal your bags"
+        },
+        {
+          "name": "Quepos town",
+          "desc": "The cheaper nearby town, comida tipica is 24h with good tasty casado"
+        }
+      ],
+      "food_recommendations": [
+        "In Quepos, comida tipica is 24h and does good tasty casado",
+        "Eat a big breakfast before the park, no food inside"
+      ],
+      "nightlife": [
+        "Quiet, it's a national park town"
+      ],
+      "transport_tips": [
+        "Bus every 15 mins each way for 380 colones, bring small change"
+      ],
+      "warnings": [
+        "Watch out, monkeys will try to steal your bags on the beach",
+        "No food in the park, eat a big breakfast and go in early"
+      ],
+      "similar_to": [
+        "A more compact, beachy version of Costa Rica's bigger parks"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Is it worth travelling all the way here? Depends how much you like wildlife, the park is amazing.",
+        "Eat a big breakfast then go in early, no food in the park, then leave hungry in early arvo.",
+        "Quepos is the actual town nearby and way cheaper, comida tipica is 24h and good."
+      ],
+      "tom_verdict": "A small park bursting with wildlife. Big breakfast, go early, watch the bag-thief monkeys, base in cheaper Quepos."
+    },
+    {
+      "id": "monteverde",
+      "name": "Monteverde",
+      "country": "Costa Rica",
+      "lat": 10.3,
+      "lon": -84.808,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "40-110",
+      "vibes": [
+        "nature",
+        "adventure",
+        "wildlife"
+      ],
+      "vibe_scores": {
+        "adventure": 7,
+        "relaxation": 5,
+        "nightlife": 2,
+        "culture": 3,
+        "budget_friendly": 4,
+        "romantic": 5,
+        "family": 5,
+        "hiking": 7,
+        "diving": 0,
+        "ski": 0
+      },
+      "summary": "Cloud forest, night tours and incredible bird life",
+      "activities": [
+        {
+          "name": "Night tours",
+          "desc": "Genuinely fun, you see a different side of the forest"
+        },
+        {
+          "name": "Day forest tours",
+          "desc": "Cool and great for bird life, reserves often close 3-4pm to prep for night tours"
+        },
+        {
+          "name": "Wildlife around town",
+          "desc": "So much to see, book tours a few days ahead as they sell out"
+        }
+      ],
+      "food_recommendations": [
+        "Mostly overpriced in town, more reasonable spots near the sloth hostel"
+      ],
+      "nightlife": [
+        "Quiet, this is a nature stop"
+      ],
+      "transport_tips": [
+        "Recommend a car but the roads are very dodgy, 30 USD transport to La Fortuna"
+      ],
+      "warnings": [
+        "Can get really cold and really wet even in dry season, prep accordingly",
+        "Book tours a few days in advance, they sell out"
+      ],
+      "similar_to": [
+        "La Fortuna (both CR nature bases, Monteverde is cloud forest and cooler)"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "A reflection on this is wishing I stayed an extra night, 3-4 is perfect for all the nature.",
+        "Monteverde Backpackers was fab, book tours a few days in advance as they sell out.",
+        "It can get really cold and really wet here even in dry season, prep accordingly."
+      ],
+      "tom_verdict": "Cloud forest, brilliant birds and fun night tours. Give it 3-4 nights, book ahead, and pack for cold and wet."
+    },
+    {
+      "id": "zagreb",
+      "name": "Zagreb",
+      "country": "Croatia",
+      "lat": 45.815,
+      "lon": 15.982,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "35-90",
+      "vibes": [
         "culture",
+        "nightlife",
+        "budget",
         "city"
       ],
       "vibe_scores": {
-        "adventure": 4,
+        "adventure": 3,
         "relaxation": 4,
         "nightlife": 7,
-        "culture": 8,
+        "culture": 7,
         "budget_friendly": 9,
         "romantic": 5,
         "family": 4,
-        "hiking": 2,
-        "diving": 0,
-        "ski": 1
+        "hiking": 1,
+        "diving": 1,
+        "ski": 0
       },
-      "summary": "Quirky capital with old town charm and great food",
+      "summary": "Crazy cheap, beautiful, a real highlight",
       "activities": [
         {
-          "name": "Old Town wander",
-          "desc": "Narrow streets, balconies and sulfur bathhouses in the historic district"
+          "name": "Museum of Broken Relationships",
+          "desc": "Go here, find the scab, it's so worth it"
         },
         {
-          "name": "Narikala Fortress",
-          "desc": "Take the cable car up for sunset views over the whole city"
+          "name": "North vs south of the station",
+          "desc": "North is classical euro with eastern flair, south is Soviet-style blocks, cool how different they are"
         },
         {
-          "name": "Dezerter Bazaar",
-          "desc": "Huge local market, great for trying Georgian cheeses, bread and spices"
+          "name": "Bar crawl",
+          "desc": "A lovely bar crawl and an incredible amount of tequila"
         }
       ],
       "food_recommendations": [
-        "Khachapuri (cheese bread) everywhere, try a few regional styles"
+        "Everything is cheap, drinks, food, bakeries, check a few shops to learn prices"
       ],
       "nightlife": [
-        "Genuinely excellent and very cheap, a real highlight"
+        "Very fun, but honestly not that much to do, fun for 2 nights max then move on"
       ],
       "transport_tips": [
-        "Tbilisi International Airport is about 20 minutes from the centre"
+        "Don't trust the bus or train timetable, our bus left 35 minutes early for no reason"
       ],
-      "warnings": [],
+      "warnings": [
+        "The area north of the station is touristy and basically a different city, with a tourist tax",
+        "Don't trust the timetables, things leave early"
+      ],
       "similar_to": [
-        "Yerevan for the underrated-capital vibe"
+        "Budapest (cheaper and smaller, similar wild fun)"
       ],
       "sub_itinerary": null,
-      "wandrly_notes": [],
-      "tom_verdict": "One of the best value capitals in the world right now, go before everyone else figures it out."
+      "wandrly_notes": [
+        "Huge fan of this city, fucking amazing and crazy cheap everything.",
+        "Museum of Broken Relationships, go here, find the scab, it's so worth it.",
+        "Nightlife is very fun but there's honestly not that much to do, fun for 2 nights max then move on."
+      ],
+      "tom_verdict": "Crazy cheap and a riot for two nights. Do the Broken Relationships museum, bar crawl hard, then move on."
+    },
+    {
+      "id": "prague",
+      "name": "Prague",
+      "country": "Czech Republic",
+      "lat": 50.075,
+      "lon": 14.437,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "15-70",
+      "vibes": [
+        "nightlife",
+        "history",
+        "budget-friendly"
+      ],
+      "vibe_scores": {
+        "adventure": 3,
+        "relaxation": 4,
+        "nightlife": 8,
+        "culture": 7,
+        "budget_friendly": 9,
+        "romantic": 6,
+        "family": 5,
+        "hiking": 2,
+        "diving": 0,
+        "ski": 0
+      },
+      "summary": "Beautiful old town, incredibly cheap beers, great hostel scene",
+      "activities": [
+        {
+          "name": "Petrin Hill and tower",
+          "desc": "Climb the mini Eiffel Tower for great city views, pay to go up"
+        },
+        {
+          "name": "Prague Castle and cathedral",
+          "desc": "The castle complex is huge and worth half a day, cathedral is impressive"
+        },
+        {
+          "name": "Old Town wander",
+          "desc": "Just walking the streets is gorgeous, trams make getting everywhere easy"
+        }
+      ],
+      "food_recommendations": [
+        "Beers are around 1.50-2 euros, everything is cheap"
+      ],
+      "nightlife": [
+        "Nightlife ends a bit earlier than Budapest but the value is unbeatable"
+      ],
+      "transport_tips": [
+        "Trams are easy and cover most of the city, you can walk almost everywhere from a central hostel"
+      ],
+      "warnings": [
+        "Waiters may pressure you to tip, it's not required"
+      ],
+      "similar_to": [
+        "Budapest for cheap European nightlife"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Beers are about 1.50-2 euros. Nightlife ends a little earlier than Budapest but it's just as cheap.",
+        "Petrin Hill with the Eiffel Tower and the castle/cathedral are both must-dos.",
+        "Budget hostel was a fantastic experience and in a great spot, could walk everywhere.",
+        "Trams are easy to use and get you to most places."
+      ],
+      "tom_verdict": "Another fantastic city. The value for money is genuinely hard to beat anywhere in Europe."
+    },
+    {
+      "id": "el-tunco",
+      "name": "El Tunco",
+      "country": "El Salvador",
+      "lat": 13.494,
+      "lon": -89.382,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "25-70",
+      "vibes": [
+        "beach",
+        "relaxation",
+        "surf"
+      ],
+      "vibe_scores": {
+        "adventure": 5,
+        "relaxation": 8,
+        "nightlife": 4,
+        "culture": 3,
+        "budget_friendly": 8,
+        "romantic": 5,
+        "family": 3,
+        "hiking": 1,
+        "diving": 3,
+        "ski": 0
+      },
+      "summary": "Cheap, surf-focused beach town, just relax",
+      "activities": [
+        {
+          "name": "Surf the beach",
+          "desc": "Super cheap and surf-focused, the beach is just perfect for it"
+        },
+        {
+          "name": "Do nothing",
+          "desc": "The things to do are literally just relax, don't spend money, and beach time"
+        },
+        {
+          "name": "Dive shop",
+          "desc": "There's a dive shop if you want a break from surfing"
+        }
+      ],
+      "food_recommendations": [
+        "Everything is super cheap, uses USD"
+      ],
+      "nightlife": [
+        "Chilled surf-town nightlife"
+      ],
+      "transport_tips": [
+        "Well connected to San Salvador by chicken bus, or further afield by shuttle, Uber is super cheap"
+      ],
+      "warnings": [
+        "Only flag is I wish I stayed longer, give it 2-3 nights not 1"
+      ],
+      "similar_to": [
+        "A cheaper, surfier El Salvador answer to Sri Lanka's Hiriketiya"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Hard to write about because I was only here one night, top of my mind is damn I wish I stayed longer.",
+        "Stayed in Hammock Plantation a bit west of the main area and it was amazing.",
+        "Everything is super cheap, uses USD and Uber is so cheap, spend 2-3 nights."
+      ],
+      "tom_verdict": "A cheap, perfect little surf-and-chill town. Use USD, do nothing productive, and stay longer than one night."
+    },
+    {
+      "id": "helsinki",
+      "name": "Helsinki",
+      "country": "Finland",
+      "lat": 60.169,
+      "lon": 24.938,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "70-160",
+      "vibes": [
+        "culture",
+        "city",
+        "nightlife"
+      ],
+      "vibe_scores": {
+        "adventure": 3,
+        "relaxation": 4,
+        "nightlife": 5,
+        "culture": 6,
+        "budget_friendly": 3,
+        "romantic": 4,
+        "family": 4,
+        "hiking": 2,
+        "diving": 1,
+        "ski": 0
+      },
+      "summary": "Not a huge amount to do in the city, but a good launch pad north",
+      "activities": [
+        {
+          "name": "Irish pub at night",
+          "desc": "The place to be at night, unless you like techno"
+        },
+        {
+          "name": "Wander the centre",
+          "desc": "A pleasant enough city centre to explore for a day"
+        },
+        {
+          "name": "Head north (if time)",
+          "desc": "Finland is meant to be beautiful up north in the bush, a kiwi I met raved about it"
+        }
+      ],
+      "food_recommendations": [
+        "Drinks are super expensive, pre-drink heaps if you go out"
+      ],
+      "nightlife": [
+        "The Irish pub is the spot, free entry, security strict but fine with an Aussie licence"
+      ],
+      "transport_tips": [
+        "Public transport is super expensive at 3 euro per trip, no obvious ticket checkers but they're around"
+      ],
+      "warnings": [
+        "Honestly not much else to do in the city itself, the magic is up north"
+      ],
+      "similar_to": [
+        "Stockholm (similar pricey Nordic city, Stockholm has more to do)"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Cheap Sleep Helsinki was a great hostel and super cheap, highly recommend them.",
+        "Drinks are super expensive so pre-drink heaps, the Irish pub is the place to be, free entry.",
+        "Honestly not much else to do here, Finland is beautiful if you go north into the bush."
+      ],
+      "tom_verdict": "A pricey city that's really a gateway north. Pre-drink hard, hit the Irish pub, save the magic for the bush."
+    },
+    {
+      "id": "paris",
+      "name": "Paris",
+      "country": "France",
+      "lat": 48.857,
+      "lon": 2.352,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "90-200",
+      "vibes": [
+        "culture",
+        "romantic",
+        "foodie",
+        "city"
+      ],
+      "vibe_scores": {
+        "adventure": 2,
+        "relaxation": 3,
+        "nightlife": 6,
+        "culture": 9,
+        "budget_friendly": 3,
+        "romantic": 9,
+        "family": 5,
+        "hiking": 1,
+        "diving": 1,
+        "ski": 0
+      },
+      "summary": "Beautiful but expensive, the Eiffel Tower slaps",
+      "activities": [
+        {
+          "name": "Eiffel Tower at sunset",
+          "desc": "A bottle of wine watching sunset on the Eiffel Tower is marvellous"
+        },
+        {
+          "name": "Musee d'Orsay",
+          "desc": "Museums are a better option than galleries in my opinion, at least you can say you went"
+        },
+        {
+          "name": "Wander the city",
+          "desc": "Beautiful everywhere, just expensive, so walk it"
+        }
+      ],
+      "food_recommendations": [
+        "Food slaps, drinks slap, it's all just expensive"
+      ],
+      "nightlife": [
+        "Lively but pricey, like everything in Paris"
+      ],
+      "transport_tips": [
+        "Trains are easy as but vulnerable to strikes"
+      ],
+      "warnings": [
+        "Lots of scammers and dodgy vendors everywhere",
+        "So expensive, budget accordingly"
+      ],
+      "similar_to": [
+        "London (both expensive capitals, Paris prettier, London easier in English)"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Beautiful but so expensive. Eiffel Tower slaps, food slaps, drinks slap.",
+        "A bottle of wine and watching sunset on the Eiffel Tower is marvellous.",
+        "Lots of scammers and dodgy vendors everywhere, keep your wits about you."
+      ],
+      "tom_verdict": "Gorgeous and gorgeously expensive. Skip the galleries if art isn't your thing, do wine at sunset under the tower."
     },
     {
       "id": "kazbegi",
@@ -536,6 +1142,1512 @@
       "tom_verdict": "A great slow finish to the loop, the valley views from the walls are some of the best in the country."
     },
     {
+      "id": "tbilisi",
+      "name": "Tbilisi",
+      "country": "Georgia",
+      "lat": 41.715,
+      "lon": 44.827,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "15-90",
+      "vibes": [
+        "hidden-gem",
+        "culture",
+        "city"
+      ],
+      "vibe_scores": {
+        "adventure": 4,
+        "relaxation": 4,
+        "nightlife": 7,
+        "culture": 8,
+        "budget_friendly": 9,
+        "romantic": 5,
+        "family": 4,
+        "hiking": 2,
+        "diving": 0,
+        "ski": 1
+      },
+      "summary": "Quirky capital with old town charm and great food",
+      "activities": [
+        {
+          "name": "Old Town wander",
+          "desc": "Narrow streets, balconies and sulfur bathhouses in the historic district"
+        },
+        {
+          "name": "Narikala Fortress",
+          "desc": "Take the cable car up for sunset views over the whole city"
+        },
+        {
+          "name": "Dezerter Bazaar",
+          "desc": "Huge local market, great for trying Georgian cheeses, bread and spices"
+        }
+      ],
+      "food_recommendations": [
+        "Khachapuri (cheese bread) everywhere, try a few regional styles"
+      ],
+      "nightlife": [
+        "Genuinely excellent and very cheap, a real highlight"
+      ],
+      "transport_tips": [
+        "Tbilisi International Airport is about 20 minutes from the centre"
+      ],
+      "warnings": [],
+      "similar_to": [
+        "Yerevan for the underrated-capital vibe"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [],
+      "tom_verdict": "One of the best value capitals in the world right now, go before everyone else figures it out."
+    },
+    {
+      "id": "berlin",
+      "name": "Berlin",
+      "country": "Germany",
+      "lat": 52.52,
+      "lon": 13.405,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "60-140",
+      "vibes": [
+        "culture",
+        "history",
+        "nightlife",
+        "city"
+      ],
+      "vibe_scores": {
+        "adventure": 3,
+        "relaxation": 3,
+        "nightlife": 9,
+        "culture": 8,
+        "budget_friendly": 6,
+        "romantic": 4,
+        "family": 4,
+        "hiking": 1,
+        "diving": 1,
+        "ski": 0
+      },
+      "summary": "Pretty city with cool history, grungier than most of Europe",
+      "activities": [
+        {
+          "name": "Berlin Cathedral",
+          "desc": "Needs to be visited and viewed by day then again at night, super nice"
+        },
+        {
+          "name": "Museum Island",
+          "desc": "See all the sights here, the history is really cool"
+        },
+        {
+          "name": "Nightlife",
+          "desc": "Box bar is fun, the clubs go off, UAV went off the day after we left"
+        }
+      ],
+      "food_recommendations": [
+        "Co Wei Vietnamese restaurant near Museum Island is absolutely awesome",
+        "Currywurst tastes like shit but you have to try it"
+      ],
+      "nightlife": [
+        "The clubs genuinely go off, this is a world nightlife capital"
+      ],
+      "transport_tips": [
+        "Good public transport, easy to get around the sights"
+      ],
+      "warnings": [
+        "Much dirtier and grungier and more brutalist than most of this list, less pretty"
+      ],
+      "similar_to": [
+        "A grungier, edgier European capital"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Quite a pretty city with really cool history, not as expensive as expected.",
+        "Berlin Cathedral needs to be visited by day then again at night, it's super nice.",
+        "Co Wei Vietnamese near Museum Island is absolutely awesome."
+      ],
+      "tom_verdict": "Grungy, historic and a nightlife monster. See the cathedral day and night, eat at Co Wei, brace for brutalism."
+    },
+    {
+      "id": "athens",
+      "name": "Athens",
+      "country": "Greece",
+      "lat": 37.984,
+      "lon": 23.728,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "40-110",
+      "vibes": [
+        "culture",
+        "history",
+        "nightlife",
+        "city"
+      ],
+      "vibe_scores": {
+        "adventure": 4,
+        "relaxation": 4,
+        "nightlife": 8,
+        "culture": 9,
+        "budget_friendly": 7,
+        "romantic": 5,
+        "family": 5,
+        "hiking": 3,
+        "diving": 1,
+        "ski": 0
+      },
+      "summary": "A genuinely awesome city, beautiful and easy to love",
+      "activities": [
+        {
+          "name": "The Acropolis",
+          "desc": "Iconic, but very limited water and shade on the walk up, be prepared"
+        },
+        {
+          "name": "Pubs and locals",
+          "desc": "Pubs are very very fun and all the Greeks are super friendly"
+        },
+        {
+          "name": "Just wander",
+          "desc": "Doesn't need much info, it's just a really cool city to explore"
+        }
+      ],
+      "food_recommendations": [
+        "Bakeries and groceries are ridiculously cheap, can be a bit dodgy on freshness"
+      ],
+      "nightlife": [
+        "Very fun pubs, stay in a hostel because it's that kind of city, Pagration area"
+      ],
+      "transport_tips": [
+        "Make sure your accommodation is near the centre, buses are dodgy",
+        "Trams are quite good and the metro is alright, both recommended"
+      ],
+      "warnings": [
+        "Limited water and shade walking up the Acropolis, bring both",
+        "Beaches have nice water but it's dead flat and way worse than Sydney"
+      ],
+      "similar_to": [
+        "A friendlier, cheaper, more ancient Rome"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Very very awesome city, looks beautiful, everything is awesome, it doesn't need much info.",
+        "Highly recommend staying in a hostel here because it's that kind of city, Pagration!",
+        "Pubs are very fun and all the Greeks are super friendly."
+      ],
+      "tom_verdict": "A genuinely awesome, friendly, cheap city. Stay in a hostel, do the Acropolis early with water, hit the pubs."
+    },
+    {
+      "id": "antigua-guatemala",
+      "name": "Antigua",
+      "country": "Guatemala",
+      "lat": 14.558,
+      "lon": -90.734,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "10-40",
+      "vibes": [
+        "adventure",
+        "hiking",
+        "backpacker",
+        "culture"
+      ],
+      "vibe_scores": {
+        "adventure": 9,
+        "relaxation": 3,
+        "nightlife": 3,
+        "culture": 6,
+        "budget_friendly": 8,
+        "romantic": 4,
+        "family": 2,
+        "hiking": 9,
+        "diving": 0,
+        "ski": 0
+      },
+      "summary": "Beautiful colonial town, base camp for the Acatenango volcano trek",
+      "activities": [
+        {
+          "name": "Acatenango volcano trek",
+          "desc": "A tough 2-day hike with lava views from Fuego, the reason to come here"
+        },
+        {
+          "name": "Central market",
+          "desc": "Amazing to get lost in, cheap food court at the back left if you can find it"
+        },
+        {
+          "name": "Fuego side hike",
+          "desc": "Extra tough add-on from Acatenango but worth every step for the lava and explosions"
+        }
+      ],
+      "food_recommendations": [
+        "Central market food court has lunch for about $25 quetzales if you speak Spanish"
+      ],
+      "nightlife": [
+        "Small town, limited but friendly"
+      ],
+      "transport_tips": [
+        "Buy a shuttle from Guatemala City airport, about $20 USD",
+        "Tropicana is the best agency for Acatenango"
+      ],
+      "warnings": [
+        "Acatenango summit gets to -10C with wind chill, bring all warm gear including scarf, hat and beanie",
+        "Spend a full day acclimatising in Antigua before the trek to avoid altitude sickness"
+      ],
+      "similar_to": [
+        "Huaraz for the trek-base-town vibe"
+      ],
+      "sub_itinerary": {
+        "name": "Acatenango and Fuego volcano trek",
+        "nights": 1,
+        "is_separate_location": true,
+        "summary": "A 2-day, 30km trek including the optional but incredible Fuego side hike to see lava and explosions up close",
+        "days": [
+          {
+            "day": 1,
+            "title": "Antigua to Acatenango base camp",
+            "desc": "11km hike to camp, arrive for sunset views of Fuego erupting"
+          },
+          {
+            "day": 2,
+            "title": "Summit and Fuego side hike",
+            "desc": "4am summit for sunrise, then optional 4km each way to Fuego for lava views, return to Antigua"
+          }
+        ]
+      },
+      "wandrly_notes": [
+        "Acatenango is the real reason to be here, a tough 2-day hike but just do all of it including Fuego.",
+        "Tropicana is the best agency for the trek.",
+        "Bring all your warm gear, it gets to -10C with wind chill at the summit.",
+        "The central market is amazing, cheap food court at the back left if you can find it.",
+        "Spend a full day in Antigua first to adjust to altitude before the trek."
+      ],
+      "tom_verdict": "The Fuego hike is the reason I would come back. Worth every cent and every bead of sweat."
+    },
+    {
+      "id": "flores",
+      "name": "Flores",
+      "country": "Guatemala",
+      "lat": 16.928,
+      "lon": -89.892,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "30-90",
+      "vibes": [
+        "culture",
+        "history",
+        "nature",
+        "adventure"
+      ],
+      "vibe_scores": {
+        "adventure": 6,
+        "relaxation": 5,
+        "nightlife": 3,
+        "culture": 8,
+        "budget_friendly": 7,
+        "romantic": 4,
+        "family": 4,
+        "hiking": 4,
+        "diving": 1,
+        "ski": 0
+      },
+      "summary": "Lake island town, gateway to the great Tikal ruins",
+      "activities": [
+        {
+          "name": "Tikal at sunset",
+          "desc": "Pay extra for the sunset ticket, quiet park, animals out, a magic walk back in the dark"
+        },
+        {
+          "name": "Yaxha ruins",
+          "desc": "A quieter ruin site, great for a half day before or after Tikal"
+        },
+        {
+          "name": "Lake Peten Itza",
+          "desc": "Kayak or swim off the island town, food here is cheap and big"
+        }
+      ],
+      "food_recommendations": [
+        "Food is cheap, expect 55-65 Quetzal max for a decent big meal",
+        "Wild Bean or similar is a good restaurant with big portions"
+      ],
+      "nightlife": [
+        "Low-key, it's more a ruins base than a party town"
+      ],
+      "transport_tips": [
+        "Long but doable overnight shuttle or a short domestic flight from Guatemala City/Antigua"
+      ],
+      "warnings": [
+        "Tikal's sunset ticket is an orange foreigner wristband, they check it at the big temples so go up early",
+        "Festival in January has cheap food but constant explosions all night, bring earplugs, ends 15 Jan"
+      ],
+      "similar_to": [
+        "A jungle-and-lake base, like a Central American Siem Reap"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Tikal, strongly recommend paying extra for the sunset ticket, but not on a Sunday when locals get free entry.",
+        "Food in Flores is cheap, expect 55-65 Quetzal max for a decent big meal.",
+        "Festival happens in January with super cheap market food but so many random explosions all night, bring earplugs."
+      ],
+      "tom_verdict": "A lake-island base for the brilliant Tikal ruins. Pay for the sunset ticket (not Sundays), eat cheap, bring earplugs in Jan."
+    },
+    {
+      "id": "budapest",
+      "name": "Budapest",
+      "country": "Hungary",
+      "lat": 47.497,
+      "lon": 19.04,
+      "recommended_nights": 4,
+      "budget_per_night_aud": "15-80",
+      "vibes": [
+        "nightlife",
+        "city",
+        "budget-friendly",
+        "culture"
+      ],
+      "vibe_scores": {
+        "adventure": 3,
+        "relaxation": 4,
+        "nightlife": 9,
+        "culture": 7,
+        "budget_friendly": 9,
+        "romantic": 6,
+        "family": 4,
+        "hiking": 1,
+        "diving": 0,
+        "ski": 0
+      },
+      "summary": "Stunning, cheap, incredible nightlife. One of Europe's best cities.",
+      "activities": [
+        {
+          "name": "Ruin bars and Instant Club",
+          "desc": "Ruin bar district is busy 7 nights a week in summer, a must-do nightlife experience"
+        },
+        {
+          "name": "River cruise",
+          "desc": "Cheap river cruise to see the Parliament and bridges lit up at night"
+        },
+        {
+          "name": "Margaret Island pools",
+          "desc": "Public pools on the island are fun and a fifth of the price of the famous thermal baths"
+        }
+      ],
+      "food_recommendations": [
+        "Everything is cheap, just wander and eat"
+      ],
+      "nightlife": [
+        "Ruin bars into Instant Club is the move, close to Wombat hostel which is excellent",
+        "Boat parties on the Danube are apparently great too"
+      ],
+      "transport_tips": [
+        "Ticket checkers are everywhere on public transport, always pay"
+      ],
+      "warnings": [
+        "Stay centrally near the ruin bars to make life easy"
+      ],
+      "similar_to": [
+        "Prague for the cheap nightlife, but Budapest has better scenery"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Loved this city, it's stunning, cheap and so much fun. Could easily spend a week.",
+        "Stay centrally near the ruin bars to make life easy.",
+        "Ticket checkers are everywhere on public transport, you absolutely must pay.",
+        "A river cruise is cheap and the best way to see the main sights.",
+        "The pools on Margaret Island are just as fun as the famous baths at a fifth of the price."
+      ],
+      "tom_verdict": "One of my favourite cities in the world. Go back for a week at some point, this place is just amazing."
+    },
+    {
+      "id": "canggu",
+      "name": "Canggu",
+      "country": "Indonesia",
+      "lat": -8.648,
+      "lon": 115.139,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "30-100",
+      "vibes": [
+        "relaxation",
+        "beach",
+        "nightlife",
+        "foodie"
+      ],
+      "vibe_scores": {
+        "adventure": 3,
+        "relaxation": 8,
+        "nightlife": 6,
+        "culture": 2,
+        "budget_friendly": 6,
+        "romantic": 5,
+        "family": 4,
+        "hiking": 1,
+        "diving": 2,
+        "ski": 0
+      },
+      "summary": "Gym, massage, beach and chill, not a culture stop",
+      "activities": [
+        {
+          "name": "Beach and cafe days",
+          "desc": "A relax-and-recharge spot, walking distance to the beach is ideal"
+        },
+        {
+          "name": "Gym and wellness",
+          "desc": "Day passes to gyms like Pucuk are great for around 50k"
+        },
+        {
+          "name": "Nightlife",
+          "desc": "Use Google for what's on each day, the scene moves around"
+        }
+      ],
+      "food_recommendations": [
+        "Crate Cafe is great with huge portions for around 70k",
+        "Manca 2 restaurant about 50-60k for a decent sized meal"
+      ],
+      "nightlife": [
+        "Use Google for events and nightlife, it changes by the day"
+      ],
+      "transport_tips": [
+        "A pain to get from the airport, a grab is around 300k and can take 2-3 hours, don't get ripped off",
+        "No need for a car rental, millions of grab bikes and cars around"
+      ],
+      "warnings": [
+        "Very easy to pay for something overpriced, don't get ripped off on massages or grabs"
+      ],
+      "similar_to": [
+        "Hiriketiya (both relaxed surf-and-wellness towns)"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Not a place for culture or history, it's where you relax, hit the gym, get a massage and chill.",
+        "A pain to get from the airport, a grab is 300k, don't get ripped off, can take 2-3 hours.",
+        "Good massages, definitely recommend, but it's very easy to pay for something overpriced."
+      ],
+      "tom_verdict": "A gym-massage-beach-chill town, not a culture hit. Stay walking distance to the beach and don't get grab-scammed."
+    },
+    {
+      "id": "jakarta",
+      "name": "Jakarta",
+      "country": "Indonesia",
+      "lat": -6.208,
+      "lon": 106.846,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "30-90",
+      "vibes": [
+        "city",
+        "culture",
+        "off-track"
+      ],
+      "vibe_scores": {
+        "adventure": 4,
+        "relaxation": 2,
+        "nightlife": 4,
+        "culture": 5,
+        "budget_friendly": 7,
+        "romantic": 2,
+        "family": 3,
+        "hiking": 1,
+        "diving": 1,
+        "ski": 0
+      },
+      "summary": "A bit of a hole but oddly likeable, cheap and real",
+      "activities": [
+        {
+          "name": "Walk the local areas",
+          "desc": "A crazy maze of shops and alleys, just cool to walk through"
+        },
+        {
+          "name": "National Monument",
+          "desc": "The monument is cool, museums are meant to be ok"
+        },
+        {
+          "name": "Indonesian McDonald's",
+          "desc": "Cheap and very odd, worth a visit for the novelty"
+        }
+      ],
+      "food_recommendations": [
+        "Indonesian McDonald's is cheap and odd, grab is 1/5 the price of Sydney for getting around"
+      ],
+      "nightlife": [
+        "Blok M is where the super rich Indonesians go, per a local friend"
+      ],
+      "transport_tips": [
+        "Driving is faster than the train, grab is here and as good as ever, about 1/5 of Sydney prices"
+      ],
+      "warnings": [
+        "The pollution is insane, a thick smog that partially blocks the sun sometimes",
+        "Not sure how safe the local maze areas are but I was fine"
+      ],
+      "similar_to": [
+        "A grittier, smoggier mega-city stopover"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Everyone told me this city was a hole and they're kinda right, but I didn't hate it.",
+        "Coolest thing I did was walk through the local areas, a crazy maze of shops and alleys.",
+        "The pollution is insane, you can see a thick smog that partially blocks the sun."
+      ],
+      "tom_verdict": "A smoggy mega-city most people skip, but walking the local alleys is oddly great. Cheap, real, two nights tops."
+    },
+    {
+      "id": "uluwatu",
+      "name": "Uluwatu",
+      "country": "Indonesia",
+      "lat": -8.829,
+      "lon": 115.085,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "30-110",
+      "vibes": [
+        "beach",
+        "culture",
+        "diving",
+        "relaxation"
+      ],
+      "vibe_scores": {
+        "adventure": 4,
+        "relaxation": 6,
+        "nightlife": 5,
+        "culture": 5,
+        "budget_friendly": 5,
+        "romantic": 6,
+        "family": 4,
+        "hiking": 2,
+        "diving": 6,
+        "ski": 0
+      },
+      "summary": "Classic Bali, cliffs, temples and diving",
+      "activities": [
+        {
+          "name": "Diving",
+          "desc": "All the boats go to the same spots so just go by price, SEA was fantastic"
+        },
+        {
+          "name": "GWK statue & Barong",
+          "desc": "The big statue and Barong dance were a genuine surprise highlight"
+        },
+        {
+          "name": "Uluwatu Temple",
+          "desc": "You're there for the monkeys and the clifftop setting more than the temple"
+        }
+      ],
+      "food_recommendations": [
+        "Easy to get ripped off, explore around and use the internet"
+      ],
+      "nightlife": [
+        "Lots of variation, explore around, easy to get ripped off"
+      ],
+      "transport_tips": [
+        "Grab bikes are about 3 dollars for 30 mins, BYO helmet, Gojek can be cheaper",
+        "I stayed inland and it was fine"
+      ],
+      "warnings": [
+        "The temple is meh, you go for the monkeys",
+        "Diving is cool but very crowded, wouldn't plan a Bali trip around it alone"
+      ],
+      "similar_to": [
+        "Canggu (Uluwatu is cheaper and more classic Bali)"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Uluwatu feels like classic Bali, a lot cheaper than Canggu and has all the classic things.",
+        "Diving, all the boats go to the same spots so just go by price, SEA was fantastic.",
+        "Went to the big GWK statue and Barong which was actually really great, definitely recommended."
+      ],
+      "tom_verdict": "Classic Bali on the cliffs, cheaper than Canggu. Dive by price, do the GWK statue, the temple's really about the monkeys."
+    },
+    {
+      "id": "yogyakarta",
+      "name": "Yogyakarta",
+      "country": "Indonesia",
+      "lat": -7.797,
+      "lon": 110.371,
+      "recommended_nights": 5,
+      "budget_per_night_aud": "20-70",
+      "vibes": [
+        "culture",
+        "history",
+        "adventure",
+        "budget"
+      ],
+      "vibe_scores": {
+        "adventure": 6,
+        "relaxation": 4,
+        "nightlife": 5,
+        "culture": 9,
+        "budget_friendly": 8,
+        "romantic": 4,
+        "family": 5,
+        "hiking": 4,
+        "diving": 1,
+        "ski": 0
+      },
+      "summary": "Real Indonesia, temples, caves and cool history",
+      "activities": [
+        {
+          "name": "Borobudur & Prambanan",
+          "desc": "Both world-class temples, doable in one big but exy day, sunrise is from a nearby hill not the temple"
+        },
+        {
+          "name": "Jomblang cave",
+          "desc": "Seriously cool with a famous light beam, an unmissable adventure"
+        },
+        {
+          "name": "Tilldrop nightlife",
+          "desc": "Live music every night, a great mix of locals and tourists"
+        }
+      ],
+      "food_recommendations": [
+        "Get a huge meal plus drink for 40k at a Warung buffet, don't get ripped off",
+        "A nice, not stupidly overpriced pizza place near Mediterranean (which is overpriced)"
+      ],
+      "nightlife": [
+        "Tilldrop and surrounds is peak, live music every night, heaps of locals and tourists"
+      ],
+      "transport_tips": [
+        "Train in and out is good, just buy your ticket in advance, they sell out all the time",
+        "If a group, a grab car from the airport is easier but probably slower"
+      ],
+      "warnings": [
+        "Wonderloft hostel has a whole wall of activities because there's so much to do"
+      ],
+      "similar_to": [
+        "A cultural, temple-rich counterpoint to beachy Bali"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "I liked it here, felt a lot more like real Indonesia with some cool history.",
+        "Highlights are Borobudur and Prambanan, the sunrise is from a nearby hill not the temple itself.",
+        "Jomblong caves was also seriously cool, and you can get a huge meal plus drink for 40k at a Warung buffet."
+      ],
+      "tom_verdict": "The real, cultural Indonesia. Do Borobudur and Prambanan, the Jomblang cave is unmissable, eat at Warung buffets."
+    },
+    {
+      "id": "rome",
+      "name": "Rome",
+      "country": "Italy",
+      "lat": 41.903,
+      "lon": 12.496,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "60-150",
+      "vibes": [
+        "culture",
+        "history",
+        "foodie",
+        "city"
+      ],
+      "vibe_scores": {
+        "adventure": 3,
+        "relaxation": 3,
+        "nightlife": 6,
+        "culture": 10,
+        "budget_friendly": 5,
+        "romantic": 8,
+        "family": 6,
+        "hiking": 1,
+        "diving": 1,
+        "ski": 0
+      },
+      "summary": "Stunning at night, ancient everywhere, great cheap pizza",
+      "activities": [
+        {
+          "name": "Colosseum & Forum",
+          "desc": "Super easy to buy tickets in person on the day, go morning-ish for a mid-arvo slot"
+        },
+        {
+          "name": "Trevi Fountain at night",
+          "desc": "All the sights are stunning at night, the fountain especially"
+        },
+        {
+          "name": "Pantheon area",
+          "desc": "A great cheap pizza and mozzarella shop sits near the Pantheon"
+        }
+      ],
+      "food_recommendations": [
+        "Pizza and mozzarella are very cheap and very good near the Pantheon",
+        "Don't pay more than 10 euro for a pizza anywhere, ours were all 8-10 and great"
+      ],
+      "nightlife": [
+        "Rome works very late, everything open and busy till at least 11 in summer"
+      ],
+      "transport_tips": [
+        "The full experience Colosseum+Forum ticket is worth it, around 22 euro each",
+        "Buses are regular but never the right one, often faster to catch one going roughly the right way and hop off"
+      ],
+      "warnings": [
+        "From 2023 they're rolling out card tapping but it was barely there, bring cash",
+        "Smells a lot like cigarettes everywhere, like much of France and Italy"
+      ],
+      "similar_to": [
+        "Athens (Rome is grander and pricier, Athens friendlier)"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Super super easy to buy Colosseum and Forum tickets in person on the day, go morning-ish.",
+        "All the Rome sights are stunning at night, especially the fountain.",
+        "Don't pay more than 10 euro for a pizza anywhere, ours were all 8-10 and very good."
+      ],
+      "tom_verdict": "Ancient, stunning, and open late. Buy Colosseum tickets in person on the day, never pay over 10 euro for pizza."
+    },
+    {
+      "id": "kyoto",
+      "name": "Kyoto",
+      "country": "Japan",
+      "lat": 35.011,
+      "lon": 135.768,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "50-180",
+      "vibes": [
+        "culture",
+        "history",
+        "calm"
+      ],
+      "vibe_scores": {
+        "adventure": 2,
+        "relaxation": 6,
+        "nightlife": 3,
+        "culture": 9,
+        "budget_friendly": 5,
+        "romantic": 8,
+        "family": 5,
+        "hiking": 2,
+        "diving": 0,
+        "ski": 0
+      },
+      "summary": "Quiet, atmospheric former capital, can get very cold in winter",
+      "activities": [
+        {
+          "name": "Fushimi Inari",
+          "desc": "Thousands of orange torii gates climbing the hillside, go early to avoid crowds"
+        },
+        {
+          "name": "TeamLab digital art",
+          "desc": "Surprisingly good immersive digital art installation"
+        },
+        {
+          "name": "Themed bars wander",
+          "desc": "Small, often quirky themed bars scattered through the city, including a rock bar"
+        }
+      ],
+      "food_recommendations": [
+        "A great Mexican restaurant near Rancho shrine, a fun surprise in Kyoto"
+      ],
+      "nightlife": [
+        "Small and quiet compared to Osaka, but some great themed bars"
+      ],
+      "transport_tips": [
+        "Can be done as a day trip from Osaka if short on time, but an overnight is worth it"
+      ],
+      "warnings": [
+        "Most paid temples can be seen via a side path without paying, not always worth the entry fee",
+        "Gets very cold in winter"
+      ],
+      "similar_to": [
+        "Nara for a smaller, quieter version"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Much quieter than Osaka or Tokyo, and can get very cold in winter.",
+        "Fushimi Inari is genuinely worth it.",
+        "Most paid temples can be seen via a side path without paying, not always worth the entry fee.",
+        "Can be done as a day trip from Osaka if short on time, but still worth an overnight."
+      ],
+      "tom_verdict": "The calm counterpoint to Osaka and Tokyo, go in spring or autumn if you can."
+    },
+    {
+      "id": "matsumoto",
+      "name": "Matsumoto",
+      "country": "Japan",
+      "lat": 36.238,
+      "lon": 137.972,
+      "recommended_nights": 1,
+      "budget_per_night_aud": "70-150",
+      "vibes": [
+        "culture",
+        "history"
+      ],
+      "vibe_scores": {
+        "adventure": 2,
+        "relaxation": 4,
+        "nightlife": 2,
+        "culture": 8,
+        "budget_friendly": 5,
+        "romantic": 6,
+        "family": 5,
+        "hiking": 2,
+        "diving": 1,
+        "ski": 2
+      },
+      "summary": "Gorgeous castle town, a great one-night stopover",
+      "activities": [
+        {
+          "name": "Matsumoto Castle",
+          "desc": "Gorgeous, especially with the winter/NY light show, going inside is worth it"
+        },
+        {
+          "name": "City Museum",
+          "desc": "Surprisingly good, worth it if you need to kill time"
+        },
+        {
+          "name": "Coffee Abe",
+          "desc": "Great and cheap breakfast"
+        }
+      ],
+      "food_recommendations": [
+        "Coffee Abe for cheap breakfast",
+        "Station food options are bad but there's bento inside the gate itself"
+      ],
+      "nightlife": [
+        "Quiet, it's a one-night castle-town stop"
+      ],
+      "transport_tips": [
+        "Well worth a stopover between other Japan stops"
+      ],
+      "warnings": [
+        "The castle floor is cold inside, but going in is still worth it"
+      ],
+      "similar_to": [
+        "A smaller castle-town cousin of Japan's bigger cities"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Stayed here for one night and loved it, Matsumoto Castle is gorgeous, especially with the winter light show.",
+        "City museum was actually surprisingly good and worth checking out to kill time.",
+        "The station had bad food options but has bento inside the gate itself."
+      ],
+      "tom_verdict": "A gorgeous castle town and a perfect one-night stop. See the castle (and its winter light show), eat at Coffee Abe."
+    },
+    {
+      "id": "nagano",
+      "name": "Nagano",
+      "country": "Japan",
+      "lat": 36.651,
+      "lon": 138.181,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "40-150",
+      "vibes": [
+        "ski",
+        "winter",
+        "nature"
+      ],
+      "vibe_scores": {
+        "adventure": 6,
+        "relaxation": 5,
+        "nightlife": 2,
+        "culture": 4,
+        "budget_friendly": 5,
+        "romantic": 6,
+        "family": 6,
+        "hiking": 3,
+        "diving": 0,
+        "ski": 8
+      },
+      "summary": "Proper winter town with beginner-friendly skiing and great onsens",
+      "activities": [
+        {
+          "name": "Ryuoo Ski Park",
+          "desc": "Very beginner-friendly skiing with cheap gear hire, take the long train then free shuttle"
+        },
+        {
+          "name": "Mamejima Yutaruan onsen",
+          "desc": "Authentic outdoor onsen, a perfect way to finish a ski day"
+        },
+        {
+          "name": "Zenko-ji Temple",
+          "desc": "Huge, actively-used temple that gets a lot of snow in winter"
+        }
+      ],
+      "food_recommendations": [],
+      "nightlife": [],
+      "transport_tips": [
+        "Public transport gets expensive here, a car makes life much easier if staying a few days"
+      ],
+      "warnings": [
+        "The Jigokudani snow monkey park is a bit of a tourist trap and somewhat unethical, take it or leave it"
+      ],
+      "similar_to": [
+        "Niseko but smaller and cheaper"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Proper winter town, the skiing at Ryuoo ski park is very beginner-friendly with cheap gear hire.",
+        "Finish a ski day at Mamejima Yutaruan for an outdoor onsen, genuinely amazing.",
+        "Public transport gets expensive here, a car makes life much easier if staying a few days."
+      ],
+      "tom_verdict": "Great value introduction to skiing in Japan, the onsen after is half the appeal."
+    },
+    {
+      "id": "osaka",
+      "name": "Osaka",
+      "country": "Japan",
+      "lat": 34.694,
+      "lon": 135.502,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "45-160",
+      "vibes": [
+        "foodie",
+        "nightlife",
+        "city"
+      ],
+      "vibe_scores": {
+        "adventure": 3,
+        "relaxation": 3,
+        "nightlife": 8,
+        "culture": 5,
+        "budget_friendly": 6,
+        "romantic": 5,
+        "family": 6,
+        "hiking": 0,
+        "diving": 0,
+        "ski": 0
+      },
+      "summary": "Much livelier than Kyoto, great food and nightlife",
+      "activities": [
+        {
+          "name": "Dotonbori at night",
+          "desc": "Iconic neon canal-side strip, walk it with a drink in hand"
+        },
+        {
+          "name": "Osaka Aquarium",
+          "desc": "A genuine highlight, including their coral regeneration programs"
+        },
+        {
+          "name": "Shinsekai",
+          "desc": "Slightly daggy retro shopping and food district, fun to explore"
+        }
+      ],
+      "food_recommendations": [
+        "Street food throughout Dotonbori, takoyaki and okonomiyaki are local specialties"
+      ],
+      "nightlife": [
+        "Dotonbori and Namba have the best concentration of bars and izakaya"
+      ],
+      "transport_tips": [
+        "Stay near Tennoji or Namba for easy transport connections"
+      ],
+      "warnings": [],
+      "similar_to": [
+        "Tokyo but smaller, friendlier, and more food-focused"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Much livelier than Kyoto, Dotonbori at night with a drink in hand is great.",
+        "The aquarium is a genuine highlight, including their coral regeneration programs.",
+        "Stay near Tennoji or Namba for easy transport connections."
+      ],
+      "tom_verdict": "The food alone justifies a stop here, pair it with Kyoto for a great contrast."
+    },
+    {
+      "id": "tokyo",
+      "name": "Tokyo",
+      "country": "Japan",
+      "lat": 35.676,
+      "lon": 139.65,
+      "recommended_nights": 4,
+      "budget_per_night_aud": "60-200",
+      "vibes": [
+        "city",
+        "foodie",
+        "iconic",
+        "culture"
+      ],
+      "vibe_scores": {
+        "adventure": 4,
+        "relaxation": 3,
+        "nightlife": 7,
+        "culture": 8,
+        "budget_friendly": 5,
+        "romantic": 5,
+        "family": 6,
+        "hiking": 1,
+        "diving": 0,
+        "ski": 1
+      },
+      "summary": "Massive, endlessly interesting city, impossible to see it all so don't try",
+      "activities": [
+        {
+          "name": "Shibuya and Shimokitazawa",
+          "desc": "Stay near here for easy access to the centre, great for wandering alleys and shops"
+        },
+        {
+          "name": "Imperial Palace grounds",
+          "desc": "A calmer, more historic counterpoint to the neon districts"
+        },
+        {
+          "name": "Tokyo Metropolitan Government Building",
+          "desc": "Free observation deck with great skyline views"
+        }
+      ],
+      "food_recommendations": [
+        "Convenience stores (konbini) are genuinely excellent and open 24/7"
+      ],
+      "nightlife": [
+        "Shibuya and Shinjuku for variety, smaller izakaya bars for something quieter"
+      ],
+      "transport_tips": [
+        "Load Suica onto your phone for transport and shops, but note any balance is void once you leave Japan",
+        "Metro lines close around midnight and taxis are expensive, plan your last train"
+      ],
+      "warnings": [
+        "Some famous spots like Meiji Shrine and Jimbocho are often a bit underwhelming despite reputation"
+      ],
+      "similar_to": [
+        "Seoul for a similarly huge, neon-lit Asian capital"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "4 to 5 nights is a good amount of time given the size of the city.",
+        "Staying near Shibuya, within about 15 minutes by train of the centre, works really well.",
+        "Get Suica loaded on your phone for transport and convenience stores, but note any balance is void once you leave Japan.",
+        "Metro lines close around midnight and taxis are expensive, plan your last train carefully."
+      ],
+      "tom_verdict": "You cannot 'do' Tokyo, just pick a neighbourhood to base in and let yourself wander."
+    },
+    {
+      "id": "riga",
+      "name": "Riga",
+      "country": "Latvia",
+      "lat": 56.949,
+      "lon": 24.105,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "30-80",
+      "vibes": [
+        "culture",
+        "budget",
+        "city"
+      ],
+      "vibe_scores": {
+        "adventure": 2,
+        "relaxation": 5,
+        "nightlife": 5,
+        "culture": 7,
+        "budget_friendly": 8,
+        "romantic": 5,
+        "family": 4,
+        "hiking": 1,
+        "diving": 1,
+        "ski": 0
+      },
+      "summary": "Pretty old town, fun but a little quiet",
+      "activities": [
+        {
+          "name": "Old town",
+          "desc": "Quite pretty, recommend staying near the station if only here a night or two"
+        },
+        {
+          "name": "Aussie Pub",
+          "desc": "Fun and Australian of course"
+        },
+        {
+          "name": "Wander the centre",
+          "desc": "A nice place if a little quiet, easy to stroll"
+        }
+      ],
+      "food_recommendations": [
+        "Plenty around the old town"
+      ],
+      "nightlife": [
+        "Fun if a little quiet, the Aussie Pub is a laugh"
+      ],
+      "transport_tips": [
+        "Stay near the station if only here a night or two"
+      ],
+      "warnings": [
+        "Some hostels have no laundry, check before booking"
+      ],
+      "similar_to": [
+        "Kaunas (similar Baltic charm, Riga a touch bigger)"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Not here very long but seemed like a fun place if a little quiet.",
+        "The old town is quite pretty, recommend staying near the station for a short stay.",
+        "Aussie Pub is fun and Australian of course."
+      ],
+      "tom_verdict": "A pretty, quiet Baltic stop. Stay near the station, the old town is lovely, the Aussie Pub is a laugh."
+    },
+    {
+      "id": "kaunas",
+      "name": "Kaunas",
+      "country": "Lithuania",
+      "lat": 54.898,
+      "lon": 23.904,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "30-75",
+      "vibes": [
+        "culture",
+        "budget",
+        "off-track",
+        "city"
+      ],
+      "vibe_scores": {
+        "adventure": 3,
+        "relaxation": 5,
+        "nightlife": 4,
+        "culture": 7,
+        "budget_friendly": 9,
+        "romantic": 5,
+        "family": 5,
+        "hiking": 1,
+        "diving": 1,
+        "ski": 0
+      },
+      "summary": "Surprisingly lovely, small, quiet and really pretty",
+      "activities": [
+        {
+          "name": "Old town",
+          "desc": "Some nice restaurants, chilled out and lovely"
+        },
+        {
+          "name": "Castle and the point",
+          "desc": "The castle and area by the point near the old town is beautiful"
+        },
+        {
+          "name": "St Michael's & town church",
+          "desc": "Worth visiting, all these churches are in use, don't walk into a wedding like I did"
+        }
+      ],
+      "food_recommendations": [
+        "Heaps of good cheap food, 10 euro for dinner goes a lot further than Western Europe",
+        "Restaurants close earlier than everywhere else, especially midweek"
+      ],
+      "nightlife": [
+        "Quiet, this is a chilled-out small town"
+      ],
+      "transport_tips": [
+        "Apple Maps does NOT work here, use Google Maps for public transport",
+        "If you have coins, easiest way around is buying tickets on the bus, arrive and leave by bus"
+      ],
+      "warnings": [
+        "Restaurants close earlier than everywhere, especially midweek"
+      ],
+      "similar_to": [
+        "Riga (Kaunas is smaller, quieter, even more underrated)"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Genuinely surprising how much I loved this city, super small, quiet but really pretty.",
+        "Important, Apple Maps does not work here, use Google Maps instead for public transport.",
+        "Both locals we met had never met an Australian before, and most speak excellent English."
+      ],
+      "tom_verdict": "A tiny, quiet surprise of a city. Use Google Maps not Apple, eat cheap, the castle and old town are lovely."
+    },
+    {
+      "id": "bacalar",
+      "name": "Bacalar",
+      "country": "Mexico",
+      "lat": 18.677,
+      "lon": -88.395,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "40-120",
+      "vibes": [
+        "relaxation",
+        "nature",
+        "beach"
+      ],
+      "vibe_scores": {
+        "adventure": 4,
+        "relaxation": 7,
+        "nightlife": 4,
+        "culture": 3,
+        "budget_friendly": 5,
+        "romantic": 6,
+        "family": 4,
+        "hiking": 1,
+        "diving": 2,
+        "ski": 0
+      },
+      "summary": "The lagoon of seven colours, kayaking and calm",
+      "activities": [
+        {
+          "name": "Kayak the lagoon",
+          "desc": "Fantastic and cheaper than the overpriced boat tours, you can paddle to the boat parties for free"
+        },
+        {
+          "name": "Cenote Azul",
+          "desc": "A deep dark cenote right on the lagoon's edge"
+        },
+        {
+          "name": "Free swim spots",
+          "desc": "Free water access after Calle 14, decent if slightly busy, no need to pay for a club"
+        }
+      ],
+      "food_recommendations": [
+        "Cocina Orizaba does breakfast and lunch, massive portions at real Mexican prices",
+        "Around 110 pesos for infinite tortillas, a meal, rice and soup"
+      ],
+      "nightlife": [
+        "La Catrina for a salsa party is fantastic with a group, mix of locals and tourists"
+      ],
+      "transport_tips": [
+        "The ADO bus station is NOT where Apple Maps marks it, it's about 500m back towards Tulum near Calle 42"
+      ],
+      "warnings": [
+        "Anyone saying Bacalar is undiscovered by tourists is kidding themselves",
+        "Prices similar to Tulum if not more expensive, 2-3 nights max unless you love birds or lagoon activities"
+      ],
+      "similar_to": [
+        "Tulum (Bacalar is calmer and lagoon-focused)"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Getting a kayak is fantastic to see the lake and cheaper than the overpriced water activities.",
+        "If you're game, kayak over to the boat parties across the lagoon and join in without much difficulty.",
+        "The ADO bus station is not where Apple Maps marks it, it's near Calle 42."
+      ],
+      "tom_verdict": "A seven-colour lagoon made for kayaking. Paddle to the boat parties, eat at Cocina Orizaba, 2-3 nights is plenty."
+    },
+    {
+      "id": "mexico-city",
+      "name": "Mexico City",
+      "country": "Mexico",
+      "lat": 19.433,
+      "lon": -99.133,
+      "recommended_nights": 4,
+      "budget_per_night_aud": "40-110",
+      "vibes": [
+        "culture",
+        "foodie",
+        "history",
+        "city",
+        "nightlife"
+      ],
+      "vibe_scores": {
+        "adventure": 4,
+        "relaxation": 3,
+        "nightlife": 7,
+        "culture": 9,
+        "budget_friendly": 7,
+        "romantic": 5,
+        "family": 5,
+        "hiking": 2,
+        "diving": 1,
+        "ski": 0
+      },
+      "summary": "Huge, friendly and brilliant for food",
+      "activities": [
+        {
+          "name": "Anthropology Museum",
+          "desc": "Ridiculously worth it, one of the great museums of the world"
+        },
+        {
+          "name": "Teotihuacan",
+          "desc": "Worth it but a long day with sun and walking, the guides give really useful info"
+        },
+        {
+          "name": "Practise Spanish",
+          "desc": "Few people speak English and locals are super friendly even if your Spanish isn't perfect"
+        }
+      ],
+      "food_recommendations": [
+        "Street food everywhere, cash is a must for stalls and tickets"
+      ],
+      "nightlife": [
+        "Clubbing with the hostel is really fun"
+      ],
+      "transport_tips": [
+        "Metro covers integrated bus and train routes and is really good, some routes close Sundays for bike riding",
+        "Cash is needed for tickets and anything on the street, ATM fees are sad but necessary"
+      ],
+      "warnings": [
+        "Traffic is insane at peak times, be prepared",
+        "Staying in the city centre is a must"
+      ],
+      "similar_to": [
+        "A bigger, friendlier, more chaotic European capital with better tacos"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Speaking a bit of Spanish and having cash are the two most important things here.",
+        "Come on a Sunday for free museums, the Anthropology museum is ridiculously worth it.",
+        "Most tourists are from Mexico or other Spanish-speaking countries and locals are super friendly, it's not France."
+      ],
+      "tom_verdict": "Huge, friendly and a food paradise. Come Sunday for free museums, the Anthropology museum alone is worth the trip."
+    },
+    {
+      "id": "tulum",
+      "name": "Tulum",
+      "country": "Mexico",
+      "lat": 20.211,
+      "lon": -87.466,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "50-160",
+      "vibes": [
+        "beach",
+        "culture",
+        "relaxation"
+      ],
+      "vibe_scores": {
+        "adventure": 4,
+        "relaxation": 6,
+        "nightlife": 5,
+        "culture": 6,
+        "budget_friendly": 4,
+        "romantic": 6,
+        "family": 4,
+        "hiking": 1,
+        "diving": 4,
+        "ski": 0
+      },
+      "summary": "Ruins, cenotes and a stark wealth-gap beach",
+      "activities": [
+        {
+          "name": "Chichen Itza day tour",
+          "desc": "Find a shorter one, combine with a cenote and lunch, just go, it's so worth it"
+        },
+        {
+          "name": "Cenote swims",
+          "desc": "The Yucatan is full of them, the freshwater sinkholes are magic"
+        },
+        {
+          "name": "Beach access hack",
+          "desc": "Walk through La Eufemia taco shop for free beach access, the town itself is more chill"
+        }
+      ],
+      "food_recommendations": [
+        "La Eufemia taco shop, walk through for free beach access too"
+      ],
+      "nightlife": [
+        "Beach clubs are pricey, the town is more chill"
+      ],
+      "transport_tips": [
+        "Bus (ADO) from Cancun airport, cheaper than a shuttle but a bit dodgy",
+        "Show up at the Cancun airport bus stop 20 mins early, lots leave early"
+      ],
+      "warnings": [
+        "Super expensive on the beach side, the actual town is more chill",
+        "Worth walking to the beach side just to see the wealth gap"
+      ],
+      "similar_to": [
+        "Bacalar (Tulum busier and pricier, Bacalar calmer)"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Chichen Itza day tour is so worth it, find a shorter one, please just go, it's so cool.",
+        "La Eufemia is a taco shop you can walk through to get free beach access.",
+        "Worth walking to the beach side to see the wealth gap, the beach itself is just ok."
+      ],
+      "tom_verdict": "Ruins, cenotes and a wild wealth gap. Do a Chichen Itza tour, hit the cenotes, taco-shop your way onto the beach."
+    },
+    {
+      "id": "tangier",
+      "name": "Tangier",
+      "country": "Morocco",
+      "lat": 35.759,
+      "lon": -5.834,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "30-90",
+      "vibes": [
+        "culture",
+        "foodie",
+        "city",
+        "off-track"
+      ],
+      "vibe_scores": {
+        "adventure": 6,
+        "relaxation": 3,
+        "nightlife": 3,
+        "culture": 8,
+        "budget_friendly": 8,
+        "romantic": 4,
+        "family": 4,
+        "hiking": 2,
+        "diving": 1,
+        "ski": 0
+      },
+      "summary": "Modern Europe meets Morocco in the markets",
+      "activities": [
+        {
+          "name": "Medina markets",
+          "desc": "A maze of streets and stalls, dodgy-feeling but not unsafe, everything is cheap"
+        },
+        {
+          "name": "Cape Spartel & Hercules Cave",
+          "desc": "Grab a cab from the ferry terminal, the lighthouse is sick, the cave is meh"
+        },
+        {
+          "name": "American Legation",
+          "desc": "A cool little museum in the medina, worth an hour"
+        }
+      ],
+      "food_recommendations": [
+        "Street food in the medina is super cheap, restaurants targeting tourists run 8-14 euro"
+      ],
+      "nightlife": [
+        "Low-key, this is more a markets-and-medina city than a nightlife one"
+      ],
+      "transport_tips": [
+        "Fast ferry from Tarifa, about 1 hour, get your passport stamped on the ferry itself to skip arrival hassle",
+        "For Cape Spartel, 20 euros got me a 2.5 hour guided tour around the coast, they'll try for 50"
+      ],
+      "warnings": [
+        "You MUST bring cash, euros and USD accepted, bring small notes and coins as things are so cheap",
+        "Apparently has pickpockets in the medina though I didn't see any"
+      ],
+      "similar_to": [
+        "A North African echo of a Vietnamese market city"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Really cool city, modern Europe meets Vietnam with the markets, everything is super cheap.",
+        "Bring small euro notes and coins, water was 0.40 euro and a pain au chocolat was 0.20.",
+        "On the ferry from Tarifa get your passport stamped on the boat itself to prevent arrival hassle."
+      ],
+      "tom_verdict": "A cheap, chaotic, brilliant medina city and an easy ferry from Spain. Bring small cash, day-trip the lighthouse."
+    },
+    {
+      "id": "amsterdam",
+      "name": "Amsterdam",
+      "country": "Netherlands",
+      "lat": 52.37,
+      "lon": 4.895,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "80-180",
+      "vibes": [
+        "culture",
+        "nightlife",
+        "city",
+        "foodie"
+      ],
+      "vibe_scores": {
+        "adventure": 3,
+        "relaxation": 4,
+        "nightlife": 8,
+        "culture": 8,
+        "budget_friendly": 4,
+        "romantic": 6,
+        "family": 5,
+        "hiking": 1,
+        "diving": 1,
+        "ski": 0
+      },
+      "summary": "Awesome, friendly, super tourist-friendly and easy to get around",
+      "activities": [
+        {
+          "name": "Best public transport of the trip",
+          "desc": "The best public transport of the entire trip and not too expensive"
+        },
+        {
+          "name": "Red Light Secrets museum",
+          "desc": "So worth visiting, it answers all your questions and you meet the monsters"
+        },
+        {
+          "name": "Bars and randos",
+          "desc": "Bars are super fun here if you meet random people"
+        }
+      ],
+      "food_recommendations": [
+        "Food and drinks aren't cheap but it's a fun city to eat in"
+      ],
+      "nightlife": [
+        "Super fun, especially if you meet random people in the bars"
+      ],
+      "transport_tips": [
+        "The best public transport of the entire trip, use it freely"
+      ],
+      "warnings": [
+        "If taking edibles, check there's actually THC in them, some are THC-free",
+        "Hostels are 100x better than hotels here but expensive"
+      ],
+      "similar_to": [
+        "A bigger, busier Bruges"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Another highlight, awesome city, super friendly, super fun, very tourist friendly and easy to get everywhere.",
+        "The Red Light Secrets museum is so worth visiting, it answers all your questions.",
+        "Combine an edible with the Body Worlds museum for the full tourist experience."
+      ],
+      "tom_verdict": "Friendly, fun and the best transport of the trip. Do a hostel, hit the bars, the Red Light museum is worth it."
+    },
+    {
       "id": "christchurch",
       "name": "Christchurch",
       "country": "New Zealand",
@@ -640,65 +2752,6 @@
       "tom_verdict": "One night is right, see the church, do the stargazing if clear, then move on."
     },
     {
-      "id": "wanaka",
-      "name": "Wanaka",
-      "country": "New Zealand",
-      "lat": -44.7,
-      "lon": 169.149,
-      "recommended_nights": 3,
-      "budget_per_night_aud": "60-180",
-      "vibes": [
-        "lakeside",
-        "hiking",
-        "ski"
-      ],
-      "vibe_scores": {
-        "adventure": 7,
-        "relaxation": 6,
-        "nightlife": 4,
-        "culture": 3,
-        "budget_friendly": 5,
-        "romantic": 7,
-        "family": 6,
-        "hiking": 8,
-        "diving": 0,
-        "ski": 8
-      },
-      "summary": "Lakeside town, less crowded than Queenstown",
-      "activities": [
-        {
-          "name": "Isthmus Peak hike",
-          "desc": "A quieter alternative to Roys Peak with equally stunning lake views"
-        },
-        {
-          "name": "Rob Roy Glacier track",
-          "desc": "A relatively easy walk to a hanging glacier and waterfalls"
-        },
-        {
-          "name": "That Wanaka Tree",
-          "desc": "The famous lone tree in the lake, best at sunrise to avoid crowds"
-        }
-      ],
-      "food_recommendations": [
-        "Lakefront cafes around the Wanaka Tree area"
-      ],
-      "nightlife": [
-        "A handful of good bars, calmer than Queenstown"
-      ],
-      "transport_tips": [
-        "About 3 hours from Lake Tekapo via Lindis Pass, one of the most scenic drives in the country"
-      ],
-      "warnings": [],
-      "similar_to": [
-        "Queenstown but quieter, a good alternative base"
-      ],
-      "sub_itinerary": null,
-      "wandrly_notes": [
-        "Skip the busy Roys Peak track and try Isthmus Peak instead, similar views, far fewer people."
-      ],
-      "tom_verdict": "My pick over Queenstown for a base, same scenery, fraction of the crowds."
-    },
-    {
       "id": "queenstown",
       "name": "Queenstown",
       "country": "New Zealand",
@@ -758,6 +2811,391 @@
         "Skip the paid gondola, the free Tiki Trail up Ben Lomond has better views for $0."
       ],
       "tom_verdict": "Worth the hype for the activities, but base in Wanaka if budget or crowds are a concern."
+    },
+    {
+      "id": "wanaka",
+      "name": "Wanaka",
+      "country": "New Zealand",
+      "lat": -44.7,
+      "lon": 169.149,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "60-180",
+      "vibes": [
+        "lakeside",
+        "hiking",
+        "ski"
+      ],
+      "vibe_scores": {
+        "adventure": 7,
+        "relaxation": 6,
+        "nightlife": 4,
+        "culture": 3,
+        "budget_friendly": 5,
+        "romantic": 7,
+        "family": 6,
+        "hiking": 8,
+        "diving": 0,
+        "ski": 8
+      },
+      "summary": "Lakeside town, less crowded than Queenstown",
+      "activities": [
+        {
+          "name": "Isthmus Peak hike",
+          "desc": "A quieter alternative to Roys Peak with equally stunning lake views"
+        },
+        {
+          "name": "Rob Roy Glacier track",
+          "desc": "A relatively easy walk to a hanging glacier and waterfalls"
+        },
+        {
+          "name": "That Wanaka Tree",
+          "desc": "The famous lone tree in the lake, best at sunrise to avoid crowds"
+        }
+      ],
+      "food_recommendations": [
+        "Lakefront cafes around the Wanaka Tree area"
+      ],
+      "nightlife": [
+        "A handful of good bars, calmer than Queenstown"
+      ],
+      "transport_tips": [
+        "About 3 hours from Lake Tekapo via Lindis Pass, one of the most scenic drives in the country"
+      ],
+      "warnings": [],
+      "similar_to": [
+        "Queenstown but quieter, a good alternative base"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Skip the busy Roys Peak track and try Isthmus Peak instead, similar views, far fewer people."
+      ],
+      "tom_verdict": "My pick over Queenstown for a base, same scenery, fraction of the crowds."
+    },
+    {
+      "id": "leon",
+      "name": "Leon",
+      "country": "Nicaragua",
+      "lat": 12.434,
+      "lon": -86.878,
+      "recommended_nights": 4,
+      "budget_per_night_aud": "25-70",
+      "vibes": [
+        "culture",
+        "adventure",
+        "history",
+        "budget"
+      ],
+      "vibe_scores": {
+        "adventure": 8,
+        "relaxation": 4,
+        "nightlife": 5,
+        "culture": 8,
+        "budget_friendly": 9,
+        "romantic": 4,
+        "family": 3,
+        "hiking": 5,
+        "diving": 1,
+        "ski": 0
+      },
+      "summary": "Cool, safe, laid-back colonial city, volcano boarding base",
+      "activities": [
+        {
+          "name": "Volcano boarding",
+          "desc": "The must-do here, super fun, great views, sunset was magic at Cerro Negro"
+        },
+        {
+          "name": "Revolution Museum",
+          "desc": "Politically heavy but great and informative on Nicaragua's violent history, 3 USD"
+        },
+        {
+          "name": "4pm walking tour",
+          "desc": "Great info and finishes on the must-do church roof for an amazing sunset"
+        }
+      ],
+      "food_recommendations": [
+        "Desayunazo for great cheap breakfast, or Manana Manana for upmarket",
+        "Central market for cheap lunch, street food for cheap good dinner"
+      ],
+      "nightlife": [
+        "Relatively laid-back but fun, the walking tour and a smoothie is a good combo"
+      ],
+      "transport_tips": [
+        "Stay in the centre, walking distance to the cathedral, connection to San Juan del Sur is easy"
+      ],
+      "warnings": [
+        "Connection to El Tunco is hell, but pick your poison through Honduras"
+      ],
+      "similar_to": [
+        "Antigua (both colonial bases, Leon is grittier with volcano boarding)"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Overall a really cool city and felt very safe, stay in the centre near the cathedral.",
+        "The Revolution Museum is politically heavy but great for 3 USD, I can't recommend it enough.",
+        "The must-do is volcano boarding, super fun, great views, sunset was magic at Cerro Negro."
+      ],
+      "tom_verdict": "A safe, cheap colonial base for volcano boarding. Do the Revolution museum and the rooftop-sunset walking tour."
+    },
+    {
+      "id": "san-juan-del-sur",
+      "name": "San Juan del Sur",
+      "country": "Nicaragua",
+      "lat": 11.252,
+      "lon": -85.87,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "25-80",
+      "vibes": [
+        "beach",
+        "surf",
+        "nightlife"
+      ],
+      "vibe_scores": {
+        "adventure": 5,
+        "relaxation": 6,
+        "nightlife": 6,
+        "culture": 2,
+        "budget_friendly": 6,
+        "romantic": 4,
+        "family": 3,
+        "hiking": 1,
+        "diving": 2,
+        "ski": 0
+      },
+      "summary": "Mostly an American surf-tourist town, casual but small",
+      "activities": [
+        {
+          "name": "Surf nearby beaches",
+          "desc": "Shuttle to Playa Hermosa or Playa Madera, chill spots with decent surf"
+        },
+        {
+          "name": "Sunday Funday",
+          "desc": "The famous pool crawl, very much the scene here"
+        },
+        {
+          "name": "Cheap eats",
+          "desc": "A 24h restaurant near Pachamama (Comedor) does 3 USD meals"
+        }
+      ],
+      "food_recommendations": [
+        "Comedor near Pachamama, 24h, meals for 3 USD"
+      ],
+      "nightlife": [
+        "Sunday Funday pool crawl is the big draw, otherwise casual"
+      ],
+      "transport_tips": [
+        "Quite connected, easy transport and close to the border",
+        "Shuttle to the surf beaches is 6-10 USD, bring food and water"
+      ],
+      "warnings": [
+        "The beach in town is dodgy, watch your stuff and honestly don't swim",
+        "Lots of tourist tax, you might be better off in Ometepe or Granada unless you surf"
+      ],
+      "similar_to": [
+        "El Tunco (both surf towns, SJDS more American and party-focused)"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Mostly an American tourist town, cool and casual but very small, better off in Ometepe or Granada unless you surf.",
+        "Don't rent a surfboard till you arrive at the beach in case the waves are bad.",
+        "The beach in town is dodgy, watch your stuff and don't swim, there's a bike track to Playa Hermosa to skip the entry fee."
+      ],
+      "tom_verdict": "A small American surf-party town. Good for Sunday Funday and nearby surf, but skip the dodgy town beach."
+    },
+    {
+      "id": "oslo",
+      "name": "Oslo",
+      "country": "Norway",
+      "lat": 59.914,
+      "lon": 10.752,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "90-200",
+      "vibes": [
+        "culture",
+        "nature",
+        "city"
+      ],
+      "vibe_scores": {
+        "adventure": 4,
+        "relaxation": 4,
+        "nightlife": 4,
+        "culture": 7,
+        "budget_friendly": 2,
+        "romantic": 6,
+        "family": 5,
+        "hiking": 3,
+        "diving": 1,
+        "ski": 0
+      },
+      "summary": "Absolutely stunning and developed, but it can be a real party pooper",
+      "activities": [
+        {
+          "name": "Fram Museum",
+          "desc": "Crazy worth visiting, as is the opera house for a view of the city"
+        },
+        {
+          "name": "Vigeland sculpture park",
+          "desc": "Really worth checking out, it's stunning"
+        },
+        {
+          "name": "Sunset at Ekebergparken",
+          "desc": "Statue park with a great sunset view over the city"
+        }
+      ],
+      "food_recommendations": [
+        "Grunerlokka has a row of lovely bars, basically like Newtown"
+      ],
+      "nightlife": [
+        "You basically can't have a casual drink anywhere except home or a 10 euro pub"
+      ],
+      "transport_tips": [
+        "Coming to/from the airport, catch the REGIONAL not express train, 3 mins slower and saves 7-8 euro",
+        "Public transport is stupid expensive at 3-4 euro per trip with lots of ticket checkers, hire a bike or walk"
+      ],
+      "warnings": [
+        "Public drinking in any sense is completely illegal, even on your own balcony",
+        "Alcohol can't be sold after 8pm, expect to pay 75-110 kroner per drink",
+        "Under 20 you can't drink over 22% or even enter venues serving it"
+      ],
+      "similar_to": [
+        "Stockholm (similarly pricey and pretty, Oslo stricter on alcohol)"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Absolutely stunning and really developed, beautiful, but FUCK ME it can be a party pooper in every sense.",
+        "Catch the regional not express train from the airport, 3 minutes slower and saves 7-8 euro.",
+        "Norwegian locals are very fun, shoutout to Frida, Mina and Kristoffer."
+      ],
+      "tom_verdict": "Stunning and developed but the alcohol laws are brutal. Do the Fram museum and Vigeland park, take the regional train."
+    },
+    {
+      "id": "bocas-del-toro",
+      "name": "Bocas del Toro",
+      "country": "Panama",
+      "lat": 9.34,
+      "lon": -82.241,
+      "recommended_nights": 4,
+      "budget_per_night_aud": "15-50",
+      "vibes": [
+        "diving",
+        "beach",
+        "backpacker",
+        "caribbean"
+      ],
+      "vibe_scores": {
+        "adventure": 6,
+        "relaxation": 7,
+        "nightlife": 6,
+        "culture": 3,
+        "budget_friendly": 7,
+        "romantic": 5,
+        "family": 3,
+        "hiking": 1,
+        "diving": 8,
+        "ski": 0
+      },
+      "summary": "Caribbean island with great diving, bioluminescent plankton and beaches",
+      "activities": [
+        {
+          "name": "Scuba diving with Pirates",
+          "desc": "Fantastic marine life and soft corals, bioluminescent plankton on night dives is incredible"
+        },
+        {
+          "name": "Beach hopping",
+          "desc": "Accessible by $2.50 bus or water taxi, several beautiful beaches to explore"
+        },
+        {
+          "name": "Thursday to Saturday pub crawl",
+          "desc": "The island comes alive for the weekend pub crawl"
+        }
+      ],
+      "food_recommendations": [
+        "Eat local for $5-7 per meal, much cheaper than tourist spots"
+      ],
+      "nightlife": [
+        "Packed Thursday through Saturday for the pub crawl, quieter rest of the week"
+      ],
+      "transport_tips": [
+        "Beaches accessible by Estrella bus for $2.50 or water taxi"
+      ],
+      "warnings": [
+        "If travelling solo, find a group for non-diving days, much more fun"
+      ],
+      "similar_to": [
+        "Caye Caulker for Caribbean island vibes but bigger and livelier"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "One of my favourite parts of the trip. Pirates diving is recommended, they give discounts on subsequent dives and free kayak rental.",
+        "The bioluminescent plankton on the night dive is ridiculously good.",
+        "The island is packed Thursday to Saturday for the pub crawl then much quieter.",
+        "If travelling solo, find a group when not diving, it's way more fun.",
+        "Eat local for $5-7 per meal."
+      ],
+      "tom_verdict": "Definitely one of my favourite parts of the whole Central America trip. The night diving here is unreal."
+    },
+    {
+      "id": "panama-city",
+      "name": "Panama City",
+      "country": "Panama",
+      "lat": 8.984,
+      "lon": -79.519,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "50-140",
+      "vibes": [
+        "city",
+        "culture",
+        "history"
+      ],
+      "vibe_scores": {
+        "adventure": 3,
+        "relaxation": 3,
+        "nightlife": 6,
+        "culture": 6,
+        "budget_friendly": 4,
+        "romantic": 4,
+        "family": 4,
+        "hiking": 2,
+        "diving": 1,
+        "ski": 0
+      },
+      "summary": "The most developed city in Central America, a great connection hub",
+      "activities": [
+        {
+          "name": "The Causeway",
+          "desc": "Check out the causeway for a stroll and views"
+        },
+        {
+          "name": "Canal Museum",
+          "desc": "A good museum, worth a visit"
+        },
+        {
+          "name": "Cerro Ancon",
+          "desc": "Climb it for a view over the city, the old town is also worth it"
+        }
+      ],
+      "food_recommendations": [
+        "Expensive unless you go to the dodgier, poorer parts near Cerro Ancon"
+      ],
+      "nightlife": [
+        "Decent, it's a big metropolitan city"
+      ],
+      "transport_tips": [
+        "Very central, fly basically anywhere in EU, US, SA, or boat to Colombia"
+      ],
+      "warnings": [
+        "Expensive unless you seek out the cheaper, poorer parts",
+        "Hearing lots of cartel money is here"
+      ],
+      "similar_to": [
+        "A glossier, more developed Central American capital"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Very big and metropolitan, above and beyond the most developed in all of Central America.",
+        "A cool city for 2 days, then use its fantastic connections to continue your trip.",
+        "You won't regret a few days here but I wouldn't make it a priority, spectacular city overall though."
+      ],
+      "tom_verdict": "The slick, developed hub of Central America. Two days for the canal, old town and causeway, then fly onward."
     },
     {
       "id": "cusco",
@@ -850,6 +3288,136 @@
       },
       "wandrly_notes": [],
       "tom_verdict": "If you're booking 'Cusco', know that most of those nights will actually be spent on the trek, plan the city time around acclimatisation, not sightseeing."
+    },
+    {
+      "id": "warsaw",
+      "name": "Warsaw",
+      "country": "Poland",
+      "lat": 52.23,
+      "lon": 21.012,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "30-85",
+      "vibes": [
+        "culture",
+        "history",
+        "budget",
+        "city"
+      ],
+      "vibe_scores": {
+        "adventure": 2,
+        "relaxation": 3,
+        "nightlife": 5,
+        "culture": 8,
+        "budget_friendly": 9,
+        "romantic": 4,
+        "family": 5,
+        "hiking": 1,
+        "diving": 1,
+        "ski": 0
+      },
+      "summary": "Beautiful old town and the best skyline we'd seen so far",
+      "activities": [
+        {
+          "name": "Warsaw Museum in the old town",
+          "desc": "Absolutely huge, answers all your questions, bottom floors are the most interesting"
+        },
+        {
+          "name": "Palace of Culture and Science",
+          "desc": "Really worth seeing, a beautiful building, the city has a great skyline"
+        },
+        {
+          "name": "Old town wander",
+          "desc": "Beautiful, buy your transport tickets, it might be cheaper to buy a bundle than 24h pass"
+        }
+      ],
+      "food_recommendations": [
+        "Grocery stores are unholy cheap, though a lot is a bit dodgy"
+      ],
+      "nightlife": [
+        "Didn't see much, came down with a virus here"
+      ],
+      "transport_tips": [
+        "Buy tickets, possibly cheaper to get an x-amount bundle than a 24 hour pass"
+      ],
+      "warnings": [
+        "Most cheap supermarket things are a bit dodgy, check freshness"
+      ],
+      "similar_to": [
+        "Wroclaw (Warsaw is bigger with a better skyline)"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Old town is beautiful, the Warsaw Museum there is a must, it's huge and answers all your questions.",
+        "Going into the city to see the Palace of Culture and Science is really worth it, a beautiful building.",
+        "Warsaw probably had the best skyline of any city we'd been to so far."
+      ],
+      "tom_verdict": "Beautiful old town, brilliant museum, best skyline of the trip. Do the Warsaw Museum's lower floors."
+    },
+    {
+      "id": "wroclaw",
+      "name": "Wroclaw",
+      "country": "Poland",
+      "lat": 51.107,
+      "lon": 17.038,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "30-80",
+      "vibes": [
+        "culture",
+        "budget",
+        "nightlife",
+        "city"
+      ],
+      "vibe_scores": {
+        "adventure": 3,
+        "relaxation": 4,
+        "nightlife": 7,
+        "culture": 7,
+        "budget_friendly": 9,
+        "romantic": 5,
+        "family": 4,
+        "hiking": 1,
+        "diving": 1,
+        "ski": 0
+      },
+      "summary": "Stunning old town in the middle, very Polish on the outskirts",
+      "activities": [
+        {
+          "name": "Cathedral Island",
+          "desc": "Go up the top of St John the Baptist, about 3 AUD and super worth it"
+        },
+        {
+          "name": "Traditional Polish restaurants",
+          "desc": "Heaps around the square, super tasty and not too exy"
+        },
+        {
+          "name": "Club square",
+          "desc": "A square near the main square filled with clubs, walk into whichever takes your fancy"
+        }
+      ],
+      "food_recommendations": [
+        "Konspira restaurant nearby is really awesome",
+        "Keep meals under about 35 zloty or you're being ripped off"
+      ],
+      "nightlife": [
+        "Clubs still open late on a Sunday, a whole square of them near the main square"
+      ],
+      "transport_tips": [
+        "Walkable in the old town"
+      ],
+      "warnings": [
+        "Everything in the main square and old town has a crazy tourist tax",
+        "Pubs can be way too exy or cheap, we paid 7 zloty a beer at one lovely pub (3 zloty = 1 AUD)"
+      ],
+      "similar_to": [
+        "Prague (cheaper, less touristy, similar old-town beauty)"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Stunning old town in the middle but very Polish on the outskirts.",
+        "Go up the top of St John the Baptist on Cathedral Island, it's like 3 AUD so super worth it.",
+        "Try the traditional Polish restaurants around the square, keep anything under 35 zloty or you're being ripped off."
+      ],
+      "tom_verdict": "A gorgeous old town wrapped in real Poland. Climb the cathedral tower, eat Polish, keep meals under 35 zloty."
     },
     {
       "id": "lisbon",
@@ -976,386 +3544,1087 @@
       "tom_verdict": "A perfect day trip from Lisbon, just don't try to do every site, pick two and enjoy the pace."
     },
     {
-      "id": "tokyo",
-      "name": "Tokyo",
-      "country": "Japan",
-      "lat": 35.676,
-      "lon": 139.65,
-      "recommended_nights": 4,
-      "budget_per_night_aud": "60-200",
+      "id": "singapore",
+      "name": "Singapore",
+      "country": "Singapore",
+      "lat": 1.352,
+      "lon": 103.82,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "80-200",
       "vibes": [
         "city",
-        "foodie",
-        "iconic",
-        "culture"
+        "culture",
+        "family",
+        "foodie"
       ],
       "vibe_scores": {
-        "adventure": 4,
-        "relaxation": 3,
-        "nightlife": 7,
-        "culture": 8,
-        "budget_friendly": 5,
+        "adventure": 2,
+        "relaxation": 4,
+        "nightlife": 5,
+        "culture": 6,
+        "budget_friendly": 3,
         "romantic": 5,
-        "family": 6,
+        "family": 7,
         "hiking": 1,
-        "diving": 0,
-        "ski": 1
+        "diving": 1,
+        "ski": 0
       },
-      "summary": "Massive, endlessly interesting city, impossible to see it all so don't try",
+      "summary": "Modern and easy but a little boring, 1.5 days is plenty",
       "activities": [
         {
-          "name": "Shibuya and Shimokitazawa",
-          "desc": "Stay near here for easy access to the centre, great for wandering alleys and shops"
+          "name": "Marina Bay Sands skytower",
+          "desc": "Worth every cent, spend here rather than on the Gardens trees"
         },
         {
-          "name": "Imperial Palace grounds",
-          "desc": "A calmer, more historic counterpoint to the neon districts"
+          "name": "Gardens by the Bay",
+          "desc": "Cool surrounds but don't waste money going up the trees"
         },
         {
-          "name": "Tokyo Metropolitan Government Building",
-          "desc": "Free observation deck with great skyline views"
+          "name": "Satay Street / Lau Pa Sat",
+          "desc": "Picks up around 7pm and seriously worth a visit, though busy"
         }
       ],
       "food_recommendations": [
-        "Convenience stores (konbini) are genuinely excellent and open 24/7"
+        "Lau Pa Sat and Satay Street, busy from 7pm and worth it",
+        "Chinatown nearby has other options"
       ],
       "nightlife": [
-        "Shibuya and Shinjuku for variety, smaller izakaya bars for something quieter"
+        "Around Chinatown and Lau Pa Sat, decent but not a wild scene"
       ],
       "transport_tips": [
-        "Load Suica onto your phone for transport and shops, but note any balance is void once you leave Japan",
-        "Metro lines close around midnight and taxis are expensive, plan your last train"
+        "Public transport is great and easy, uses your credit card, English is the first language"
       ],
       "warnings": [
-        "Some famous spots like Meiji Shrine and Jimbocho are often a bit underwhelming despite reputation"
+        "Most things are overpriced, similar to Sydney prices",
+        "Staying in Little India was very cheap and close to everything"
       ],
       "similar_to": [
-        "Seoul for a similarly huge, neon-lit Asian capital"
+        "A cleaner, more corporate, slightly duller regional hub"
       ],
       "sub_itinerary": null,
       "wandrly_notes": [
-        "4 to 5 nights is a good amount of time given the size of the city.",
-        "Staying near Shibuya, within about 15 minutes by train of the centre, works really well.",
-        "Get Suica loaded on your phone for transport and convenience stores, but note any balance is void once you leave Japan.",
-        "Metro lines close around midnight and taxis are expensive, plan your last train carefully."
+        "Interesting and clearly trying hard to be modern and western, but a little boring, 1.5 days is all you need.",
+        "I spent money to go up the Marina Bay tower, worth every cent, don't waste money on the Gardens trees.",
+        "Staying in Little India was very cheap and close to everything, a good idea."
       ],
-      "tom_verdict": "You cannot 'do' Tokyo, just pick a neighbourhood to base in and let yourself wander."
+      "tom_verdict": "Modern, easy and a bit boring. A day and a half does it, splurge on the skytower, sleep cheap in Little India."
     },
     {
-      "id": "nagano",
-      "name": "Nagano",
-      "country": "Japan",
-      "lat": 36.651,
-      "lon": 138.181,
-      "recommended_nights": 2,
-      "budget_per_night_aud": "40-150",
+      "id": "barcelona",
+      "name": "Barcelona",
+      "country": "Spain",
+      "lat": 41.385,
+      "lon": 2.173,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "80-170",
       "vibes": [
-        "ski",
-        "winter",
-        "nature"
+        "culture",
+        "beach",
+        "nightlife",
+        "city"
       ],
       "vibe_scores": {
-        "adventure": 6,
+        "adventure": 4,
         "relaxation": 5,
-        "nightlife": 2,
-        "culture": 4,
-        "budget_friendly": 5,
+        "nightlife": 8,
+        "culture": 8,
+        "budget_friendly": 4,
         "romantic": 6,
-        "family": 6,
-        "hiking": 3,
-        "diving": 0,
-        "ski": 8
+        "family": 5,
+        "hiking": 2,
+        "diving": 2,
+        "ski": 0
       },
-      "summary": "Proper winter town with beginner-friendly skiing and great onsens",
+      "summary": "Beautiful, busy and a bit pricey, beach plus Gaudi",
       "activities": [
         {
-          "name": "Ryuoo Ski Park",
-          "desc": "Very beginner-friendly skiing with cheap gear hire, take the long train then free shuttle"
+          "name": "Sagrada Familia",
+          "desc": "Attending at least one Gaudi thing is so worth it, this is the one"
         },
         {
-          "name": "Mamejima Yutaruan onsen",
-          "desc": "Authentic outdoor onsen, a perfect way to finish a ski day"
+          "name": "Gothic Quarter",
+          "desc": "Really fun and worth strolling around, super safe in the city"
         },
         {
-          "name": "Zenko-ji Temple",
-          "desc": "Huge, actively-used temple that gets a lot of snow in winter"
+          "name": "Montjuic cable car",
+          "desc": "Going up the hill is a must, catch the cable car down instead of paying for castle entry"
         }
       ],
-      "food_recommendations": [],
-      "nightlife": [],
+      "food_recommendations": [
+        "Avoid the obvious tourist traps on La Rambla, head into the Gothic Quarter"
+      ],
+      "nightlife": [
+        "Beach nightclubs are not worth the exorbitant fee, lots of alpha males on beard care"
+      ],
       "transport_tips": [
-        "Public transport gets expensive here, a car makes life much easier if staying a few days"
+        "Public transport is really good, staying near a metro is great, I loved near Sagrada Familia",
+        "The coach terminal at Sants is NOT signposted, it is off to the side, not at the bus terminal"
       ],
       "warnings": [
-        "The Jigokudani snow monkey park is a bit of a tourist trap and somewhat unethical, take it or leave it"
+        "You will be ripped off everywhere, just accept it, drink prices in clubs can be insane",
+        "Around the beach and wharf can be a little dodgier at night"
       ],
       "similar_to": [
-        "Niseko but smaller and cheaper"
+        "Madrid (Barcelona is busier and beachier but less liveable)"
       ],
       "sub_itinerary": null,
       "wandrly_notes": [
-        "Proper winter town, the skiing at Ryuoo ski park is very beginner-friendly with cheap gear hire.",
-        "Finish a ski day at Mamejima Yutaruan for an outdoor onsen, genuinely amazing.",
-        "Public transport gets expensive here, a car makes life much easier if staying a few days."
+        "Super beautiful and fun, but you will be ripped off everywhere, just accept it.",
+        "Going up Montjuic is a must but paying for castle entry is a complete waste, buy the cable car instead.",
+        "Yeah Hostel near Sagrada Familia was amazing and the whole area is really nice."
       ],
-      "tom_verdict": "Great value introduction to skiing in Japan, the onsen after is half the appeal."
+      "tom_verdict": "Gorgeous and fun but expensive and scammy. Do a Gaudi site, skip the castle entry, take the cable car down."
     },
     {
-      "id": "kyoto",
-      "name": "Kyoto",
-      "country": "Japan",
-      "lat": 35.011,
-      "lon": 135.768,
-      "recommended_nights": 2,
-      "budget_per_night_aud": "50-180",
+      "id": "madrid",
+      "name": "Madrid",
+      "country": "Spain",
+      "lat": 40.417,
+      "lon": -3.703,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "70-160",
+      "vibes": [
+        "culture",
+        "foodie",
+        "city",
+        "nightlife"
+      ],
+      "vibe_scores": {
+        "adventure": 3,
+        "relaxation": 4,
+        "nightlife": 8,
+        "culture": 8,
+        "budget_friendly": 5,
+        "romantic": 6,
+        "family": 5,
+        "hiking": 1,
+        "diving": 1,
+        "ski": 0
+      },
+      "summary": "Effortlessly pretty and very liveable",
+      "activities": [
+        {
+          "name": "Tapas on La Latina",
+          "desc": "The best tapas street in the city, graze your way through the bars"
+        },
+        {
+          "name": "Retiro Park",
+          "desc": "Get a rowboat out on the lake, the park is beautiful and central"
+        },
+        {
+          "name": "Royal Palace & Plaza Mayor",
+          "desc": "The palace, the big cathedral and the grand plaza are all worth a wander"
+        }
+      ],
+      "food_recommendations": [
+        "Tapas crawl along Calle de la Cava Baja in La Latina",
+        "Mercado de San Miguel for a graze"
+      ],
+      "nightlife": [
+        "Clubbing with the hostel crowd is genuinely fun here",
+        "Malasaña and La Latina for bar-hopping"
+      ],
+      "transport_tips": [
+        "Get a monthly student transport card, it is legit 8 euros and unlimited",
+        "The C-x cercanias lines are separate to the metro with a separate Renfe card, allow time at the station",
+        "Chamartin station is a nightmare to navigate, you leave the station then re-enter for high speed trains"
+      ],
+      "warnings": [
+        "No public toilets anywhere in Spain, use fast food places whenever you can"
+      ],
+      "similar_to": [
+        "Lisbon (a touch grander and more landlocked)"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Way more liveable and effortlessly pretty than Barcelona, I was a big fan.",
+        "Stay at Cats or near Atocha central station, it is the go for getting everywhere, trust me.",
+        "Day trip to Toledo is vital, Segovia is still cool and worth it but Toledo takes priority."
+      ],
+      "tom_verdict": "Gorgeous, liveable and underrated next to Barcelona. Get the 8 euro student transport card and stay near Atocha."
+    },
+    {
+      "id": "segovia",
+      "name": "Segovia",
+      "country": "Spain",
+      "lat": 40.948,
+      "lon": -4.118,
+      "recommended_nights": 1,
+      "budget_per_night_aud": "60-120",
       "vibes": [
         "culture",
         "history",
-        "calm"
+        "day-trip"
+      ],
+      "vibe_scores": {
+        "adventure": 2,
+        "relaxation": 3,
+        "nightlife": 2,
+        "culture": 8,
+        "budget_friendly": 5,
+        "romantic": 5,
+        "family": 5,
+        "hiking": 1,
+        "diving": 1,
+        "ski": 0
+      },
+      "summary": "Roman aqueduct and a fairytale cathedral, a quieter day trip",
+      "activities": [
+        {
+          "name": "The Aqueduct",
+          "desc": "The huge Roman aqueduct is super cool and worth the trip"
+        },
+        {
+          "name": "Cathedral",
+          "desc": "Super cool and worth it, the highlight of the town"
+        },
+        {
+          "name": "Park by the aqueduct",
+          "desc": "Cool view of the city and pretty chill, good to relax"
+        }
+      ],
+      "food_recommendations": [
+        "A little meh, standard Spanish tourist traps"
+      ],
+      "nightlife": [
+        "Quiet, it is a day trip town"
+      ],
+      "transport_tips": [
+        "Getting here is a shitshow by bus, pay the extra to just get the train all the way in",
+        "There is no ticket station for the bus at the train station, everyone buys on board"
+      ],
+      "warnings": [
+        "Definitely missing the charm of Toledo",
+        "Be careful walking into churches, lots have services on in the day"
+      ],
+      "similar_to": [
+        "Toledo (Segovia is the quieter, less charming sibling)"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Getting here is a shitshow, pay the extra to just get the train all the way in, the 10 euros saved isn't worth it.",
+        "The cathedral and the aqueduct are worth the trip but it's definitely missing the charm of Toledo."
+      ],
+      "tom_verdict": "Cool aqueduct and cathedral but it can't touch Toledo. If you only do one, do Toledo."
+    },
+    {
+      "id": "seville",
+      "name": "Seville",
+      "country": "Spain",
+      "lat": 37.389,
+      "lon": -5.984,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "60-140",
+      "vibes": [
+        "culture",
+        "romantic",
+        "city",
+        "history"
+      ],
+      "vibe_scores": {
+        "adventure": 3,
+        "relaxation": 4,
+        "nightlife": 6,
+        "culture": 9,
+        "budget_friendly": 5,
+        "romantic": 8,
+        "family": 5,
+        "hiking": 1,
+        "diving": 1,
+        "ski": 0
+      },
+      "summary": "The most atmospheric stop in Andalusia",
+      "activities": [
+        {
+          "name": "Real Alcazar",
+          "desc": "A near full-day, gorgeous Moorish palace, an absolute must visit"
+        },
+        {
+          "name": "Plaza de Espana",
+          "desc": "The grand half-moon plaza, one of the key sights in the city"
+        },
+        {
+          "name": "Cathedral & Giralda tower",
+          "desc": "Great view from the top but very crowded, the rest is a little meh"
+        }
+      ],
+      "food_recommendations": [
+        "Tapas in the Triana district across the river"
+      ],
+      "nightlife": [
+        "Heaps of fun, the riverside and Alameda areas are lively"
+      ],
+      "transport_tips": [
+        "You can finally tap your card to pay for the metro, Europe is in 2024",
+        "Reception everywhere is a bit ass so download maps offline"
+      ],
+      "warnings": [
+        "Alcazar gets busy, book ahead or arrive early",
+        "No public toilets, plan around fast food spots"
+      ],
+      "similar_to": [
+        "Granada (similar Moorish history, smaller)"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Alcazar is a must, basically a full day and just gorgeous, the cathedral next door is less key.",
+        "You can see the whole city in a 2 night stay, 3 is more relaxed, tick off Alcazar, cathedral and Plaza de Espana.",
+        "OneFam Centro was a great hostel and nightlife was heaps of fun. If I come back I'll kayak the river."
+      ],
+      "tom_verdict": "The most beautiful stop in Andalusia. Alcazar and Plaza de Espana are unmissable, do it in 2-3 nights."
+    },
+    {
+      "id": "tarifa",
+      "name": "Tarifa",
+      "country": "Spain",
+      "lat": 36.014,
+      "lon": -5.606,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "60-130",
+      "vibes": [
+        "beach",
+        "adventure",
+        "relaxation",
+        "diving"
+      ],
+      "vibe_scores": {
+        "adventure": 6,
+        "relaxation": 6,
+        "nightlife": 4,
+        "culture": 4,
+        "budget_friendly": 5,
+        "romantic": 5,
+        "family": 4,
+        "hiking": 2,
+        "diving": 6,
+        "ski": 0
+      },
+      "summary": "Windswept surf town at Europe's southern tip, gateway to Morocco",
+      "activities": [
+        {
+          "name": "Old town wander",
+          "desc": "Small but really pretty, stay near or east of the port where the action is"
+        },
+        {
+          "name": "Whale watching",
+          "desc": "The strait is one of the best places in Europe to spot whales and dolphins"
+        },
+        {
+          "name": "Kitesurfing beaches",
+          "desc": "Huge windswept beaches, this is a kitesurfing capital for a reason"
+        }
+      ],
+      "food_recommendations": [
+        "Restaurants close 4-8pm then reopen till 11-12, plan around it"
+      ],
+      "nightlife": [
+        "Chilled surf town vibe, not a big nightlife scene"
+      ],
+      "transport_tips": [
+        "No train or airport, get the bus via Algeciras which has the train station",
+        "Ferry to Tangier is really easy, buses also run to Malaga or Seville 3-4 times a day"
+      ],
+      "warnings": [
+        "Restaurants all close 4-8pm, beware if you arrive hungry",
+        "Not many supermarkets, one Dia in town and one Lidl on the outskirts"
+      ],
+      "similar_to": [
+        "A windier, surfier Andalusian coast town"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Huge regret is not having time to dive here, they have it and it looks fun, I'll be back.",
+        "Get a place near or east of the port, that's where all the action is and the city is super walkable.",
+        "Wouldn't come here for any reason other than diving or Morocco entry, but the ferry to Tangier is really easy."
+      ],
+      "tom_verdict": "A surf-and-ferry town more than a destination. Come for the Tangier hop or the diving, stay near the port."
+    },
+    {
+      "id": "toledo",
+      "name": "Toledo",
+      "country": "Spain",
+      "lat": 39.857,
+      "lon": -4.024,
+      "recommended_nights": 1,
+      "budget_per_night_aud": "60-120",
+      "vibes": [
+        "culture",
+        "history",
+        "day-trip"
+      ],
+      "vibe_scores": {
+        "adventure": 3,
+        "relaxation": 3,
+        "nightlife": 2,
+        "culture": 9,
+        "budget_friendly": 5,
+        "romantic": 7,
+        "family": 5,
+        "hiking": 2,
+        "diving": 1,
+        "ski": 0
+      },
+      "summary": "Stunning old hilltop city, a vital day trip from Madrid",
+      "activities": [
+        {
+          "name": "The Cathedral",
+          "desc": "Entry into the big church is worth it, the others are a bit meh"
+        },
+        {
+          "name": "Santa Cruz museum",
+          "desc": "Free and a highlight, just beautiful, a good spot to relax"
+        },
+        {
+          "name": "Viewpoints across the river",
+          "desc": "Walk the whole old town then cross for fantastic viewpoints worth some photos"
+        }
+      ],
+      "food_recommendations": [
+        "Standard but fine in the old town, it is a day trip so eat light"
+      ],
+      "nightlife": [
+        "Not a nightlife town, it is a day trip"
+      ],
+      "transport_tips": [
+        "About 20 euros all up for the train from Madrid central and incredibly worth it",
+        "Hidden free public toilets in the library by the army museum and in the Jewish quarter"
+      ],
+      "warnings": [
+        "Big day of walking with not much shade",
+        "Recommend 5-6 hours, 7 was a little too long"
+      ],
+      "similar_to": [
+        "Segovia (Toledo has way more charm)"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "So so gorgeous, about 20 euros for the train from Madrid central and incredibly worth it.",
+        "All the action is in the old town, across the river isn't much but a really cool view.",
+        "Recommend 5-6 hours here, I did 7 and it was a little too long of a day trip."
+      ],
+      "tom_verdict": "The best day trip from Madrid, full stop. Beautiful old hilltop city, give it 5-6 hours."
+    },
+    {
+      "id": "colombo",
+      "name": "Colombo",
+      "country": "Sri Lanka",
+      "lat": 6.927,
+      "lon": 79.861,
+      "recommended_nights": 1,
+      "budget_per_night_aud": "40-90",
+      "vibes": [
+        "culture",
+        "foodie",
+        "city"
+      ],
+      "vibe_scores": {
+        "adventure": 3,
+        "relaxation": 2,
+        "nightlife": 4,
+        "culture": 6,
+        "budget_friendly": 7,
+        "romantic": 3,
+        "family": 4,
+        "hiking": 1,
+        "diving": 1,
+        "ski": 0
+      },
+      "summary": "Chaotic gateway city with great street food",
+      "activities": [
+        {
+          "name": "Galle Face Green",
+          "desc": "Sunset walk along the seafront esplanade, street food stalls come alive in the evening"
+        },
+        {
+          "name": "Pettah Market",
+          "desc": "Sensory overload market district, explore the spice and textile lanes"
+        },
+        {
+          "name": "Dutch Hospital precinct",
+          "desc": "Restored colonial quarter with good cafes if you need a calm reset"
+        }
+      ],
+      "food_recommendations": [
+        "Street food stalls along Galle Face Green at sunset",
+        "Pettah market for spices and snacks"
+      ],
+      "nightlife": [
+        "Quiet compared to the rest of the trip, mostly hotel bars"
+      ],
+      "transport_tips": [
+        "Fly into Bandaranaike Airport (CMB), about 40 minutes by tuk-tuk to the centre"
+      ],
+      "warnings": [
+        "Traffic can make short trips take longer than expected"
+      ],
+      "similar_to": [
+        "Bangkok (smaller, calmer version)"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [],
+      "tom_verdict": "Not a highlight, but a fine one-night landing pad before heading inland."
+    },
+    {
+      "id": "ella",
+      "name": "Ella",
+      "country": "Sri Lanka",
+      "lat": 6.866,
+      "lon": 81.046,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "10-180",
+      "vibes": [
+        "hiking",
+        "trains",
+        "backpacker"
+      ],
+      "vibe_scores": {
+        "adventure": 6,
+        "relaxation": 6,
+        "nightlife": 4,
+        "culture": 4,
+        "budget_friendly": 8,
+        "romantic": 6,
+        "family": 4,
+        "hiking": 7,
+        "diving": 0,
+        "ski": 0
+      },
+      "summary": "Tea hills, hikes and the famous train line",
+      "activities": [
+        {
+          "name": "Nine Arches Bridge",
+          "desc": "Arrive around 8:15am to catch the train crossing for the classic photo"
+        },
+        {
+          "name": "Little Adam's Peak",
+          "desc": "Easy one-hour hike with sweeping views over the tea plantations"
+        },
+        {
+          "name": "Ella Rock",
+          "desc": "A tougher three-hour hike with far fewer tourists than Adam's Peak"
+        }
+      ],
+      "food_recommendations": [
+        "Cafes along the main strip do good Western/Sri Lankan fusion"
+      ],
+      "nightlife": [
+        "Small but social backpacker bar scene"
+      ],
+      "transport_tips": [
+        "The Kandy to Ella train is one of the great rail journeys, book well ahead, views are stunning from Nanu-Oya onward"
+      ],
+      "warnings": [],
+      "similar_to": [
+        "Pai (Thailand) for the laid-back hill-town backpacker vibe"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Walk to Rawana Cave behind the falls, almost nobody goes there, it's a great quiet add-on."
+      ],
+      "tom_verdict": "Easily worth 3 nights, the hiking, the train, and the chill cafe scene all genuinely deliver."
+    },
+    {
+      "id": "galle",
+      "name": "Galle",
+      "country": "Sri Lanka",
+      "lat": 6.053,
+      "lon": 80.22,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "35-210",
+      "vibes": [
+        "colonial",
+        "history",
+        "architecture"
       ],
       "vibe_scores": {
         "adventure": 2,
         "relaxation": 6,
         "nightlife": 3,
-        "culture": 9,
-        "budget_friendly": 5,
+        "culture": 8,
+        "budget_friendly": 6,
         "romantic": 8,
         "family": 5,
-        "hiking": 2,
-        "diving": 0,
+        "hiking": 0,
+        "diving": 4,
         "ski": 0
       },
-      "summary": "Quiet, atmospheric former capital, can get very cold in winter",
+      "summary": "UNESCO Dutch fort town, the most atmospheric stop",
       "activities": [
         {
-          "name": "Fushimi Inari",
-          "desc": "Thousands of orange torii gates climbing the hillside, go early to avoid crowds"
+          "name": "Galle Fort ramparts",
+          "desc": "Walk the sea walls at sunset for the best light and ocean views"
         },
         {
-          "name": "TeamLab digital art",
-          "desc": "Surprisingly good immersive digital art installation"
+          "name": "Fort cafes and galleries",
+          "desc": "Small lanes inside the fort have excellent independent cafes and shops"
         },
         {
-          "name": "Themed bars wander",
-          "desc": "Small, often quirky themed bars scattered through the city, including a rock bar"
+          "name": "Jungle Beach",
+          "desc": "A short tuk-tuk ride north to a hidden cove, good for snorkelling"
         }
       ],
       "food_recommendations": [
-        "A great Mexican restaurant near Rancho shrine, a fun surprise in Kyoto"
+        "Coconut sambal and the 'street burger' (a KFC-style local favourite)"
       ],
       "nightlife": [
-        "Small and quiet compared to Osaka, but some great themed bars"
+        "Quiet, mostly cafe/bar culture inside the fort"
       ],
       "transport_tips": [
-        "Can be done as a day trip from Osaka if short on time, but an overnight is worth it"
+        "Coastal train from Mirissa/Matara, the clifftop section is one of the best short rides on the island"
       ],
       "warnings": [
-        "Most paid temples can be seen via a side path without paying, not always worth the entry fee",
-        "Gets very cold in winter"
+        "Fort walk is hot in the middle of the day, go morning or sunset"
       ],
       "similar_to": [
-        "Nara for a smaller, quieter version"
+        "Cartagena (Colombia) for the colonial fort-town feel"
       ],
       "sub_itinerary": null,
       "wandrly_notes": [
-        "Much quieter than Osaka or Tokyo, and can get very cold in winter.",
-        "Fushimi Inari is genuinely worth it.",
-        "Most paid temples can be seen via a side path without paying, not always worth the entry fee.",
-        "Can be done as a day trip from Osaka if short on time, but still worth an overnight."
+        "Stayed just outside the fort for cheaper, larger accommodation, only a $5 tuk-tuk into the fort itself.",
+        "Diving at Hikkaduwa (20 mins away) is bare-bones but cheap, around 80 USD for 2 dives plus gear."
       ],
-      "tom_verdict": "The calm counterpoint to Osaka and Tokyo, go in spring or autumn if you can."
+      "tom_verdict": "The most atmospheric stop on the island. Worth the full walk around the fort walls even though it's hot."
     },
     {
-      "id": "osaka",
-      "name": "Osaka",
-      "country": "Japan",
-      "lat": 34.694,
-      "lon": 135.502,
-      "recommended_nights": 2,
-      "budget_per_night_aud": "45-160",
+      "id": "hiriketiya",
+      "name": "Hiriketiya",
+      "country": "Sri Lanka",
+      "lat": 5.965,
+      "lon": 80.717,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "25-90",
       "vibes": [
-        "foodie",
-        "nightlife",
-        "city"
+        "beach",
+        "surf",
+        "relaxation"
+      ],
+      "vibe_scores": {
+        "adventure": 4,
+        "relaxation": 8,
+        "nightlife": 4,
+        "culture": 2,
+        "budget_friendly": 6,
+        "romantic": 6,
+        "family": 3,
+        "hiking": 1,
+        "diving": 3,
+        "ski": 0
+      },
+      "summary": "Exactly like a smaller, cheaper Canggu but in Sri Lanka",
+      "activities": [
+        {
+          "name": "Dickwella & Hiri beaches",
+          "desc": "Dickwella beach is great, Hiri main beach is cool with better surf"
+        },
+        {
+          "name": "Snorkelling at the point",
+          "desc": "Great along the east side of Dickwella at the point and turtle point, rent or BYO gear"
+        },
+        {
+          "name": "Suicide Club tea plantation",
+          "desc": "Awesome, cheap and fun on the way over, definitely recommend"
+        }
+      ],
+      "food_recommendations": [
+        "Mcool is the best dessert store and cheaper than the others, 600 rupees for a big ice cream",
+        "Avoid Garlic Cafe / Blue Beach chill out lounge, huge wait times"
+      ],
+      "nightlife": [
+        "Quiet-ish, Dots is meant to be good"
+      ],
+      "transport_tips": [
+        "Hiring a paddleboard for sunset on Dickwella is a highlight, around 3k"
+      ],
+      "warnings": [
+        "Watch out for aggressive stray dog packs"
+      ],
+      "similar_to": [
+        "Canggu (Hiriketiya is the smaller, cheaper Sri Lankan version)"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Literally exactly like a smaller, cheaper Canggu but in Sri Lanka.",
+        "Suicide Club tea plantation on the way over was awesome and cheap and fun, definitely recommend.",
+        "Watch out for stray dog packs which can be aggro, and Mcool is the best dessert store."
+      ],
+      "tom_verdict": "A smaller, cheaper Canggu in Sri Lanka. Surf Hiri, snorkel the point, sunset paddleboard on Dickwella, mind the dog packs."
+    },
+    {
+      "id": "kandy",
+      "name": "Kandy",
+      "country": "Sri Lanka",
+      "lat": 7.291,
+      "lon": 80.636,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "20-130",
+      "vibes": [
+        "culture",
+        "spiritual",
+        "hill-country"
       ],
       "vibe_scores": {
         "adventure": 3,
-        "relaxation": 3,
-        "nightlife": 8,
-        "culture": 5,
+        "relaxation": 5,
+        "nightlife": 2,
+        "culture": 8,
         "budget_friendly": 6,
         "romantic": 5,
         "family": 6,
-        "hiking": 0,
+        "hiking": 3,
         "diving": 0,
         "ski": 0
       },
-      "summary": "Much livelier than Kyoto, great food and nightlife",
+      "summary": "Sacred hill city with cooler air",
       "activities": [
         {
-          "name": "Dotonbori at night",
-          "desc": "Iconic neon canal-side strip, walk it with a drink in hand"
+          "name": "Temple of the Tooth",
+          "desc": "Visit during the early morning puja ceremony for the most authentic experience"
         },
         {
-          "name": "Osaka Aquarium",
-          "desc": "A genuine highlight, including their coral regeneration programs"
+          "name": "Kandy Lake loop",
+          "desc": "Easy 45-minute walk around the lake and through the old town"
         },
         {
-          "name": "Shinsekai",
-          "desc": "Slightly daggy retro shopping and food district, fun to explore"
+          "name": "Peradeniya Botanical Gardens",
+          "desc": "60 acres of colonial-era gardens including a striking bamboo cathedral"
         }
       ],
       "food_recommendations": [
-        "Street food throughout Dotonbori, takoyaki and okonomiyaki are local specialties"
+        "Lakeside cafes around Kandy Lake"
       ],
       "nightlife": [
-        "Dotonbori and Namba have the best concentration of bars and izakaya"
+        "Limited, this is a calmer, more spiritual stop"
       ],
       "transport_tips": [
-        "Stay near Tennoji or Namba for easy transport connections"
+        "Scenic train from Habarana/Sigiriya area, book first class in advance if possible"
       ],
       "warnings": [],
       "similar_to": [
-        "Tokyo but smaller, friendlier, and more food-focused"
+        "Luang Prabang for the spiritual hill-town feel"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [],
+      "tom_verdict": "A good change of pace after Sigiriya, cooler, calmer, and a nice cultural anchor."
+    },
+    {
+      "id": "mirissa",
+      "name": "Mirissa",
+      "country": "Sri Lanka",
+      "lat": 5.948,
+      "lon": 80.456,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "20-80",
+      "vibes": [
+        "beach",
+        "whale-watching",
+        "surf"
+      ],
+      "vibe_scores": {
+        "adventure": 4,
+        "relaxation": 8,
+        "nightlife": 4,
+        "culture": 2,
+        "budget_friendly": 7,
+        "romantic": 7,
+        "family": 5,
+        "hiking": 0,
+        "diving": 3,
+        "ski": 0
+      },
+      "summary": "South coast beach town, whales and sunsets",
+      "activities": [
+        {
+          "name": "Whale watching",
+          "desc": "Boats leave early morning, blue and sperm whales possible December to April"
+        },
+        {
+          "name": "Secret Beach",
+          "desc": "A 20 minute walk east along the coast from the main beach, mostly locals here"
+        },
+        {
+          "name": "Beachside seafood",
+          "desc": "Grilled catch of the day at the beachfront restaurants, best at sunset"
+        }
+      ],
+      "food_recommendations": [
+        "Beachfront seafood grills, best at sunset"
+      ],
+      "nightlife": [
+        "A few beach bars, low-key"
+      ],
+      "transport_tips": [
+        "Bus from Ella, or tuk-tuk from Matara train station, roughly 3 hours"
+      ],
+      "warnings": [
+        "Whale watching only worthwhile Dec-April, check season before planning around it"
+      ],
+      "similar_to": [
+        "Canggu (Bali) but smaller and quieter"
       ],
       "sub_itinerary": null,
       "wandrly_notes": [
-        "Much livelier than Kyoto, Dotonbori at night with a drink in hand is great.",
-        "The aquarium is a genuine highlight, including their coral regeneration programs.",
-        "Stay near Tennoji or Namba for easy transport connections."
+        "Secret Beach is a 20 minute walk east of the main beach, mostly locals, much nicer than the main strip."
       ],
-      "tom_verdict": "The food alone justifies a stop here, pair it with Kyoto for a great contrast."
+      "tom_verdict": "Good for slowing down after the hill country, the whale watching is genuinely worth the early start in season."
     },
     {
-      "id": "budapest",
-      "name": "Budapest",
-      "country": "Hungary",
-      "lat": 47.497,
-      "lon": 19.04,
-      "recommended_nights": 4,
-      "budget_per_night_aud": "15-80",
+      "id": "sigiriya",
+      "name": "Sigiriya",
+      "country": "Sri Lanka",
+      "lat": 7.957,
+      "lon": 80.76,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "30-120",
       "vibes": [
-        "nightlife",
-        "city",
-        "budget-friendly",
-        "culture"
+        "history",
+        "hiking",
+        "iconic"
+      ],
+      "vibe_scores": {
+        "adventure": 6,
+        "relaxation": 3,
+        "nightlife": 1,
+        "culture": 9,
+        "budget_friendly": 6,
+        "romantic": 4,
+        "family": 6,
+        "hiking": 6,
+        "diving": 0,
+        "ski": 0
+      },
+      "summary": "Ancient rock fortress and cave temples",
+      "activities": [
+        {
+          "name": "Sigiriya Rock Fortress",
+          "desc": "Climb at sunrise before the tour groups arrive, frescoes and mirror wall are highlights"
+        },
+        {
+          "name": "Pidurangala Rock",
+          "desc": "Hike up for the best view of Sigiriya itself, with a fraction of the crowd"
+        },
+        {
+          "name": "Dambulla Cave Temple",
+          "desc": "150 Buddha statues across 5 caves, the largest cave temple complex on the island"
+        }
+      ],
+      "food_recommendations": [
+        "Two-storey tourist restaurants in town are reliable and good value"
+      ],
+      "nightlife": [
+        "Very quiet, early nights here are normal"
+      ],
+      "transport_tips": [
+        "Train from Colombo to Habarana then a short tuk-tuk, or a direct bus (about 4 hours)"
+      ],
+      "warnings": [
+        "Elephants do roam near farmland at night, listen for alarms/shooting sounds, this is normal elephant deterrence"
+      ],
+      "similar_to": [
+        "Bagan (Myanmar) for the ancient-monument vibe"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Sigiriya is basically a must-do, climb in the morning pre-heat and pre-crowds, arrive by 7am at the latest.",
+        "Pidurangala is a scramble to get up but gorgeous views and gives the best photo of Sigiriya itself.",
+        "Stop in Dambulla on the way for the temples and the central fruit market, both surprisingly cool."
+      ],
+      "tom_verdict": "One of the best mornings of the whole trip. Don't skip Pidurangala just because Sigiriya is the famous one."
+    },
+    {
+      "id": "unawatuna",
+      "name": "Unawatuna",
+      "country": "Sri Lanka",
+      "lat": 6.01,
+      "lon": 80.249,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "25-85",
+      "vibes": [
+        "beach",
+        "relaxation"
       ],
       "vibe_scores": {
         "adventure": 3,
-        "relaxation": 4,
-        "nightlife": 9,
-        "culture": 7,
-        "budget_friendly": 9,
+        "relaxation": 7,
+        "nightlife": 3,
+        "culture": 3,
+        "budget_friendly": 6,
         "romantic": 6,
         "family": 4,
         "hiking": 1,
-        "diving": 0,
+        "diving": 3,
         "ski": 0
       },
-      "summary": "Stunning, cheap, incredible nightlife. One of Europe's best cities.",
+      "summary": "Beautiful small tourist town, cheaper than Galle and Hiriketiya",
       "activities": [
         {
-          "name": "Ruin bars and Instant Club",
-          "desc": "Ruin bar district is busy 7 nights a week in summer, a must-do nightlife experience"
+          "name": "Main beach",
+          "desc": "Ok and pretty, no surf, but a lovely spot for a beer on the sand"
         },
         {
-          "name": "River cruise",
-          "desc": "Cheap river cruise to see the Parliament and bridges lit up at night"
+          "name": "Weligama surfing",
+          "desc": "Went on the way in, was awesome"
         },
         {
-          "name": "Margaret Island pools",
-          "desc": "Public pools on the island are fun and a fifth of the price of the famous thermal baths"
+          "name": "Chameera Bike Tours",
+          "desc": "Amazing, got to ask heaps of questions and see lots, well worth it"
         }
       ],
       "food_recommendations": [
-        "Everything is cheap, just wander and eat"
+        "Plenty of cheap beachside spots"
       ],
       "nightlife": [
-        "Ruin bars into Instant Club is the move, close to Wombat hostel which is excellent",
-        "Boat parties on the Danube are apparently great too"
+        "Low-key beach-town nightlife"
       ],
       "transport_tips": [
-        "Ticket checkers are everywhere on public transport, always pay"
+        "If getting hassled for beach entry prices, sneak in or go via the Tartarus Hotel alleyway for free"
       ],
       "warnings": [
-        "Stay centrally near the ruin bars to make life easy"
+        "Diving is just ok and not too great, but it's not expensive"
       ],
       "similar_to": [
-        "Prague for the cheap nightlife, but Budapest has better scenery"
+        "Galle (Unawatuna is the cheaper, beachier neighbour)"
       ],
       "sub_itinerary": null,
       "wandrly_notes": [
-        "Loved this city, it's stunning, cheap and so much fun. Could easily spend a week.",
-        "Stay centrally near the ruin bars to make life easy.",
-        "Ticket checkers are everywhere on public transport, you absolutely must pay.",
-        "A river cruise is cheap and the best way to see the main sights.",
-        "The pools on Margaret Island are just as fun as the famous baths at a fifth of the price."
+        "Beautiful small tourist town, cheaper than Galle and Hiriketiya.",
+        "Chameera Bike Tours was amazing, got to ask heaps of questions and see lots, well worth it.",
+        "Great spot to finish the trip, enjoy a beer on the beach and chill."
       ],
-      "tom_verdict": "One of my favourite cities in the world. Go back for a week at some point, this place is just amazing."
+      "tom_verdict": "A cheap, pretty beach town to end a Sri Lanka trip. Do a Chameera bike tour, surf Weligama, beer on the sand."
     },
     {
-      "id": "prague",
-      "name": "Prague",
-      "country": "Czech Republic",
-      "lat": 50.075,
-      "lon": 14.437,
+      "id": "stockholm",
+      "name": "Stockholm",
+      "country": "Sweden",
+      "lat": 59.329,
+      "lon": 18.069,
       "recommended_nights": 3,
-      "budget_per_night_aud": "15-70",
+      "budget_per_night_aud": "80-180",
       "vibes": [
-        "nightlife",
+        "culture",
         "history",
-        "budget-friendly"
+        "city",
+        "relaxation"
       ],
       "vibe_scores": {
         "adventure": 3,
-        "relaxation": 4,
-        "nightlife": 8,
-        "culture": 7,
-        "budget_friendly": 9,
+        "relaxation": 5,
+        "nightlife": 5,
+        "culture": 8,
+        "budget_friendly": 3,
         "romantic": 6,
         "family": 5,
         "hiking": 2,
-        "diving": 0,
+        "diving": 1,
         "ski": 0
       },
-      "summary": "Beautiful old town, incredibly cheap beers, great hostel scene",
+      "summary": "Beautiful, easy to get around, exy but super cool",
       "activities": [
         {
-          "name": "Petrin Hill and tower",
-          "desc": "Climb the mini Eiffel Tower for great city views, pay to go up"
+          "name": "Museum island (Djurgarden)",
+          "desc": "Stunning, worth strolling, the Vasa and the wreck museum are both great"
         },
         {
-          "name": "Prague Castle and cathedral",
-          "desc": "The castle complex is huge and worth half a day, cathedral is impressive"
+          "name": "Old town (Gamla Stan)",
+          "desc": "Very worth it, stay near central and walk to it"
         },
         {
-          "name": "Old Town wander",
-          "desc": "Just walking the streets is gorgeous, trams make getting everywhere easy"
+          "name": "Archipelago day trip",
+          "desc": "We went to the islands, so so beautiful, the ferry ride is the best part"
         }
       ],
       "food_recommendations": [
-        "Beers are around 1.50-2 euros, everything is cheap"
+        "Restaurants are so exy, 7-Eleven or Coop is a genuinely good cheap option",
+        "See TripAdvisor for proper food"
       ],
       "nightlife": [
-        "Nightlife ends a bit earlier than Budapest but the value is unbeatable"
+        "Older crowd, nightlife aimed at 21-23+, dodged a bullet coming midweek"
       ],
       "transport_tips": [
-        "Trams are easy and cover most of the city, you can walk almost everywhere from a central hostel"
+        "Zimmermann station area has the best free view of the city, go at night",
+        "Calisthenics parks everywhere if you want a workout"
       ],
       "warnings": [
-        "Waiters may pressure you to tip, it's not required"
+        "Buy alcohol in the day, shops close at night and you can't buy at the supermarket, must be 20",
+        "Even in summer it's cold, bring trackies and a light jumper regardless of season"
       ],
       "similar_to": [
-        "Budapest for cheap European nightlife"
+        "Oslo (both pricey Nordic capitals, Stockholm has more to do)"
       ],
       "sub_itinerary": null,
       "wandrly_notes": [
-        "Beers are about 1.50-2 euros. Nightlife ends a little earlier than Budapest but it's just as cheap.",
-        "Petrin Hill with the Eiffel Tower and the castle/cathedral are both must-dos.",
-        "Budget hostel was a fantastic experience and in a great spot, could walk everywhere.",
-        "Trams are easy to use and get you to most places."
+        "Beautiful city overall, exy but super cool, super easy to get around and worth coming back.",
+        "The whole museum island is stunning, the wreck museum is cool from a marine archaeology view, I loved it.",
+        "Sigtuna is meant to be cool but we went to the islands which was so so beautiful, the ferry ride was the best part."
       ],
-      "tom_verdict": "Another fantastic city. The value for money is genuinely hard to beat anywhere in Europe."
+      "tom_verdict": "Beautiful, easy and expensive. Do museum island and the archipelago, buy booze in the day, pack warm even in summer."
+    },
+    {
+      "id": "taipei",
+      "name": "Taipei",
+      "country": "Taiwan",
+      "lat": 25.033,
+      "lon": 121.565,
+      "recommended_nights": 5,
+      "budget_per_night_aud": "20-80",
+      "vibes": [
+        "culture",
+        "hiking",
+        "foodie",
+        "city"
+      ],
+      "vibe_scores": {
+        "adventure": 5,
+        "relaxation": 4,
+        "nightlife": 5,
+        "culture": 8,
+        "budget_friendly": 6,
+        "romantic": 4,
+        "family": 5,
+        "hiking": 6,
+        "diving": 0,
+        "ski": 0
+      },
+      "summary": "Fascinating mix of western and Chinese culture with great day trips",
+      "activities": [
+        {
+          "name": "Jing Mei White Terror Museum",
+          "desc": "Phenomenal museum on Taiwan's dark pre-democracy history, a must-do"
+        },
+        {
+          "name": "Jiufen day trip",
+          "desc": "Must-do day trip, climb Teapot and Keelung mountains, stay for the old street at night"
+        },
+        {
+          "name": "Yangmingshan and Beitou walks",
+          "desc": "Beautiful rugged walks away from the city crowds"
+        }
+      ],
+      "food_recommendations": [
+        "Night markets everywhere, cash is king and saves money"
+      ],
+      "nightlife": [
+        "Maji Square is awesome, can bring your own drinks, mix of locals and tourists"
+      ],
+      "transport_tips": [
+        "Buy an EasyCard from a stand at the airport with cash, don't bother with the app",
+        "Can only top up with cash"
+      ],
+      "warnings": [
+        "The central station is huge and confusing when changing trains"
+      ],
+      "similar_to": [
+        "Seoul for the mix of modern and traditional"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Buy an EasyCard from a stand at the airport with cash, don't bother with the app.",
+        "Jing Mei White Terror Museum is phenomenal, a must-do on Taiwan's dark pre-democracy history.",
+        "Jiufen is a must-do day trip, climb Teapot and Keelung Mountains if you have walking gear, both are steep.",
+        "Yangmingshan and Beitou are great for beautiful, rugged walks.",
+        "Maji Square at night is awesome for drinks, can BYO and it's a great mix of locals and tourists."
+      ],
+      "tom_verdict": "A very interesting city with great day trips. Spent 6 days here and could have done more."
     },
     {
       "id": "bangkok",
@@ -1493,156 +4762,68 @@
       "tom_verdict": "A really cool city. The markets alone are worth the visit, and the elephant sanctuary is unforgettable."
     },
     {
-      "id": "taipei",
-      "name": "Taipei",
-      "country": "Taiwan",
-      "lat": 25.033,
-      "lon": 121.565,
+      "id": "ko-samui",
+      "name": "Ko Samui",
+      "country": "Thailand",
+      "lat": 9.512,
+      "lon": 100.014,
       "recommended_nights": 5,
-      "budget_per_night_aud": "20-80",
+      "budget_per_night_aud": "30-130",
       "vibes": [
-        "culture",
-        "hiking",
-        "foodie",
-        "city"
+        "beach",
+        "relaxation",
+        "diving"
       ],
       "vibe_scores": {
-        "adventure": 5,
-        "relaxation": 4,
+        "adventure": 4,
+        "relaxation": 8,
         "nightlife": 5,
-        "culture": 8,
-        "budget_friendly": 6,
-        "romantic": 4,
+        "culture": 2,
+        "budget_friendly": 5,
+        "romantic": 6,
         "family": 5,
-        "hiking": 6,
-        "diving": 0,
+        "hiking": 1,
+        "diving": 5,
         "ski": 0
       },
-      "summary": "Fascinating mix of western and Chinese culture with great day trips",
+      "summary": "A cool, chilled-out island with marine parks and beaches",
       "activities": [
         {
-          "name": "Jing Mei White Terror Museum",
-          "desc": "Phenomenal museum on Taiwan's dark pre-democracy history, a must-do"
+          "name": "Ang Thong Marine Park",
+          "desc": "A must, do it with a relaxed day tour and allocate a full day"
         },
         {
-          "name": "Jiufen day trip",
-          "desc": "Must-do day trip, climb Teapot and Keelung mountains, stay for the old street at night"
+          "name": "Fisherman's Village markets",
+          "desc": "Worth it, with beach access on the pier at the right entry point"
         },
         {
-          "name": "Yangmingshan and Beitou walks",
-          "desc": "Beautiful rugged walks away from the city crowds"
+          "name": "Big Buddha",
+          "desc": "Free and cool enough"
         }
       ],
       "food_recommendations": [
-        "Night markets everywhere, cash is king and saves money"
+        "Try the food and have fun, Chamon has the cheapest paddleboards and kayaks"
       ],
       "nightlife": [
-        "Maji Square is awesome, can bring your own drinks, mix of locals and tourists"
+        "Chaweng is the big touristy nightlife town, Chamon is chill and relaxed"
       ],
       "transport_tips": [
-        "Buy an EasyCard from a stand at the airport with cash, don't bother with the app",
-        "Can only top up with cash"
+        "Grab is the Uber here and pretty cheap, renting a car gives good freedom"
       ],
       "warnings": [
-        "The central station is huge and confusing when changing trains"
+        "Chaweng is cheap and dodgy, Lamai can't decide what it is and ends up the worst",
+        "Ang Thong is on the far end of the island from Chaweng and the airport, which are both north"
       ],
       "similar_to": [
-        "Seoul for the mix of modern and traditional"
+        "A more developed, marine-park version of a Thai island escape"
       ],
       "sub_itinerary": null,
       "wandrly_notes": [
-        "Buy an EasyCard from a stand at the airport with cash, don't bother with the app.",
-        "Jing Mei White Terror Museum is phenomenal, a must-do on Taiwan's dark pre-democracy history.",
-        "Jiufen is a must-do day trip, climb Teapot and Keelung Mountains if you have walking gear, both are steep.",
-        "Yangmingshan and Beitou are great for beautiful, rugged walks.",
-        "Maji Square at night is awesome for drinks, can BYO and it's a great mix of locals and tourists."
+        "Overall a really cool and chilled out island, Ang Thong marine park is a must, allocate a full day.",
+        "Chaweng is the big touristy town, cheap and dodgy, Chamon is chill and relaxed with lovely vibes.",
+        "Fisherman's Village markets are worth it, there's beach access on the pier at the right entry point."
       ],
-      "tom_verdict": "A very interesting city with great day trips. Spent 6 days here and could have done more."
-    },
-    {
-      "id": "antigua-guatemala",
-      "name": "Antigua",
-      "country": "Guatemala",
-      "lat": 14.558,
-      "lon": -90.734,
-      "recommended_nights": 3,
-      "budget_per_night_aud": "10-40",
-      "vibes": [
-        "adventure",
-        "hiking",
-        "backpacker",
-        "culture"
-      ],
-      "vibe_scores": {
-        "adventure": 9,
-        "relaxation": 3,
-        "nightlife": 3,
-        "culture": 6,
-        "budget_friendly": 8,
-        "romantic": 4,
-        "family": 2,
-        "hiking": 9,
-        "diving": 0,
-        "ski": 0
-      },
-      "summary": "Beautiful colonial town, base camp for the Acatenango volcano trek",
-      "activities": [
-        {
-          "name": "Acatenango volcano trek",
-          "desc": "A tough 2-day hike with lava views from Fuego, the reason to come here"
-        },
-        {
-          "name": "Central market",
-          "desc": "Amazing to get lost in, cheap food court at the back left if you can find it"
-        },
-        {
-          "name": "Fuego side hike",
-          "desc": "Extra tough add-on from Acatenango but worth every step for the lava and explosions"
-        }
-      ],
-      "food_recommendations": [
-        "Central market food court has lunch for about $25 quetzales if you speak Spanish"
-      ],
-      "nightlife": [
-        "Small town, limited but friendly"
-      ],
-      "transport_tips": [
-        "Buy a shuttle from Guatemala City airport, about $20 USD",
-        "Tropicana is the best agency for Acatenango"
-      ],
-      "warnings": [
-        "Acatenango summit gets to -10C with wind chill, bring all warm gear including scarf, hat and beanie",
-        "Spend a full day acclimatising in Antigua before the trek to avoid altitude sickness"
-      ],
-      "similar_to": [
-        "Huaraz for the trek-base-town vibe"
-      ],
-      "sub_itinerary": {
-        "name": "Acatenango and Fuego volcano trek",
-        "nights": 1,
-        "is_separate_location": true,
-        "summary": "A 2-day, 30km trek including the optional but incredible Fuego side hike to see lava and explosions up close",
-        "days": [
-          {
-            "day": 1,
-            "title": "Antigua to Acatenango base camp",
-            "desc": "11km hike to camp, arrive for sunset views of Fuego erupting"
-          },
-          {
-            "day": 2,
-            "title": "Summit and Fuego side hike",
-            "desc": "4am summit for sunrise, then optional 4km each way to Fuego for lava views, return to Antigua"
-          }
-        ]
-      },
-      "wandrly_notes": [
-        "Acatenango is the real reason to be here, a tough 2-day hike but just do all of it including Fuego.",
-        "Tropicana is the best agency for the trek.",
-        "Bring all your warm gear, it gets to -10C with wind chill at the summit.",
-        "The central market is amazing, cheap food court at the back left if you can find it.",
-        "Spend a full day in Antigua first to adjust to altitude before the trek."
-      ],
-      "tom_verdict": "The Fuego hike is the reason I would come back. Worth every cent and every bead of sweat."
+      "tom_verdict": "A chilled island with a must-do marine park. Stay in mellow Chamon over dodgy Chaweng, give Ang Thong a full day."
     },
     {
       "id": "dili",
@@ -1712,139 +4893,322 @@
       "tom_verdict": "Atauro Island diving alone makes this trip worth it. One of the most off-the-beaten-track destinations I've been to."
     },
     {
-      "id": "bocas-del-toro",
-      "name": "Bocas del Toro",
-      "country": "Panama",
-      "lat": 9.34,
-      "lon": -82.241,
-      "recommended_nights": 4,
-      "budget_per_night_aud": "15-50",
+      "id": "london",
+      "name": "London",
+      "country": "United Kingdom",
+      "lat": 51.507,
+      "lon": -0.128,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "90-200",
       "vibes": [
-        "diving",
-        "beach",
-        "backpacker",
-        "caribbean"
+        "culture",
+        "nightlife",
+        "city",
+        "history"
       ],
       "vibe_scores": {
-        "adventure": 6,
-        "relaxation": 7,
-        "nightlife": 6,
-        "culture": 3,
-        "budget_friendly": 7,
+        "adventure": 2,
+        "relaxation": 3,
+        "nightlife": 7,
+        "culture": 8,
+        "budget_friendly": 4,
         "romantic": 5,
-        "family": 3,
+        "family": 6,
         "hiking": 1,
-        "diving": 8,
+        "diving": 1,
         "ski": 0
       },
-      "summary": "Caribbean island with great diving, bioluminescent plankton and beaches",
+      "summary": "Sydney-friendly, all in English, easy to get around once you crack the Tube",
       "activities": [
         {
-          "name": "Scuba diving with Pirates",
-          "desc": "Fantastic marine life and soft corals, bioluminescent plankton on night dives is incredible"
+          "name": "Explore by Tube",
+          "desc": "Use Google Maps before entering, there are a lot of lines and it's confusing"
         },
         {
-          "name": "Beach hopping",
-          "desc": "Accessible by $2.50 bus or water taxi, several beautiful beaches to explore"
+          "name": "Leicester Square nightlife",
+          "desc": "Fun but super expensive, pre-drinks needed, and bloody hot inside"
         },
         {
-          "name": "Thursday to Saturday pub crawl",
-          "desc": "The island comes alive for the weekend pub crawl"
+          "name": "Uni bars",
+          "desc": "Way cheaper, really social and fun, find a uni bar"
         }
       ],
       "food_recommendations": [
-        "Eat local for $5-7 per meal, much cheaper than tourist spots"
+        "Endless options, but uni bars are the value play for drinks"
       ],
       "nightlife": [
-        "Packed Thursday through Saturday for the pub crawl, quieter rest of the week"
+        "Leicester Square is fun but exy, pre-drink first, uni bars are cheaper and more social"
       ],
       "transport_tips": [
-        "Beaches accessible by Estrella bus for $2.50 or water taxi"
+        "Use Google Maps before entering the Tube to know exactly where to go",
+        "The Gatwick bus is way cheaper but slower and less comfy than the express train",
+        "Check your Heathrow terminal carefully, and watch night bus timetables"
       ],
       "warnings": [
-        "If travelling solo, find a group for non-diving days, much more fun"
+        "Drinks can be pricey, uni bars are the value option",
+        "Be careful with bus timetables in mornings and at night"
       ],
       "similar_to": [
-        "Caye Caulker for Caribbean island vibes but bigger and livelier"
+        "A bigger, pricier, English-speaking European capital"
       ],
       "sub_itinerary": null,
       "wandrly_notes": [
-        "One of my favourite parts of the trip. Pirates diving is recommended, they give discounts on subsequent dives and free kayak rental.",
-        "The bioluminescent plankton on the night dive is ridiculously good.",
-        "The island is packed Thursday to Saturday for the pub crawl then much quieter.",
-        "If travelling solo, find a group when not diving, it's way more fun.",
-        "Eat local for $5-7 per meal."
+        "Very Sydney-friendly, all in English obviously and you can use a debit card.",
+        "Uni bars are way cheaper and really social and fun, we were at Court.",
+        "Hammersmith St Chris hostel was good for getting to the airport any time but a bit uncomfortable."
       ],
-      "tom_verdict": "Definitely one of my favourite parts of the whole Central America trip. The night diving here is unreal."
+      "tom_verdict": "Easy, English and expensive. Crack the Tube with Google Maps, drink at uni bars, take the Gatwick bus to save."
     },
     {
-      "id": "la-fortuna",
-      "name": "La Fortuna",
-      "country": "Costa Rica",
-      "lat": 10.468,
-      "lon": -84.643,
+      "id": "long-beach",
+      "name": "Long Beach",
+      "country": "United States",
+      "lat": 33.77,
+      "lon": -118.194,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "120-250",
+      "vibes": [
+        "beach",
+        "city",
+        "foodie",
+        "relaxation"
+      ],
+      "vibe_scores": {
+        "adventure": 2,
+        "relaxation": 5,
+        "nightlife": 6,
+        "culture": 4,
+        "budget_friendly": 3,
+        "romantic": 4,
+        "family": 5,
+        "hiking": 1,
+        "diving": 1,
+        "ski": 0
+      },
+      "summary": "Suburban, beautiful, great food, a more relaxed side of LA",
+      "activities": [
+        {
+          "name": "Marina and 2nd Street",
+          "desc": "Lots of action down by the marina and on 2nd Street"
+        },
+        {
+          "name": "Day trip into LA",
+          "desc": "Worth it for the spectacle, hop on a tourist bus to see the sights"
+        },
+        {
+          "name": "Panama Joe's",
+          "desc": "A lot of fun but a younger crowd"
+        }
+      ],
+      "food_recommendations": [
+        "Beautiful food and drinks, enjoy them, it's a cool place"
+      ],
+      "nightlife": [
+        "Panama Joe's is a lot of fun, younger crowd"
+      ],
+      "transport_tips": [
+        "The TAP system on bus/metro is too easy, just use that",
+        "Just fly into LAX, it's not that far, Long Beach is walkable-ish else Ubers and buses are super cheap"
+      ],
+      "warnings": [
+        "Best advice is to have a friend who lives here, else use a tourist bus to see LA"
+      ],
+      "similar_to": [
+        "A calmer, more suburban LA base"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Best advice I can give is to have a friend that lives somewhere here, I was in Long Beach and loved it.",
+        "Beautiful, great food and drinks and more suburban, the TAP system on bus/metro is too easy.",
+        "Going into LA itself is worth it for the spectacle, but Long Beach is really cool."
+      ],
+      "tom_verdict": "The relaxed, suburban side of LA. Hang by the marina and 2nd Street, day-trip into LA, ideally with a local friend."
+    },
+    {
+      "id": "oahu",
+      "name": "Oahu",
+      "country": "United States",
+      "lat": 21.473,
+      "lon": -157.984,
       "recommended_nights": 4,
-      "budget_per_night_aud": "10-60",
+      "budget_per_night_aud": "150-320",
+      "vibes": [
+        "beach",
+        "nature",
+        "relaxation",
+        "diving"
+      ],
+      "vibe_scores": {
+        "adventure": 5,
+        "relaxation": 7,
+        "nightlife": 4,
+        "culture": 4,
+        "budget_friendly": 2,
+        "romantic": 6,
+        "family": 6,
+        "hiking": 5,
+        "diving": 5,
+        "ski": 0
+      },
+      "summary": "Hawaiian beaches, volcanic ridges and surf",
+      "activities": [
+        {
+          "name": "Waikiki & North Shore",
+          "desc": "Classic Waikiki beach plus the legendary North Shore surf breaks"
+        },
+        {
+          "name": "Diamond Head",
+          "desc": "Hike the volcanic crater rim for a view over Honolulu"
+        },
+        {
+          "name": "Pearl Harbor",
+          "desc": "The historic harbour and memorial"
+        }
+      ],
+      "food_recommendations": [
+        "Poke bowls and plate lunches everywhere, food trucks on the North Shore"
+      ],
+      "nightlife": [
+        "Waikiki has the bulk of it, relaxed island pace"
+      ],
+      "transport_tips": [
+        "A car helps a lot to circle the island, though Waikiki itself is walkable"
+      ],
+      "warnings": [
+        "Expensive, it's a remote island, and the surf on the North Shore is no joke in winter"
+      ],
+      "similar_to": [
+        "A US-flavoured tropical island with serious surf"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Part of the 2014 US trip, an early one, but the North Shore and the volcanic ridges left a real mark."
+      ],
+      "tom_verdict": "An early trip but the surf and volcanic scenery hold up. Circle the island by car, mind the winter North Shore swell."
+    },
+    {
+      "id": "san-francisco",
+      "name": "San Francisco",
+      "country": "United States",
+      "lat": 37.775,
+      "lon": -122.419,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "150-300",
+      "vibes": [
+        "city",
+        "culture",
+        "foodie"
+      ],
+      "vibe_scores": {
+        "adventure": 3,
+        "relaxation": 3,
+        "nightlife": 5,
+        "culture": 7,
+        "budget_friendly": 2,
+        "romantic": 5,
+        "family": 5,
+        "hiking": 3,
+        "diving": 1,
+        "ski": 0
+      },
+      "summary": "Iconic hills, bridge and bay, a classic US west coast city",
+      "activities": [
+        {
+          "name": "Golden Gate Bridge",
+          "desc": "The iconic walk or cycle across the bridge and around the bay"
+        },
+        {
+          "name": "Alcatraz",
+          "desc": "The famous island prison tour out in the bay"
+        },
+        {
+          "name": "Cable cars and hills",
+          "desc": "Ride the cable cars up the famous steep streets"
+        }
+      ],
+      "food_recommendations": [
+        "Fisherman's Wharf for the classics, the Mission for great cheap eats"
+      ],
+      "nightlife": [
+        "Plenty across the city's neighbourhoods"
+      ],
+      "transport_tips": [
+        "Cable cars and the BART are the easy ways around, it's a walkable but very hilly city"
+      ],
+      "warnings": [
+        "Expensive, and it can be surprisingly cold and foggy even in summer"
+      ],
+      "similar_to": [
+        "A hillier, foggier, west-coast counterpart to other big US cities"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "An early trip from 2014 so the memories are a bit faded, but the bridge and the bay really stuck with me."
+      ],
+      "tom_verdict": "An older trip for me but the hills, bridge and bay are unforgettable. Pricey and foggier than you'd expect."
+    },
+    {
+      "id": "yellowstone",
+      "name": "Yellowstone",
+      "country": "United States",
+      "lat": 44.428,
+      "lon": -110.588,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "100-280",
       "vibes": [
         "nature",
-        "adventure",
         "wildlife",
+        "adventure",
         "hiking"
       ],
       "vibe_scores": {
-        "adventure": 8,
+        "adventure": 7,
         "relaxation": 4,
-        "nightlife": 2,
-        "culture": 3,
-        "budget_friendly": 6,
-        "romantic": 4,
-        "family": 6,
+        "nightlife": 1,
+        "culture": 2,
+        "budget_friendly": 3,
+        "romantic": 5,
+        "family": 7,
         "hiking": 8,
         "diving": 0,
         "ski": 0
       },
-      "summary": "The quintessential Costa Rica stop with wildlife, hikes and a volcano",
+      "summary": "Geysers, wildlife and vast wilderness, a bucket-list national park",
       "activities": [
         {
-          "name": "Cerro Chato hike",
-          "desc": "The best hike here, no real track, scrambling, ropes, mud, swimming in the crater lake"
+          "name": "Old Faithful & geyser basins",
+          "desc": "The iconic geysers and surreal hot springs like Grand Prismatic"
         },
         {
-          "name": "Dusk river rafting",
-          "desc": "A river raft at dusk to spot all sorts of wildlife along the banks"
+          "name": "Wildlife spotting",
+          "desc": "Bison, elk and bears across the valleys, especially at dawn and dusk"
         },
         {
-          "name": "Arenal volcano 1554 track",
-          "desc": "Fun hike with good views of the volcano"
+          "name": "Hiking and lookouts",
+          "desc": "Vast trails and viewpoints, the Grand Canyon of the Yellowstone is a highlight"
         }
       ],
       "food_recommendations": [
-        "Eat at local sodas like Visquez or Hormiga to save money",
-        "Hostels with kitchens are a good budget move"
+        "Stock up outside the park, options inside are limited and pricey"
       ],
       "nightlife": [
-        "Not really a nightlife scene here"
+        "None, this is deep wilderness, that's the point"
       ],
       "transport_tips": [
-        "Hiring a car is the easiest way around Costa Rica",
-        "Local buses work but involve transfers, about $4 USD per hour"
+        "You need a car, the park is enormous, allow real driving time between sights"
       ],
       "warnings": [
-        "CR buses are punctual, arrive 15 minutes early",
-        "Always carry cash in Costa Rica"
+        "Keep a serious distance from wildlife, especially bison and bears",
+        "Weather changes fast at altitude"
       ],
       "similar_to": [
-        "Monteverde for the nature, but La Fortuna has more activities"
+        "A vast geothermal wilderness, unlike anywhere else"
       ],
       "sub_itinerary": null,
       "wandrly_notes": [
-        "La Fortuna is quintessential Costa Rica. All the animals, activities and a great town.",
-        "Eat at sodas like Visquez or Hormiga to save money.",
-        "Cerro Chato is the best hike, no real track, lots of scrambling and mud. Bring clothes you don't mind getting dirty.",
-        "For wildlife and birds, definitely hire a guide.",
-        "3-4 nights for a budget backpacker, 4-5 for a more relaxed stay."
+        "An early one (2014) so the notes are faded, but the geysers and the sheer scale of the wilderness stuck with me."
       ],
-      "tom_verdict": "If you're going to Costa Rica, La Fortuna is a must-do stop. Absolutely loved it here."
+      "tom_verdict": "A faded early trip but unforgettable: geysers, bison and endless wilderness. You need a car and a few days."
     }
   ]
 }
