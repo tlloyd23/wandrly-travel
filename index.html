@@ -1901,6 +1901,225 @@ const SAMPLE_TRIPS = [
         ], transport: 'About 5 hours from Dunedin, or break the drive with an overnight in Timaru.' }
       ]
     }
+  },
+  {
+    tag: 'Spain & Morocco · 13 days',
+    title: 'Andalusia to Africa',
+    sub: 'Moorish cities, then across the strait',
+    image: 'seville spain alcazar',
+    theme: 'europe',
+    icon: 'ti-building-arch',
+    trip: {
+      title: 'Andalusia to Africa',
+      subtitle: 'Southern Spain\'s Moorish cities, then a ferry hop into Morocco',
+      duration: '13 days',
+      budget: 'AUD $1,600–$2,400 per person',
+      best_time: 'March–May or September–November',
+      vibe: 'Culture, history & a continent crossing',
+      hidden_gems: 'In Seville you can finally tap your card on the metro. Tarifa has no train or airport but a great regional bus network, and the ferry to Tangier is genuinely easy. In Tangier bring small euro notes and coins, water is €0.40 and a pain au chocolat €0.20.',
+      stops: [
+        { name: 'Madrid', lat: 40.417, lon: -3.703, nights: 3, summary: 'Effortlessly pretty and very liveable', activities: [
+          {name:'Tapas on La Latina', desc:'The best tapas street in the city, graze your way through the bars'},
+          {name:'Retiro Park', desc:'Get a rowboat out on the lake, the park is beautiful and central'},
+          {name:'Toledo day trip', desc:'A €20 round train ride to a stunning old hilltop city, vital day trip'}
+        ], transport: 'Fly into Madrid-Barajas. Get a monthly student transport card, it\'s €8 and unlimited.' },
+        { name: 'Seville', lat: 37.389, lon: -5.984, nights: 3, summary: 'The most atmospheric stop in Andalusia', activities: [
+          {name:'Real Alcázar', desc:'A near full-day, gorgeous Moorish palace, an absolute must visit'},
+          {name:'Plaza de España', desc:'The grand half-moon plaza, one of the key sights in the city'},
+          {name:'Cathedral tower', desc:'Great view from the top but very crowded, the rest is a little meh'}
+        ], transport: 'High-speed AVE train from Madrid Atocha, around 2.5 hours. You can tap your card on the Seville metro now.' },
+        { name: 'Tarifa', lat: 36.014, lon: -5.606, nights: 2, summary: 'Windswept surf town at Europe\'s southern tip', activities: [
+          {name:'Old town wander', desc:'Small but really pretty, stay near or east of the port where the action is'},
+          {name:'Whale watching', desc:'The strait is one of the best places in Europe to spot whales and dolphins'},
+          {name:'Beach day', desc:'Huge windswept beaches, this is a kitesurfing capital for a reason'}
+        ], transport: 'Bus via Algeciras (which has the train station) from the Seville direction. No train or airport in Tarifa itself.' },
+        { name: 'Tangier', lat: 35.759, lon: -5.834, nights: 3, summary: 'Modern Europe meets Morocco in the markets', activities: [
+          {name:'Medina markets', desc:'A maze of streets and stalls, dodgy-feeling but not unsafe, everything is cheap'},
+          {name:'Cape Spartel lighthouse', desc:'Grab a cab from the ferry terminal, the lighthouse is great (the cave is meh)'},
+          {name:'American Legation', desc:'A cool little museum in the medina, worth an hour'}
+        ], transport: 'Fast ferry from Tarifa, about 1 hour. Get your passport stamped on the ferry itself to skip arrival hassle.' }
+      ]
+    }
+  },
+  {
+    tag: 'Japan & Taiwan · 16 days',
+    title: 'Two islands, two cultures',
+    sub: 'Snow, temples, then Taipei\'s hills',
+    image: 'kyoto japan fushimi inari',
+    theme: 'taiwan',
+    icon: 'ti-torii',
+    trip: {
+      title: 'Two islands, two cultures',
+      subtitle: 'Japan\'s classic cities and snow, then a hop to underrated Taiwan',
+      duration: '16 days',
+      budget: 'AUD $2,800–$4,000 per person',
+      best_time: 'March–May or October–November',
+      vibe: 'Culture, food & a bit of snow',
+      hidden_gems: 'Stay 15 minutes by train from Shibuya, close to the action but cheaper. Most paid temples in Kyoto can be snuck into via a side path. In Taipei the Jing-Mei white terror museum is a phenomenal, dark history must-do that most tourists skip.',
+      stops: [
+        { name: 'Tokyo', lat: 35.676, lon: 139.650, nights: 4, summary: 'Endless metropolis, 4-5 nights minimum', activities: [
+          {name:'Shibuya & back alleys', desc:'Just walking and exploring the alleys and shops is half the fun here'},
+          {name:'Metropolitan tower', desc:'A free observation deck with a huge view over the city'},
+          {name:'Convenience store food runs', desc:'24/7 and genuinely excellent, a core part of any Tokyo trip'}
+        ], transport: 'Fly into Narita or Haneda. Load a Suica onto your phone for all transport and many shops.' },
+        { name: 'Nagano', lat: 36.649, lon: 138.194, nights: 2, summary: 'Proper winter town with snow and onsen', activities: [
+          {name:'Ryuoo ski park', desc:'Beginner-friendly skiing with cheap hire, long train then free shuttle to the resort'},
+          {name:'Zenkoji temple', desc:'A huge, actively used temple that gets a lot of snow, well worth seeing'},
+          {name:'Outdoor onsen at Mamejima', desc:'Finish a ski day in an authentic outdoor hot spring'}
+        ], transport: 'Shinkansen from Tokyo, about 90 minutes. A car helps a lot if staying a while.' },
+        { name: 'Kyoto', lat: 35.012, lon: 135.768, nights: 3, summary: 'Quiet, freezing, temple-filled', activities: [
+          {name:'Fushimi Inari', desc:'The endless red torii gate trail, go early or late to dodge the crowds'},
+          {name:'teamLab', desc:'Surprisingly good immersive digital art museum'},
+          {name:'Themed bars', desc:'Quiet nightlife but the small themed bars (rock bar!) are great fun'}
+        ], transport: 'Shinkansen back through Tokyo then on to Kyoto. Easily done as a day trip from Osaka too.' },
+        { name: 'Osaka', lat: 34.694, lon: 135.502, nights: 2, summary: 'Lively, the food and nightlife capital', activities: [
+          {name:'Dotonbori at night', desc:'Walk the neon-lit night markets with a drink in hand, the city comes alive'},
+          {name:'Osaka Aquarium', desc:'A genuine highlight with whale sharks and a coral regeneration program'},
+          {name:'Day trips', desc:'Stay near Tennoji or Namba for easy transport to Uji and beyond'}
+        ], transport: 'Short Shinkansen or local train from Kyoto. Stay near Tennoji/Namba for transport.' },
+        { name: 'Taipei', lat: 25.033, lon: 121.565, nights: 5, summary: 'Western and Chinese culture, mountains close by', activities: [
+          {name:'Jing-Mei & memorial', desc:'The white terror museum is a phenomenal must-do, plus the Chiang Kai-Shek memorial'},
+          {name:'Jiufen day trip', desc:'A must, climb Teapot and Keelung mountains then stay for the old street at night'},
+          {name:'Yangmingshan & Beitou', desc:'Rugged volcanic walks and hot springs right on the city\'s edge'}
+        ], transport: 'Fly Osaka to Taipei (around 3 hours). Buy an EasyCard from a stand at the airport, cash is king here.' }
+      ]
+    }
+  },
+  {
+    tag: 'Guatemala & Belize · 14 days',
+    title: 'Volcanoes, ruins & the Caribbean',
+    sub: 'Maya temples to island time',
+    image: 'antigua guatemala volcano',
+    theme: 'ca',
+    icon: 'ti-mountain',
+    trip: {
+      title: 'Volcanoes, ruins & the Caribbean',
+      subtitle: 'Colonial Guatemala, jungle Maya ruins, then a Belize island finish',
+      duration: '14 days',
+      budget: 'AUD $1,500–$2,300 per person',
+      best_time: 'November–April',
+      vibe: 'Adventure, ruins & island chill',
+      hidden_gems: 'Acatenango is the reason you come to Antigua, do the full Fuego add-on for the lava. At Tikal pay extra for the sunset ticket (not on Sundays, locals get free entry then). In Caye Caulker there are no cars, just golf carts, and USD is fixed 1:2 so just bring it.',
+      stops: [
+        { name: 'Antigua', lat: 14.557, lon: -90.733, nights: 4, summary: 'Beautiful colonial town beneath volcanoes', activities: [
+          {name:'Acatenango overnight hike', desc:'A huge 2-day hike, wake at 4am to summit, bring all your warm gear, gets to -10'},
+          {name:'Fuego add-on', desc:'A brutally steep 90-min each-way extra to see lava and explosions, worth every cent'},
+          {name:'Central market', desc:'Get lost in it, the food court at the back left is amazing and cheap'}
+        ], transport: 'Fly into Guatemala City, then just buy a shuttle at the airport, about $20 USD and 1 hour.' },
+        { name: 'Flores', lat: 16.928, lon: -89.892, nights: 3, summary: 'Lake island town, gateway to Tikal', activities: [
+          {name:'Tikal sunset', desc:'Pay extra for the sunset ticket, the park is quiet, animals are out, magic walk back in the dark'},
+          {name:'Yaxha ruins', desc:'A quieter ruin site, great for a half-day before or after Tikal'},
+          {name:'Lake Petén Itzá', desc:'Kayak or swim off the island town, food here is cheap and portions are big'}
+        ], transport: 'Long but doable overnight shuttle or short domestic flight from Guatemala City/Antigua.' },
+        { name: 'Caye Caulker', lat: 17.745, lon: -88.025, nights: 4, summary: 'No cars, just golf carts and Caribbean calm', activities: [
+          {name:'Snorkel the reef', desc:'The barrier reef is right there, snorkel or dive trips run constantly'},
+          {name:'The Split', desc:'A swim spot and bar where the island splits, sunset beers are the move'},
+          {name:'Just relax', desc:'Walkable, friendly and unhurried, this is a place to slow right down'}
+        ], transport: 'Shuttle from Flores to the border, then bus and the ferry to the island. Get to the ferry early, queues are huge.' }
+      ]
+    }
+  },
+  {
+    tag: 'Thailand · 11 days',
+    title: 'North to islands',
+    sub: 'Temples, markets, then the south',
+    image: 'chiang mai thailand temple',
+    theme: 'sea',
+    icon: 'ti-temple',
+    trip: {
+      title: 'North to islands',
+      subtitle: 'Chiang Mai\'s culture and markets, Bangkok\'s buzz, then island time',
+      duration: '11 days',
+      budget: 'AUD $1,200–$1,900 per person',
+      best_time: 'November–March',
+      vibe: 'Culture, food & beaches',
+      hidden_gems: 'Warorot market in Chiang Mai is where you get the cheap, authentic stuff, not the boutique Jingjai one. In Bangkok never pay more than 40 baht for a short tuk-tuk ride. On Ko Samui do Ang Thong marine park as a relaxed boat tour and allocate a full day.',
+      stops: [
+        { name: 'Chiang Mai', lat: 18.788, lon: 98.985, nights: 4, summary: 'Northern culture, markets and elephants', activities: [
+          {name:'Ethical elephant sanctuary', desc:'Make sure it\'s genuinely ethical, a real highlight when it is'},
+          {name:'Sunday night market', desc:'Crowds are insane but it\'s so cool, the markets within the wats are the highlight'},
+          {name:'Doi Suthep & sticky waterfall', desc:'Temple with a view plus a fun climbable waterfall on a tour'}
+        ], transport: 'Fly into Chiang Mai. Stay in or near the old town for easy walking to the markets.' },
+        { name: 'Bangkok', lat: 13.756, lon: 100.502, nights: 2, summary: 'Chaotic, fun and full of food', activities: [
+          {name:'Grand Palace & Wat Pho', desc:'The Royal Palace is worth the cost, Wat Pho next door is great too'},
+          {name:'Khao San Road', desc:'Stay near here for nightlife, dead at 7:30 then builds all night'},
+          {name:'River cruise', desc:'A genuinely fab way to see the city, haggle hard on the price'}
+        ], transport: 'Short flight or overnight train from Chiang Mai. Grab/taxi from the airport is easiest.' },
+        { name: 'Ko Samui', lat: 9.512, lon: 100.014, nights: 5, summary: 'Chilled island, beaches and marine parks', activities: [
+          {name:'Ang Thong marine park', desc:'A full-day boat tour through the islands, do the relaxed one not the speedboat'},
+          {name:'Fisherman\'s Village', desc:'Markets with beach access on the pier, find the right entry to dodge the restaurants'},
+          {name:'Chaweng vs Chamon', desc:'Chaweng is big and touristy, Chamon is chilled with the cheapest paddleboards'}
+        ], transport: 'Short flight Bangkok to Samui, or fly to Surat Thani and ferry across. Grab works on the island.' }
+      ]
+    }
+  },
+  {
+    tag: 'Indonesia · 13 days',
+    title: 'Bali & Java explorer',
+    sub: 'Beaches, temples and volcanoes',
+    image: 'yogyakarta borobudur temple',
+    theme: 'diving',
+    icon: 'ti-beach',
+    trip: {
+      title: 'Bali & Java explorer',
+      subtitle: 'Bali\'s relaxed coast, then real Indonesia in Java\'s temple country',
+      duration: '13 days',
+      budget: 'AUD $1,100–$1,800 per person',
+      best_time: 'April–October',
+      vibe: 'Relaxed, cultural & a little adventurous',
+      hidden_gems: 'In Canggu a grab from the airport is 300k, don\'t get ripped off, and it can take 2-3 hours. For Borobudur sunrise the view is from a nearby hill, not the temple itself. In Yogyakarta you can get a huge meal and drink for 40k at a Warung buffet.',
+      stops: [
+        { name: 'Canggu', lat: -8.648, lon: 115.139, nights: 3, summary: 'Gym, massage, beach and chill', activities: [
+          {name:'Beach and cafe days', desc:'This is a relax-and-recharge spot, walking distance to the beach is ideal'},
+          {name:'Gym and wellness', desc:'Day passes to gyms like Pucuk are cheap, the wellness scene is big here'},
+          {name:'Nightlife', desc:'Use google for what\'s on each night, the scene moves around'}
+        ], transport: 'Fly into Denpasar (DPS). A grab to Canggu is around 300k, can be slow in traffic.' },
+        { name: 'Uluwatu', lat: -8.829, lon: 115.085, nights: 3, summary: 'Classic Bali, cliffs and temples', activities: [
+          {name:'Diving', desc:'All the boats go to the same spots so just go by price, SEA was great'},
+          {name:'GWK statue & Barong', desc:'The big statue and Barong dance were a genuine surprise highlight'},
+          {name:'Uluwatu temple', desc:'You\'re there for the monkeys and the clifftop setting more than the temple'}
+        ], transport: 'Grab bikes are about $3 for 30 mins, BYO helmet. Gojek can be even cheaper.' },
+        { name: 'Yogyakarta', lat: -7.797, lon: 110.371, nights: 5, summary: 'Real Java: temples, caves and history', activities: [
+          {name:'Borobudur & Prambanan', desc:'Both world-class temples, doable in one big day, the sunrise hill view is the move'},
+          {name:'Jomblang cave', desc:'A seriously cool cave with a famous light beam, an unmissable adventure'},
+          {name:'Tilldrop nightlife', desc:'Live music every night, a great mix of locals and tourists'}
+        ], transport: 'Short flight Bali to Yogyakarta. Buy train tickets in advance for onward travel, they sell out.' }
+      ]
+    }
+  },
+  {
+    tag: 'Mexico · 12 days',
+    title: 'Yucatán & the Caribbean coast',
+    sub: 'Maya ruins, cenotes and lagoons',
+    image: 'mexico tulum cenote',
+    theme: 'ca',
+    icon: 'ti-pyramid',
+    trip: {
+      title: 'Yucatán & the Caribbean coast',
+      subtitle: 'CDMX culture, then down the Caribbean coast to ruins and lagoons',
+      duration: '12 days',
+      budget: 'AUD $1,400–$2,200 per person',
+      best_time: 'November–April',
+      vibe: 'Culture, ruins & beach',
+      hidden_gems: 'CDMX is free-museum day on Sundays and the anthropology museum is ridiculously worth it. In Tulum, La Eufemia is a taco shop you walk through for free beach access. In Bacalar you can kayak across the lagoon and join the boat parties for free.',
+      stops: [
+        { name: 'Mexico City', lat: 19.433, lon: -99.133, nights: 4, summary: 'Huge, friendly and brilliant for food', activities: [
+          {name:'Anthropology museum', desc:'Ridiculously worth it, one of the great museums of the world'},
+          {name:'Teotihuacan', desc:'A long day but the pyramids are worth it, guides give really useful info'},
+          {name:'Practise your Spanish', desc:'Few people speak English and locals are super friendly, a great place to learn'}
+        ], transport: 'Fly into CDMX. Come on a Sunday for free museums, but expect insane peak-time traffic.' },
+        { name: 'Tulum', lat: 20.211, lon: -87.466, nights: 4, summary: 'Ruins, cenotes and a wealth-gap beach', activities: [
+          {name:'Chichén Itzá day tour', desc:'Find a shorter tour, combine with a cenote and lunch, just go, it\'s so worth it'},
+          {name:'Cenote swims', desc:'The Yucatán is full of them, the freshwater sinkholes are magic'},
+          {name:'Beach access hack', desc:'Walk through La Eufemia taco shop for free access, the town itself is more chill'}
+        ], transport: 'Bus (ADO) from Cancún airport, cheaper than a shuttle but show up 20 mins early, they leave early.' },
+        { name: 'Bacalar', lat: 18.677, lon: -88.395, nights: 4, summary: 'The lagoon of seven colours', activities: [
+          {name:'Kayak the lagoon', desc:'The best-value way to see the colours, and you can paddle to the boat parties for free'},
+          {name:'Cenote Azul', desc:'A deep dark cenote right on the lagoon\'s edge'},
+          {name:'Cocina Orizaba', desc:'Massive portions at real Mexican prices, not tourist prices'}
+        ], transport: 'ADO bus from Tulum. Note the station isn\'t where Apple Maps marks it, it\'s near Calle 42.' }
+      ]
+    }
   }
 ];
 
@@ -1911,17 +2130,41 @@ const SAMPLE_TRIPS = [
 // Georgia could extend toward Armenia, Japan stops could combine with a
 // nearby country, etc). Falls back to the hardcoded SAMPLE_TRIPS if the
 // bank isn't loaded yet (e.g. first paint before destinations.json arrives).
+// Broad regions used to decide which countries can plausibly be combined into
+// one multi-country procedural trip. Cities grouped here can chain together
+// geographically. Whenever two different countries appear in the same group,
+// a procedural trip rooted in one can extend into the other.
 const REGION_GROUPS = {
-  westernEurope: ['Lisbon','Sintra'],
-  centralEurope: ['Budapest','Prague'],
+  // Iberia + the Morocco ferry hop + the Pyrenees micro-state
+  iberia: ['Lisbon','Sintra','Madrid','Seville','Barcelona','Toledo','Segovia','Tarifa','Andorra la Vella','Tangier'],
+  // Western Europe core — France, Benelux, Germany, UK all chain by rail
+  westernEurope: ['Paris','Bruges','Amsterdam','Berlin','London'],
+  // Central Europe rail loop — Czechia, Hungary, Austria, Croatia, Poland
+  centralEurope: ['Budapest','Prague','Vienna','Zagreb','Wroclaw','Warsaw'],
+  // Nordics + Baltics — the classic ferry-and-rail northern loop
+  nordicsBaltics: ['Helsinki','Stockholm','Oslo','Kaunas','Riga'],
+  // Mediterranean classics
+  mediterranean: ['Rome','Athens'],
+  // Caucasus
   caucasus: ['Tbilisi','Kazbegi (Stepantsminda)','Sighnaghi'],
-  southAsia: ['Colombo','Sigiriya','Kandy','Ella','Mirissa','Galle'],
-  southeastAsia: ['Bangkok','Chiang Mai'],
-  eastAsia: ['Tokyo','Nagano','Kyoto','Osaka','Taipei'],
+  // South Asia
+  southAsia: ['Colombo','Sigiriya','Kandy','Ella','Mirissa','Galle','Hiriketiya','Unawatuna'],
+  // Southeast Asia mainland + islands
+  southeastAsia: ['Bangkok','Chiang Mai','Ko Samui','Singapore'],
+  // Indonesia + Timor (the island chain east of Bali)
+  indonesiaTimor: ['Canggu','Uluwatu','Yogyakarta','Jakarta','Dili'],
+  // East Asia — Japan + the Taiwan flight hop
+  eastAsia: ['Tokyo','Nagano','Matsumoto','Kyoto','Osaka','Taipei'],
+  // Oceania
   oceania: ['Christchurch','Lake Tekapo','Wanaka','Queenstown'],
-  centralAmerica: ['Antigua','La Fortuna','Bocas del Toro'],
+  // The Central America overland corridor — Mexico down to Panama
+  centralAmerica: ['Mexico City','Tulum','Bacalar','Caye Caulker','Antigua','Flores','El Tunco','Leon','San Juan del Sur','La Fortuna','Monteverde','Manuel Antonio','Bocas del Toro','Panama City'],
+  // South America
   southAmerica: ['Cusco'],
-  timorSea: ['Dili'],
+  // North America west
+  usaWest: ['San Francisco','Long Beach','Yellowstone','Oahu'],
+  // Australia domestic
+  australia: ['Cairns & Tropical North','Darwin & Kakadu','Kangaroo Island','Phillip Island & Wilsons Prom'],
 };
 
 function pickRandom(arr, n) {
@@ -1959,20 +2202,50 @@ function generateProceduralTrip() {
     if (!byCountry[d.country]) byCountry[d.country] = [];
     byCountry[d.country].push(d);
   });
-  const countries = Object.keys(byCountry).filter(c => byCountry[c].length >= 2);
+
+  // Countries that can SEED a trip: either they have 2+ destinations (enough
+  // for a standalone trip) OR they sit in a region group alongside another
+  // country (so they can be the start of a multi-country trip). This lets
+  // single-destination countries like Czechia, Panama, Costa Rica and Peru
+  // appear in the mix instead of only the six 2+ destination countries.
+  const regionCountrySets = Object.values(REGION_GROUPS).map(region =>
+    [...new Set(DESTINATIONS.filter(d => region.includes(d.name)).map(d => d.country))]
+  );
+  const canSeed = country => {
+    if ((byCountry[country] || []).length >= 2) return true;
+    return regionCountrySets.some(set => set.includes(country) && set.length > 1);
+  };
+  const countries = Object.keys(byCountry).filter(canSeed);
   if (!countries.length) return null;
 
   const baseCountry = countries[Math.floor(Math.random() * countries.length)];
   let pool = [...byCountry[baseCountry]];
 
-  // ~30% chance of a multi-country trip if there's a plausible neighbouring
-  // country in the bank within the same broad region
+  // ~55% chance of a multi-country trip when there's a plausible neighbour in
+  // the same region group. Forced to multi-country if the base country has
+  // fewer than 2 destinations on its own (otherwise the trip is too thin).
   let countryLabel = baseCountry;
+  const needsPartner = pool.length < 2;
   for (const region of Object.values(REGION_GROUPS)) {
     const regionCountries = [...new Set(DESTINATIONS.filter(d => region.includes(d.name)).map(d => d.country))];
-    if (regionCountries.includes(baseCountry) && regionCountries.length > 1 && Math.random() < 0.3) {
-      const otherCountry = regionCountries.find(c => c !== baseCountry);
-      if (otherCountry && byCountry[otherCountry]) {
+    if (regionCountries.includes(baseCountry) && regionCountries.length > 1 && (needsPartner || Math.random() < 0.55)) {
+      // Pick a partner country from the region, weighted toward the one
+      // geographically closest to the base country's stops (avoids odd pairs
+      // like Andorra & Morocco that share a region but sit far apart).
+      const partners = regionCountries.filter(c => c !== baseCountry && byCountry[c]);
+      if (partners.length) {
+        // Centroid of the base country's destinations
+        const baseLat = pool.reduce((s,d)=>s+d.lat,0) / pool.length;
+        const baseLon = pool.reduce((s,d)=>s+d.lon,0) / pool.length;
+        const dist = c => {
+          const cs = byCountry[c];
+          const lat = cs.reduce((s,d)=>s+d.lat,0) / cs.length;
+          const lon = cs.reduce((s,d)=>s+d.lon,0) / cs.length;
+          return Math.hypot(lat - baseLat, lon - baseLon);
+        };
+        // Sort by proximity, then pick from the nearest two for a bit of variety
+        const sorted = partners.sort((a,b) => dist(a) - dist(b));
+        const otherCountry = sorted[Math.floor(Math.random() * Math.min(2, sorted.length))];
         const extra = pickRandom(byCountry[otherCountry], Math.min(2, byCountry[otherCountry].length));
         pool = pool.concat(extra);
         countryLabel = `${baseCountry} & ${otherCountry}`;
@@ -1980,6 +2253,9 @@ function generateProceduralTrip() {
       break;
     }
   }
+
+  // If still single-country with <2 stops available, bail (caller will retry/fallback)
+  if (pool.length < 2) return null;
 
   // Pick 3-6 stops from the pool (or all of them if pool is small)
   const stopCount = Math.min(pool.length, 3 + Math.floor(Math.random() * 4));
@@ -2023,24 +2299,72 @@ function generateProceduralTrip() {
   };
 }
 
+// Extract the set of countries a trip covers, used to keep the three shown
+// cards geographically distinct (no two cards from the same country/region).
+function tripCountries(t) {
+  // Hardcoded trips: derive from the tag prefix before the dot ("Spain & Morocco · 13 days")
+  if (t.tag) {
+    const label = t.tag.split('·')[0].trim();
+    return label.split('&').map(c => c.trim().toLowerCase());
+  }
+  return ['unknown'];
+}
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 function getDisplayTrips(count) {
-  // Try to generate `count` procedural trips; fall back to static SAMPLE_TRIPS
-  // for any slot that fails (e.g. bank not loaded yet)
-  const generated = [];
-  const seen = new Set();
+  // Build a big candidate pool by blending the hand-written SAMPLE_TRIPS (which
+  // cover countries the procedural generator can't reach on its own, like
+  // Spain+Morocco, Mexico, Guatemala+Belize) with several freshly generated
+  // procedural trips. Then pick `count` of them while enforcing that no two
+  // cards share a country, so the row always feels varied.
+  const candidates = [];
+
+  // ~60% of the pool from hand-written trips (richer, multi-country, real notes)
+  shuffle(SAMPLE_TRIPS).forEach(t => candidates.push(t));
+
+  // Generate a handful of procedural trips to mix in
+  const seenTitles = new Set();
   let attempts = 0;
-  while (generated.length < count && attempts < count * 6) {
+  while (attempts < 24 && candidates.filter(c => c.trip && c.trip.fromBankOnly).length < 8) {
     attempts++;
     const t = generateProceduralTrip();
-    if (t && !seen.has(t.title)) {
-      seen.add(t.title);
-      generated.push(t);
+    if (t && !seenTitles.has(t.title)) {
+      seenTitles.add(t.title);
+      candidates.push(t);
     }
   }
-  while (generated.length < count) {
-    generated.push(SAMPLE_TRIPS[generated.length % SAMPLE_TRIPS.length]);
+
+  // Now select `count`, skipping any whose countries already appear in the
+  // selection. Shuffle first so hand-written and procedural are interleaved.
+  const pool = shuffle(candidates);
+  const selected = [];
+  const usedCountries = new Set();
+
+  for (const t of pool) {
+    if (selected.length >= count) break;
+    const countriesHere = tripCountries(t);
+    if (countriesHere.some(c => usedCountries.has(c))) continue;
+    selected.push(t);
+    countriesHere.forEach(c => usedCountries.add(c));
   }
-  return generated;
+
+  // If country-diversity left us short (small bank), top up ignoring the constraint
+  if (selected.length < count) {
+    for (const t of pool) {
+      if (selected.length >= count) break;
+      if (!selected.includes(t)) selected.push(t);
+    }
+  }
+
+  return selected.slice(0, count);
 }
 
 let currentDisplayTrips = [];
