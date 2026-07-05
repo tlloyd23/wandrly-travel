@@ -1048,6 +1048,47 @@ nav {
 .map-popup-content strong { font-size: 13px; }
 .mapboxgl-popup-content { border-radius: var(--radius-sm) !important; padding: 10px 12px !important; }
 
+/* MAP MARKER ANIMATIONS */
+.wandrly-marker {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+  position: relative;
+}
+/* Drop-in: pin falls and settles when the route builds */
+@keyframes markerDrop {
+  0%   { opacity: 0; transform: translateY(-14px) scale(0.6); }
+  60%  { opacity: 1; transform: translateY(2px) scale(1.05); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+.wandrly-marker.dropping { animation: markerDrop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+
+/* Active pin gets a pulsing ring */
+.wandrly-marker.active::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  color: inherit;
+  animation: markerPulse 1.6s ease-out infinite;
+}
+@keyframes markerPulse {
+  0%   { transform: scale(0.9); opacity: 0.7; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+.wandrly-marker.active { z-index: 5; }
+
 /* SAMPLE TRIP CARDS */
 #sample-trips-section {
   max-width: 1000px;
@@ -1136,6 +1177,158 @@ nav {
 .unsplash-credit a { color: var(--ink-faint); text-decoration: none; }
 .unsplash-credit a:hover { text-decoration: underline; }
 
+/* SAVED TRIPS */
+#saved-trips-section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px 40px;
+}
+.saved-card {
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.15s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.saved-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(196,92,42,0.1);
+}
+.saved-card-img {
+  height: 120px;
+  background: var(--sand-dark);
+  position: relative;
+  overflow: hidden;
+}
+.saved-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.saved-card-body { padding: 13px 15px; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.saved-card-title { font-size: 15px; font-weight: 500; line-height: 1.3; }
+.saved-card-sub { font-size: 12px; color: var(--ink-muted); }
+.saved-card-meta { font-size: 11px; color: var(--ink-faint); margin-top: auto; padding-top: 6px; display: flex; align-items: center; gap: 5px; }
+.saved-card-remove {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(26,24,20,0.55);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.15s, background 0.15s;
+}
+.saved-card:hover .saved-card-remove { opacity: 1; }
+.saved-card-remove:hover { background: var(--accent); }
+.saved-empty {
+  text-align: center;
+  padding: 36px 24px;
+  color: var(--ink-faint);
+  font-size: 14px;
+  background: var(--white);
+  border: 1px dashed var(--card-border);
+  border-radius: var(--radius);
+}
+.saved-empty i { font-size: 28px; display: block; margin-bottom: 10px; opacity: 0.5; }
+
+/* SAVE BUTTON STATE */
+.act-btn.saved-active {
+  background: var(--teal-light);
+  border-color: var(--teal);
+  color: var(--teal);
+}
+
+/* CARD ENTRANCE ANIMATION */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-in {
+  animation: fadeInUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Card image fade-in when photo loads */
+.sample-card-img img, .saved-card-img img {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.sample-card-img img.loaded, .saved-card-img img.loaded { opacity: 1; }
+
+/* SKELETON LOADERS */
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, var(--sand-dark) 25%, #f0ebe1 50%, var(--sand-dark) 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s infinite linear;
+  border-radius: var(--radius-sm);
+}
+.skeleton-card {
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.skeleton-img { height: 120px; }
+.skeleton-body { padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; }
+.skeleton-line { height: 12px; }
+.skeleton-line.short { width: 55%; }
+.skeleton-line.medium { width: 80%; }
+
+/* OUR STORY */
+#story-section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px 24px 50px;
+}
+.story-card {
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+}
+@media (max-width: 760px) { .story-card { grid-template-columns: 1fr; } }
+.story-text { padding: 30px 32px; display: flex; flex-direction: column; justify-content: center; }
+.story-eyebrow {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 12px;
+}
+.story-text h2 {
+  font-family: 'Fraunces', serif; font-weight: 300; font-size: 28px; letter-spacing: -0.5px;
+  line-height: 1.2; margin-bottom: 16px; color: var(--ink);
+}
+.story-text p { font-size: 14px; color: var(--ink-muted); line-height: 1.7; margin-bottom: 12px; }
+.story-stats { display: flex; gap: 24px; margin-top: 10px; }
+.story-stat-num { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 300; color: var(--accent); }
+.story-stat-label { font-size: 11px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.05em; }
+.story-map {
+  position: relative;
+  background: var(--sand);
+  min-height: 320px;
+  border-left: 1px solid var(--card-border);
+}
+@media (max-width: 760px) { .story-map { border-left: none; border-top: 1px solid var(--card-border); min-height: 260px; } }
+#story-map-canvas { width: 100%; height: 100%; position: absolute; inset: 0; }
+.story-map-caption {
+  position: absolute; bottom: 10px; left: 0; right: 0; text-align: center;
+  font-size: 11px; color: var(--ink-faint); pointer-events: none;
+}
+
 /* FOOTER */
 footer {
   border-top: 1px solid var(--card-border);
@@ -1203,8 +1396,9 @@ footer strong { color: var(--ink-muted); }
   <div class="nav-logo" onclick="goHome()" style="cursor:pointer;">wand<span>r</span>ly</div>
   <div class="nav-links">
     <a href="#" onclick="scrollToBrowse(); return false;">Explore</a>
-    <a href="#" onclick="scrollToSearch(); return false;">Plan a trip</a>
-    <a href="#" class="nav-cta" onclick="openAccountModal(); return false;">Get started</a>
+    <a href="#" onclick="scrollToSaved(); return false;">Saved</a>
+    <a href="#" onclick="scrollToStory(); return false;">Our story</a>
+    <a href="#" class="nav-cta" onclick="scrollToSearch(); return false;">Plan a trip</a>
   </div>
 </nav>
 
@@ -1326,6 +1520,50 @@ footer strong { color: var(--ink-muted); }
   <div id="sample-trip-grid"></div>
 </section>
 
+<section id="saved-trips-section">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+    <h2 class="section-heading" style="margin-bottom:0">Your saved trips</h2>
+    <span id="saved-count-badge" style="font-size:12px;color:var(--ink-faint)"></span>
+  </div>
+  <div id="saved-trip-grid"></div>
+</section>
+
+<section id="story-section">
+  <div class="story-card">
+    <div class="story-text">
+      <div class="story-eyebrow">Our story</div>
+      <h2>Every tip here comes from an actual trip.</h2>
+      <p>
+        Wandrly started as a giant document of scribbled travel notes, the kind you build up after years of buses, hostels, ferries and wrong turns. Somewhere over 80 cities and 40 countries, it turned into something worth sharing.
+      </p>
+      <p>
+        Most travel sites recycle the same generic lists. This one doesn't. Every recommendation, warning and "trust me, do this" comes from genuinely being there, getting it wrong, and figuring out what actually works. No sponsored fluff, no AI filler pretending to have been somewhere.
+      </p>
+      <p>
+        The map is real too. Every dot is a place these notes came from. It's still growing.
+      </p>
+      <div class="story-stats">
+        <div>
+          <div class="story-stat-num" id="story-stat-cities">80+</div>
+          <div class="story-stat-label">Cities</div>
+        </div>
+        <div>
+          <div class="story-stat-num" id="story-stat-countries">40</div>
+          <div class="story-stat-label">Countries</div>
+        </div>
+        <div>
+          <div class="story-stat-num">6</div>
+          <div class="story-stat-label">Continents</div>
+        </div>
+      </div>
+    </div>
+    <div class="story-map">
+      <canvas id="story-map-canvas"></canvas>
+      <div class="story-map-caption">Everywhere the notes come from</div>
+    </div>
+  </div>
+</section>
+
 <section style="max-width:1000px;margin:0 auto;padding:0 24px 60px;">
   <div id="loading">
     <span class="loading-globe">🌍</span>
@@ -1378,7 +1616,9 @@ footer strong { color: var(--ink-muted); }
     </div>
 
     <div class="action-row">
-      <button class="act-btn primary" onclick="doSearch()"><i class="ti ti-refresh"></i> Refine trip</button>
+      <button class="act-btn primary" id="save-trip-btn" onclick="toggleSaveTrip()"><i class="ti ti-heart"></i> Save trip</button>
+      <button class="act-btn" onclick="doSearch()"><i class="ti ti-refresh"></i> Refine trip</button>
+      <button class="act-btn" onclick="downloadTripPDF()"><i class="ti ti-download"></i> Download PDF</button>
       <button class="act-btn" onclick="copyTrip()"><i class="ti ti-copy"></i> Copy itinerary</button>
       <button class="act-btn" onclick="askMore('hidden gems')"><i class="ti ti-diamond"></i> Hidden gems</button>
       <button class="act-btn" onclick="askMore('transport and routes')"><i class="ti ti-train"></i> Transport</button>
@@ -1400,6 +1640,9 @@ footer strong { color: var(--ink-muted); }
   Photos via <a href="https://unsplash.com" style="color:var(--accent);text-decoration:none;">Unsplash</a> &nbsp;·&nbsp;
   <a href="/terms.html" style="color:var(--accent);text-decoration:none;">Terms</a> &nbsp;·&nbsp;
   <a href="mailto:hello@wandrly-travel.com" style="color:var(--accent);text-decoration:none;">hello@wandrly-travel.com</a>
+  <div style="margin-top:10px;font-size:11px;color:var(--ink-faint);max-width:680px;margin-left:auto;margin-right:auto;line-height:1.5">
+    Some accommodation links are affiliate links. If you book through them, Wandrly may earn a small commission at no extra cost to you. This helps keep the search free.
+  </div>
 </footer>
 
 <script>
@@ -1493,6 +1736,48 @@ canvas.addEventListener('touchstart', e => { isDragging = true; lastX = e.touche
 canvas.addEventListener('touchend', () => { isDragging = false; });
 canvas.addEventListener('touchmove', e => { if (!isDragging) return; angle += (e.touches[0].clientX - lastX) * 0.007; lastX = e.touches[0].clientX; e.preventDefault(); }, {passive:false});
 globeLoop();
+
+// Photo cache — declared early because renderCountryGrid (called at load) fetches
+// photos, and this const would otherwise be in its temporal dead zone.
+const photoCache = {};
+
+// ---- AFFILIATE CONFIG ----
+// Booking.com affiliate (Partner) integration.
+//
+// SETUP (one-time, do this in the Booking.com partner dashboard):
+//   1. Apply at https://www.booking.com/affiliate-program/v2/index.html
+//      Approval usually takes 2-4 weeks, so apply early.
+//   2. Once approved, find your Affiliate ID (AID) in the dashboard. It's a
+//      number, e.g. 1234567.
+//   3. Paste it into BOOKING_AFFILIATE_ID below, replacing the empty string.
+//
+// Until an AID is set, the links still work for the user (they just go to
+// Booking.com without earning commission) and a small "set up to earn" hint is
+// logged to the console so you remember. No broken UI either way.
+//
+// Deep-link format reference (search by destination string + dates):
+//   https://www.booking.com/searchresults.html?ss=CITY&aid=AID&checkin=YYYY-MM-DD&checkout=YYYY-MM-DD
+const BOOKING_AFFILIATE_ID = ''; // <-- paste your Booking.com AID here once approved
+
+// Build a Booking.com search URL for a stop. Includes the affiliate id when set,
+// and optional check-in/out dates if the user has supplied a trip start date.
+function buildBookingURL(stop, checkin, checkout) {
+  const dest = encodeURIComponent(`${stop.name}${stop.country ? ', ' + stop.country : ''}`);
+  let url = `https://www.booking.com/searchresults.html?ss=${dest}`;
+  if (BOOKING_AFFILIATE_ID) {
+    url += `&aid=${encodeURIComponent(BOOKING_AFFILIATE_ID)}`;
+  }
+  if (checkin && checkout) {
+    url += `&checkin=${checkin}&checkout=${checkout}`;
+  }
+  // label_id helps you see in the dashboard which part of the site drove the click
+  url += '&label=wandrly-stop';
+  return url;
+}
+
+if (!BOOKING_AFFILIATE_ID) {
+  console.info('[wandrly] Booking.com affiliate links are live but BOOKING_AFFILIATE_ID is not set, so clicks will not earn commission yet. Add your AID in index.html once your partner application is approved.');
+}
 
 // ---- DATA ----
 const REGIONS = {
@@ -1749,6 +2034,28 @@ function scrollToBrowse() {
     document.getElementById('back-btn')?.click ? goBack() : null;
   }
   document.getElementById('browse-section').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+// If we're currently inside a trip/outline view, back out to the homepage
+// first so the target section is actually visible before we scroll to it.
+function ensureHomeVisible() {
+  const tripShown = document.getElementById('trip-result').style.display === 'block';
+  const outlineShown = document.getElementById('outline-result').style.display === 'block';
+  if (tripShown || outlineShown) goBack();
+}
+
+function scrollToSaved() {
+  ensureHomeVisible();
+  setTimeout(() => {
+    document.getElementById('saved-trips-section')?.scrollIntoView({behavior:'smooth', block:'start'});
+  }, 50);
+}
+
+function scrollToStory() {
+  ensureHomeVisible();
+  setTimeout(() => {
+    document.getElementById('story-section')?.scrollIntoView({behavior:'smooth', block:'start'});
+  }, 50);
 }
 
 function openAccountModal() {
@@ -2369,23 +2676,47 @@ function getDisplayTrips(count) {
 
 let currentDisplayTrips = [];
 
+function skeletonCardsHTML(n) {
+  let out = '';
+  for (let i = 0; i < n; i++) {
+    out += `
+      <div class="skeleton-card">
+        <div class="skeleton skeleton-img"></div>
+        <div class="skeleton-body">
+          <div class="skeleton skeleton-line medium"></div>
+          <div class="skeleton skeleton-line short"></div>
+        </div>
+      </div>`;
+  }
+  return out;
+}
+
 function renderSampleTrips() {
-  currentDisplayTrips = getDisplayTrips(3);
+  const grid = document.getElementById('sample-trip-grid');
 
-  document.getElementById('sample-trip-grid').innerHTML = currentDisplayTrips.map((s, i) => `
-    <div class="sample-card" onclick="openSampleTrip(${i})">
-      <div class="sample-card-img theme-${s.theme}" id="sample-img-${i}">
-        <span class="sample-card-tag">${s.tag}</span>
-        <div class="sample-card-img-icon"><i class="ti ${s.icon}"></i></div>
-      </div>
-      <div class="sample-card-body">
-        <div class="sample-card-title">${s.title}</div>
-        <div class="sample-card-sub">${s.sub}</div>
-      </div>
-    </div>
-  `).join('');
+  // Show shimmering skeletons instantly so there's never an empty gap
+  grid.innerHTML = skeletonCardsHTML(3);
 
-  currentDisplayTrips.forEach((s, i) => loadSampleImage(s, i));
+  // Compute the trips (synchronous, fast) then swap in on the next frame so the
+  // skeletons are visible for at least a moment and cards animate in cleanly.
+  requestAnimationFrame(() => {
+    currentDisplayTrips = getDisplayTrips(3);
+
+    grid.innerHTML = currentDisplayTrips.map((s, i) => `
+      <div class="sample-card animate-in" style="animation-delay:${i * 80}ms" onclick="openSampleTrip(${i})">
+        <div class="sample-card-img theme-${s.theme}" id="sample-img-${i}">
+          <span class="sample-card-tag">${s.tag}</span>
+          <div class="sample-card-img-icon"><i class="ti ${s.icon}"></i></div>
+        </div>
+        <div class="sample-card-body">
+          <div class="sample-card-title">${s.title}</div>
+          <div class="sample-card-sub">${s.sub}</div>
+        </div>
+      </div>
+    `).join('');
+
+    currentDisplayTrips.forEach((s, i) => loadSampleImage(s, i));
+  });
 }
 
 async function loadSampleImage(sample, i) {
@@ -2394,6 +2725,8 @@ async function loadSampleImage(sample, i) {
   const el = document.getElementById(`sample-img-${i}`);
   if (!el) return;
   el.innerHTML = `<img src="${photo.url}" alt="${sample.title}"><span class="sample-card-tag">${sample.tag}</span>`;
+  const img = el.querySelector('img');
+  if (img) img.onload = () => img.classList.add('loaded');
 }
 
 function openSampleTrip(i) {
@@ -2403,6 +2736,8 @@ function openSampleTrip(i) {
   currentTripData = JSON.parse(JSON.stringify(currentDisplayTrips[i].trip));
   document.getElementById('browse-section').style.display = 'none';
   document.getElementById('sample-trips-section').style.display = 'none';
+  var _st=document.getElementById('saved-trips-section'); if(_st) _st.style.display='none';
+  var _so=document.getElementById('story-section'); if(_so) _so.style.display='none';
   renderTrip(currentTripData);
 }
 
@@ -2507,6 +2842,157 @@ function bankDestToStop(dest) {
   };
 }
 
+// ---- SAVED TRIPS ----
+// Trips the user has hearted. Stored in localStorage (no account needed) so
+// they persist across visits on the same browser. Each saved trip keeps a
+// lightweight snapshot of the full trip object plus a saved timestamp.
+const SAVED_KEY = 'wandrly_saved_trips';
+
+function getSavedTrips() {
+  try {
+    const raw = localStorage.getItem(SAVED_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch(e) { return []; }
+}
+
+// A stable id for a trip so we can tell if it's already saved. Based on title
+// plus the ordered stop names, so two genuinely different trips don't collide.
+function tripSignature(trip) {
+  const stops = (trip.stops || []).map(s => s.name).join('|');
+  return `${trip.title}::${stops}`.toLowerCase().replace(/\s+/g, '');
+}
+
+function isTripSaved(trip) {
+  if (!trip) return false;
+  const sig = tripSignature(trip);
+  return getSavedTrips().some(s => s.signature === sig);
+}
+
+function saveTrip(trip) {
+  const saved = getSavedTrips();
+  const sig = tripSignature(trip);
+  if (saved.some(s => s.signature === sig)) return; // already saved
+  saved.unshift({
+    signature: sig,
+    savedAt: Date.now(),
+    trip: JSON.parse(JSON.stringify(trip)) // deep copy snapshot
+  });
+  // Cap at 30 saved trips to stay well within localStorage limits
+  try {
+    localStorage.setItem(SAVED_KEY, JSON.stringify(saved.slice(0, 30)));
+  } catch(e) { /* storage full - fail quietly */ }
+}
+
+function unsaveTrip(signature) {
+  const saved = getSavedTrips().filter(s => s.signature !== signature);
+  try { localStorage.setItem(SAVED_KEY, JSON.stringify(saved)); } catch(e) {}
+}
+
+// Toggle the current trip's saved state from the trip action bar
+function toggleSaveTrip() {
+  if (!currentTripData) return;
+  const btn = document.getElementById('save-trip-btn');
+  if (isTripSaved(currentTripData)) {
+    unsaveTrip(tripSignature(currentTripData));
+    if (btn) { btn.classList.remove('saved-active'); btn.innerHTML = '<i class="ti ti-heart"></i> Save trip'; }
+  } else {
+    saveTrip(currentTripData);
+    if (btn) { btn.classList.add('saved-active'); btn.innerHTML = '<i class="ti ti-heart-filled"></i> Saved'; }
+  }
+  renderSavedTrips();
+}
+
+// Reflect the saved state on the button whenever a trip is shown
+function updateSaveButton() {
+  const btn = document.getElementById('save-trip-btn');
+  if (!btn || !currentTripData) return;
+  if (isTripSaved(currentTripData)) {
+    btn.classList.add('saved-active');
+    btn.innerHTML = '<i class="ti ti-heart-filled"></i> Saved';
+  } else {
+    btn.classList.remove('saved-active');
+    btn.innerHTML = '<i class="ti ti-heart"></i> Save trip';
+  }
+}
+
+function renderSavedTrips() {
+  const section = document.getElementById('saved-trips-section');
+  const grid = document.getElementById('saved-trip-grid');
+  const badge = document.getElementById('saved-count-badge');
+  if (!grid) return;
+
+  const saved = getSavedTrips();
+  if (badge) badge.textContent = saved.length ? `${saved.length} saved` : '';
+
+  if (!saved.length) {
+    grid.className = '';
+    grid.innerHTML = `
+      <div class="saved-empty">
+        <i class="ti ti-heart"></i>
+        Trips you save will appear here, ready to reopen any time. Look for the <strong>Save trip</strong> button when you build one.
+      </div>`;
+    return;
+  }
+
+  grid.className = ''; // uses inline grid below
+  grid.style.display = 'grid';
+  grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(240px, 1fr))';
+  grid.style.gap = '14px';
+
+  grid.innerHTML = saved.map((s, i) => {
+    const t = s.trip;
+    const included = (t.stops || []).filter(st => st.included !== false);
+    const route = included.map(st => st.name).slice(0, 3).join(' → ') + (included.length > 3 ? '…' : '');
+    return `
+      <div class="saved-card animate-in" style="animation-delay:${i * 60}ms" onclick="openSavedTrip(${i})">
+        <button class="saved-card-remove" onclick="event.stopPropagation(); removeSavedTrip('${s.signature}')" title="Remove"><i class="ti ti-x"></i></button>
+        <div class="saved-card-img" id="saved-img-${i}"></div>
+        <div class="saved-card-body">
+          <div class="saved-card-title">${t.title || 'Saved trip'}</div>
+          <div class="saved-card-sub">${route}</div>
+          <div class="saved-card-meta"><i class="ti ti-map-pin" style="font-size:12px"></i> ${included.length} stop${included.length!==1?'s':''} · ${t.duration || ''}</div>
+        </div>
+      </div>`;
+  }).join('');
+
+  // Load a hero photo for each saved trip's first stop
+  saved.forEach((s, i) => {
+    const first = (s.trip.stops || []).find(st => st.included !== false);
+    if (!first) return;
+    fetchPhoto(first.name).then(photo => {
+      if (!photo) return;
+      const el = document.getElementById(`saved-img-${i}`);
+      if (el) {
+        el.innerHTML = `<img src="${photo.url}" alt="${first.name}">`;
+        const img = el.querySelector('img');
+        if (img) img.onload = () => img.classList.add('loaded');
+      }
+    });
+  });
+}
+
+function openSavedTrip(i) {
+  const saved = getSavedTrips();
+  if (!saved[i]) return;
+  if (mapInstance) { mapInstance.remove(); mapInstance = null; }
+  mapMarkers = [];
+  activeStopIndex = null;
+  currentTripData = JSON.parse(JSON.stringify(saved[i].trip));
+  document.getElementById('browse-section').style.display = 'none';
+  document.getElementById('sample-trips-section').style.display = 'none';
+  var _st=document.getElementById('saved-trips-section'); if(_st) _st.style.display='none';
+  var _so=document.getElementById('story-section'); if(_so) _so.style.display='none';
+  document.getElementById('saved-trips-section').style.display = 'none';
+  document.getElementById('story-section').style.display = 'none';
+  renderTrip(currentTripData);
+}
+
+function removeSavedTrip(signature) {
+  unsaveTrip(signature);
+  renderSavedTrips();
+  updateSaveButton();
+}
+
 // ---- TRIP CACHE ----
 // Avoids calling the AI for repeat searches. Cached in localStorage so it
 // persists across visits. Cache entries expire after 30 days.
@@ -2582,7 +3068,8 @@ function updateUsageBadge() {
 
 // ---- UNSPLASH PHOTOS ----
 // Routed through /api/photo so the access key stays server-side (see api/photo.js)
-const photoCache = {};
+// Note: photoCache is declared near the top of the script (before renderCountryGrid
+// runs at load) to avoid a temporal-dead-zone error, since that early call fetches photos.
 
 async function fetchPhoto(query) {
   if (photoCache[query]) return photoCache[query].photo;
@@ -2618,6 +3105,8 @@ async function doSearch() {
   document.getElementById('trip-result').style.display = 'none';
   document.getElementById('browse-section').style.display = 'none';
   document.getElementById('sample-trips-section').style.display = 'none';
+  var _st=document.getElementById('saved-trips-section'); if(_st) _st.style.display='none';
+  var _so=document.getElementById('story-section'); if(_so) _so.style.display='none';
   setLoadingMessage('Finding your perfect trip...', 'Checking saved trips first...');
   startLoadingTips();
   window.scrollTo({top: document.getElementById('loading').offsetTop - 100, behavior:'smooth'});
@@ -2669,6 +3158,10 @@ async function doSearch() {
       document.getElementById('loading').style.display = 'none';
       document.getElementById('browse-section').style.display = 'block';
       document.getElementById('sample-trips-section').style.display = 'block';
+      var _st3=document.getElementById('saved-trips-section'); if(_st3) _st3.style.display='block';
+      var _so3=document.getElementById('story-section'); if(_so3) _so3.style.display='block';
+    var _st2=document.getElementById('saved-trips-section'); if(_st2) _st2.style.display='block';
+    var _so2=document.getElementById('story-section'); if(_so2) _so2.style.display='block';
       const errBox = document.getElementById('error-msg');
       errBox.innerHTML = `You've used today's AI searches. Browse the saved trips below, or <button onclick="document.getElementById('error-msg').style.display='none';document.getElementById('sample-trips-section').scrollIntoView({behavior:'smooth'})" style="background:none;border:none;text-decoration:underline;cursor:pointer;color:inherit;font-size:inherit;padding:0;">jump to sample routes</button>. More searches unlock tomorrow.`;
       errBox.style.display = 'block';
@@ -2683,6 +3176,8 @@ async function doSearch() {
     document.getElementById('loading').style.display = 'none';
     document.getElementById('browse-section').style.display = 'block';
     document.getElementById('sample-trips-section').style.display = 'block';
+    var _st2=document.getElementById('saved-trips-section'); if(_st2) _st2.style.display='block';
+    var _so2=document.getElementById('story-section'); if(_so2) _so2.style.display='block';
     const msg = e.message || 'Could not load trip. Please try again.';
     const errBox = document.getElementById('error-msg');
     errBox.textContent = msg;
@@ -3087,6 +3582,7 @@ function renderTrip(trip) {
   activeStopIndex = null;
   renderStopList(trip);
   initMap(trip);
+  updateSaveButton();
 
   result.scrollIntoView({behavior:'smooth', block:'start'});
 }
@@ -3146,7 +3642,7 @@ function moveStop(i, delta) {
   if (activeStopIndex === i) activeStopIndex = newIndex;
   else if (activeStopIndex === newIndex) activeStopIndex = i;
   renderStopList(currentTripData);
-  initMap(currentTripData);
+  initMap(currentTripData, { animate: false });
 }
 
 function updateTripSummary(trip) {
@@ -3216,6 +3712,10 @@ function renderStopDetail(stop, i) {
     ? `https://www.smartraveller.gov.au/destinations/${stopCountry.toLowerCase().replace(/\s+/g,'-')}`
     : 'https://www.smartraveller.gov.au';
 
+  // Booking.com affiliate link for this stop (country resolved above for a better search)
+  const bookingStop = Object.assign({}, stop, { country: stopCountry });
+  const bookingUrl = buildBookingURL(bookingStop);
+
   return `
     <div class="stop-photos" id="stop-photos-${i}">
       <div class="stop-photo"><i class="ti ti-photo" style="font-size:20px;color:var(--ink-faint);margin:auto"></i></div>
@@ -3244,6 +3744,11 @@ function renderStopDetail(stop, i) {
       <span><strong style="font-weight:500">Safety advisory</strong> for ${stopCountry || stop.name} via Smart Traveller (Australian Government)</span>
       <i class="ti ti-external-link" style="font-size:12px;margin-left:auto;flex-shrink:0;opacity:0.5"></i>
     </a>
+    <a href="${bookingUrl}" target="_blank" rel="noopener sponsored" style="display:flex;align-items:center;gap:7px;font-size:12px;color:var(--ink-muted);text-decoration:none;padding:8px 10px;background:var(--sand);border-radius:var(--radius-sm);margin-bottom:2px;transition:background 0.12s" onmouseover="this.style.background='var(--accent-light)'" onmouseout="this.style.background='var(--sand)'">
+      <i class="ti ti-bed" style="font-size:15px;color:var(--accent);flex-shrink:0"></i>
+      <span><strong style="font-weight:500">Find stays in ${stop.name}</strong> on Booking.com</span>
+      <i class="ti ti-external-link" style="font-size:12px;margin-left:auto;flex-shrink:0;opacity:0.5"></i>
+    </a>
     <div class="stop-toggle-row">
       <button class="stop-toggle-btn ${stop.included?'remove':''}" onclick="event.stopPropagation(); toggleInclude(${i})">
         <i class="ti ti-${stop.included?'eye-off':'eye'}" style="font-size:13px"></i> ${stop.included?'Remove from route':'Add back to route'}
@@ -3258,12 +3763,14 @@ function renderStopDetail(stop, i) {
 function toggleStop(i) {
   activeStopIndex = (activeStopIndex === i) ? null : i;
   renderStopList(currentTripData);
+  // If we just opened a stop (not closed it), glide the map to it
+  if (activeStopIndex === i) flyToStop(i);
 }
 
 function toggleInclude(i) {
   currentTripData.stops[i].included = !currentTripData.stops[i].included;
   renderStopList(currentTripData);
-  initMap(currentTripData);
+  initMap(currentTripData, { animate: false });
 }
 
 async function rerollStop(i) {
@@ -3356,7 +3863,13 @@ async function loadStopPhotos(stop, i) {
   });
 }
 
-function initMap(trip) {
+// Registry of marker elements by stop index, so we can fly-to / highlight later.
+let markerElements = {};
+let routeAnimFrame = null;
+
+function initMap(trip, opts) {
+  opts = opts || {};
+  const animate = opts.animate !== false; // animate unless told not to
   const included = trip.stops.filter(s => s.included);
   if (included.length === 0) return;
 
@@ -3375,34 +3888,38 @@ function initMap(trip) {
   const setupMap = () => {
     mapMarkers.forEach(m => m.remove());
     mapMarkers = [];
+    markerElements = {};
+    if (routeAnimFrame) { cancelAnimationFrame(routeAnimFrame); routeAnimFrame = null; }
 
-    // Remove old route layer/source if present
-    if (mapInstance.getLayer('route-line')) mapInstance.removeLayer('route-line');
+    // Remove old route layers/sources if present
+    ['route-line', 'route-glow'].forEach(id => { if (mapInstance.getLayer(id)) mapInstance.removeLayer(id); });
     if (mapInstance.getSource('route')) mapInstance.removeSource('route');
 
-    // Add markers
+    // Fit bounds first so the animation plays within the final view
+    const bounds = new mapboxgl.LngLatBounds();
+    included.forEach(s => bounds.extend([s.lon, s.lat]));
+    mapInstance.fitBounds(bounds, { padding: 60, maxZoom: 9, duration: animate ? 900 : 0 });
+
+    // Build markers (initially hidden if animating, revealed in sequence)
+    let visibleIdx = 0;
     trip.stops.forEach((stop, i) => {
       if (!stop.included) return;
+      const orderPos = visibleIdx; // position among included stops
+      visibleIdx++;
+
       const el = document.createElement('div');
-      el.style.width = '28px';
-      el.style.height = '28px';
-      el.style.borderRadius = '50%';
+      el.className = 'wandrly-marker';
       el.style.background = colors[i % colors.length];
-      el.style.border = '2px solid white';
-      el.style.display = 'flex';
-      el.style.alignItems = 'center';
-      el.style.justifyContent = 'center';
-      el.style.color = 'white';
-      el.style.fontSize = '12px';
-      el.style.fontWeight = '600';
-      el.style.fontFamily = 'Inter, sans-serif';
-      el.style.cursor = 'pointer';
-      el.style.boxShadow = '0 1px 4px rgba(0,0,0,0.25)';
-      el.textContent = (i+1);
+      el.style.color = colors[i % colors.length]; // for the pulse ring currentColor
+      el.textContent = (i + 1);
+      // keep the number white regardless of the color used for the ring
+      el.style.setProperty('color', 'white');
+      el.dataset.ring = colors[i % colors.length];
 
       el.addEventListener('click', () => {
         activeStopIndex = i;
         renderStopList(trip);
+        flyToStop(i);
         document.getElementById(`stop-detail-${i}`)?.scrollIntoView({behavior:'smooth', block:'nearest'});
       });
 
@@ -3418,32 +3935,43 @@ function initMap(trip) {
       el.addEventListener('mouseleave', () => marker.togglePopup());
 
       mapMarkers.push(marker);
+      markerElements[i] = el;
+
+      // Staggered drop-in animation
+      if (animate) {
+        el.style.opacity = '0';
+        setTimeout(() => {
+          el.style.opacity = '';
+          el.classList.add('dropping');
+          el.addEventListener('animationend', () => el.classList.remove('dropping'), { once: true });
+        }, 250 + orderPos * 160);
+      }
     });
 
-    // Add route line
+    // Route line, drawn progressively along the stops
     const coords = included.map(s => [s.lon, s.lat]);
     if (coords.length > 1) {
       mapInstance.addSource('route', {
         type: 'geojson',
-        data: { type: 'Feature', geometry: { type: 'LineString', coordinates: coords } }
+        data: { type: 'Feature', geometry: { type: 'LineString', coordinates: animate ? [coords[0]] : coords } }
       });
       mapInstance.addLayer({
         id: 'route-line',
         type: 'line',
         source: 'route',
+        layout: { 'line-cap': 'round', 'line-join': 'round' },
         paint: {
           'line-color': '#c45c2a',
-          'line-width': 2,
+          'line-width': 2.5,
           'line-dasharray': [2, 2],
-          'line-opacity': 0.7
+          'line-opacity': 0.75
         }
       });
-    }
 
-    // Fit bounds to all included stops
-    const bounds = new mapboxgl.LngLatBounds();
-    included.forEach(s => bounds.extend([s.lon, s.lat]));
-    mapInstance.fitBounds(bounds, { padding: 60, maxZoom: 9 });
+      if (animate) {
+        animateRouteDraw(coords);
+      }
+    }
   };
 
   if (mapInstance.isStyleLoaded()) {
@@ -3453,11 +3981,84 @@ function initMap(trip) {
   }
 }
 
+// Progressively reveal the route as a series of interpolated points, timed to
+// arrive at each stop just after its marker drops in.
+function animateRouteDraw(coords) {
+  const src = mapInstance.getSource('route');
+  if (!src) return;
+
+  // Build a densified path so the line grows smoothly between stops
+  const segmentsPerLeg = 24;
+  const dense = [];
+  for (let i = 0; i < coords.length - 1; i++) {
+    const [lon1, lat1] = coords[i];
+    const [lon2, lat2] = coords[i + 1];
+    for (let s = 0; s < segmentsPerLeg; s++) {
+      const t = s / segmentsPerLeg;
+      dense.push([lon1 + (lon2 - lon1) * t, lat1 + (lat2 - lat1) * t]);
+    }
+  }
+  dense.push(coords[coords.length - 1]);
+
+  const totalMs = 350 + (coords.length - 1) * 320; // scale with number of legs
+  const start = performance.now();
+
+  const step = (now) => {
+    const p = Math.min(1, (now - start) / totalMs);
+    // ease-in-out
+    const eased = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+    const count = Math.max(2, Math.floor(eased * dense.length));
+    const slice = dense.slice(0, count);
+    const liveSrc = mapInstance.getSource('route');
+    if (!liveSrc) return; // map torn down mid-animation
+    liveSrc.setData({ type: 'Feature', geometry: { type: 'LineString', coordinates: slice } });
+    if (p < 1) {
+      routeAnimFrame = requestAnimationFrame(step);
+    } else {
+      routeAnimFrame = null;
+    }
+  };
+  routeAnimFrame = requestAnimationFrame(step);
+}
+
+// Smoothly fly the map to a stop and highlight its marker with a pulse ring.
+function flyToStop(i) {
+  if (!mapInstance || !currentTripData) return;
+  const stop = currentTripData.stops[i];
+  if (!stop || !stop.included) return;
+
+  // Clear previous active highlight, set new one
+  Object.values(markerElements).forEach(el => {
+    el.classList.remove('active');
+    el.style.setProperty('color', 'white');
+  });
+  const el = markerElements[i];
+  if (el) {
+    // Set the ring colour via currentColor, keep the number white by using an
+    // inner approach: we temporarily colour the element so ::after inherits it.
+    el.classList.add('active');
+    el.style.setProperty('color', el.dataset.ring || '#c45c2a');
+  }
+
+  mapInstance.flyTo({
+    center: [stop.lon, stop.lat],
+    zoom: Math.max(mapInstance.getZoom(), 7),
+    duration: 900,
+    essential: true
+  });
+
+  // Pop the popup for the flown-to marker
+  const marker = mapMarkers[Object.keys(markerElements).indexOf(String(i))];
+  if (marker && !marker.getPopup().isOpen()) marker.togglePopup();
+}
+
 function goBack() {
   document.getElementById('trip-result').style.display = 'none';
   document.getElementById('outline-result').style.display = 'none';
   document.getElementById('browse-section').style.display = 'block';
   document.getElementById('sample-trips-section').style.display = 'block';
+  document.getElementById('saved-trips-section').style.display = 'block';
+  document.getElementById('story-section').style.display = 'block';
   document.getElementById('back-btn').style.display = 'none';
   if (mapInstance) { mapInstance.remove(); mapInstance = null; }
   mapMarkers = [];
@@ -3495,6 +4096,193 @@ function copyTrip() {
   });
   lines.push('Hidden gems & local tips:', t.hidden_gems);
   navigator.clipboard.writeText(lines.join('\n')).then(() => alert('Itinerary copied!'));
+}
+
+// ---- PDF EXPORT ----
+// Builds a clean, branded, print-optimised HTML document in a hidden iframe and
+// triggers the browser's print dialog (where the user picks "Save as PDF").
+// Zero cost, no libraries, works offline. The itinerary reflects the user's
+// current edits (reordered stops, adjusted nights, removed stops).
+function escapeHTML(str) {
+  if (str == null) return '';
+  return String(str)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+function buildPDFHTML(trip) {
+  const included = trip.stops.filter(s => s.included);
+  const totalNights = included.reduce((sum, s) => sum + (s.nights || 1) + (s.subItinerary ? s.subItinerary.nights : 0), 0);
+  const today = new Date().toLocaleDateString('en-AU', { day:'numeric', month:'long', year:'numeric' });
+
+  const metaChips = [trip.duration, trip.budget, trip.best_time, trip.vibe]
+    .filter(Boolean)
+    .map(m => `<span class="chip">${escapeHTML(m)}</span>`).join('');
+
+  const stopsHTML = included.map((s, i) => {
+    const activitiesHTML = (s.activities || []).map(a =>
+      `<li><strong>${escapeHTML(a.name)}</strong> &mdash; ${escapeHTML(a.desc)}</li>`).join('');
+
+    const notes = (s.wandrlyNotes && s.wandrlyNotes.length)
+      ? `<div class="notes"><div class="notes-label">Wandrly's own tips</div>${
+          s.wandrlyNotes.map(n => `<p>${escapeHTML(n)}</p>`).join('')}</div>`
+      : '';
+
+    const verdict = s.tomVerdict
+      ? `<div class="verdict">&ldquo;${escapeHTML(s.tomVerdict)}&rdquo;</div>` : '';
+
+    const food = (s.foodRecommendations && s.foodRecommendations.length)
+      ? `<div class="sub"><span class="sub-label">Food:</span> ${s.foodRecommendations.map(escapeHTML).join('; ')}</div>` : '';
+
+    const nightlife = (s.nightlife && s.nightlife.length)
+      ? `<div class="sub"><span class="sub-label">Nightlife:</span> ${s.nightlife.map(escapeHTML).join('; ')}</div>` : '';
+
+    const warnings = (s.warnings && s.warnings.length)
+      ? `<div class="sub warn"><span class="sub-label">Good to know:</span> ${s.warnings.map(escapeHTML).join('; ')}</div>` : '';
+
+    let subItin = '';
+    if (s.subItinerary) {
+      const sub = s.subItinerary;
+      subItin = `<div class="subitin"><div class="sub-label">${escapeHTML(sub.name)} (${sub.nights} night${sub.nights!==1?'s':''})</div>${
+        sub.summary ? `<p>${escapeHTML(sub.summary)}</p>` : ''}<ul>${
+        (sub.days||[]).map(d => `<li><strong>Day ${d.day}: ${escapeHTML(d.title)}</strong> &mdash; ${escapeHTML(d.desc)}</li>`).join('')
+      }</ul></div>`;
+    }
+
+    return `
+      <div class="stop">
+        <div class="stop-head">
+          <span class="stop-num">${i+1}</span>
+          <div>
+            <div class="stop-name">${escapeHTML(s.name)}</div>
+            <div class="stop-meta">${s.nights} night${s.nights!==1?'s':''} &middot; ${escapeHTML(s.summary || '')}</div>
+          </div>
+        </div>
+        ${verdict}
+        ${activitiesHTML ? `<div class="section-label">Things to do</div><ul>${activitiesHTML}</ul>` : ''}
+        ${food}
+        ${nightlife}
+        ${s.transport ? `<div class="sub"><span class="sub-label">Getting here:</span> ${escapeHTML(s.transport)}</div>` : ''}
+        ${subItin}
+        ${notes}
+        ${warnings}
+      </div>`;
+  }).join('');
+
+  const gemsHTML = trip.hidden_gems
+    ? `<div class="gems"><div class="section-label">Hidden gems &amp; local tips</div><p>${escapeHTML(trip.hidden_gems)}</p></div>`
+    : '';
+
+  return `<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<title>${escapeHTML(trip.title)} — Wandrly</title>
+<style>
+  @page { margin: 18mm 16mm; }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+         color: #1a1814; line-height: 1.5; font-size: 11pt; margin: 0; }
+  .logo { font-family: Georgia, 'Times New Roman', serif; font-size: 20pt; font-weight: 300; color: #1a1814; letter-spacing: -0.3px; }
+  .logo span { color: #c45c2a; font-style: italic; }
+  .header { border-bottom: 2px solid #c45c2a; padding-bottom: 14px; margin-bottom: 20px; }
+  h1 { font-family: Georgia, serif; font-weight: 400; font-size: 22pt; margin: 14px 0 4px; letter-spacing: -0.4px; }
+  .subtitle { color: #6b6456; font-size: 12pt; margin-bottom: 12px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { background: #f5f0e8; border: 1px solid rgba(26,24,20,0.1); border-radius: 999px;
+          padding: 3px 12px; font-size: 9.5pt; color: #6b6456; }
+  .overview { background: #f5f0e8; border-radius: 8px; padding: 10px 14px; margin-bottom: 22px;
+              font-size: 10pt; color: #6b6456; }
+  .stop { margin-bottom: 20px; page-break-inside: avoid; }
+  .stop-head { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 8px; }
+  .stop-num { background: #c45c2a; color: #fff; width: 24px; height: 24px; border-radius: 50%;
+              display: inline-flex; align-items: center; justify-content: center;
+              font-size: 11pt; font-weight: 600; flex-shrink: 0; }
+  .stop-name { font-size: 14pt; font-weight: 600; font-family: Georgia, serif; }
+  .stop-meta { color: #6b6456; font-size: 10pt; }
+  .section-label { text-transform: uppercase; letter-spacing: 0.06em; font-size: 8pt;
+                   font-weight: 600; color: #a89e90; margin: 10px 0 4px; }
+  ul { margin: 4px 0; padding-left: 18px; }
+  li { margin-bottom: 3px; font-size: 10pt; }
+  .sub { font-size: 10pt; margin: 5px 0; color: #3a3530; }
+  .sub-label { font-weight: 600; color: #1a1814; }
+  .warn .sub-label { color: #a84d22; }
+  .verdict { font-style: italic; color: #7a3315; background: #f0e4da; border-left: 3px solid #c45c2a;
+             padding: 7px 12px; border-radius: 4px; margin: 8px 0; font-size: 10pt; }
+  .notes { background: #e0f0ee; border-left: 3px solid #1d7a6e; border-radius: 4px;
+           padding: 8px 12px; margin: 8px 0; }
+  .notes-label { text-transform: uppercase; letter-spacing: 0.06em; font-size: 8pt;
+                 font-weight: 600; color: #1d7a6e; margin-bottom: 3px; }
+  .notes p { margin: 3px 0; font-size: 10pt; color: #0f4f47; }
+  .subitin { background: #faf7f2; border: 1px solid rgba(26,24,20,0.08); border-radius: 6px;
+             padding: 8px 12px; margin: 8px 0; }
+  .gems { background: #e0f0ee; border-radius: 8px; padding: 12px 16px; margin-top: 16px; page-break-inside: avoid; }
+  .gems p { font-size: 10pt; color: #0f4f47; margin: 0; }
+  .footer { margin-top: 26px; padding-top: 12px; border-top: 1px solid rgba(26,24,20,0.1);
+            font-size: 8.5pt; color: #a89e90; text-align: center; }
+  .footer strong { color: #6b6456; }
+</style></head>
+<body>
+  <div class="header">
+    <div class="logo">wand<span>r</span>ly</div>
+    <h1>${escapeHTML(trip.title)}</h1>
+    <div class="subtitle">${escapeHTML(trip.subtitle || '')}</div>
+    <div class="chips">${metaChips}</div>
+  </div>
+  <div class="overview">
+    <strong>${included.length} stop${included.length!==1?'s':''}</strong> &middot;
+    <strong>${totalNights} night${totalNights!==1?'s':''} total</strong> &middot;
+    Route: ${included.map(s => escapeHTML(s.name)).join(' &rarr; ')}
+  </div>
+  ${stopsHTML}
+  ${gemsHTML}
+  <div class="footer">
+    <strong>Generated by Wandrly</strong> on ${today} &middot; wandrly-travel.com<br>
+    Trip plans are partially AI-generated &mdash; always verify details (opening times, prices, visas) before booking.
+  </div>
+</body></html>`;
+}
+
+function downloadTripPDF() {
+  if (!currentTripData) return;
+  const included = currentTripData.stops.filter(s => s.included);
+  if (!included.length) {
+    alert('Add at least one stop to your trip before downloading.');
+    return;
+  }
+
+  // Render into a hidden iframe so the user's current page state is untouched.
+  const existing = document.getElementById('pdf-print-frame');
+  if (existing) existing.remove();
+
+  const iframe = document.createElement('iframe');
+  iframe.id = 'pdf-print-frame';
+  iframe.style.position = 'fixed';
+  iframe.style.right = '0';
+  iframe.style.bottom = '0';
+  iframe.style.width = '0';
+  iframe.style.height = '0';
+  iframe.style.border = '0';
+  document.body.appendChild(iframe);
+
+  const doc = iframe.contentWindow.document;
+  doc.open();
+  doc.write(buildPDFHTML(currentTripData));
+  doc.close();
+
+  // Give the iframe a moment to lay out before printing.
+  const triggerPrint = () => {
+    try {
+      iframe.contentWindow.focus();
+      iframe.contentWindow.print();
+    } catch (e) {
+      alert('Could not open the print dialog. Please try the Copy itinerary button instead.');
+    }
+  };
+
+  if (iframe.contentWindow.document.readyState === 'complete') {
+    setTimeout(triggerPrint, 250);
+  } else {
+    iframe.onload = () => setTimeout(triggerPrint, 250);
+  }
 }
 
 async function askMore(topic) {
@@ -3538,6 +4326,89 @@ async function askMore(topic) {
   }
 }
 
+// ---- OUR STORY MAP ----
+// A lightweight canvas world map. Landmasses are drawn as soft blobs (no
+// external tile/library needed), then every destination in the bank is plotted
+// as a dot using an equirectangular projection. Updates the stat counters too.
+function lonLatToXY(lon, lat, w, h) {
+  // Equirectangular, clipped to the populated latitude band (-58..80) so the
+  // map fills the canvas nicely rather than wasting space on empty poles.
+  const x = (lon + 180) / 360 * w;
+  const latTop = 80, latBottom = -58;
+  const y = (latTop - lat) / (latTop - latBottom) * h;
+  return { x, y };
+}
+
+// Rough continental landmass ellipses (lon, lat, radiusLon, radiusLat) - just
+// enough to read as a world map behind the dots.
+const LANDMASSES = [
+  [-100, 45, 34, 22], [-90, 60, 30, 14], [-115, 62, 20, 12], // N America
+  [-72, -15, 20, 26], [-62, -35, 12, 12],                     // S America
+  [15, 50, 30, 16], [10, 62, 16, 8],                          // Europe
+  [20, 5, 26, 26], [25, -22, 22, 18],                         // Africa
+  [55, 40, 28, 20], [90, 30, 40, 22], [100, 15, 22, 16],      // Asia
+  [135, -25, 22, 14], [172, -42, 6, 6],                       // Oceania
+];
+
+function drawStoryMap() {
+  const canvas = document.getElementById('story-map-canvas');
+  if (!canvas) return;
+  const parent = canvas.parentElement;
+  const dpr = window.devicePixelRatio || 1;
+  const w = parent.clientWidth, h = parent.clientHeight;
+  if (w === 0 || h === 0) return;
+  canvas.width = w * dpr;
+  canvas.height = h * dpr;
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+  ctx.clearRect(0, 0, w, h);
+
+  // Landmasses
+  ctx.fillStyle = 'rgba(196,92,42,0.10)';
+  LANDMASSES.forEach(([lon, lat, rLon, rLat]) => {
+    const c = lonLatToXY(lon, lat, w, h);
+    const rx = rLon / 360 * w;
+    const ry = rLat / 138 * h;
+    ctx.beginPath();
+    ctx.ellipse(c.x, c.y, rx, ry, 0, 0, Math.PI * 2);
+    ctx.fill();
+  });
+
+  // Destination dots from the bank
+  const dests = (typeof DESTINATIONS !== 'undefined' && DESTINATIONS.length) ? DESTINATIONS : [];
+  dests.forEach(d => {
+    if (typeof d.lat !== 'number' || typeof d.lon !== 'number') return;
+    const p = lonLatToXY(d.lon, d.lat, w, h);
+    // glow
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 4.5, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(196,92,42,0.25)';
+    ctx.fill();
+    // core
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 2.2, 0, Math.PI * 2);
+    ctx.fillStyle = '#c45c2a';
+    ctx.fill();
+  });
+
+  // Update stat counters to reflect the real bank size
+  const cities = dests.length;
+  const countries = new Set(dests.map(d => d.country)).size;
+  if (cities) {
+    const cEl = document.getElementById('story-stat-cities');
+    const nEl = document.getElementById('story-stat-countries');
+    if (cEl) cEl.textContent = `${Math.floor(cities / 10) * 10}+`;
+    if (nEl) nEl.textContent = countries;
+  }
+}
+
+// Redraw the story map on resize (debounced)
+let storyMapResizeTimer = null;
+window.addEventListener('resize', () => {
+  clearTimeout(storyMapResizeTimer);
+  storyMapResizeTimer = setTimeout(drawStoryMap, 200);
+});
+
 // ---- INIT ----
 // All declarations above must exist before these run.
 // Dev helper: add ?reset=1 to the URL to clear stored usage/cache
@@ -3551,7 +4422,12 @@ if (typeof window !== 'undefined' && window.location && window.location.search &
 // to work with; render once loaded, with a static fallback shown immediately
 // in case the fetch is slow.
 renderSampleTrips();
-loadBank().then(() => renderSampleTrips());
+renderSavedTrips();
+drawStoryMap();
+loadBank().then(() => {
+  renderSampleTrips();
+  drawStoryMap(); // redraw with real bank dots once loaded
+});
 updateUsageBadge();
 
 // Enter key triggers search
