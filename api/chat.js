@@ -45,10 +45,13 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'API key not configured.' });
   }
 
-  // 50s timeout on the Anthropic call so we always return a clean response
-  // before Vercel's 60s maxDuration kills the function.
+  // Abort the upstream call a little before Vercel's maxDuration so we can
+  // always return a clean JSON error instead of a hard function timeout.
+  // NOTE: maxDuration (see config above and vercel.json) only takes effect on
+  // Vercel Pro. On the free Hobby plan functions are capped at ~10s, so if you
+  // see 504s on Hobby, either upgrade to Pro or keep generations small/fast.
   const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 50000);
+  const timeoutId = setTimeout(() => controller.abort(), 55000);
 
   try {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
@@ -62,20 +65,22 @@ export default async function handler(req, res) {
       signal: controller.signal,
     });
 
+    const data = await response.json();
+
     if (!response.ok) {
-      const data = await response.json();
-      const message = (data.error && data.error.message) || 'The AI service returned an error.';
+      // Surface the real Anthropic error so the client can show something useful
+      // (e.g. an invalid model name, which is a common cause of failures).
+      const message = (data && data.error && data.error.message) || 'The AI service returned an error.';
       return res.status(response.status).json({ error: message });
     }
 
-    const data = await response.json();
     return res.status(200).json(data);
 
   } catch (err) {
     if (err.name === 'AbortError') {
-      return res.status(504).json({ error: 'The AI took too long. Please try again.' });
+      return res.status(504).json({ error: 'The AI took too long to respond. Please try again.' });
     }
-    return res.status(500).json({ error: 'Something went wrong. Please try again.' });
+    return res.status(500).json({ error: 'Something went wrong reaching the AI. Please try again.' });
   } finally {
     clearTimeout(timeoutId);
   }
