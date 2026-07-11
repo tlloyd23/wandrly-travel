@@ -1640,9 +1640,6 @@ footer strong { color: var(--ink-muted); }
   Photos via <a href="https://unsplash.com" style="color:var(--accent);text-decoration:none;">Unsplash</a> &nbsp;·&nbsp;
   <a href="/terms.html" style="color:var(--accent);text-decoration:none;">Terms</a> &nbsp;·&nbsp;
   <a href="mailto:hello@wandrly-travel.com" style="color:var(--accent);text-decoration:none;">hello@wandrly-travel.com</a>
-  <div style="margin-top:10px;font-size:11px;color:var(--ink-faint);max-width:680px;margin-left:auto;margin-right:auto;line-height:1.5">
-    Some accommodation links are affiliate links. If you book through them, Wandrly may earn a small commission at no extra cost to you. This helps keep the search free.
-  </div>
 </footer>
 
 <script>
@@ -1741,43 +1738,25 @@ globeLoop();
 // photos, and this const would otherwise be in its temporal dead zone.
 const photoCache = {};
 
-// ---- AFFILIATE CONFIG ----
-// Booking.com affiliate (Partner) integration.
-//
-// SETUP (one-time, do this in the Booking.com partner dashboard):
-//   1. Apply at https://www.booking.com/affiliate-program/v2/index.html
-//      Approval usually takes 2-4 weeks, so apply early.
-//   2. Once approved, find your Affiliate ID (AID) in the dashboard. It's a
-//      number, e.g. 1234567.
-//   3. Paste it into BOOKING_AFFILIATE_ID below, replacing the empty string.
-//
-// Until an AID is set, the links still work for the user (they just go to
-// Booking.com without earning commission) and a small "set up to earn" hint is
-// logged to the console so you remember. No broken UI either way.
-//
-// Deep-link format reference (search by destination string + dates):
-//   https://www.booking.com/searchresults.html?ss=CITY&aid=AID&checkin=YYYY-MM-DD&checkout=YYYY-MM-DD
-const BOOKING_AFFILIATE_ID = ''; // <-- paste your Booking.com AID here once approved
+// ---- AI MODEL CONFIG ----
+// The model used for all AI generation. Kept as one constant so it's trivial to
+// change if Anthropic updates model names. Haiku is fast and cheap, which keeps
+// generations well inside serverless timeout limits (important on Vercel Hobby,
+// where functions are capped near 10 seconds). If you're on Vercel Pro and want
+// richer output, you can swap this to a Sonnet model string.
+// Verify the exact current string in your Anthropic console: https://console.anthropic.com
+const AI_MODEL = 'claude-3-5-haiku-latest';
 
-// Build a Booking.com search URL for a stop. Includes the affiliate id when set,
-// and optional check-in/out dates if the user has supplied a trip start date.
-function buildBookingURL(stop, checkin, checkout) {
-  const dest = encodeURIComponent(`${stop.name}${stop.country ? ', ' + stop.country : ''}`);
-  let url = `https://www.booking.com/searchresults.html?ss=${dest}`;
-  if (BOOKING_AFFILIATE_ID) {
-    url += `&aid=${encodeURIComponent(BOOKING_AFFILIATE_ID)}`;
-  }
-  if (checkin && checkout) {
-    url += `&checkin=${checkin}&checkout=${checkout}`;
-  }
-  // label_id helps you see in the dashboard which part of the site drove the click
-  url += '&label=wandrly-stop';
-  return url;
-}
-
-if (!BOOKING_AFFILIATE_ID) {
-  console.info('[wandrly] Booking.com affiliate links are live but BOOKING_AFFILIATE_ID is not set, so clicks will not earn commission yet. Add your AID in index.html once your partner application is approved.');
-}
+// ---- AFFILIATE LINKS (PARKED) ----
+// Accommodation affiliate links (Booking.com via CJ, etc.) are paused for now.
+// The per-stop "Find stays" links have been removed from the UI. When you're
+// ready to revisit monetisation, re-add a link in renderStopDetail that calls a
+// helper like the one below, and reinstate an affiliate disclosure in the footer.
+//
+// function buildBookingURL(stop) {
+//   const dest = encodeURIComponent(`${stop.name}${stop.country ? ', ' + stop.country : ''}`);
+//   return `https://www.booking.com/searchresults.html?ss=${dest}`;
+// }
 
 // ---- DATA ----
 const REGIONS = {
@@ -3269,14 +3248,15 @@ function extractJSON(rawText) {
   return null;
 }
 
-async function callAI(prompt, maxTokens, loadingMessage, isRetry) {
+async function callAI(prompt, maxTokens, loadingMessage, isRetry, model) {
   if (loadingMessage) {
     setLoadingMessage(loadingMessage, isRetry ? 'Retrying, this can take a little longer...' : 'Almost there...');
   }
 
   const controller = new AbortController();
-  // Client timeout is set just above the server's maxDuration (60s) so we
-  // never give up before the server itself would have responded.
+  // Client timeout. On Vercel Hobby the function itself is capped near 10s, so
+  // the practical failure will surface well before this; on Pro it can use the
+  // full server duration.
   const timeoutId = setTimeout(() => controller.abort(), 55000);
 
   let res;
@@ -3285,7 +3265,7 @@ async function callAI(prompt, maxTokens, loadingMessage, isRetry) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
+        model: model || AI_MODEL,
         max_tokens: maxTokens,
         messages: [{ role: 'user', content: prompt }]
       }),
@@ -3296,7 +3276,7 @@ async function callAI(prompt, maxTokens, loadingMessage, isRetry) {
     // First failure (timeout or network blip): retry once automatically
     // before surfacing an error to the user.
     if (!isRetry) {
-      return callAI(prompt, maxTokens, loadingMessage, true);
+      return callAI(prompt, maxTokens, loadingMessage, true, model);
     }
     if (fetchErr.name === 'AbortError') {
       throw new Error('The planning service is taking unusually long to respond. Please try again in a moment.');
@@ -3480,9 +3460,9 @@ Return ONLY valid JSON (no markdown, no explanation):
     }
   ]
 }
-4-5 stops max. Accurate lat/lon required. No em-dashes. Be concise.`;
+4 stops max. Accurate lat/lon required. No em-dashes. Be concise.`;
 
-  const data = await callAI(prompt, 1100, chosenOutline ? `Building "${chosenOutline.title}"...` : 'Building your trip...');
+  const data = await callAI(prompt, 900, chosenOutline ? `Building "${chosenOutline.title}"...` : 'Building your trip...');
 
   const text = data.content.map(i => i.text || '').join('');
   const trip = extractJSON(text);
@@ -3712,10 +3692,6 @@ function renderStopDetail(stop, i) {
     ? `https://www.smartraveller.gov.au/destinations/${stopCountry.toLowerCase().replace(/\s+/g,'-')}`
     : 'https://www.smartraveller.gov.au';
 
-  // Booking.com affiliate link for this stop (country resolved above for a better search)
-  const bookingStop = Object.assign({}, stop, { country: stopCountry });
-  const bookingUrl = buildBookingURL(bookingStop);
-
   return `
     <div class="stop-photos" id="stop-photos-${i}">
       <div class="stop-photo"><i class="ti ti-photo" style="font-size:20px;color:var(--ink-faint);margin:auto"></i></div>
@@ -3742,11 +3718,6 @@ function renderStopDetail(stop, i) {
     <a href="${safetyUrl}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:7px;font-size:12px;color:var(--ink-muted);text-decoration:none;padding:8px 10px;background:var(--sand);border-radius:var(--radius-sm);margin-bottom:2px;transition:background 0.12s" onmouseover="this.style.background='var(--teal-light)'" onmouseout="this.style.background='var(--sand)'">
       <i class="ti ti-shield-check" style="font-size:15px;color:var(--teal);flex-shrink:0"></i>
       <span><strong style="font-weight:500">Safety advisory</strong> for ${stopCountry || stop.name} via Smart Traveller (Australian Government)</span>
-      <i class="ti ti-external-link" style="font-size:12px;margin-left:auto;flex-shrink:0;opacity:0.5"></i>
-    </a>
-    <a href="${bookingUrl}" target="_blank" rel="noopener sponsored" style="display:flex;align-items:center;gap:7px;font-size:12px;color:var(--ink-muted);text-decoration:none;padding:8px 10px;background:var(--sand);border-radius:var(--radius-sm);margin-bottom:2px;transition:background 0.12s" onmouseover="this.style.background='var(--accent-light)'" onmouseout="this.style.background='var(--sand)'">
-      <i class="ti ti-bed" style="font-size:15px;color:var(--accent);flex-shrink:0"></i>
-      <span><strong style="font-weight:500">Find stays in ${stop.name}</strong> on Booking.com</span>
       <i class="ti ti-external-link" style="font-size:12px;margin-left:auto;flex-shrink:0;opacity:0.5"></i>
     </a>
     <div class="stop-toggle-row">
@@ -3969,26 +3940,38 @@ function initMap(trip, opts) {
       });
 
       if (animate) {
-        animateRouteDraw(coords);
+        // Let the camera fitBounds settle first, then trace the line so the two
+        // motions don't fight each other. The animation itself is interruption-safe.
+        setTimeout(() => animateRouteDraw(coords), 650);
       }
     }
   };
 
+  // Run setup as soon as the style is ready. isStyleLoaded() can be false on a
+  // freshly created map, in which case we wait for the one-time 'load' event.
+  // On an already-loaded map we run immediately.
   if (mapInstance.isStyleLoaded()) {
     setupMap();
   } else {
-    mapInstance.on('load', setupMap);
+    mapInstance.once ? mapInstance.once('load', setupMap) : mapInstance.on('load', setupMap);
   }
 }
 
 // Progressively reveal the route as a series of interpolated points, timed to
 // arrive at each stop just after its marker drops in.
 function animateRouteDraw(coords) {
-  const src = mapInstance.getSource('route');
-  if (!src) return;
+  // The definitive, fully-connected route. We always guarantee the map ends up
+  // showing THIS, even if the animation is interrupted.
+  const finalData = { type: 'Feature', geometry: { type: 'LineString', coordinates: coords } };
+
+  const setRoute = (data) => {
+    const liveSrc = mapInstance && mapInstance.getSource('route');
+    if (liveSrc) { liveSrc.setData(data); return true; }
+    return false;
+  };
 
   // Build a densified path so the line grows smoothly between stops
-  const segmentsPerLeg = 24;
+  const segmentsPerLeg = 20;
   const dense = [];
   for (let i = 0; i < coords.length - 1; i++) {
     const [lon1, lat1] = coords[i];
@@ -4000,22 +3983,28 @@ function animateRouteDraw(coords) {
   }
   dense.push(coords[coords.length - 1]);
 
-  const totalMs = 350 + (coords.length - 1) * 320; // scale with number of legs
+  const totalMs = 350 + (coords.length - 1) * 300;
   const start = performance.now();
+
+  // Safety net: no matter what happens to the rAF loop, force the complete
+  // connected line after the animation's expected duration plus a buffer.
+  const safetyTimer = setTimeout(() => {
+    if (routeAnimFrame) { cancelAnimationFrame(routeAnimFrame); routeAnimFrame = null; }
+    setRoute(finalData);
+  }, totalMs + 400);
 
   const step = (now) => {
     const p = Math.min(1, (now - start) / totalMs);
-    // ease-in-out
     const eased = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
     const count = Math.max(2, Math.floor(eased * dense.length));
-    const slice = dense.slice(0, count);
-    const liveSrc = mapInstance.getSource('route');
-    if (!liveSrc) return; // map torn down mid-animation
-    liveSrc.setData({ type: 'Feature', geometry: { type: 'LineString', coordinates: slice } });
+    const ok = setRoute({ type: 'Feature', geometry: { type: 'LineString', coordinates: dense.slice(0, count) } });
+    if (!ok) { clearTimeout(safetyTimer); routeAnimFrame = null; return; } // source gone
     if (p < 1) {
       routeAnimFrame = requestAnimationFrame(step);
     } else {
       routeAnimFrame = null;
+      clearTimeout(safetyTimer);
+      setRoute(finalData); // snap to the exact final connected line
     }
   };
   routeAnimFrame = requestAnimationFrame(step);
