@@ -316,6 +316,72 @@
       "tom_verdict": "Penguins, granite peaks and coast south of Melbourne. The Prom's hiking is the highlight, pair it with Bright."
     },
     {
+      "id": "innsbruck",
+      "name": "Innsbruck",
+      "country": "Austria",
+      "lat": 47.269,
+      "lon": 11.404,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "90-190",
+      "vibes": [
+        "mountains",
+        "nature",
+        "ski",
+        "hiking"
+      ],
+      "vibe_scores": {
+        "adventure": 5,
+        "relaxation": 4,
+        "nightlife": 3,
+        "culture": 5,
+        "budget_friendly": 3,
+        "romantic": 6,
+        "family": 5,
+        "hiking": 7,
+        "diving": 1,
+        "ski": 7
+      },
+      "summary": "Alpine city with a spectacular mountain backdrop",
+      "activities": [
+        {
+          "name": "Nordkette cable car",
+          "desc": "Straight from the city up into the Alps for an unreal view"
+        },
+        {
+          "name": "Old town & Golden Roof",
+          "desc": "The pretty medieval centre beneath the peaks"
+        },
+        {
+          "name": "Mountain access",
+          "desc": "Hiking in summer, skiing in winter, right on the city's doorstep"
+        }
+      ],
+      "food_recommendations": [
+        "Standard Austrian fare, hearty but expensive"
+      ],
+      "nightlife": [
+        "A bit dead, especially in summer, don't come for the nights out"
+      ],
+      "transport_tips": [
+        "Compact and walkable, the mountains are a cable-car ride from the centre"
+      ],
+      "warnings": [
+        "Expensive as anywhere in the Alps",
+        "Felt a bit grimy and quiet in summer, probably better in ski season",
+        "Hostels here were dodgy"
+      ],
+      "similar_to": [
+        "An alpine Austrian city with the best mountain view on this list"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "A cool city with the most spectacular view of all time, the mountains right there.",
+        "Nightlife is a bit dead and it's expensive as hell, probably better not in summer, felt a bit grimy.",
+        "Super touristy but they were all nice, hostels were dodgy though."
+      ],
+      "tom_verdict": "Comes for the jaw-dropping mountain view, not the nightlife. Take the cable car up, but maybe skip summer."
+    },
+    {
       "id": "vienna",
       "name": "Vienna",
       "country": "Austria",
@@ -510,6 +576,72 @@
       "tom_verdict": "Golf-cart island time on the reef. Bring USD, snorkel, drink at the Split, and get to the ferry early."
     },
     {
+      "id": "siem-reap",
+      "name": "Siem Reap",
+      "country": "Cambodia",
+      "lat": 13.361,
+      "lon": 103.86,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "20-70",
+      "vibes": [
+        "culture",
+        "history",
+        "adventure",
+        "budget"
+      ],
+      "vibe_scores": {
+        "adventure": 6,
+        "relaxation": 4,
+        "nightlife": 5,
+        "culture": 9,
+        "budget_friendly": 8,
+        "romantic": 5,
+        "family": 5,
+        "hiking": 3,
+        "diving": 1,
+        "ski": 0
+      },
+      "summary": "Gateway to the vast Angkor temple complex",
+      "activities": [
+        {
+          "name": "Angkor Wat sunrise",
+          "desc": "The famous dawn view over the world's largest religious monument, go early to beat the crowds"
+        },
+        {
+          "name": "Angkor temple circuit",
+          "desc": "Ta Prohm's jungle-swallowed ruins and the Bayon faces are the other must-sees, hire a tuk-tuk for the day"
+        },
+        {
+          "name": "Pub Street",
+          "desc": "The lively nightlife strip in town, cheap drinks and a good backpacker buzz"
+        }
+      ],
+      "food_recommendations": [
+        "Cheap and tasty Khmer food all over town",
+        "Old Market area for local eats"
+      ],
+      "nightlife": [
+        "Pub Street is the centre of it, cheap and busy"
+      ],
+      "transport_tips": [
+        "Hire a tuk-tuk driver for a full day around the temples, it's the easy way to do the circuit",
+        "Buy a multi-day Angkor pass if you want more than one temple day"
+      ],
+      "warnings": [
+        "Temples get very hot and crowded midday, start at sunrise",
+        "Dress respectfully at the temples, shoulders and knees covered"
+      ],
+      "similar_to": [
+        "A Cambodian counterpart to the ruins-and-jungle of Tikal"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "An older trip (2016) so the detail is a bit faded, but Angkor genuinely lived up to the hype.",
+        "The temples beyond Angkor Wat itself, especially the jungle-covered ones, were the real highlight."
+      ],
+      "tom_verdict": "An older trip for me, but Angkor is unforgettable. Sunrise at the Wat, tuk-tuk the temple circuit, wind down on Pub Street."
+    },
+    {
       "id": "la-fortuna",
       "name": "La Fortuna",
       "country": "Costa Rica",
@@ -577,6 +709,73 @@
         "3-4 nights for a budget backpacker, 4-5 for a more relaxed stay."
       ],
       "tom_verdict": "If you're going to Costa Rica, La Fortuna is a must-do stop. Absolutely loved it here."
+    },
+    {
+      "id": "liberia",
+      "name": "Liberia",
+      "country": "Costa Rica",
+      "lat": 10.634,
+      "lon": -85.44,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "30-85",
+      "vibes": [
+        "nature",
+        "adventure",
+        "hiking"
+      ],
+      "vibe_scores": {
+        "adventure": 6,
+        "relaxation": 4,
+        "nightlife": 2,
+        "culture": 3,
+        "budget_friendly": 6,
+        "romantic": 3,
+        "family": 5,
+        "hiking": 7,
+        "diving": 0,
+        "ski": 0
+      },
+      "summary": "Northern gateway town for Rincon de la Vieja national park",
+      "activities": [
+        {
+          "name": "Rincon de la Vieja",
+          "desc": "Volcano walks, canyoning and a beautiful waterfall track, the reason to be here"
+        },
+        {
+          "name": "La Leona waterfall",
+          "desc": "The waterfall and canyoning route in the park is a highlight"
+        },
+        {
+          "name": "Cheap local Sodas",
+          "desc": "The town's small family diners do great, cheap Costa Rican plates"
+        }
+      ],
+      "food_recommendations": [
+        "Eat at the local Sodas, cheap and good casados",
+        "American chain stores around town if you need them"
+      ],
+      "nightlife": [
+        "None really, it's a park base and airport layover town"
+      ],
+      "transport_tips": [
+        "Hiring a car is the way to do Costa Rica, the shuttles here are dodgy",
+        "If busing, ask your hostel about the local system, around 4 USD an hour with transfers",
+        "CR buses leave sharp, arrive 15 minutes early with cash"
+      ],
+      "warnings": [
+        "Costa Rica's border guards require proof of onward travel, have a ticket ready",
+        "The town itself isn't much, it's all about the national park"
+      ],
+      "similar_to": [
+        "A national-park base town like a drier, northern La Fortuna"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "The city itself isn't much, quite small but with cheap good food at the local Sodas.",
+        "Rincon de la Vieja national park is the reason to be here, the volcano walks and waterfall track are fantastic.",
+        "It says not to swim at the waterfall but everyone does."
+      ],
+      "tom_verdict": "A plain town with a stunning park next door. Come for Rincon de la Vieja's walks and waterfalls, eat at the Sodas."
     },
     {
       "id": "manuel-antonio",
@@ -706,6 +905,69 @@
         "It can get really cold and really wet here even in dry season, prep accordingly."
       ],
       "tom_verdict": "Cloud forest, brilliant birds and fun night tours. Give it 3-4 nights, book ahead, and pack for cold and wet."
+    },
+    {
+      "id": "san-jose-cr",
+      "name": "San Jose",
+      "country": "Costa Rica",
+      "lat": 9.928,
+      "lon": -84.091,
+      "recommended_nights": 1,
+      "budget_per_night_aud": "30-90",
+      "vibes": [
+        "city",
+        "culture"
+      ],
+      "vibe_scores": {
+        "adventure": 2,
+        "relaxation": 3,
+        "nightlife": 4,
+        "culture": 6,
+        "budget_friendly": 5,
+        "romantic": 2,
+        "family": 3,
+        "hiking": 1,
+        "diving": 1,
+        "ski": 0
+      },
+      "summary": "The workaday capital and connecting hub, better than its reputation",
+      "activities": [
+        {
+          "name": "National Museum",
+          "desc": "Genuinely great on Costa Rican history and identity, worth the stop"
+        },
+        {
+          "name": "City centre & main street",
+          "desc": "A proper downtown to wander, plenty of food options"
+        },
+        {
+          "name": "Day trips",
+          "desc": "Lots of pricey but good day trips run from the city"
+        }
+      ],
+      "food_recommendations": [
+        "Loads of food options downtown",
+        "Learn a little Spanish, it goes a long way here"
+      ],
+      "nightlife": [
+        "A decent city scene, more than you'd expect"
+      ],
+      "transport_tips": [
+        "Mostly a connecting city for the rest of the country"
+      ],
+      "warnings": [
+        "Not unsafe but keep your wits about you downtown, it's a big city"
+      ],
+      "similar_to": [
+        "A functional Central American capital that's a useful stopover"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Only here for an afternoon and a night but I didn't hate it, it's a big connecting city with a proper centre.",
+        "The national museum is seriously great for Costa Rican history and identity.",
+        "Didn't regret the stop, CR Backpackers was a great hostel if you know a bit of Spanish."
+      ],
+      "tom_verdict": "A connecting-hub capital that's better than people say. Do the excellent national museum and don't feel bad about one night."
     },
     {
       "id": "zagreb",
@@ -2318,6 +2580,196 @@
         "Both locals we met had never met an Australian before, and most speak excellent English."
       ],
       "tom_verdict": "A tiny, quiet surprise of a city. Use Google Maps not Apple, eat cheap, the castle and old town are lovely."
+    },
+    {
+      "id": "kota-kinabalu",
+      "name": "Kota Kinabalu",
+      "country": "Malaysia",
+      "lat": 5.98,
+      "lon": 116.073,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "30-95",
+      "vibes": [
+        "nature",
+        "adventure",
+        "diving",
+        "hiking"
+      ],
+      "vibe_scores": {
+        "adventure": 8,
+        "relaxation": 4,
+        "nightlife": 3,
+        "culture": 4,
+        "budget_friendly": 6,
+        "romantic": 4,
+        "family": 4,
+        "hiking": 8,
+        "diving": 6,
+        "ski": 0
+      },
+      "summary": "Borneo base for Mount Kinabalu, islands and rainforest",
+      "activities": [
+        {
+          "name": "Mount Kinabalu",
+          "desc": "Borneo's towering peak, a serious two-day climb for the fit and the reason many come"
+        },
+        {
+          "name": "Island snorkelling",
+          "desc": "The Tunku Abdul Rahman marine park islands are a short boat ride offshore"
+        },
+        {
+          "name": "Sunset at the waterfront",
+          "desc": "The KK waterfront has one of the best sunsets in Southeast Asia"
+        }
+      ],
+      "food_recommendations": [
+        "Fresh seafood at the night markets by the water"
+      ],
+      "nightlife": [
+        "Low-key waterfront bars"
+      ],
+      "transport_tips": [
+        "Book Mount Kinabalu climbs well ahead, permits are limited",
+        "Island boats leave from the city jetty"
+      ],
+      "warnings": [
+        "Climbing Kinabalu needs a permit and guide, and reasonable fitness",
+        "Older trip, so double-check current operators and prices"
+      ],
+      "similar_to": [
+        "A Borneo wilderness base, rainforest and reef in one"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "The 2012 Borneo leg, an old trip, but the sheer wildness of it, the mountain and the rainforest, left a mark."
+      ],
+      "tom_verdict": "An old trip but Borneo is wild in the best way. Climb Kinabalu if you're fit, otherwise islands, reef and that waterfront sunset."
+    },
+    {
+      "id": "kuala-lumpur",
+      "name": "Kuala Lumpur",
+      "country": "Malaysia",
+      "lat": 3.139,
+      "lon": 101.687,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "30-90",
+      "vibes": [
+        "city",
+        "culture",
+        "foodie",
+        "budget"
+      ],
+      "vibe_scores": {
+        "adventure": 3,
+        "relaxation": 3,
+        "nightlife": 5,
+        "culture": 7,
+        "budget_friendly": 7,
+        "romantic": 3,
+        "family": 5,
+        "hiking": 2,
+        "diving": 1,
+        "ski": 0
+      },
+      "summary": "Modern, multicultural capital of towers and street food",
+      "activities": [
+        {
+          "name": "Petronas Towers",
+          "desc": "The iconic twin towers, great by day and lit up at night"
+        },
+        {
+          "name": "Batu Caves",
+          "desc": "Colourful Hindu cave temple up a steep rainbow staircase, just north of the city"
+        },
+        {
+          "name": "Jalan Alor food street",
+          "desc": "The famous open-air hawker street, the place to eat at night"
+        }
+      ],
+      "food_recommendations": [
+        "Jalan Alor for the full hawker experience",
+        "The mix of Malay, Chinese and Indian food is the real draw"
+      ],
+      "nightlife": [
+        "Changkat Bukit Bintang is the main bar strip"
+      ],
+      "transport_tips": [
+        "The city monorail and trains are cheap and easy",
+        "Grab is widely used and affordable"
+      ],
+      "warnings": [
+        "Older trip so details are hazy, verify opening times before you go"
+      ],
+      "similar_to": [
+        "A cheaper, more multicultural regional-hub city like Singapore"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "From the 2012 Malaysia and Borneo trip, an old one, so the notes are faded, but the towers and the food scene stuck."
+      ],
+      "tom_verdict": "An old trip for me, but KL's towers, Batu Caves and hawker food still stand out. A couple of nights does it."
+    },
+    {
+      "id": "mauritius",
+      "name": "Mauritius",
+      "country": "Mauritius",
+      "lat": -20.348,
+      "lon": 57.552,
+      "recommended_nights": 5,
+      "budget_per_night_aud": "90-260",
+      "vibes": [
+        "beach",
+        "relaxation",
+        "diving",
+        "romantic"
+      ],
+      "vibe_scores": {
+        "adventure": 4,
+        "relaxation": 8,
+        "nightlife": 3,
+        "culture": 4,
+        "budget_friendly": 3,
+        "romantic": 8,
+        "family": 6,
+        "hiking": 3,
+        "diving": 6,
+        "ski": 0
+      },
+      "summary": "Indian Ocean island of lagoons, reefs and beaches",
+      "activities": [
+        {
+          "name": "Lagoon beaches",
+          "desc": "Turquoise lagoons and white sand ring the island, the main event"
+        },
+        {
+          "name": "Snorkelling & diving",
+          "desc": "Warm reef-protected water makes for easy, lovely snorkelling"
+        },
+        {
+          "name": "Black River Gorges",
+          "desc": "Green inland national park for a change from the coast"
+        }
+      ],
+      "food_recommendations": [
+        "Creole cooking with Indian, Chinese and French influences, really good"
+      ],
+      "nightlife": [
+        "Relaxed, mostly resort and beach-bar based"
+      ],
+      "transport_tips": [
+        "Hiring a car gives the most freedom to circle the island"
+      ],
+      "warnings": [
+        "A honeymoon-and-resort island more than a backpacker one, budget accordingly"
+      ],
+      "similar_to": [
+        "A calmer, more resort-focused Indian Ocean beach escape"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "From the 2019 trip, one I still need to write up properly, but the lagoons and the water were the standout."
+      ],
+      "tom_verdict": "A trip I still owe proper notes on, but the lagoons and reefs are gorgeous. A relaxed, beachy island escape."
     },
     {
       "id": "bacalar",
@@ -4560,6 +5012,137 @@
       "tom_verdict": "Beautiful, easy and expensive. Do museum island and the archipelago, buy booze in the day, pack warm even in summer."
     },
     {
+      "id": "lucerne",
+      "name": "Lucerne",
+      "country": "Switzerland",
+      "lat": 47.05,
+      "lon": 8.307,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "120-260",
+      "vibes": [
+        "nature",
+        "romantic",
+        "relaxation",
+        "mountains"
+      ],
+      "vibe_scores": {
+        "adventure": 4,
+        "relaxation": 6,
+        "nightlife": 2,
+        "culture": 6,
+        "budget_friendly": 1,
+        "romantic": 8,
+        "family": 6,
+        "hiking": 6,
+        "diving": 1,
+        "ski": 3
+      },
+      "summary": "Storybook lake town ringed by spectacular mountains",
+      "activities": [
+        {
+          "name": "Lake Lucerne",
+          "desc": "The lake and mountain scenery is the whole point, just stunning, take a boat out"
+        },
+        {
+          "name": "Chapel Bridge & old town",
+          "desc": "The covered wooden bridge and the medieval centre are gorgeous"
+        },
+        {
+          "name": "Mountain excursions",
+          "desc": "Pilatus or Rigi for cable-car views over the lake and greenery"
+        }
+      ],
+      "food_recommendations": [
+        "Swiss cheese and beers are excellent but eye-wateringly expensive",
+        "Expect to pay a lot everywhere, self-catering saves money"
+      ],
+      "nightlife": [
+        "Quiet, this is a scenery-and-relaxation town"
+      ],
+      "transport_tips": [
+        "Swiss trains are famously punctual and scenic but pricey",
+        "The nearby Zug and Cham area is just as beautiful and worth the detour"
+      ],
+      "warnings": [
+        "Stupidly expensive everywhere, like 20 euros for a simple meal",
+        "Budget hard or self-cater to survive Switzerland"
+      ],
+      "similar_to": [
+        "A quintessential Swiss lake-and-mountain postcard"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Stayed with friends around Zug and Lucerne and the scenery is just spectacular, mountains and greenery over the lake.",
+        "Crazy stunning, absolutely adored it, got fed far too many beers and cheese.",
+        "Stupidly expensive everywhere though, like 20 euros for a Bahn, tasty but a bit wack."
+      ],
+      "tom_verdict": "Absurdly beautiful and absurdly expensive. The lake and mountains around Lucerne and Zug are worth every painful franc."
+    },
+    {
+      "id": "zermatt",
+      "name": "Zermatt",
+      "country": "Switzerland",
+      "lat": 46.02,
+      "lon": 7.749,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "150-320",
+      "vibes": [
+        "mountains",
+        "ski",
+        "nature",
+        "hiking"
+      ],
+      "vibe_scores": {
+        "adventure": 6,
+        "relaxation": 4,
+        "nightlife": 3,
+        "culture": 3,
+        "budget_friendly": 1,
+        "romantic": 8,
+        "family": 5,
+        "hiking": 8,
+        "diving": 1,
+        "ski": 9
+      },
+      "summary": "Car-free alpine village beneath the Matterhorn",
+      "activities": [
+        {
+          "name": "The Matterhorn",
+          "desc": "The iconic pyramid peak looms over everything, the reason you come"
+        },
+        {
+          "name": "Gornergrat railway",
+          "desc": "A cogwheel train up to jaw-dropping glacier and peak views"
+        },
+        {
+          "name": "Skiing or hiking",
+          "desc": "World-class slopes in winter, spectacular trails in summer"
+        }
+      ],
+      "food_recommendations": [
+        "Mountain-hut fondue with a view is the classic splurge"
+      ],
+      "nightlife": [
+        "Some apres-ski bars, but it's mostly a mountain village"
+      ],
+      "transport_tips": [
+        "Zermatt is car-free, you arrive by train from Tasch",
+        "Everything runs on scenic mountain railways and lifts"
+      ],
+      "warnings": [
+        "One of the priciest spots in an already pricey country",
+        "Weather can hide the Matterhorn for days, allow buffer time"
+      ],
+      "similar_to": [
+        "A car-free, higher-altitude sibling to Switzerland's other alpine resorts"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Part of the 2013 Switzerland trip, an older one, but the Matterhorn and the sheer scale of the Alps here are unreal."
+      ],
+      "tom_verdict": "An older trip but the Matterhorn delivers. Car-free, gorgeous, brutal on the wallet, take the train up for the views."
+    },
+    {
       "id": "taipei",
       "name": "Taipei",
       "country": "Taiwan",
@@ -5209,6 +5792,197 @@
         "An early one (2014) so the notes are faded, but the geysers and the sheer scale of the wilderness stuck with me."
       ],
       "tom_verdict": "A faded early trip but unforgettable: geysers, bison and endless wilderness. You need a car and a few days."
+    },
+    {
+      "id": "danang",
+      "name": "Danang",
+      "country": "Vietnam",
+      "lat": 16.054,
+      "lon": 108.202,
+      "recommended_nights": 2,
+      "budget_per_night_aud": "25-75",
+      "vibes": [
+        "beach",
+        "relaxation",
+        "culture"
+      ],
+      "vibe_scores": {
+        "adventure": 4,
+        "relaxation": 6,
+        "nightlife": 4,
+        "culture": 6,
+        "budget_friendly": 7,
+        "romantic": 5,
+        "family": 5,
+        "hiking": 2,
+        "diving": 2,
+        "ski": 0
+      },
+      "summary": "Beach city between the mountains and nearby Hoi An",
+      "activities": [
+        {
+          "name": "My Khe Beach",
+          "desc": "A long stretch of city beach, easy and pleasant"
+        },
+        {
+          "name": "Hoi An day trip",
+          "desc": "The lantern-lit old town nearby is the real draw, gorgeous at night"
+        },
+        {
+          "name": "Marble Mountains",
+          "desc": "Cave temples and viewpoints in limestone hills just south of the city"
+        }
+      ],
+      "food_recommendations": [
+        "Central Vietnamese food is a highlight, try mi quang and banh xeo"
+      ],
+      "nightlife": [
+        "Low-key, the riverside and beach bars are the main scene"
+      ],
+      "transport_tips": [
+        "Easy to reach Hoi An by taxi or Grab for the evening lantern town"
+      ],
+      "warnings": [
+        "More of a base than a destination in itself, the nearby towns are the highlights"
+      ],
+      "similar_to": [
+        "A beachy base for the lantern town of Hoi An"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "From the 2016 trip, faded memories, but Hoi An nearby was the part everyone raves about for good reason."
+      ],
+      "tom_verdict": "An older trip, mostly a base for gorgeous Hoi An. Beach by day, lantern-lit old town by night."
+    },
+    {
+      "id": "hanoi",
+      "name": "Hanoi",
+      "country": "Vietnam",
+      "lat": 21.028,
+      "lon": 105.834,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "20-65",
+      "vibes": [
+        "culture",
+        "history",
+        "foodie",
+        "city"
+      ],
+      "vibe_scores": {
+        "adventure": 4,
+        "relaxation": 3,
+        "nightlife": 5,
+        "culture": 9,
+        "budget_friendly": 8,
+        "romantic": 4,
+        "family": 4,
+        "hiking": 1,
+        "diving": 1,
+        "ski": 0
+      },
+      "summary": "Atmospheric old-quarter capital, gateway to Halong Bay",
+      "activities": [
+        {
+          "name": "Old Quarter wander",
+          "desc": "The tangle of narrow trading streets is the heart of the city, just get lost in it"
+        },
+        {
+          "name": "Halong Bay trip",
+          "desc": "The famous limestone-karst bay is a day or overnight trip out and a genuine highlight"
+        },
+        {
+          "name": "Hoan Kiem Lake",
+          "desc": "The calm central lake, lovely early morning when locals do tai chi"
+        }
+      ],
+      "food_recommendations": [
+        "Egg coffee is a Hanoi speciality, try it",
+        "Street pho and bun cha are the local staples"
+      ],
+      "nightlife": [
+        "Bia hoi corner in the Old Quarter for cheap fresh beer on tiny stools"
+      ],
+      "transport_tips": [
+        "The Old Quarter is walkable, which is the best way to feel the city",
+        "Book a reputable Halong Bay operator, quality varies a lot"
+      ],
+      "warnings": [
+        "Same scooter-heavy traffic as the south, cross with steady nerve"
+      ],
+      "similar_to": [
+        "A more historic, atmospheric northern counterpart to Ho Chi Minh City"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "Part of the 2016 Vietnam trip, older memories, but the Old Quarter and Halong Bay were the standouts."
+      ],
+      "tom_verdict": "An older trip but Hanoi's Old Quarter and Halong Bay are worth it. Wander, eat, and get out to the bay."
+    },
+    {
+      "id": "ho-chi-minh-city",
+      "name": "Ho Chi Minh City",
+      "country": "Vietnam",
+      "lat": 10.823,
+      "lon": 106.63,
+      "recommended_nights": 3,
+      "budget_per_night_aud": "20-65",
+      "vibes": [
+        "culture",
+        "history",
+        "foodie",
+        "city"
+      ],
+      "vibe_scores": {
+        "adventure": 4,
+        "relaxation": 3,
+        "nightlife": 6,
+        "culture": 8,
+        "budget_friendly": 8,
+        "romantic": 3,
+        "family": 4,
+        "hiking": 1,
+        "diving": 1,
+        "ski": 0
+      },
+      "summary": "Frenetic southern hub of markets, history and street food",
+      "activities": [
+        {
+          "name": "War Remnants Museum",
+          "desc": "A heavy but essential museum on the Vietnam War, told from the Vietnamese side"
+        },
+        {
+          "name": "Ben Thanh Market",
+          "desc": "The classic central market, haggle hard and graze the food stalls"
+        },
+        {
+          "name": "Cu Chi Tunnels day trip",
+          "desc": "The wartime tunnel network outside the city, a striking half-day trip"
+        }
+      ],
+      "food_recommendations": [
+        "Street pho and banh mi everywhere and dirt cheap",
+        "Grab a tiny plastic stool and eat where the locals do"
+      ],
+      "nightlife": [
+        "Bui Vien walking street is the backpacker nightlife strip"
+      ],
+      "transport_tips": [
+        "Crossing the road is an art, walk slowly and steadily and the scooters flow around you",
+        "Grab (bike or car) is cheap and the easiest way around"
+      ],
+      "warnings": [
+        "The traffic is genuinely overwhelming at first, thousands of scooters",
+        "Watch bags for snatch-theft in busy areas"
+      ],
+      "similar_to": [
+        "A busier, grittier southern counterpart to Hanoi"
+      ],
+      "sub_itinerary": null,
+      "wandrly_notes": [
+        "An older trip (2016), memories a bit faded, but the sheer energy and the scooter chaos really stuck.",
+        "The war history sites hit hard and are worth the time."
+      ],
+      "tom_verdict": "A faded older trip but the chaos and history stayed with me. Do the war museum and the tunnels, eat everything on the street."
     }
   ]
 }
