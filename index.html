@@ -1049,6 +1049,12 @@ nav {
 .mapboxgl-popup-content { border-radius: var(--radius-sm) !important; padding: 10px 12px !important; }
 
 /* MAP MARKER ANIMATIONS */
+/* Outer wrapper is positioned by Mapbox; we never transform it. */
+.wandrly-marker-wrap {
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+}
 .wandrly-marker {
   width: 28px;
   height: 28px;
@@ -1061,11 +1067,10 @@ nav {
   font-size: 12px;
   font-weight: 600;
   font-family: 'Inter', sans-serif;
-  cursor: pointer;
   box-shadow: 0 1px 4px rgba(0,0,0,0.25);
   position: relative;
 }
-/* Drop-in: pin falls and settles when the route builds */
+/* Drop-in: pin falls and settles when the route builds (on inner element) */
 @keyframes markerDrop {
   0%   { opacity: 0; transform: translateY(-14px) scale(0.6); }
   60%  { opacity: 1; transform: translateY(2px) scale(1.05); }
@@ -1073,14 +1078,13 @@ nav {
 }
 .wandrly-marker.dropping { animation: markerDrop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
 
-/* Active pin gets a pulsing ring */
+/* Active pin gets a pulsing ring in the stop's colour (number stays white) */
 .wandrly-marker.active::after {
   content: '';
   position: absolute;
   inset: -4px;
   border-radius: 50%;
-  border: 2px solid currentColor;
-  color: inherit;
+  border: 2px solid var(--ring-color, #c45c2a);
   animation: markerPulse 1.6s ease-out infinite;
 }
 @keyframes markerPulse {
@@ -1532,15 +1536,15 @@ footer strong { color: var(--ink-muted); }
   <div class="story-card">
     <div class="story-text">
       <div class="story-eyebrow">Our story</div>
-      <h2>Every tip here comes from an actual trip.</h2>
+      <h2>Built on real trips, not recycled lists.</h2>
       <p>
-        Wandrly started as a giant document of scribbled travel notes, the kind you build up after years of buses, hostels, ferries and wrong turns. Somewhere over 80 cities and 40 countries, it turned into something worth sharing.
+        Wandrly grew out of a giant document of scribbled travel notes, the kind that piles up after years of buses, hostels, ferries and wrong turns. Somewhere past 80 cities and 40 countries, it started to feel worth sharing.
       </p>
       <p>
-        Most travel sites recycle the same generic lists. This one doesn't. Every recommendation, warning and "trust me, do this" comes from genuinely being there, getting it wrong, and figuring out what actually works. No sponsored fluff, no AI filler pretending to have been somewhere.
+        Those first-hand notes are the backbone of the site. AI helps stitch them into full routes and fill the gaps for places still being explored, but the heart of it, the warnings, the shortcuts, the "trust me, do this", comes from actually being there and figuring out what works.
       </p>
       <p>
-        The map is real too. Every dot is a place these notes came from. It's still growing.
+        The map is real too. Every dot is a place these notes came from, and it's still growing.
       </p>
       <div class="story-stats">
         <div>
@@ -3883,14 +3887,17 @@ function initMap(trip, opts) {
       const orderPos = visibleIdx; // position among included stops
       visibleIdx++;
 
+      // Outer element is positioned by Mapbox (it owns the transform). Our
+      // drop/pulse animations run on an INNER element so they never fight the
+      // marker's positioning transform, which was knocking pins off-coordinate.
       const el = document.createElement('div');
-      el.className = 'wandrly-marker';
-      el.style.background = colors[i % colors.length];
-      el.style.color = colors[i % colors.length]; // for the pulse ring currentColor
-      el.textContent = (i + 1);
-      // keep the number white regardless of the color used for the ring
-      el.style.setProperty('color', 'white');
-      el.dataset.ring = colors[i % colors.length];
+      el.className = 'wandrly-marker-wrap';
+      const inner = document.createElement('div');
+      inner.className = 'wandrly-marker';
+      inner.style.background = colors[i % colors.length];
+      inner.textContent = (i + 1);
+      inner.dataset.ring = colors[i % colors.length];
+      el.appendChild(inner);
 
       el.addEventListener('click', () => {
         activeStopIndex = i;
@@ -3902,7 +3909,7 @@ function initMap(trip, opts) {
       const popup = new mapboxgl.Popup({offset: 18, closeButton: false})
         .setHTML(`<div class="map-popup-content"><strong>${stop.name}</strong><br>${stop.nights} night${stop.nights!==1?'s':''}</div>`);
 
-      const marker = new mapboxgl.Marker({element: el})
+      const marker = new mapboxgl.Marker({element: el, anchor: 'center'})
         .setLngLat([stop.lon, stop.lat])
         .setPopup(popup)
         .addTo(mapInstance);
@@ -3911,15 +3918,16 @@ function initMap(trip, opts) {
       el.addEventListener('mouseleave', () => marker.togglePopup());
 
       mapMarkers.push(marker);
-      markerElements[i] = el;
+      markerElements[i] = inner; // inner carries our highlight/animation classes
 
-      // Staggered drop-in animation
+      // Staggered drop-in animation, on the INNER element so it doesn't disturb
+      // the marker's Mapbox positioning transform.
       if (animate) {
-        el.style.opacity = '0';
+        inner.style.opacity = '0';
         setTimeout(() => {
-          el.style.opacity = '';
-          el.classList.add('dropping');
-          el.addEventListener('animationend', () => el.classList.remove('dropping'), { once: true });
+          inner.style.opacity = '';
+          inner.classList.add('dropping');
+          inner.addEventListener('animationend', () => inner.classList.remove('dropping'), { once: true });
         }, 250 + orderPos * 160);
       }
     });
@@ -4021,17 +4029,13 @@ function flyToStop(i) {
   const stop = currentTripData.stops[i];
   if (!stop || !stop.included) return;
 
-  // Clear previous active highlight, set new one
-  Object.values(markerElements).forEach(el => {
-    el.classList.remove('active');
-    el.style.setProperty('color', 'white');
-  });
+  // Clear previous active highlight, set new one. The pulse ring reads its
+  // colour from a CSS custom property so the number stays white.
+  Object.values(markerElements).forEach(el => el.classList.remove('active'));
   const el = markerElements[i];
   if (el) {
-    // Set the ring colour via currentColor, keep the number white by using an
-    // inner approach: we temporarily colour the element so ::after inherits it.
+    el.style.setProperty('--ring-color', el.dataset.ring || '#c45c2a');
     el.classList.add('active');
-    el.style.setProperty('color', el.dataset.ring || '#c45c2a');
   }
 
   mapInstance.flyTo({
@@ -4311,38 +4315,98 @@ async function askMore(topic) {
   try {
     const data = await callAI(prompt, 400, null);
     const text = data.content.map(i => i.text || '').join('');
-    overlayBody.innerHTML = text.split('\n').filter(l=>l.trim()).map(l =>
-      `<p style="margin-bottom:8px;font-size:13px;color:var(--ink-muted);line-height:1.6">${l}</p>`
-    ).join('');
+    overlayBody.innerHTML = renderMiniMarkdown(text);
     recordUsage();
   } catch(e) {
     overlayBody.innerHTML = `<p style="color:var(--accent);font-size:13px">${e.message || 'Could not load, please try again.'}</p>`;
   }
 }
 
-// ---- OUR STORY MAP ----
-// A lightweight canvas world map. Landmasses are drawn as soft blobs (no
-// external tile/library needed), then every destination in the bank is plotted
-// as a dot using an equirectangular projection. Updates the stat counters too.
-function lonLatToXY(lon, lat, w, h) {
-  // Equirectangular, clipped to the populated latitude band (-58..80) so the
-  // map fills the canvas nicely rather than wasting space on empty poles.
-  const x = (lon + 180) / 360 * w;
-  const latTop = 80, latBottom = -58;
-  const y = (latTop - lat) / (latTop - latBottom) * h;
-  return { x, y };
+// Lightweight markdown -> HTML for the ask-more panels. Handles the small subset
+// the AI actually returns: # / ## headings, - bullets, and **bold** inline.
+function renderMiniMarkdown(md) {
+  const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const inline = s => esc(s)
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>');
+
+  const lines = md.split('\n');
+  let html = '';
+  let inList = false;
+  const closeList = () => { if (inList) { html += '</ul>'; inList = false; } };
+
+  for (let raw of lines) {
+    const line = raw.trim();
+    if (!line) { closeList(); continue; }
+
+    if (line.startsWith('## ')) {
+      closeList();
+      html += `<div style="font-family:'Fraunces',serif;font-size:15px;font-weight:400;color:var(--ink);margin:14px 0 6px">${inline(line.slice(3))}</div>`;
+    } else if (line.startsWith('# ')) {
+      closeList();
+      html += `<div style="font-size:12px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--accent);margin:6px 0 10px">${inline(line.slice(2))}</div>`;
+    } else if (line.startsWith('- ') || line.startsWith('* ')) {
+      if (!inList) { html += '<ul style="margin:0 0 10px;padding-left:2px;list-style:none">'; inList = true; }
+      html += `<li style="font-size:13px;color:var(--ink-muted);line-height:1.6;margin-bottom:6px;padding-left:14px;position:relative"><span style="position:absolute;left:0;color:var(--accent)">&bull;</span>${inline(line.slice(2))}</li>`;
+    } else {
+      closeList();
+      html += `<p style="margin-bottom:8px;font-size:13px;color:var(--ink-muted);line-height:1.6">${inline(line)}</p>`;
+    }
+  }
+  closeList();
+  return html;
 }
 
-// Rough continental landmass ellipses (lon, lat, radiusLon, radiusLat) - just
-// enough to read as a world map behind the dots.
-const LANDMASSES = [
-  [-100, 45, 34, 22], [-90, 60, 30, 14], [-115, 62, 20, 12], // N America
-  [-72, -15, 20, 26], [-62, -35, 12, 12],                     // S America
-  [15, 50, 30, 16], [10, 62, 16, 8],                          // Europe
-  [20, 5, 26, 26], [25, -22, 22, 18],                         // Africa
-  [55, 40, 28, 20], [90, 30, 40, 22], [100, 15, 22, 16],      // Asia
-  [135, -25, 22, 14], [172, -42, 6, 6],                       // Oceania
+// ---- OUR STORY MAP ----
+// A lightweight canvas world map. A simplified real coastline is drawn as filled
+// polygons (no external tile/library needed), then every destination in the bank
+// is plotted as a dot using an equirectangular projection. The projection keeps a
+// fixed aspect ratio and is centred within the canvas so nothing looks squished.
+
+// Simplified continent outlines as [lon, lat] rings. Low vertex count but real
+// shapes, so the continents are recognisable. Longitudes -180..180, lats -90..90.
+const WORLD_OUTLINES = [
+  // North America
+  [[-168,66],[-160,71],[-140,70],[-128,70],[-114,69],[-95,70],[-82,73],[-61,82],[-74,68],[-78,62],[-95,60],[-84,55],[-79,44],[-66,44],[-70,42],[-74,40],[-76,35],[-81,31],[-80,25],[-90,29],[-97,26],[-97,22],[-106,23],[-110,23],[-113,31],[-117,33],[-124,40],[-124,48],[-133,54],[-138,59],[-150,59],[-165,60],[-168,66]],
+  // Central America
+  [[-92,16],[-88,15],[-83,11],[-80,9],[-77,8],[-83,15],[-88,18],[-92,16]],
+  // South America
+  [[-81,6],[-77,8],[-72,11],[-64,10],[-60,5],[-52,5],[-50,0],[-44,-2],[-39,-13],[-48,-25],[-53,-34],[-58,-39],[-62,-40],[-65,-45],[-69,-52],[-75,-52],[-73,-44],[-73,-37],[-71,-30],[-70,-20],[-76,-14],[-81,-6],[-81,6]],
+  // Africa
+  [[-16,15],[-6,36],[10,37],[24,32],[32,31],[43,12],[51,12],[41,-2],[40,-15],[35,-24],[20,-35],[18,-34],[12,-17],[9,4],[-8,4],[-16,15]],
+  // Europe
+  [[-10,37],[-9,44],[-2,48],[2,51],[-5,58],[5,62],[11,59],[10,54],[20,55],[30,60],[28,45],[24,40],[15,40],[19,42],[13,45],[3,43],[-10,37]],
+  // Asia
+  [[26,40],[35,45],[40,48],[50,45],[48,55],[60,68],[75,73],[100,77],[130,73],[160,70],[170,66],[178,64],[160,60],[155,52],[143,48],[140,52],[135,44],[130,42],[122,40],[122,30],[110,21],[106,10],[104,1],[98,8],[92,21],[88,22],[80,13],[77,8],[73,20],[68,24],[57,25],[48,30],[35,30],[26,40]],
+  // Australia
+  [[114,-22],[122,-18],[130,-12],[137,-12],[142,-11],[146,-18],[150,-24],[153,-28],[150,-38],[143,-39],[135,-35],[129,-32],[124,-34],[115,-34],[114,-22]],
+  // New Zealand (two rough islands)
+  [[173,-35],[175,-37],[178,-38],[177,-40],[174,-41],[173,-38],[173,-35]],
+  [[167,-45],[170,-44],[172,-43],[171,-46],[167,-47],[167,-45]],
+  // Japan
+  [[130,31],[135,34],[140,36],[142,40],[141,43],[144,44],[140,38],[137,35],[132,33],[130,31]],
+  // UK & Ireland
+  [[-6,50],[-3,54],[-3,58],[-6,57],[-8,55],[-6,50]],
+  // Madagascar
+  [[43,-12],[50,-16],[48,-25],[44,-22],[43,-12]],
 ];
+
+function makeProjector(w, h) {
+  // Equirectangular over the populated band, preserving a 2:1 lon:lat aspect so
+  // continents keep their real proportions and never look stretched.
+  const lonMin = -170, lonMax = 179;
+  const latMin = -56, latMax = 78;
+  const spanLon = lonMax - lonMin;   // ~349
+  const spanLat = latMax - latMin;   // ~134
+  // scale so the whole band fits inside the canvas, keeping equal deg-per-pixel
+  const scale = Math.min(w / spanLon, h / spanLat);
+  const drawW = spanLon * scale, drawH = spanLat * scale;
+  const offX = (w - drawW) / 2, offY = (h - drawH) / 2;
+  return (lon, lat) => ({
+    x: offX + (lon - lonMin) * scale,
+    y: offY + (latMax - lat) * scale
+  });
+}
 
 function drawStoryMap() {
   const canvas = document.getElementById('story-map-canvas');
@@ -4354,33 +4418,38 @@ function drawStoryMap() {
   canvas.width = w * dpr;
   canvas.height = h * dpr;
   const ctx = canvas.getContext('2d');
-  ctx.scale(dpr, dpr);
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   ctx.clearRect(0, 0, w, h);
 
-  // Landmasses
-  ctx.fillStyle = 'rgba(196,92,42,0.10)';
-  LANDMASSES.forEach(([lon, lat, rLon, rLat]) => {
-    const c = lonLatToXY(lon, lat, w, h);
-    const rx = rLon / 360 * w;
-    const ry = rLat / 138 * h;
+  const project = makeProjector(w, h);
+
+  // Continents: soft filled shapes with a slightly darker outline
+  ctx.fillStyle = 'rgba(196,92,42,0.13)';
+  ctx.strokeStyle = 'rgba(196,92,42,0.22)';
+  ctx.lineWidth = 1;
+  ctx.lineJoin = 'round';
+  WORLD_OUTLINES.forEach(ring => {
     ctx.beginPath();
-    ctx.ellipse(c.x, c.y, rx, ry, 0, 0, Math.PI * 2);
+    ring.forEach(([lon, lat], i) => {
+      const p = project(lon, lat);
+      i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
+    });
+    ctx.closePath();
     ctx.fill();
+    ctx.stroke();
   });
 
   // Destination dots from the bank
   const dests = (typeof DESTINATIONS !== 'undefined' && DESTINATIONS.length) ? DESTINATIONS : [];
   dests.forEach(d => {
     if (typeof d.lat !== 'number' || typeof d.lon !== 'number') return;
-    const p = lonLatToXY(d.lon, d.lat, w, h);
-    // glow
+    const p = project(d.lon, d.lat);
     ctx.beginPath();
     ctx.arc(p.x, p.y, 4.5, 0, Math.PI * 2);
     ctx.fillStyle = 'rgba(196,92,42,0.25)';
     ctx.fill();
-    // core
     ctx.beginPath();
-    ctx.arc(p.x, p.y, 2.2, 0, Math.PI * 2);
+    ctx.arc(p.x, p.y, 2.3, 0, Math.PI * 2);
     ctx.fillStyle = '#c45c2a';
     ctx.fill();
   });
