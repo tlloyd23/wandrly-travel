@@ -1739,13 +1739,18 @@ globeLoop();
 const photoCache = {};
 
 // ---- AI MODEL CONFIG ----
-// The model used for all AI generation. Kept as one constant so it's trivial to
-// change if Anthropic updates model names. Haiku is fast and cheap, which keeps
-// generations well inside serverless timeout limits (important on Vercel Hobby,
-// where functions are capped near 10 seconds). If you're on Vercel Pro and want
-// richer output, you can swap this to a Sonnet model string.
-// Verify the exact current string in your Anthropic console: https://console.anthropic.com
-const AI_MODEL = 'claude-3-5-haiku-latest';
+// The model used for all AI generation, kept as one constant so it's trivial to
+// change if Anthropic updates model names.
+//
+// IMPORTANT: This must be a model string your Anthropic API key actually has
+// access to. If searches fail with a red error mentioning the model name, the
+// string below is wrong for your account. Check the valid list in your console:
+// https://console.anthropic.com  (Settings -> Models, or the API docs)
+//
+// 'claude-sonnet-4-6' is the string this project used previously and is known to
+// work here. If you want faster/cheaper generation and have access to it, a
+// Haiku model is quicker, but ONLY switch to a string you've confirmed works.
+const AI_MODEL = 'claude-sonnet-4-6';
 
 // ---- AFFILIATE LINKS (PARKED) ----
 // Accommodation affiliate links (Booking.com via CJ, etc.) are paused for now.
